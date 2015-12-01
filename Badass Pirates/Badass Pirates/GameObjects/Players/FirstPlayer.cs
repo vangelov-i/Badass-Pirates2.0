@@ -12,6 +12,9 @@
         public FirstPlayer(ShipType type, string name)
             : base(type, name)
         {
+            this.Ship.Position.X = 0;
+            this.Ship.Position.Y = 0;
         }
+
     }
 }

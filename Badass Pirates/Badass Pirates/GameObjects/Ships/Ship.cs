@@ -9,11 +9,14 @@
     using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
+    using Badass_Pirates.GameObjects.Items;
 
     #endregion
 
-    public abstract class Ship : IAttack, IMoveable
+    public abstract class Ship : IAttack, IMoveable, IGet
     {
+        private Vector2 position;
+
         private int energy;
 
         private int damage;
@@ -22,12 +25,28 @@
 
         private int shields;
 
-        protected Ship(int damage, int health, int shields, int energy)
+        private int speed;
+
+
+        protected Ship(int damage, int health, int shields, int energy, int speed)
         {
             this.Damage = damage;
             this.Health = health;
             this.Shields = shields;
             this.Energy = energy;
+            this.Speed = speed;
+        }
+
+        public Vector2 Position 
+        {
+            get
+            {
+                return this.position;
+            }
+            set
+            {
+                this.position = value;
+            }
         }
 
         public int Damage
@@ -82,11 +101,30 @@
             }
         }
 
+        public int Speed 
+        {
+            get 
+            { 
+                return this.speed; 
+            }
+
+            set 
+            { 
+                this.speed = value; 
+            }
+        }
+
         public abstract void Attack(Ship target);
 
         public void Move(Vector2 targetPosition)
         {
             throw new NotImplementedException();
         }
+
+        public virtual void Get(Items.Item item)
+        {
+
+        }
+
     }
 }

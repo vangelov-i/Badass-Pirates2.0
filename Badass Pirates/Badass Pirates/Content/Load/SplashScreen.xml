@@ -1,5 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <SplashScreen>
   <Path>Backgrounds/BG</Path>
+  <Position>
+    <X>0</X>
+    <Y>0</Y>
+  </Position>
 </SplashScreen>
   

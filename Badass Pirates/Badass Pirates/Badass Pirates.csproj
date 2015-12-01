@@ -61,14 +61,19 @@
     <Compile Include="Exceptions\OutOfEnergyException.cs" />
     <Compile Include="Exceptions\OutOfHealthException.cs" />
     <Compile Include="Exceptions\OutOfShieldsException.cs" />
+    <Compile Include="Factory\CreateBonusTypeEffect.cs" />
     <Compile Include="Factory\CreatePlayer.cs" />
     <Compile Include="Factory\CreatePotionEffect.cs" />
     <Compile Include="Factory\CreateShip.cs" />
     <Compile Include="Factory\SpawnBoss.cs" />
+    <Compile Include="GameObjects\Inventory\Inventory.cs" />
+    <Compile Include="GameObjects\Items\BonusTypes\BonusType.cs" />
     <Compile Include="GameObjects\Players\FirstPlayer.cs" />
     <Compile Include="GameObjects\Players\Player.cs" />
     <Compile Include="GameObjects\Players\PlayerTypes.cs" />
     <Compile Include="GameObjects\Players\SecondPlayer.cs" />
+    <Compile Include="Handler\CombatHandler\CombatHandler.cs" />
+    <Compile Include="Handler\CombatHandler\vector2.cs" />
     <Compile Include="Interfaces\Specialties\ILightning.cs" />
     <Compile Include="MainEngine.cs" />
     <Compile Include="GameObjects\Items\Item.cs" />
@@ -85,7 +90,6 @@
     <Compile Include="Interfaces\ISink.cs" />
     <Compile Include="Interfaces\Bonuses\IWind.cs" />
     <Compile Include="Interfaces\Specialties\IRocket.cs" />
-    <Compile Include="Interfaces\Specialties\IHook.cs" />
     <Compile Include="Interfaces\Specialties\IMine.cs" />
     <Compile Include="Interfaces\Bonuses\IFreeze.cs" />
     <Compile Include="Program.cs" />

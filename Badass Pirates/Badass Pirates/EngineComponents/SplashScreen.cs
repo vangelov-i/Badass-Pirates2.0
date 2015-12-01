@@ -13,7 +13,9 @@
     {
         private Texture2D image;
         
-        private string Path { get; set; }
+        public string Path { get; set; }
+
+        public Vector2 Position { get; set; }
 
         public override void LoadContent()
         {
@@ -33,7 +35,7 @@
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.image, Vector2.Zero, Color.White);
+            spriteBatch.Draw(this.image, this.Position, Color.White);
         }
     }
 }
