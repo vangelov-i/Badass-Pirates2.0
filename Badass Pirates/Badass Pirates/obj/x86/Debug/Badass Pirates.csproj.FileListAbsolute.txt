@@ -45,22 +45,22 @@ C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Badass Pir
 C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Badass Pirates.pdb
 C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
 C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\OpenTK.dll
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.exe
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\BG.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IFreeze.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_1.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_2.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\lightning.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\wind.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\energy_potion.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\health_potion.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\shield_potion.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship1.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship2.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\ship3novo.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.exe
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.pdb
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\OpenTK.dll
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.exe
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\BG.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IFreeze.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_1.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_2.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\lightning.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\wind.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\energy_potion.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\health_potion.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\shield_potion.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship1.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship2.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\ship3novo.png
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.exe
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.pdb
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
+C:\Users\Iliyan\Desktop\1.6 working\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\OpenTK.dll
