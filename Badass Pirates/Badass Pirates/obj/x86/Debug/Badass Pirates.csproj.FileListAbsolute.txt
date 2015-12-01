@@ -1,0 +1,47 @@
+C:\Users\Iliyan\Dropbox\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
+C:\Users\Iliyan\Dropbox\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\Badass Pirates.exe
+C:\Users\Iliyan\Dropbox\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\Badass Pirates.pdb
+C:\Users\Iliyan\Dropbox\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\MonoGame.Framework.dll
+C:\Users\Iliyan\Dropbox\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\OpenTK.dll
+C:\Users\Iliyan\Dropbox\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.exe
+C:\Users\Iliyan\Dropbox\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
+D:\Documents\Visual Studio 2015\Projects\Badass-Pirates\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\Badass Pirates.exe
+D:\Documents\Visual Studio 2015\Projects\Badass-Pirates\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\Badass Pirates.pdb
+D:\Documents\Visual Studio 2015\Projects\Badass-Pirates\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\MonoGame.Framework.dll
+D:\Documents\Visual Studio 2015\Projects\Badass-Pirates\Badass Pirates\Badass Pirates\bin\WindowsGL\Debug\OpenTK.dll
+D:\Documents\Visual Studio 2015\Projects\Badass-Pirates\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
+D:\Documents\Visual Studio 2015\Projects\Badass-Pirates\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.exe
+D:\Documents\Visual Studio 2015\Projects\Badass-Pirates\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.exe
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\Backgrounds\BG.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\Potions\energy_potion.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\Potions\health_potion.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\BonusItems\IFreeze.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\BonusItems\IWind_1.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\BonusItems\IWind_2.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\BonusItems\lightning.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\Potions\shield_potion.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\Ships\Ship1.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\Ships\Ship2.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\BonusItems\wind.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Content\Ships\ship3novo.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates.exe
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates.pdb
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\Backgrounds\BG.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\BonusItems\IFreeze.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_1.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_2.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\BonusItems\lightning.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\BonusItems\wind.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\Potions\energy_potion.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\Potions\health_potion.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\Potions\shield_potion.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\Ships\Ship1.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\Ships\Ship2.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Content\Ships\ship3novo.png
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Badass Pirates.exe
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\Badass Pirates.pdb
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
+C:\Users\Phoenix\Desktop\Badass-Pirates\Badass Pirates\Badass Pirates\OpenTK.dll
