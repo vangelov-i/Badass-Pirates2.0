@@ -17,6 +17,10 @@
 
         GameScreen currentScreen;
 
+        public GraphicsDevice GraphicsDevice { get; set; }
+
+        public SpriteBatch SpriteBatch { get; set; }
+
         public static ScreenManager Instance => instance ?? (instance = new ScreenManager());
 
         public Vector2 Dimensions { get; private set; }

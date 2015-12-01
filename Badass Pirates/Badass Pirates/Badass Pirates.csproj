@@ -54,6 +54,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="EngineComponents\GameScreen.cs" />
+    <Compile Include="EngineComponents\Image.cs" />
     <Compile Include="EngineComponents\ScreenManager.cs" />
     <Compile Include="EngineComponents\SplashScreen.cs" />
     <Compile Include="EngineComponents\XmlManager.cs" />

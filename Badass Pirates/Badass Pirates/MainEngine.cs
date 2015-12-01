@@ -49,6 +49,8 @@
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             this.spriteBatch = new SpriteBatch(this.GraphicsDevice);
+            ScreenManager.Instance.GraphicsDevice = this.GraphicsDevice;
+            ScreenManager.Instance.SpriteBatch = this.spriteBatch;
             ScreenManager.Instance.LoadContent(this.Content);
             // TODO: use this.Content to load your game content here
         }
