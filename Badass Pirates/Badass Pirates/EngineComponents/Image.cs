@@ -1,39 +1,19 @@
 ﻿namespace Badass_Pirates.EngineComponents
 {
+    #region
+
     using System;
     using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
+    using System.Xml.Serialization;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
+    #endregion
+
     public class Image
     {
-        #region Fields & Properties
-
-        private ContentManager content;
-        
-        public RenderTarget2D RenderTarget { get; set; }
-
-        public Rectangle SourceRectangle { get; set; }
-
-        public float Alpha { get; set; }
-
-        public string Text { get; set; }
-
-        public string Path { get; set; }
-
-        public Texture2D Texture { get; set; }
-
-        public Vector2 Origin { get; set; }
-
-        public Vector2 Position { get; set; }
-
-        public Vector2 Scale { get; set; }
-        #endregion
-
         public Image()
         {
             this.Path = string.Empty;
@@ -44,7 +24,38 @@
             this.SourceRectangle = Rectangle.Empty;
         }
 
+        #region Fields & Properties
+        [XmlIgnore]
+        public Dictionary<string, ImageEffect> effectList;
+
+        public string Effects { get; set; }
+
+        private ContentManager content;
+
+        [XmlIgnore]
+        public RenderTarget2D RenderTarget { get; set; }
+
+        public Rectangle SourceRectangle { get; set; }
+
+        public float Alpha { get; set; }
+
+        public string Text { get; set; }
+
+        public string Path { get; set; }
+
+        [XmlIgnore]
+        public Texture2D Texture { get; set; }
+
+        public Vector2 Origin { get; set; }
+
+        public Vector2 Position { get; set; }
+
+        public Vector2 Scale { get; set; }
+
+        #endregion
+
         #region Methods
+       
         public void LoadContent()
         {
             this.content = new ContentManager(ScreenManager.Instance.content.ServiceProvider, "Content");
@@ -65,16 +76,26 @@
                 dimensions.Y += this.Texture.Height;
             }
 
-            this.RenderTarget = new RenderTarget2D(ScreenManager.Instance.GraphicsDevice, (int)dimensions.X, (int)dimensions.Y);
+            this.RenderTarget = new RenderTarget2D(
+                ScreenManager.Instance.GraphicsDevice, 
+                (int)dimensions.X, 
+                (int)dimensions.Y);
             ScreenManager.Instance.GraphicsDevice.SetRenderTarget(this.RenderTarget);
             ScreenManager.Instance.GraphicsDevice.Clear(Color.Transparent);
             ScreenManager.Instance.SpriteBatch.Begin();
-            ScreenManager.Instance.Draw(this.Texture,);
+            if (this.Texture != null)
+            {
+                ScreenManager.Instance.SpriteBatch.Draw(this.Texture, Vector2.Zero, Color.White);
+            }
+
             ScreenManager.Instance.SpriteBatch.End();
+            this.Texture = this.RenderTarget;
+            ScreenManager.Instance.GraphicsDevice.SetRenderTarget(null);
         }
 
         public void UnloadContent()
         {
+            this.content.Unload();
         }
 
         public void Update(GameTime gameTime)
@@ -83,7 +104,57 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            this.Origin = new Vector2(this.SourceRectangle.Width / 2f, this.SourceRectangle.Height / 2f);
+            spriteBatch.Draw(
+                this.Texture, 
+                this.Position + this.Origin, 
+                this.SourceRectangle, 
+                Color.White * this.Alpha, 
+                0.0f, 
+                this.Origin, 
+                this.Scale, 
+                SpriteEffects.None, 
+                0.0f);
         }
+
+        private void Effect<T>(ref T effect)
+        {
+            if (effect == null)
+            {
+                effect = (T)Activator.CreateInstance(typeof(T));
+            }
+            else
+            {
+                (effect as ImageEffect).IsActive = true;
+                var obj = this;
+                (effect as ImageEffect).LoadContent(ref obj);
+            }
+
+            this.effectList.Add(
+                effect.GetType().ToString().Replace("Badass_Pirates.EngineComponents", string.Empty), 
+                effect as ImageEffect);
+        }
+
+        public void ActivateEffect(string effect)
+        {
+            if (this.effectList.ContainsKey(effect))
+            {
+                this.effectList[effect].IsActive = true;
+                var obj = this;
+                this.effectList[effect].LoadContent(ref obj);
+
+            }
+        }
+
+        public void DeactivateEffect(string effect)
+        {
+            if (this.effectList.ContainsKey(effect))
+            {
+                this.effectList[effect].IsActive = false;
+                this.effectList[effect].UnloadContent();
+            }
+        }
+
         #endregion
     }
 }

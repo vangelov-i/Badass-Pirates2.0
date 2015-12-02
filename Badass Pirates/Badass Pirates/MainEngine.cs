@@ -89,7 +89,7 @@
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            this.GraphicsDevice.Clear(Color.Black);
+            this.GraphicsDevice.Clear(Color.Transparent);
             this.spriteBatch.Begin();
             ScreenManager.Instance.Draw(this.spriteBatch);
             this.spriteBatch.End();

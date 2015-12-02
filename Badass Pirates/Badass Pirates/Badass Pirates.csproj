@@ -53,8 +53,11 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EngineComponents\CannonBall.cs" />
+    <Compile Include="EngineComponents\FadeEffect.cs" />
     <Compile Include="EngineComponents\GameScreen.cs" />
     <Compile Include="EngineComponents\Image.cs" />
+    <Compile Include="EngineComponents\ImageEffect.cs" />
     <Compile Include="EngineComponents\ScreenManager.cs" />
     <Compile Include="EngineComponents\SplashScreen.cs" />
     <Compile Include="EngineComponents\XmlManager.cs" />
@@ -74,7 +77,6 @@
     <Compile Include="GameObjects\Players\PlayerTypes.cs" />
     <Compile Include="GameObjects\Players\SecondPlayer.cs" />
     <Compile Include="Handler\CombatHandler\CombatHandler.cs" />
-    <Compile Include="Handler\CombatHandler\vector2.cs" />
     <Compile Include="Interfaces\Specialties\ILightning.cs" />
     <Compile Include="MainEngine.cs" />
     <Compile Include="GameObjects\Items\Item.cs" />
@@ -125,7 +127,12 @@
     <Content Include="Content\BonusItems\wind.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Load\SplashScreen.xml" />
+    <Content Include="Content\cannonball.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Load\SplashScreen.xml">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Content\Potions\energy_potion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -151,7 +158,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameObjects\GameStash\" />
-    <Folder Include="InputHandler\" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

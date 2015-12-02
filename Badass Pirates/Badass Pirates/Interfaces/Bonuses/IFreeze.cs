@@ -4,7 +4,6 @@
 
     public interface IFreeze
     {
-        public double Timer { get; set; }
         void Freeze(Ship targeShip);
     }
 }

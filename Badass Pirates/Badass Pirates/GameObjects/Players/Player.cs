@@ -19,7 +19,7 @@
         protected Player(ShipType type, string name)
         {
             this.Name = name;
-            this.Ship = CreateShip.Create(type);
+            this.Ship = CreateShip.Create(type);            
         }
 
         public string Name

@@ -1,7 +1,7 @@
 ﻿
 namespace Badass_Pirates.GameObjects.Items.Types
 {
-    enum BonusType
+    public enum BonusType
     {
         Wind = 20,
         Freeze = 0,
