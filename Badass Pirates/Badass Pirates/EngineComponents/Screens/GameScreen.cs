@@ -25,7 +25,7 @@
         #region Methods
         public virtual void LoadContent()
         {
-            this.Content = new ContentManager(ScreenManager.Instance.content.ServiceProvider, "Content");
+            this.Content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
         }
 
         public virtual void Initialise()
@@ -39,6 +39,7 @@
 
         public virtual void Update(GameTime gameTime)
         {
+            InputManager.Instance.Update();
         }
 
         public virtual void Draw(SpriteBatch spriteBatch)

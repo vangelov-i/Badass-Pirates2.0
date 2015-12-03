@@ -1,25 +1,33 @@
 ﻿namespace Badass_Pirates.EngineComponents
 {
-    using System;
-    using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Linq;
-    using System.Text;
+    #region
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
+    #endregion
+
     public class ScreenManager
     {
         #region Properties
+
         private static ScreenManager instance;
 
-        GameScreen currentScreen;
+        private readonly GameScreen currentScreen;
 
-        public GraphicsDevice GraphicsDevice { get; set; }
+        #region Constructor
 
-        public SpriteBatch SpriteBatch { get; set; }
+        public ScreenManager()
+        {
+            this.Dimensions = new Vector2(1366, 768); // 768, 1366
+            this.currentScreen = new SplashScreen();
+            this.XmlGamescreenManager = new XmlManager<GameScreen>();
+            this.XmlGamescreenManager.Tpye = this.currentScreen.Type;
+            this.currentScreen = this.XmlGamescreenManager.Load("Content/Load/SplashScreen.xml");
+        }
+
+        #endregion
 
         public static ScreenManager Instance
         {
@@ -29,27 +37,21 @@
                 {
                     instance = new ScreenManager();
                 }
+
                 return instance;
             }
-        } // => instance ?? (instance = new ScreenManager());
+        }
 
+        public GraphicsDevice GraphicsDevice { get; set; }
+
+        public SpriteBatch SpriteBatch { get; set; }
 
         public Vector2 Dimensions { get; private set; }
 
-        public ContentManager content { get; private set; }
+        public ContentManager Content { get; private set; }
 
-        public XmlManager<GameScreen> xmlGamescreenManager;
-        #endregion
+        public XmlManager<GameScreen> XmlGamescreenManager { get; set; }
 
-        #region Constructor
-        public ScreenManager()
-        {
-            this.Dimensions = new Vector2(768, 768); // 768, 1366
-            this.currentScreen = new SplashScreen();
-            this.xmlGamescreenManager = new XmlManager<GameScreen>();
-            this.xmlGamescreenManager.Tpye = this.currentScreen.Type;
-            this.currentScreen = this.xmlGamescreenManager.Load("Content/Load/SplashScreen.xml");
-        }
         #endregion
 
         #region Methods
@@ -61,7 +63,7 @@
 
         public void LoadContent(ContentManager contentParam)
         {
-            this.content = new ContentManager(contentParam.ServiceProvider, "Content");
+            this.Content = new ContentManager(contentParam.ServiceProvider, "Content");
             this.currentScreen.LoadContent();
         }
 
@@ -79,8 +81,7 @@
         {
             this.currentScreen.Draw(spriteBatch);
         }
+
         #endregion
-
-
     }
 }

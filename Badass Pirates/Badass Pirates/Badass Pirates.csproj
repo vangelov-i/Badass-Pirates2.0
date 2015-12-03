@@ -53,14 +53,15 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EngineComponents\CannonBall.cs" />
-    <Compile Include="EngineComponents\FadeEffect.cs" />
-    <Compile Include="EngineComponents\GameScreen.cs" />
-    <Compile Include="EngineComponents\Image.cs" />
-    <Compile Include="EngineComponents\ImageEffect.cs" />
-    <Compile Include="EngineComponents\ScreenManager.cs" />
-    <Compile Include="EngineComponents\SplashScreen.cs" />
-    <Compile Include="EngineComponents\XmlManager.cs" />
+    <Compile Include="EngineComponents\Screens\CannonBall.cs" />
+    <Compile Include="EngineComponents\Screens\FadeEffect.cs" />
+    <Compile Include="EngineComponents\Screens\GameScreen.cs" />
+    <Compile Include="EngineComponents\Screens\Image.cs" />
+    <Compile Include="EngineComponents\Screens\ImageEffect.cs" />
+    <Compile Include="EngineComponents\Managers\InputManager.cs" />
+    <Compile Include="EngineComponents\Managers\ScreenManager.cs" />
+    <Compile Include="EngineComponents\Screens\SplashScreen.cs" />
+    <Compile Include="EngineComponents\Managers\XmlManager.cs" />
     <Compile Include="Exceptions\NotCorrectNameException.cs" />
     <Compile Include="Exceptions\OutOfEnergyException.cs" />
     <Compile Include="Exceptions\OutOfHealthException.cs" />
@@ -112,6 +113,12 @@
     <Content Include="Content\Backgrounds\BG.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Backgrounds\image.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Backgrounds\sea.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\BonusItems\IFreeze.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -130,9 +137,13 @@
     <Content Include="Content\cannonball.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\FadeImage.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Load\SplashScreen.xml">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Content\Load\ScreenManager.xml" />
     <Content Include="Content\Potions\energy_potion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

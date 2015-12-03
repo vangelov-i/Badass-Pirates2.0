@@ -13,11 +13,11 @@
 
         public bool IsActive { get; set; }
 
-        public Image Image { get; set; }
+        protected Image image { get; set; }
         
         public virtual void LoadContent(ref Image image)
         {
-            this.Image = image;
+            this.image = image;
         }
 
         public virtual void UnloadContent()

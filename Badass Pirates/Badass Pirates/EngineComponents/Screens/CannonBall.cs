@@ -14,7 +14,7 @@
 
     public static class CannonBall
     {
-        private static readonly string PathCannonball = "cannonball";
+        private const string PathCannonball = "cannonball";
 
         private static Texture2D cannonBall;
 
@@ -26,6 +26,7 @@
             {
                 return posCannon;
             }
+
             set
             {
                 posCannon = value;
@@ -49,12 +50,7 @@
 
         public static void Update(GameTime gameTime)
         {
-
             CannonBall.posCannon.X += 10;
-            //if (CannonBall.posCannon.X > 500)
-            //{
-            //    CannonBall.posCannon.X = 0;
-            //}
         }
     }
 }

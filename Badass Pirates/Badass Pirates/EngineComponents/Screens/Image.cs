@@ -3,7 +3,9 @@
     #region
 
     using System;
+    using System.CodeDom;
     using System.Collections.Generic;
+    using System.Runtime.CompilerServices;
     using System.Xml.Serialization;
 
     using Microsoft.Xna.Framework;
@@ -22,11 +24,13 @@
             this.Scale = Vector2.One;
             this.Alpha = 1.0f;
             this.SourceRectangle = Rectangle.Empty;
+            this.effectList = new Dictionary<string, ImageEffect>();
+            this.Fd = (FadeEffect)this.effectList["FadeEffect"];
         }
 
         #region Fields & Properties
         [XmlIgnore]
-        public Dictionary<string, ImageEffect> effectList;
+        public Dictionary<string, ImageEffect> effectList { get; set; }
 
         public string Effects { get; set; }
 
@@ -43,6 +47,10 @@
 
         public string Path { get; set; }
 
+        public bool IsActive { get; set; }
+
+        public FadeEffect FadeEffect { get; set; }
+
         [XmlIgnore]
         public Texture2D Texture { get; set; }
 
@@ -52,13 +60,16 @@
 
         public Vector2 Scale { get; set; }
 
+        //TODO Not implemented
+        public FadeEffect Fd { get; set; }
+
         #endregion
 
         #region Methods
        
         public void LoadContent()
         {
-            this.content = new ContentManager(ScreenManager.Instance.content.ServiceProvider, "Content");
+            this.content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
             Vector2 dimensions = Vector2.Zero;
             if (this.Path != string.Empty)
             {
@@ -154,6 +165,7 @@
                 this.effectList[effect].UnloadContent();
             }
         }
+        
 
         #endregion
     }
