@@ -44,7 +44,7 @@
         #region Constructor
         public ScreenManager()
         {
-            this.Dimensions = new Vector2(768, 1366);
+            this.Dimensions = new Vector2(768, 768); // 768, 1366
             this.currentScreen = new SplashScreen();
             this.xmlGamescreenManager = new XmlManager<GameScreen>();
             this.xmlGamescreenManager.Tpye = this.currentScreen.Type;

@@ -106,7 +106,7 @@
             spriteBatch.Draw(this.ImageShip, this.posShip);
             if (isPressed)
             {
-                if (CannonBall.PosCannon.X < 700)
+                if (CannonBall.PosCannon.X < ScreenManager.Instance.Dimensions.X)
                 {
                     CannonBall.Draw(spriteBatch);
                 }
