@@ -20,14 +20,22 @@
 
         private static Vector2 posCannon;
 
+        public static Vector2 PosCannon
+        {
+            get
+            {
+                return posCannon;
+            }
+        }
+
         public static void Draw(SpriteBatch spriteBatch)
         {
            spriteBatch.Draw(CannonBall.cannonBall, CannonBall.posCannon);
         }
 
-        public static void Initialise(Player player)
+        public static void Initialise(Vector2 positionShip)
         {
-            CannonBall.posCannon = player.Ship.Position;
+            CannonBall.posCannon = positionShip;
         }
 
         public static void LoadContent(ContentManager content)
@@ -37,7 +45,12 @@
 
         public static void Update(GameTime gameTime)
         {
-            CannonBall.posCannon.X += 1;
+
+            CannonBall.posCannon.X += 10;
+            //if (CannonBall.posCannon.X > 500)
+            //{
+            //    CannonBall.posCannon.X = 0;
+            //}
         }
     }
 }

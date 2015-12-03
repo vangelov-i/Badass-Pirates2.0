@@ -21,7 +21,18 @@
 
         public SpriteBatch SpriteBatch { get; set; }
 
-        public static ScreenManager Instance => instance ?? (instance = new ScreenManager());
+        public static ScreenManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new ScreenManager();
+                }
+                return instance;
+            }
+        } // => instance ?? (instance = new ScreenManager());
+
 
         public Vector2 Dimensions { get; private set; }
 
@@ -42,7 +53,7 @@
         #endregion
 
         #region Methods
-       
+
         public void Initialise()
         {
             this.currentScreen.Initialise();

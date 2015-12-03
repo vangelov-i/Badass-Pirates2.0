@@ -29,12 +29,14 @@
         private Texture2D ImageShip { get; set; }
 
         private bool isPressed = false;
-        
+
         public override void Initialise()
         {
             base.Initialise();
             this.currentPlayer = CreatePlayer.Create(PlayerTypes.FirstPlayer, ShipType.Destroyer, "ivan4o");
-            CannonBall.Initialise(this.currentPlayer);
+            //CannonBall.Initialise(this.currentPlayer);
+            CannonBall.Initialise(this.posShip);
+
         }
 
         public override void LoadContent()
@@ -47,8 +49,9 @@
 
         public override void Update(GameTime gameTime)
         {
+
             base.Update(gameTime);
-            CannonBall.Update(gameTime);
+            //CannonBall.Update(gameTime);
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Down))
             {
@@ -73,8 +76,16 @@
             if (state.IsKeyDown(Keys.Space))
             {
                 isPressed = true;
+                //CannonBall.Update(gameTime);
+            }
+            if (isPressed)
+            {
                 CannonBall.Update(gameTime);
             }
+            //if (state.IsKeyUp(Keys.Space))
+            //{
+            //    isPressed = false;
+            //}
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -83,8 +94,16 @@
             spriteBatch.Draw(this.ImageShip, this.posShip);
             if (isPressed)
             {
-                CannonBall.Draw(spriteBatch);
-                isPressed = false;
+                if (CannonBall.PosCannon.X < 700)
+                {
+                    CannonBall.Draw(spriteBatch);
+                }
+                else
+                {
+                    isPressed = false;
+                    CannonBall.Initialise(new Vector2(this.posShip.X + this.ImageShip.Width, this.posShip.Y + this.ImageShip.Height/2));
+                }
+                //isPressed = false;
             }
         }
     }
