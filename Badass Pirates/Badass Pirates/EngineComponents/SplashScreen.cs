@@ -58,21 +58,25 @@
             if (state.IsKeyDown(Keys.Down))
             {
                 this.posShip.Y += 3;
+                this.ValidateShipPos();
             }
 
             if (state.IsKeyDown(Keys.Up))
             {
                 this.posShip.Y -= 3;
+                this.ValidateShipPos();
             }
 
             if (state.IsKeyDown(Keys.Right))
             {
                 this.posShip.X += 3;
+                this.ValidateShipPos();
             }
 
             if (state.IsKeyDown(Keys.Left))
             {
                 this.posShip.X -= 3;
+                this.ValidateShipPos();
             }
 
             if (state.IsKeyDown(Keys.Space))
@@ -115,5 +119,28 @@
                 //isPressed = false;
             }
         }
+
+
+        private void ValidateShipPos()
+        {
+            if (this.posShip.X < 0)
+            {
+                this.posShip.X = 0;
+            }
+            if (this.posShip.Y < 0)
+            {
+                this.posShip.Y = 0;
+            }
+            if (this.posShip.Y > ScreenManager.Instance.Dimensions.Y - this.ImageShip.Height)
+            {
+                this.posShip.Y = ScreenManager.Instance.Dimensions.Y - this.ImageShip.Height;
+            }
+            if (this.posShip.X > ScreenManager.Instance.Dimensions.X - this.ImageShip.Width)
+            {
+                this.posShip.X = ScreenManager.Instance.Dimensions.X - this.ImageShip.Width;
+            }
+        }
+
+
     }
 }
