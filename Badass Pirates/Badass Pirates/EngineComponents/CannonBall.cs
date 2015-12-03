@@ -26,6 +26,10 @@
             {
                 return posCannon;
             }
+            set
+            {
+                posCannon = value;
+            }
         }
 
         public static void Draw(SpriteBatch spriteBatch)
