@@ -2,6 +2,8 @@
 {
     #region
 
+    using System.Runtime.CompilerServices;
+
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
@@ -20,53 +22,33 @@
 
         private Player currentPlayer;
 
-        //private bool isPressed = false;
-
-        //private CannonBall cannon { get; set; }
-
         private Vector2 posShip;
 
-        // public Image Image { get; set; }
-        private Texture2D imageBg { get; set; }
+        private Texture2D ImageBg { get; set; }
 
-        private Texture2D imageShip { get; set; }
+        private Texture2D ImageShip { get; set; }
 
-        private float X { get; set; }
-
-        private float Y { get; set; }
-
-        //private readonly SpriteBatch spriteBatch = ScreenManager.Instance.SpriteBatch;
-
+        private bool isPressed = false;
+        
         public override void Initialise()
         {
             base.Initialise();
             this.currentPlayer = CreatePlayer.Create(PlayerTypes.FirstPlayer, ShipType.Destroyer, "ivan4o");
-            //this.cannon.Initialise();
-            // this.posCannon.X = this.posShip.X;
-            // this.posCannon.Y = this.posShip.Y;
+            CannonBall.Initialise(this.currentPlayer);
         }
 
         public override void LoadContent()
         {
             base.LoadContent();
-            //this.cannon.LoadContent();
-            this.imageShip = this.Content.Load<Texture2D>(this.pathShip);
-            this.imageBg = this.Content.Load<Texture2D>(this.pathBg);
-
-            /*this.Image.LoadContent()*/
-        }
-
-        public override void UnloadContent()
-        {
-            base.UnloadContent();
-
-            // this.Image.UnloadContent();
+            this.ImageShip = this.Content.Load<Texture2D>(this.pathShip);
+            this.ImageBg = this.Content.Load<Texture2D>(this.pathBg);
+            CannonBall.LoadContent(this.Content);
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-
+            CannonBall.Update(gameTime);
             KeyboardState state = Keyboard.GetState();
             if (state.IsKeyDown(Keys.Down))
             {
@@ -88,18 +70,22 @@
                 this.posShip.X -= 3;
             }
 
-            //if (state.IsKeyDown(Keys.Space))
-            //{
-            //    this.cannon.Update(gameTime);
-            //}
+            if (state.IsKeyDown(Keys.Space))
+            {
+                isPressed = true;
+                CannonBall.Update(gameTime);
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.imageBg, new Vector2(0, 0));
-            spriteBatch.Draw(this.imageShip, this.posShip);
-
-            // this.Image.Draw(spriteBatch);
+            spriteBatch.Draw(this.ImageBg, new Vector2(0, 0));
+            spriteBatch.Draw(this.ImageShip, this.posShip);
+            if (isPressed)
+            {
+                CannonBall.Draw(spriteBatch);
+                isPressed = false;
+            }
         }
     }
 }

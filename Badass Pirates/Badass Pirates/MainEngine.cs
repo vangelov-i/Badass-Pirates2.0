@@ -1,5 +1,7 @@
 ﻿namespace Badass_Pirates
 {
+    using System.Runtime.CompilerServices;
+
     using Badass_Pirates.EngineComponents;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Items.Potions;
@@ -19,6 +21,8 @@
 
         private SpriteBatch spriteBatch;
 
+        public static SpriteBatch InstanceBatch;
+
         public MainEngine()
         {
             this.graphics = new GraphicsDeviceManager(this);
@@ -33,6 +37,7 @@
         /// </summary>
         protected override void Initialize()
         {
+            MainEngine.InstanceBatch = this.spriteBatch;
             // TODO: Add your initialization logic here
             this.Content.RootDirectory = "Content";
             this.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;

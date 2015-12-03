@@ -2,6 +2,8 @@
 {
     #region
 
+    using System.Runtime.CompilerServices;
+
     using Badass_Pirates.GameObjects.Players;
 
     using Microsoft.Xna.Framework;
@@ -10,39 +12,32 @@
 
     #endregion
 
-    public class CannonBall
+    public static class CannonBall
     {
-        private readonly string pathCannonball = "cannonball";
+        private static readonly string PathCannonball = "cannonball";
 
-        private Texture2D cannonBall;
+        private static Texture2D cannonBall;
 
-        private Player currentPlayer;
+        private static Vector2 posCannon;
 
-        public Vector2 posCannon;
-
-        private Vector2 posShip;
-
-        private ContentManager content;
-
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.cannonBall, this.posCannon);
+           spriteBatch.Draw(CannonBall.cannonBall, CannonBall.posCannon);
         }
 
-        public void Initialise()
+        public static void Initialise(Player player)
         {
-            this.posShip.X = this.currentPlayer.Ship.Position.X;
-            this.posShip.Y = this.currentPlayer.Ship.Position.Y;
+            CannonBall.posCannon = player.Ship.Position;
         }
 
-        public void LoadContent()
+        public static void LoadContent(ContentManager content)
         {
-            this.cannonBall = this.content.Load<Texture2D>(this.pathCannonball);
+            CannonBall.cannonBall = content.Load<Texture2D>(CannonBall.PathCannonball);
         }
 
-        public void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
-            this.posCannon.X += 1;
+            CannonBall.posCannon.X += 1;
         }
     }
 }
