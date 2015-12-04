@@ -53,15 +53,21 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EngineComponents\Managers\Menu.cs" />
+    <Compile Include="EngineComponents\Managers\MenuManager.cs" />
+    <Compile Include="EngineComponents\MenuItem.cs" />
     <Compile Include="EngineComponents\Screens\CannonBall.cs" />
     <Compile Include="EngineComponents\Screens\FadeEffect.cs" />
     <Compile Include="EngineComponents\Screens\GameScreen.cs" />
     <Compile Include="EngineComponents\Screens\Image.cs" />
+    <Compile Include="EngineComponents\Screens\ImageYouTube.cs" />
     <Compile Include="EngineComponents\Screens\ImageEffect.cs" />
     <Compile Include="EngineComponents\Managers\InputManager.cs" />
     <Compile Include="EngineComponents\Managers\ScreenManager.cs" />
     <Compile Include="EngineComponents\Screens\SplashScreen.cs" />
     <Compile Include="EngineComponents\Managers\XmlManager.cs" />
+    <Compile Include="EngineComponents\Screens\TitleScreen.cs" />
+    <Compile Include="EngineComponents\Player\Player.cs" />
     <Compile Include="Exceptions\NotCorrectNameException.cs" />
     <Compile Include="Exceptions\OutOfEnergyException.cs" />
     <Compile Include="Exceptions\OutOfHealthException.cs" />
@@ -143,7 +149,7 @@
     <Content Include="Content\Load\SplashScreen.xml">
       <SubType>Designer</SubType>
     </Content>
-    <Content Include="Content\Load\ScreenManager.xml" />
+    <Content Include="Content\Load\Image.xml" />
     <Content Include="Content\Potions\energy_potion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -153,13 +159,22 @@
     <Content Include="Content\Potions\shield_potion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Ships\Ship1.png">
+    <Content Include="Content\Ships\battleshipLeft.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Ships\Ship2.png">
+    <Content Include="Content\Ships\battleshipRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Ships\ship3novo.png">
+    <Content Include="Content\Ships\cruiserLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Ships\cruiserRight.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Ships\destroyerLeft.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Ships\destroyerRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Icon.ico" />

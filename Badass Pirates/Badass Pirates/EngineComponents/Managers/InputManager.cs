@@ -30,26 +30,27 @@
 
         public void Update()
         {
+            this.currentState = Keyboard.GetState();
             this.prevState = this.currentState;
-            if (this.prevState == null)
-            {
-                this.currentState = Keyboard.GetState();
-            }
         }
 
-        public bool KeyPressed(params Keys[] keys)
+        public bool KeyPressed(Keys keys)
         {
-            return keys.Any(key => this.currentState.IsKeyDown(key) && this.prevState.IsKeyUp(key));
+            //return keys.Any(key => this.currentState.IsKeyDown(key) && this.prevState.IsKeyUp(key));
+
+            return this.currentState.IsKeyDown(keys) && this.prevState.IsKeyUp(keys);
         }
 
-        public bool KeyDown(params Keys[] keys)
+        public bool KeyDown(Keys keys)
         {
-            return keys.Any(key => this.currentState.IsKeyUp(key) && this.prevState.IsKeyDown(key));
+            //return keys.Any(key => this.currentState.IsKeyUp(key) && this.prevState.IsKeyDown(key));
+            return this.currentState.IsKeyUp(keys) && this.prevState.IsKeyDown(keys);
         }
 
-        public bool KeyReleased(params Keys[] keys)
+        public bool KeyReleased(Keys keys)
         {
-            return keys.Any(key => this.currentState.IsKeyDown(key));
+            //return keys.Any(key => this.currentState.IsKeyDown(key));
+            return this.currentState.IsKeyDown(keys);
         }
     }
 }

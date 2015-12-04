@@ -5,6 +5,8 @@
     using System.Linq;
     using System.Text;
 
+    using Badass_Pirates.EngineComponents.Screens;
+
     using Microsoft.Xna.Framework;
 
     public class FadeEffect : ImageEffect
@@ -33,32 +35,32 @@
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
-            if (this.image.IsActive)
-            {
-                if (!this.Increase)
-                {
-                    this.image.Alpha -= this.FadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                }
-                else
-                {
-                    this.image.Alpha += this.FadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
-                }
+            //if (this.image.IsActive)
+            //{
+            //    if (!this.Increase)
+            //    {
+            //        this.image.Alpha -= this.FadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    }
+            //    else
+            //    {
+            //        this.image.Alpha += this.FadeSpeed * (float)gameTime.ElapsedGameTime.TotalSeconds;
+            //    }
 
-                if (this.image.Alpha < 0.0f)
-                {
-                    this.Increase = true;
-                    this.image.Alpha = 0;
-                }
-                else if (this.image.Alpha > 1.0f)
-                {
-                    this.Increase = false;
-                    this.image.Alpha = 1.0f;
-                }
-                else
-                {
-                    this.image.Alpha = 1.0f;
-                }
-            }
+            //    if (this.image.Alpha < 0.0f)
+            //    {
+            //        this.Increase = true;
+            //        this.image.Alpha = 0;
+            //    }
+            //    else if (this.image.Alpha > 1.0f)
+            //    {
+            //        this.Increase = false;
+            //        this.image.Alpha = 1.0f;
+            //    }
+            //    else
+            //    {
+            //        this.image.Alpha = 1.0f;
+            //    }
+            //}
         }
     }
 }

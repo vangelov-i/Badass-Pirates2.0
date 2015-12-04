@@ -16,8 +16,6 @@
         public SecondPlayer(ShipType type, string name)
             : base(type, name)
         {
-            // TODO IF second ship is not spawned right way,check this
-            this.Ship.Position = new Vector2(ScreenManager.Instance.Dimensions.X, ScreenManager.Instance.Dimensions.Y);
         }
     }
 }

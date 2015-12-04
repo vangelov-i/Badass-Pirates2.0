@@ -1,8 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <TitleScreen>
   <image>
-    <Path>Backgrounds/BG</Path>
+    <Path>Backgrounds/sea</Path>
   </image>
 </TitleScreen>
-
 

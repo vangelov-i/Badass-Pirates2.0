@@ -15,7 +15,6 @@
         public FirstPlayer(ShipType type, string name)
             : base(type, name)
         {
-            this.Ship.Position = new Vector2(0, 0);
         }
     }
 }

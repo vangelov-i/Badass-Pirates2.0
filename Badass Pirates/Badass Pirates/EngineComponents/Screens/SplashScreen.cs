@@ -2,6 +2,7 @@
 {
     #region
 
+    using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
@@ -20,7 +21,7 @@
 
         private bool ballInitialised;
 
-        private Player currentPlayer;
+        private GameObjects.Players.Player currentPlayer;
 
         private bool isPressed;
 
@@ -48,30 +49,8 @@
         {
             base.Update(gameTime);
             KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Down))
-            {
-                this.posShip.Y += 3;
-                this.ValidateShipPos();
-            }
 
-            if (state.IsKeyDown(Keys.Up))
-            {
-                this.posShip.Y -= 3;
-                this.ValidateShipPos();
-            }
-
-            if (state.IsKeyDown(Keys.Right))
-            {
-                this.posShip.X += 3;
-                this.ValidateShipPos();
-            }
-
-            if (state.IsKeyDown(Keys.Left))
-            {
-                this.posShip.X -= 3;
-                this.ValidateShipPos();
-            }
-
+            // TODO NOT IMPLEMENTED BALL LOGIC AND DRAW
             if (state.IsKeyDown(Keys.Space))
             {
                 this.isPressed = true;
@@ -79,7 +58,7 @@
                 {
                     CannonBall.Initialise(
                         new Vector2(
-                            this.posShip.X + this.ImageShip.Width, 
+                            this.posShip.X + this.ImageShip.Width,
                             this.posShip.Y + (this.ImageShip.Height / 2f)));
                     this.ballInitialised = true;
                 }
@@ -89,12 +68,15 @@
             {
                 CannonBall.Update(gameTime);
             }
+
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.ImageBg, new Vector2(0, 0));
             spriteBatch.Draw(this.ImageShip, this.posShip);
+
+            // TODO NOT IMPLEMENTED BALL LOGIC AND DRAW
             if (this.isPressed)
             {
                 if (CannonBall.PosCannon.X < ScreenManager.Instance.Dimensions.X)
@@ -106,29 +88,6 @@
                     this.ballInitialised = false;
                     this.isPressed = false;
                 }
-            }
-        }
-
-        private void ValidateShipPos()
-        {
-            if (this.posShip.X < 0)
-            {
-                this.posShip.X = 0;
-            }
-
-            if (this.posShip.Y < 0)
-            {
-                this.posShip.Y = 0;
-            }
-
-            if (this.posShip.Y > ScreenManager.Instance.Dimensions.Y - this.ImageShip.Height)
-            {
-                this.posShip.Y = ScreenManager.Instance.Dimensions.Y - this.ImageShip.Height;
-            }
-
-            if (this.posShip.X > ScreenManager.Instance.Dimensions.X - this.ImageShip.Width)
-            {
-                this.posShip.X = ScreenManager.Instance.Dimensions.X - this.ImageShip.Width;
             }
         }
     }

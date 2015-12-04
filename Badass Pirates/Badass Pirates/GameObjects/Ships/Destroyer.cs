@@ -16,7 +16,7 @@
 
         private const int SPECIALTYDMG = 150; // TODO: balance and change the specials
 
-        private const int SPEED = 40;
+        private const int SPEED = 4;
 
 
         public Destroyer()

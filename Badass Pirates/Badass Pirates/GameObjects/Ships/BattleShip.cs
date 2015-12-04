@@ -18,7 +18,7 @@
 
         private const int ENERGY = 100;
 
-        private const int SPEED = 40;
+        private const int SPEED = 2;
 
         private const int SPECIALTYDMG = 150; // TODO: balance and change the specials
 

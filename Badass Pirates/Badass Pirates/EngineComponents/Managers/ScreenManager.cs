@@ -2,6 +2,8 @@
 {
     #region
 
+    using Badass_Pirates.EngineComponents.Screens;
+
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
@@ -20,11 +22,13 @@
 
         public ScreenManager()
         {
-            this.Dimensions = new Vector2(1366, 768); // 768, 1366
-            this.currentScreen = new SplashScreen();
+            // TODO HERE PUT THE TYPE OF THE SCREEN WHICH WILL BE INITIALISED
+            this.Dimensions = new Vector2(1366, 768);
+            this.currentScreen = new TitleScreen();
             this.XmlGamescreenManager = new XmlManager<GameScreen>();
             this.XmlGamescreenManager.Tpye = this.currentScreen.Type;
-            this.currentScreen = this.XmlGamescreenManager.Load("Content/Load/SplashScreen.xml");
+
+            // this.currentScreen = this.XmlGamescreenManager.Load("Content/Load/SplashScreen.xml");
         }
 
         #endregion

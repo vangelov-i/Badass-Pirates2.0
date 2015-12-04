@@ -5,11 +5,27 @@
     using System.IO;
     using System.Linq;
     using System.Text;
+    using System.Xml;
     using System.Xml.Serialization;
 
     public class XmlManager<T>
     {
         public Type Tpye { get; set; }
+
+        //public void Load(string xmlPath)
+        //{
+        //    var xmlDoc = new XmlDocument(); // Create an XML document object
+        //    xmlDoc.Load(xmlPath);
+
+        //    var list = xmlDoc.SelectNodes("TitleScreen");
+        //    foreach (var VARIABLE in COLLECTION)
+        //    {
+
+        //    }
+        //}
+
+
+
 
         public T Load(string path)
         {
@@ -31,5 +47,7 @@
                 xml.Serialize(writer, obj);
             }
         }
+
+
     }
 }
