@@ -14,7 +14,7 @@
 
     public class SplashScreen : GameScreen
     {
-        private readonly string pathBg = "Backgrounds/sea";
+        private readonly string pathBg = "Backgrounds/BG";
 
         private readonly string pathShip = "Ships/ship3novo";
 
