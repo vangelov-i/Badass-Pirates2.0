@@ -21,6 +21,10 @@
 
         private Vector2 shipPosition;
 
+        private Vector2 ballFiredPos;
+
+        private Vector2 ballRangeX;
+
         private bool ballInitialised;
 
         private bool ballFired;
@@ -114,7 +118,7 @@
 
         public void Update(GameTime gameTime)
         {
-            this.shipImage.Update(gameTime); // ne, ne, shte t
+            this.shipImage.Update(gameTime);
             InputManager.Instance.RotateStates();
             if (InputManager.Instance.KeyDown(Keys.Down))
             {
@@ -147,7 +151,7 @@
                 {
                     if (!this.ballInitialised)
                     {
-                        CannonBall.Initialise(new Vector2(this.shipPosition.X + this.shipImage.Texture.Width, this.shipPosition.Y + this.shipImage.Texture.Height/2));  /// this should be written more elegantly ;D
+                        CannonBall.Initialise(this.ballFiredPos = new Vector2(this.shipPosition.X + this.shipImage.Texture.Width, this.shipPosition.Y + this.shipImage.Texture.Height/2));  /// this should be written more elegantly ;D
                         this.ballInitialised = true;
                     }
                 }
@@ -167,7 +171,9 @@
             spriteBatch.Draw(this.shipImage.Texture, this.shipPosition);
             if (this.ballFired)
             {
-                if (CannonBall.posCannon.X < ScreenManager.Instance.Dimensions.X)
+                this.ballRangeX.X = this.ballFiredPos.X + ScreenManager.Instance.Dimensions.X / 2 - this.shipImage.Texture.Width;
+
+                if (CannonBall.posCannon.X < this.ballRangeX.X)
                 {
                     CannonBall.Draw(spriteBatch);
                 }
