@@ -113,9 +113,6 @@ C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pi
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\energy_potion.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\health_potion.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\shield_potion.png
-C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship1.png
-C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship2.png
-C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\ship3novo.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.exe
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.pdb
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
@@ -132,3 +129,9 @@ C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\cruiserRight.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerLeft.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerRight.png
+C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\battleshipLeft.png
+C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\battleshipRight.png
+C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\cruiserLeft.png
+C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\cruiserRight.png
+C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerLeft.png
+C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerRight.png
