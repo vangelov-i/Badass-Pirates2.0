@@ -2,9 +2,8 @@
 {
     #region
 
-    using System;
-
     using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
 
@@ -19,9 +18,9 @@
     {
         private Image background;
 
-        private Player firstPlayer;
+        private Item firstItem;
 
-        private Image firstBonus;
+        private Player firstPlayer;
 
         public override void Initialise()
         {
@@ -29,7 +28,12 @@
             this.firstPlayer = new Player();
             this.firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
             this.background = new Image("Backgrounds/BG");
-            this.firstBonus = new Image("BonusItems/imag2");
+
+            // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
+            this.firstItem = new Item("PotionsContents/energyPotion");
+
+            // Чрез параметърът на Initialise,се подава интервала,през който се показва Item - a
+            this.firstItem.Initialise(12);
             this.background.Initialise();
         }
 
@@ -38,29 +42,30 @@
             base.LoadContent();
             this.firstPlayer.LoadContent();
             this.background.LoadContent();
-            this.firstBonus.LoadContent();
+            this.firstItem.LoadContent();
         }
 
         public override void UnloadContent()
         {
             base.UnloadContent();
-            this.firstBonus.UnloadContent();
             this.firstPlayer.UnloadContent();
             this.background.UnloadContent();
+            this.firstItem.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
             this.firstPlayer.Update(gameTime);
+            this.firstItem.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
             this.background.Draw(spriteBatch, Vector2.Zero);
-            this.firstBonus.Draw(spriteBatch, Vector2.Zero);
             this.firstPlayer.Draw(spriteBatch);
+            this.firstItem.Draw(spriteBatch);
         }
     }
 }

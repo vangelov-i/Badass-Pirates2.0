@@ -1,12 +1,8 @@
-﻿using Badass_Pirates.GameObjects.Items.Types;
-using Badass_Pirates.GameObjects.Ships;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Badass_Pirates.Factory
+﻿namespace Badass_Pirates.Factory
 {
+    using Badass_Pirates.GameObjects.Items.Types;
+    using Badass_Pirates.GameObjects.Ships;
+
     public static class CreateBonusTypeEffect
     {
         public static void ExtractEffect(Ship targetShip, BonusType type)
@@ -20,9 +16,7 @@ namespace Badass_Pirates.Factory
                 case BonusType.Freeze:
                     targetShip.Speed = (int)BonusType.Freeze; // should get back speed to normal later...
                     break;
-                     
             }
         }
-
     }
 }

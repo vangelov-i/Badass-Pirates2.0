@@ -56,9 +56,8 @@
     <Compile Include="EngineComponents\Managers\Menu.cs" />
     <Compile Include="EngineComponents\Managers\MenuManager.cs" />
     <Compile Include="EngineComponents\MenuItem.cs" />
-    <Compile Include="EngineComponents\Objects\Bonus.cs" />
+    <Compile Include="EngineComponents\Objects\Item.cs" />
     <Compile Include="EngineComponents\Objects\CannonBall.cs" />
-    <Compile Include="EngineComponents\Objects\Potion.cs" />
     <Compile Include="EngineComponents\Screens\GameScreen.cs" />
     <Compile Include="EngineComponents\Managers\Image.cs" />
     <Compile Include="EngineComponents\Managers\InputManager.cs" />
@@ -123,13 +122,16 @@
     <Content Include="Content\Backgrounds\sea.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BonusItems\ima1.gif">
+    <Content Include="Content\BonusContent\boltBonus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BonusItems\imag2.gif">
+    <Content Include="Content\BonusContent\freezBonus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BonusItems\imag3.gif">
+    <Content Include="Content\BonusContent\shieldBonus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\BonusContent\windBonus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\cannonball.png">
@@ -139,8 +141,15 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Load\Image.xml" />
-    <Content Include="Content\PotionsContents\imag2.gif" />
-    <Content Include="Content\PotionsContents\Imag5.gif" />
+    <Content Include="Content\PotionsContents\energyPotion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\PotionsContents\hpPotion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\PotionsContents\shieldPotion.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\ShipsContents\battleshipLeft.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
