@@ -13,9 +13,13 @@
 
         public static Vector2 posCannon;
 
-        public static float hightMax;
+        private static float heightMax;
 
-        public static bool flipper;
+        private static bool flipper;
+
+        private static int counter;
+
+        
 
         static CannonBall()
         {
@@ -25,10 +29,11 @@
         public static void Initialise(Vector2 position)
         {
             CannonBall.posCannon = position;
-            CannonBall.hightMax = position.Y - 250;
+            CannonBall.heightMax = position.Y - 150;
+            CannonBall.counter = 0;
             CannonBall.flipper = false;
         }
-        
+
         public static void LoadContent()
         {
             CannonBall.cannonBall.LoadContent();
@@ -42,13 +47,29 @@
         public static void Update(GameTime gameTime)
         {
             CannonBall.posCannon.X += 10;
-            if (!flipper && CannonBall.posCannon.Y > CannonBall.hightMax)
+            if (!flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
             {
                 CannonBall.posCannon.Y -= 10;
             }
-            else if ( CannonBall.posCannon.Y <= CannonBall.hightMax + 250)
+            else if (!flipper && CannonBall.posCannon.Y > CannonBall.heightMax)
+            {
+                CannonBall.posCannon.Y -= 4;
+            }
+            else if (!flipper)
             {
                 CannonBall.flipper = true;
+                CannonBall.posCannon.Y += 4;
+            }
+            else if (CannonBall.counter < 8)
+            {
+                CannonBall.counter++;
+            }
+            else if (flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
+            {
+                CannonBall.posCannon.Y += 4;
+            }
+            else
+            {
                 CannonBall.posCannon.Y += 10;
             }
 
