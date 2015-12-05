@@ -12,10 +12,14 @@
         private static Image cannonBall;
 
         public static Vector2 posCannon;
-        
-        public static void Initialise()
+
+        static CannonBall()
         {
             CannonBall.cannonBall = new Image("cannonball");
+        }
+
+        public static void Initialise()
+        {
         }
 
         public static void LoadContent()
