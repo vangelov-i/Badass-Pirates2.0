@@ -16,7 +16,17 @@
 
         private KeyboardState prevState;
 
-        public static InputManager Instance => instance ?? (instance = new InputManager());
+        public static InputManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new InputManager();
+                }
+                return instance;
+            }
+        }//=> instance ?? (instance = new InputManager());
 
         public void Update()
         {

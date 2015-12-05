@@ -147,7 +147,7 @@
                 {
                     if (!this.ballInitialised)
                     {
-                        CannonBall.Initialise();
+                        CannonBall.Initialise(new Vector2(this.shipPosition.X + this.shipImage.Texture.Width, this.shipPosition.Y + this.shipImage.Texture.Height/2));  /// this should be written more elegantly ;D
                         this.ballInitialised = true;
                     }
                 }

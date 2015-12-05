@@ -18,8 +18,9 @@
             CannonBall.cannonBall = new Image("cannonball");
         }
 
-        public static void Initialise()
+        public static void Initialise(Vector2 position)
         {
+            CannonBall.posCannon = position;
         }
 
         public static void LoadContent()

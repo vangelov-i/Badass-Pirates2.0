@@ -49,20 +49,20 @@
             KeyboardState state = Keyboard.GetState();
 
             // TODO NOT IMPLEMENTED BALL LOGIC AND DRAW
-            if (state.IsKeyDown(Keys.Space))
-            {
-                this.isPressed = true;
-                if (!this.ballInitialised)
-                {
-                    CannonBall.Initialise();
-                    this.ballInitialised = true;
-                }
-            }
+            //if (state.IsKeyDown(Keys.Space))
+            //{
+            //    this.isPressed = true;
+            //    if (!this.ballInitialised)
+            //    {
+            //        CannonBall.Initialise();
+            //        this.ballInitialised = true;
+            //    }
+            //}
 
-            if (this.isPressed)
-            {
-                CannonBall.Update(gameTime);
-            }
+            //if (this.isPressed)
+            //{
+            //    CannonBall.Update(gameTime);
+            //}
 
         }
 
