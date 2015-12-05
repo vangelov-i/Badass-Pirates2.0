@@ -1,12 +1,5 @@
 ﻿namespace Badass_Pirates.EngineComponents.Screens
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-    using System.Xml.Schema;
-    using System.Xml.Serialization;
-
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
@@ -24,8 +17,8 @@
 
         public bool IsActive { get; set; }
 
-        public string Path { get; set; }
-
+        private string Path { get; set; }
+        
         public virtual void Initialise()
         {
             this.IsActive = true;

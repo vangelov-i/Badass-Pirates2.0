@@ -1,8 +1,7 @@
-﻿namespace Badass_Pirates.EngineComponents
+﻿namespace Badass_Pirates.EngineComponents.Screens
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
@@ -42,7 +41,6 @@
             base.LoadContent();
             this.ImageShip = this.Content.Load<Texture2D>(this.pathShip);
             this.ImageBg = this.Content.Load<Texture2D>(this.pathBg);
-            CannonBall.LoadContent(this.Content);
         }
 
         public override void Update(GameTime gameTime)
@@ -56,10 +54,7 @@
                 this.isPressed = true;
                 if (!this.ballInitialised)
                 {
-                    CannonBall.Initialise(
-                        new Vector2(
-                            this.posShip.X + this.ImageShip.Width,
-                            this.posShip.Y + (this.ImageShip.Height / 2f)));
+                    CannonBall.Initialise();
                     this.ballInitialised = true;
                 }
             }
@@ -77,18 +72,18 @@
             spriteBatch.Draw(this.ImageShip, this.posShip);
 
             // TODO NOT IMPLEMENTED BALL LOGIC AND DRAW
-            if (this.isPressed)
-            {
-                if (CannonBall.PosCannon.X < ScreenManager.Instance.Dimensions.X)
-                {
-                    CannonBall.Draw(spriteBatch);
-                }
-                else
-                {
-                    this.ballInitialised = false;
-                    this.isPressed = false;
-                }
-            }
+            //if (this.isPressed)
+            //{
+            //    //if (CannonBall.PosCannon.X < ScreenManager.Instance.Dimensions.X)
+            //    //{
+            //    //    CannonBall.Draw(spriteBatch);
+            //    //}
+            //    else
+            //    {
+            //        this.ballInitialised = false;
+            //        this.isPressed = false;
+            //    }
+            //}
         }
     }
 }

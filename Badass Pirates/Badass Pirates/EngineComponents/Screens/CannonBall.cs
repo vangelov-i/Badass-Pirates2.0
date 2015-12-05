@@ -1,56 +1,41 @@
-﻿namespace Badass_Pirates.EngineComponents
+﻿namespace Badass_Pirates.EngineComponents.Screens
 {
     #region
 
-    using System.Runtime.CompilerServices;
-
-    using Badass_Pirates.GameObjects.Players;
-
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
     #endregion
 
     public static class CannonBall
     {
-        private const string PathCannonball = "cannonball";
+        private static Image cannonBall;
 
-        private static Texture2D cannonBall;
-
-        private static Vector2 posCannon;
-
-        public static Vector2 PosCannon
+        public static Vector2 posCannon;
+        
+        public static void Initialise()
         {
-            get
-            {
-                return posCannon;
-            }
-
-            set
-            {
-                posCannon = value;
-            }
+            CannonBall.cannonBall = new Image("cannonball");
         }
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public static void LoadContent()
         {
-           spriteBatch.Draw(CannonBall.cannonBall, CannonBall.posCannon);
+            CannonBall.cannonBall.LoadContent();
         }
 
-        public static void Initialise(Vector2 positionShip)
+        public static void UnloadContent()
         {
-            CannonBall.posCannon = positionShip;
-        }
-
-        public static void LoadContent(ContentManager content)
-        {
-            CannonBall.cannonBall = content.Load<Texture2D>(CannonBall.PathCannonball);
+            CannonBall.cannonBall.UnloadContent();
         }
 
         public static void Update(GameTime gameTime)
         {
             CannonBall.posCannon.X += 10;
+        }
+
+        public static void Draw(SpriteBatch spriteBatch)
+        {
+            spriteBatch.Draw(CannonBall.cannonBall.Texture, CannonBall.posCannon);
         }
     }
 }

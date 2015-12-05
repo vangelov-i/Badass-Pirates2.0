@@ -1,7 +1,7 @@
 ﻿namespace Badass_Pirates.EngineComponents.Player
 {
     #region
-    
+
     using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
@@ -13,19 +13,23 @@
 
     #endregion
 
-    public class Player
+    public struct Player
     {
-        private Vector2 shipPosition;
+        private GameObjects.Players.Player currentPlayer;
 
         private Image shipImage;
 
-        private GameObjects.Players.Player currentPlayer;
+        private Vector2 shipPosition;
+
+        private bool ballInitialised;
+
+        private bool ballFired;
 
         #region Methods
-       
+
         public void Initialise(ShipType type, PlayerTypes side)
         {
-
+            //CannonBall.posCannon = shipPosition
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -42,20 +46,20 @@
                         case ShipType.Battleship:
                             this.shipImage = new Image("Ships/battleshipRight");
                             this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.SecondPlayer,
-                                type,
+                                PlayerTypes.SecondPlayer, 
+                                type, 
                                 "not implemented class Ships.Player");
                             this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.SecondPlayer,
-                                type,
+                                PlayerTypes.SecondPlayer, 
+                                type, 
                                 "not implemented class Ships.Player");
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("Ships/cruiserRight");
                             this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.SecondPlayer,
-                                type,
+                                PlayerTypes.SecondPlayer, 
+                                type, 
                                 "not implemented class Ships.Player");
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
@@ -69,24 +73,24 @@
                         case ShipType.Destroyer:
                             this.shipImage = new Image("Ships/destroyerLeft");
                             this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.FirstPlayer,
-                                type,
+                                PlayerTypes.FirstPlayer, 
+                                type, 
                                 "not implemented class Ships.Player");
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("Ships/battleshipLeft");
                             this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.FirstPlayer,
-                                type,
+                                PlayerTypes.FirstPlayer, 
+                                type, 
                                 "not implemented class Ships.Player");
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("Ships/cruiserLeft");
                             this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.FirstPlayer,
-                                type,
+                                PlayerTypes.FirstPlayer, 
+                                type, 
                                 "not implemented class Ships.Player");
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
@@ -99,45 +103,80 @@
         public void LoadContent()
         {
             this.shipImage.LoadContent();
+            CannonBall.LoadContent();
         }
 
         public void UnloadContent()
         {
             this.shipImage.UnloadContent();
+            CannonBall.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
-            this.shipImage.Update(gameTime);
-            KeyboardState state = Keyboard.GetState();
-            if (state.IsKeyDown(Keys.Down))
+            this.shipImage.Update(gameTime); // ne, ne, shte t
+            InputManager.Instance.RotateStates();
+            if (InputManager.Instance.KeyDown(Keys.Down))
             {
                 this.shipPosition.Y += this.currentPlayer.Ship.Speed;
                 this.ValidateShipPosition();
             }
 
-            if (state.IsKeyDown(Keys.Up))
+            if (InputManager.Instance.KeyDown(Keys.Up))
             {
                 this.shipPosition.Y -= this.currentPlayer.Ship.Speed;
                 this.ValidateShipPosition();
             }
 
-            if (state.IsKeyDown(Keys.Right))
+            if (InputManager.Instance.KeyDown(Keys.Right))
             {
                 this.shipPosition.X += this.currentPlayer.Ship.Speed;
                 this.ValidateShipPosition();
             }
 
-            if (state.IsKeyDown(Keys.Left))
+            if (InputManager.Instance.KeyDown(Keys.Left))
             {
                 this.shipPosition.X -= this.currentPlayer.Ship.Speed;
                 this.ValidateShipPosition();
             }
+
+            if (InputManager.Instance.KeyDown(Keys.Space))
+            {
+                this.ballFired = true;
+                if (this.ballFired)
+                {
+                    if (!this.ballInitialised)
+                    {
+                        CannonBall.Initialise();
+                        this.ballInitialised = true;
+                    }
+                }
+            }
+
+            if (this.ballFired)
+            {
+                CannonBall.Update(gameTime);
+            }
+
+            // ALWAYS MUST BE THE LAST LINE
+            InputManager.Instance.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.shipImage.Texture, this.shipPosition);
+            if (this.ballFired)
+            {
+                if (CannonBall.posCannon.X < ScreenManager.Instance.Dimensions.X)
+                {
+                    CannonBall.Draw(spriteBatch);
+                }
+                else
+                {
+                    this.ballInitialised = false;
+                    this.ballFired = false;
+                }
+            }
         }
 
         private void ValidateShipPosition()
