@@ -1,17 +1,20 @@
-﻿namespace Badass_Pirates.EngineComponents.Screens
+﻿namespace Badass_Pirates.EngineComponents.Objects
 {
     #region
+
+    using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.EngineComponents.Screens;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     #endregion
 
-    public static class CannonBall
+    public struct CannonBall
     {
-        private static Image cannonBall;
+        private static readonly Image Ball;
 
-        public static Vector2 posCannon;
+        private static Vector2 posCannon;
 
         private static float heightMax;
 
@@ -19,11 +22,21 @@
 
         private static int counter;
 
-        
-
         static CannonBall()
         {
-            CannonBall.cannonBall = new Image("cannonball");
+            CannonBall.Ball = new Image("cannonball");
+        }
+
+        public static Vector2 PosCannon
+        {
+            get
+            {
+                return posCannon;
+            }
+            set
+            {
+                posCannon = value;
+            }
         }
 
         public static void Initialise(Vector2 position)
@@ -36,35 +49,35 @@
 
         public static void LoadContent()
         {
-            CannonBall.cannonBall.LoadContent();
+            CannonBall.Ball.LoadContent();
         }
 
         public static void UnloadContent()
         {
-            CannonBall.cannonBall.UnloadContent();
+            CannonBall.Ball.UnloadContent();
         }
 
         public static void Update(GameTime gameTime)
         {
             CannonBall.posCannon.X += 10;
-            if (!flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
+            if (!CannonBall.flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
             {
                 CannonBall.posCannon.Y -= 10;
             }
-            else if (!flipper && CannonBall.posCannon.Y > CannonBall.heightMax)
+            else if (!flipper && posCannon.Y > heightMax)
             {
                 CannonBall.posCannon.Y -= 4;
             }
-            else if (!flipper)
+            else if (!CannonBall.flipper)
             {
                 CannonBall.flipper = true;
                 CannonBall.posCannon.Y += 4;
             }
-            else if (CannonBall.counter < 8)
+            else if (counter < 8)
             {
                 CannonBall.counter++;
             }
-            else if (flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
+            else if (CannonBall.flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
             {
                 CannonBall.posCannon.Y += 4;
             }
@@ -72,12 +85,11 @@
             {
                 CannonBall.posCannon.Y += 10;
             }
-
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(CannonBall.cannonBall.Texture, CannonBall.posCannon);
+            spriteBatch.Draw(CannonBall.Ball.Texture, CannonBall.posCannon);
         }
     }
 }

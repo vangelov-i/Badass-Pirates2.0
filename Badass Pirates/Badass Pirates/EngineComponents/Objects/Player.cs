@@ -1,8 +1,8 @@
-﻿namespace Badass_Pirates.EngineComponents.Player
+﻿namespace Badass_Pirates.EngineComponents.Objects
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Screens;
+    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
@@ -15,6 +15,7 @@
 
     public struct Player
     {
+        #region Fields
         private GameObjects.Players.Player currentPlayer;
 
         private Image shipImage;
@@ -28,19 +29,19 @@
         private bool ballInitialised;
 
         private bool ballFired;
+        #endregion
 
         #region Methods
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
-            //CannonBall.posCannon = shipPosition
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
                     switch (type)
                     {
                         case ShipType.Destroyer:
-                            this.shipImage = new Image("Ships/destroyerRight");
+                            this.shipImage = new Image("ShipsContents/destroyerRight");
                             this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.SecondPlayer, 
                                 type, 
@@ -48,7 +49,7 @@
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Battleship:
-                            this.shipImage = new Image("Ships/battleshipRight");
+                            this.shipImage = new Image("ShipsContents/battleshipRight");
                             this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.SecondPlayer, 
                                 type, 
@@ -60,7 +61,7 @@
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Cruiser:
-                            this.shipImage = new Image("Ships/cruiserRight");
+                            this.shipImage = new Image("ShipsContents/cruiserRight");
                             this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.SecondPlayer, 
                                 type, 
@@ -75,7 +76,7 @@
                     switch (type)
                     {
                         case ShipType.Destroyer:
-                            this.shipImage = new Image("Ships/destroyerLeft");
+                            this.shipImage = new Image("ShipsContents/destroyerLeft");
                             this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.FirstPlayer, 
                                 type, 
@@ -83,7 +84,7 @@
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Battleship:
-                            this.shipImage = new Image("Ships/battleshipLeft");
+                            this.shipImage = new Image("ShipsContents/battleshipLeft");
                             this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.FirstPlayer, 
                                 type, 
@@ -91,7 +92,7 @@
                             this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Cruiser:
-                            this.shipImage = new Image("Ships/cruiserLeft");
+                            this.shipImage = new Image("ShipsContents/cruiserLeft");
                             this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.FirstPlayer, 
                                 type, 
@@ -151,7 +152,11 @@
                 {
                     if (!this.ballInitialised)
                     {
-                        CannonBall.Initialise(this.ballFiredPos = new Vector2(this.shipPosition.X + this.shipImage.Texture.Width, this.shipPosition.Y + this.shipImage.Texture.Height/2));  /// this should be written more elegantly ;D
+                        CannonBall.Initialise(
+                            this.ballFiredPos =
+                            new Vector2(
+                                this.shipPosition.X + this.shipImage.Texture.Width,
+                                this.shipPosition.Y + (this.shipImage.Texture.Height / 2f)));
                         this.ballInitialised = true;
                     }
                 }
@@ -171,9 +176,9 @@
             spriteBatch.Draw(this.shipImage.Texture, this.shipPosition);
             if (this.ballFired)
             {
-                this.ballRangeX.X = this.ballFiredPos.X + ScreenManager.Instance.Dimensions.X / 2 - this.shipImage.Texture.Width;
+                this.ballRangeX.X = this.ballFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - this.shipImage.Texture.Width;
 
-                if (CannonBall.posCannon.X < this.ballRangeX.X)
+                if (CannonBall.PosCannon.X < this.ballRangeX.X)
                 {
                     CannonBall.Draw(spriteBatch);
                 }

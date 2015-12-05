@@ -87,14 +87,6 @@ C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\BG.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IFreeze.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_1.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_2.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\lightning.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\wind.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\energy_potion.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\health_potion.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\shield_potion.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.exe
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.pdb
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
@@ -117,21 +109,23 @@ C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pi
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.pdb
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\OpenTK.dll
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\FadeImage.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\sea.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\image.jpg
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\image.jpg
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\sea.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\FadeImage.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\battleshipLeft.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\battleshipRight.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\cruiserLeft.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\cruiserRight.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerLeft.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerRight.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\battleshipLeft.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\battleshipRight.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\cruiserLeft.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\cruiserRight.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerLeft.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\destroyerRight.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\ima1.gif
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\imag2.gif
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\imag3.gif
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\battleshipLeft.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\battleshipRight.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\cruiserLeft.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\cruiserRight.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerLeft.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerRight.png

@@ -1,4 +1,4 @@
-﻿namespace Badass_Pirates.EngineComponents.Screens
+﻿namespace Badass_Pirates.EngineComponents.Managers
 {
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
@@ -7,7 +7,7 @@
     public class Image
     {
         private ContentManager content;
-
+        
         public Image(string path)
         {
             this.Path = path;
