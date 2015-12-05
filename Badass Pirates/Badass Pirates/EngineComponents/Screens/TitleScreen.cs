@@ -30,7 +30,7 @@
             this.background = new Image("Backgrounds/BG");
 
             // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
-            this.firstItem = new Item("PotionsContents/energyPotion");
+            this.firstItem = new Item("diboss");
 
             // Чрез параметърът на Initialise,се подава интервала,през който се показва Item - a
             this.firstItem.Initialise(12);
