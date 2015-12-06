@@ -1,5 +1,5 @@
 ﻿
-namespace Badass_Pirates.GameObjects.Items.Types
+namespace Badass_Pirates.GameObjects.Items.BonusTypes
 {
     public enum BonusType
     {

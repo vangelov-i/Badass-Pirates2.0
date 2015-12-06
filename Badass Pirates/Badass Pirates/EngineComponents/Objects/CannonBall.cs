@@ -2,94 +2,101 @@
 {
     #region
 
+    using System.Runtime.CompilerServices;
+
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Screens;
+    using Badass_Pirates.Enums;
+    using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     #endregion
 
-    public struct CannonBall
+    public class CannonBall : IPositionable
     {
-        private static readonly Image Ball;
+        private readonly Image Ball;
 
-        private static Vector2 posCannon;
+        private Vector2 position;
 
-        private static float heightMax;
+        private float heightMax;
 
-        private static bool flipper;
+        private bool flipper;
 
-        private static int counter;
+        private int counter;
 
-        static CannonBall()
+        public CannonBall()
         {
-            CannonBall.Ball = new Image("cannonball");
+            this.Ball = new Image("cannonball");
         }
 
-        public static Vector2 PosCannon
+        public Vector2 Position => this.position;
+
+        public void Initialise(Vector2 pos)
         {
-            get
-            {
-                return posCannon;
-            }
-            set
-            {
-                posCannon = value;
-            }
+            this.position = pos;
+            this.heightMax = pos.Y - 150;
+            this.counter = 0;
+            this.flipper = false;
         }
 
-        public static void Initialise(Vector2 position)
+        public void LoadContent()
         {
-            CannonBall.posCannon = position;
-            CannonBall.heightMax = position.Y - 150;
-            CannonBall.counter = 0;
-            CannonBall.flipper = false;
+            this.Ball.LoadContent();
         }
 
-        public static void LoadContent()
+        public void UnloadContent()
         {
-            CannonBall.Ball.LoadContent();
+            this.Ball.UnloadContent();
         }
 
-        public static void UnloadContent()
+        public void Update(GameTime gameTime)
         {
-            CannonBall.Ball.UnloadContent();
-        }
-
-        public static void Update(GameTime gameTime)
-        {
-            CannonBall.posCannon.X += 10;
-            if (!CannonBall.flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
+            this.position.X += 10;
+            if (!this.flipper && this.position.Y > this.heightMax + 100)
             {
-                CannonBall.posCannon.Y -= 10;
+                this.position.Y -= 10;
             }
-            else if (!flipper && posCannon.Y > heightMax)
+            else if (!this.flipper && this.position.Y > this.heightMax)
             {
-                CannonBall.posCannon.Y -= 4;
+                this.position.Y -= 4;
             }
-            else if (!CannonBall.flipper)
+            else if (!this.flipper)
             {
-                CannonBall.flipper = true;
-                CannonBall.posCannon.Y += 4;
+                this.flipper = true;
+                this.position.Y += 4;
             }
-            else if (counter < 8)
+            else if (this.counter < 8)
             {
-                CannonBall.counter++;
+                this.counter++;
             }
-            else if (CannonBall.flipper && CannonBall.posCannon.Y > CannonBall.heightMax + 100)
+            else if (this.flipper && this.position.Y > this.heightMax + 100)
             {
-                CannonBall.posCannon.Y += 4;
+                this.position.Y += 4;
             }
             else
             {
-                CannonBall.posCannon.Y += 10;
+                this.position.Y += 10;
             }
         }
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(CannonBall.Ball.Texture, CannonBall.posCannon);
+            spriteBatch.Draw(this.Ball.Texture, this.position);
+        }
+        
+        public void SetPosition(CoordsDirections coordsDirections, float value)
+        {
+            switch (coordsDirections)
+            {
+                case CoordsDirections.Abscissa:
+                    this.position.X = value;
+                    break;
+                case CoordsDirections.Ordinate:
+                    this.position.Y = value;
+                    break;
+            }
         }
     }
 }

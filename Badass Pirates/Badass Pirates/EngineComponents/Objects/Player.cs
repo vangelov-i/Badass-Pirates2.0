@@ -3,9 +3,12 @@
     #region
 
     using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
+    using Badass_Pirates.GameObjects.Items.BonusTypes;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -13,14 +16,15 @@
 
     #endregion
 
-    public struct Player
+    public struct Player : IGet
     {
         #region Fields
+
         private GameObjects.Players.Player currentPlayer;
 
-        private Image shipImage;
+        private CannonBall ball;
 
-        private Vector2 shipPosition;
+        private Image shipImage;
 
         private Vector2 ballFiredPos;
 
@@ -29,12 +33,15 @@
         private bool ballInitialised;
 
         private bool ballFired;
+
         #endregion
 
         #region Methods
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
+            this.ball = new CannonBall();
+
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -46,7 +53,6 @@
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipRight");
@@ -58,7 +64,6 @@
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserRight");
@@ -66,7 +71,6 @@
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                     }
 
@@ -81,7 +85,6 @@
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipLeft");
@@ -89,7 +92,6 @@
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserLeft");
@@ -97,7 +99,6 @@
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.shipPosition = this.currentPlayer.Ship.Position;
                             break;
                     }
 
@@ -108,13 +109,13 @@
         public void LoadContent()
         {
             this.shipImage.LoadContent();
-            CannonBall.LoadContent();
+            this.ball.LoadContent();
         }
 
         public void UnloadContent()
         {
             this.shipImage.UnloadContent();
-            CannonBall.UnloadContent();
+            this.ball.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
@@ -123,25 +124,41 @@
             InputManager.Instance.RotateStates();
             if (InputManager.Instance.KeyDown(Keys.Down))
             {
-                this.shipPosition.Y += this.currentPlayer.Ship.Speed;
+                // имплементиран е метод Move.Намира се в абстрактния клас Ship
+                this.currentPlayer.Ship.Move(
+                    CoordsDirections.Ordinate, 
+                    Direction.Positive, 
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
             if (InputManager.Instance.KeyDown(Keys.Up))
             {
-                this.shipPosition.Y -= this.currentPlayer.Ship.Speed;
+                // имплементиран е метод Move.Намира се в абстрактния клас Ship
+                this.currentPlayer.Ship.Move(
+                    CoordsDirections.Ordinate, 
+                    Direction.Negative, 
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
             if (InputManager.Instance.KeyDown(Keys.Right))
             {
-                this.shipPosition.X += this.currentPlayer.Ship.Speed;
+                // имплементиран е метод Move.Намира се в абстрактния клас Ship
+                this.currentPlayer.Ship.Move(
+                    CoordsDirections.Abscissa, 
+                    Direction.Positive, 
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
             if (InputManager.Instance.KeyDown(Keys.Left))
             {
-                this.shipPosition.X -= this.currentPlayer.Ship.Speed;
+                // имплементиран е метод Move.Намира се в абстрактния клас Ship
+                this.currentPlayer.Ship.Move(
+                    CoordsDirections.Abscissa, 
+                    Direction.Negative, 
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
@@ -152,11 +169,11 @@
                 {
                     if (!this.ballInitialised)
                     {
-                        CannonBall.Initialise(
+                        this.ball.Initialise(
                             this.ballFiredPos =
                             new Vector2(
-                                this.shipPosition.X + this.shipImage.Texture.Width,
-                                this.shipPosition.Y + (this.shipImage.Texture.Height / 2f)));
+                                this.currentPlayer.Ship.Position.X + this.shipImage.Texture.Width, 
+                                this.currentPlayer.Ship.Position.Y + (this.shipImage.Texture.Height / 2f)));
                         this.ballInitialised = true;
                     }
                 }
@@ -164,7 +181,7 @@
 
             if (this.ballFired)
             {
-                CannonBall.Update(gameTime);
+                this.ball.Update(gameTime);
             }
 
             // ALWAYS MUST BE THE LAST LINE
@@ -173,14 +190,15 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.shipImage.Texture, this.shipPosition);
+            spriteBatch.Draw(this.shipImage.Texture, this.currentPlayer.Ship.Position);
             if (this.ballFired)
             {
-                this.ballRangeX.X = this.ballFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - this.shipImage.Texture.Width;
+                this.ballRangeX.X = this.ballFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2)
+                                    - this.shipImage.Texture.Width;
 
-                if (CannonBall.PosCannon.X < this.ballRangeX.X)
+                if (this.ball.Position.X < this.ballRangeX.X)
                 {
-                    CannonBall.Draw(spriteBatch);
+                    this.ball.Draw(spriteBatch);
                 }
                 else
                 {
@@ -190,26 +208,46 @@
             }
         }
 
+        public void GetPotion(PotionTypes potionType)
+        {
+            CreatePotionEffect.ExtractEffect(this.currentPlayer.Ship, potionType);
+        }
+
+        public void GetBonus(BonusType bonusType)
+        {
+            CreateBonusTypeEffect.ExtractEffect(this.currentPlayer.Ship, bonusType);
+        }
+
         private void ValidateShipPosition()
         {
-            if (this.shipPosition.X < 0)
+            if (this.currentPlayer.Ship.Position.X < 0)
             {
-                this.shipPosition.X = 0;
+                this.currentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, 0);
             }
 
-            if (this.shipPosition.Y < 0)
+            if (this.currentPlayer.Ship.Position.Y < 0)
             {
-                this.shipPosition.Y = 0;
+                /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
+                            Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
+                this.currentPlayer.Ship.SetPosition(CoordsDirections.Ordinate, 0);
             }
 
-            if (this.shipPosition.Y > ScreenManager.Instance.Dimensions.Y - this.shipImage.Texture.Height)
+            if (this.currentPlayer.Ship.Position.Y > ScreenManager.Instance.Dimensions.Y - this.shipImage.Texture.Height)
             {
-                this.shipPosition.Y = ScreenManager.Instance.Dimensions.Y - this.shipImage.Texture.Height;
+                /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
+                            Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
+                this.currentPlayer.Ship.SetPosition(
+                    CoordsDirections.Ordinate, 
+                    ScreenManager.Instance.Dimensions.Y - this.shipImage.Texture.Height);
             }
 
-            if (this.shipPosition.X > ScreenManager.Instance.Dimensions.X - this.shipImage.Texture.Width)
+            if (this.currentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X - this.shipImage.Texture.Width)
             {
-                this.shipPosition.X = ScreenManager.Instance.Dimensions.X - this.shipImage.Texture.Width;
+                /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
+                            Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
+                this.currentPlayer.Ship.SetPosition(
+                    CoordsDirections.Abscissa, 
+                    ScreenManager.Instance.Dimensions.X - this.shipImage.Texture.Width);
             }
         }
 

@@ -1,29 +1,24 @@
 ﻿namespace Badass_Pirates.GameObjects.Players
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    using Badass_Pirates.EngineComponents;
+    using Badass_Pirates.EngineComponents.Objects;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
+    using Badass_Pirates.GameObjects.Items.BonusTypes;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
 
-    public abstract class Player  
+    public abstract class Player 
     {
+        public readonly Vector2 SpawnFirst = Vector2.Zero;
+
+        // TODO Edit the image size
+        public readonly Vector2 SpawnSecond = new Vector2(1366 - 135, 768 - 150);
+
         private string name;
 
-        private ShipType shipType;
-
         private Ship ship;
-
-        public Vector2 spawnFirst = Vector2.Zero;
-
-        //TODO Edit the image size
-
-        public Vector2 spawnSecond = new Vector2(1366 - 135 , 768 - 150);
 
         protected Player(ShipType type, string name)
         {
@@ -41,19 +36,6 @@
             set
             {
                 this.name = value;
-            }
-        }
-
-        public ShipType ShipType
-        {
-            get
-            {
-                return this.shipType;
-            }
-
-            set
-            {
-                this.shipType = value;
             }
         }
 

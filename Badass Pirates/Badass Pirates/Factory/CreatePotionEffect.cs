@@ -2,7 +2,7 @@
 {
     #region
 
-    using Badass_Pirates.GameObjects.Items.Potions;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Ships;
 
     #endregion

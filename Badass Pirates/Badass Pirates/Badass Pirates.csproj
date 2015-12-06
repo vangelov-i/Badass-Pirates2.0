@@ -65,6 +65,8 @@
     <Compile Include="EngineComponents\Managers\XmlManager.cs" />
     <Compile Include="EngineComponents\Screens\TitleScreen.cs" />
     <Compile Include="EngineComponents\Objects\Player.cs" />
+    <Compile Include="Enums\CoordsDirections.cs" />
+    <Compile Include="Enums\Direction.cs" />
     <Compile Include="Exceptions\NotCorrectNameException.cs" />
     <Compile Include="Exceptions\OutOfEnergyException.cs" />
     <Compile Include="Exceptions\OutOfHealthException.cs" />
@@ -74,19 +76,19 @@
     <Compile Include="Factory\CreatePotionEffect.cs" />
     <Compile Include="Factory\CreateShip.cs" />
     <Compile Include="Factory\SpawnBoss.cs" />
-    <Compile Include="GameObjects\Inventory\Inventory.cs" />
-    <Compile Include="GameObjects\Items\BonusTypes\BonusType.cs" />
+    <Compile Include="Enums\BonusType.cs" />
     <Compile Include="GameObjects\Players\FirstPlayer.cs" />
     <Compile Include="GameObjects\Players\Player.cs" />
-    <Compile Include="GameObjects\Players\PlayerTypes.cs" />
+    <Compile Include="Enums\PlayerTypes.cs" />
     <Compile Include="GameObjects\Players\SecondPlayer.cs" />
     <Compile Include="Handler\CombatHandler\CombatHandler.cs" />
+    <Compile Include="Interfaces\IItem.cs" />
+    <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Interfaces\Specialties\ILightning.cs" />
     <Compile Include="MainEngine.cs" />
-    <Compile Include="GameObjects\Items\Item.cs" />
-    <Compile Include="GameObjects\Items\Potions\PotionTypes.cs" />
+    <Compile Include="Enums\PotionTypes.cs" />
     <Compile Include="GameObjects\Mobs\Boss\Boss.cs" />
-    <Compile Include="GameObjects\Ships\ShipType.cs" />
+    <Compile Include="Enums\ShipType.cs" />
     <Compile Include="GameObjects\Ships\Destroyer.cs" />
     <Compile Include="GameObjects\Ships\BattleShip.cs" />
     <Compile Include="GameObjects\Ships\Ship.cs" />
@@ -177,7 +179,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GameObjects\GameStash\" />
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">

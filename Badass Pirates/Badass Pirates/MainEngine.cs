@@ -4,7 +4,6 @@
 
     using Badass_Pirates.EngineComponents;
     using Badass_Pirates.Factory;
-    using Badass_Pirates.GameObjects.Items.Potions;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
 

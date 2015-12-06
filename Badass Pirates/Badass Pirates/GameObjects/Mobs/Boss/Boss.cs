@@ -5,12 +5,13 @@
     using System.Linq;
     using System.Text;
 
+    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
 
-    public class Boss : IAttack, IMoveable
+    public class Boss : IAttack, IMoveable, IPositionable
     {
         private int health;
 
@@ -69,7 +70,12 @@
             target.Health -= this.Damage;
         }
 
-        public void Move(Vector2 targetPosition)
+        public void Move(CoordsDirections coordsDirection, Direction direction, int movingSpeed)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void SetPosition(CoordsDirections coordsDirections, float value)
         {
             throw new NotImplementedException();
         }

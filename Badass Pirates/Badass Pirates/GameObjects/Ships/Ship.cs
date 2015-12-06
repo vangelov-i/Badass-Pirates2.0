@@ -3,30 +3,21 @@
     #region
 
     using System;
-    using System.Collections.Generic;
 
+    using Badass_Pirates.EngineComponents.Objects;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Items;
-    using Badass_Pirates.GameObjects.Items.Potions;
+    using Badass_Pirates.GameObjects.Items.BonusTypes;
     using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
 
     #endregion
 
-    public abstract class Ship : IAttack, IMoveable, IGet
+    public abstract class Ship : IAttack, IMoveable, ISink, IPositionable
     {
         private Vector2 position;
 
-        private int energy;
-
-        private int damage;
-
-        private int health;
-
-        private int shields;
-
-        private int speed;
-        
         protected Ship(int damage, int health, int shields, int energy, int speed)
         {
             this.Damage = damage;
@@ -36,7 +27,7 @@
             this.Speed = speed;
         }
 
-        public Vector2 Position 
+        public Vector2 Position
         {
             get
             {
@@ -49,82 +40,66 @@
             }
         }
 
-        public int Damage
-        {
-            get
-            {
-                return this.damage;
-            }
+        public int Damage { get; set; }
 
-            set
-            {
-                this.damage = value;
-            }
-        }
+        public int Health { get; set; }
 
-        public int Health
-        {
-            get
-            {
-                return this.health;
-            }
+        public int Shields { get; set; }
 
-            set
-            {
-                this.health = value;
-            }
-        }
+        public int Energy { get; set; }
 
-        public int Shields
-        {
-            get
-            {
-                return this.shields;
-            }
-
-            set
-            {
-                this.shields = value;
-            }
-        }
-
-        public int Energy
-        {
-            get
-            {
-                return this.energy;
-            }
-
-            set
-            {
-                this.energy = value;
-            }
-        }
-
-        public int Speed 
-        {
-            get 
-            { 
-                return this.speed; 
-            }
-
-            set 
-            { 
-                this.speed = value; 
-            }
-        }
+        public int Speed { get; set; }
 
         public abstract void Attack(Ship target);
 
-        public void Move(Vector2 targetPosition)
+        public void Sink(Ship target)
         {
-            throw new NotImplementedException();
+            throw new NotImplementedException("METHOD SINK NOT IMPLEMENTED");
         }
 
-        public virtual void Get(Items.Item item)
+        public void Move(CoordsDirections coordsDirection, Direction direction, int movingSpeed)
         {
-            throw new NotImplementedException();
+            switch (direction)
+            {
+                case Direction.Positive:
+                    switch (coordsDirection)
+                    {
+                        case CoordsDirections.Abscissa:
+                            this.position.X += movingSpeed;
+                            break;
+                        case CoordsDirections.Ordinate:
+                            this.position.Y += movingSpeed;
+                            break;
+                    }
+
+                    break;
+
+                case Direction.Negative:
+                    switch (coordsDirection)
+                    {
+                        case CoordsDirections.Abscissa:
+                            this.position.X -= movingSpeed;
+                            break;
+                        case CoordsDirections.Ordinate:
+                            this.position.Y -= movingSpeed;
+                            break;
+                    }
+
+                    break;
+            }
         }
 
+        public void SetPosition(CoordsDirections coordsDirections, float value)
+        {
+            switch (coordsDirections)
+            {
+                case CoordsDirections.Abscissa:
+                    this.position.X = value;
+                    break;
+                case CoordsDirections.Ordinate:
+                    this.position.Y = value;
+                    break;
+            }
+        }
     }
 }

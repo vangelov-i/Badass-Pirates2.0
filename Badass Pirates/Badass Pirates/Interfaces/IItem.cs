@@ -5,13 +5,10 @@
     using System.Linq;
     using System.Text;
 
-    using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects;
-
     using Microsoft.Xna.Framework;
 
-    public interface IMoveable
+    public interface IItem : IPositionable
     {
-        void Move(CoordsDirections coordsDirection, Direction direction, int movingSpeed);
+        Vector2 Position { get; }
     }
 }
