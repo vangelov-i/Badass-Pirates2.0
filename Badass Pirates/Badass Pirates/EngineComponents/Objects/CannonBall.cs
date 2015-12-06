@@ -29,7 +29,9 @@
         public CannonBall()
         {
             this.Ball = new Image("cannonball");
+            this.Fire = new Image("smoke41");
         }
+        public Image Fire { get; set; }
 
         public Vector2 Position => this.position;
 
@@ -44,11 +46,13 @@
         public void LoadContent()
         {
             this.Ball.LoadContent();
+            this.Fire.LoadContent();
         }
 
         public void UnloadContent()
         {
             this.Ball.UnloadContent();
+            this.Fire.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
