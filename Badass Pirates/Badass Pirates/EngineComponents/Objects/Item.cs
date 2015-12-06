@@ -7,13 +7,14 @@
     using System.Diagnostics.CodeAnalysis;
 
     using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.Enums;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
     #endregion
 
-    public struct Item
+    public class Item
     {
         #region Fields
 
@@ -23,97 +24,112 @@
         
         private static Random random;
 
-        private readonly Image bonusImage;
+        private static Item instance;
 
-        private Vector2 position;
+        private static Image itemImage;
 
-        private Stopwatch stopWatch;
+        private static Vector2 position;
 
-        private int timeInterval;
+        private static Stopwatch stopWatch;
 
-        private bool draw;
+        private static ItemTypes itemType;
 
-        private float screenHeight;
+        private static int timeInterval;
 
-        private float screenWidth;
+        private static bool draw;
 
-        private int timeCounter;
+        private static float screenHeight;
 
-        private float timer;
+        private static float screenWidth;
+
+        private static int timeCounter;
+
+        private static float timer;
 
         #endregion
 
-        public Item(string path)
+        #region Properties
+
+        public static Vector2 Position => Item.position;
+
+        public static Item Instance => instance ?? (instance = new Item());
+
+        #endregion
+
+        private Item()
         {
-            this.bonusImage = new Image(path);
-            this.draw = false;
-            this.position = new Vector2();
-            this.screenHeight = 0f;
-            this.screenWidth = 0f;
-            this.stopWatch = null;
-            this.timeCounter = 0;
-            this.timer = 0;
-            random = new Random();
-            this.timeInterval = 0;
+            Item.draw = false;
+            Item.position = new Vector2();
+            Item.screenHeight = 0f;
+            Item.screenWidth = 0f;
+            Item.stopWatch = null;
+            Item.timeCounter = 0;
+            Item.timer = 0;
+            Item.timeInterval = 0;
+            Item.itemType = 0;
         }
 
-        public void Initialise(int intervalShown)
+        public static void Initialise(int intervalShown)
         {
-            this.draw = false;
-            this.timeInterval = intervalShown;
-            this.screenHeight = ScreenManager.Instance.Dimensions.X;
-            this.screenWidth = ScreenManager.Instance.Dimensions.Y;
-            this.stopWatch = new Stopwatch();
+            Item.draw = false;
+            Item.timeInterval = intervalShown;
+            Item.random = new Random();
+            Item.screenHeight = ScreenManager.Instance.Dimensions.X;
+            Item.screenWidth = ScreenManager.Instance.Dimensions.Y;
+            Item.stopWatch = new Stopwatch();
+            Item.itemImage = ShuffleItems.Shuffle(Item.random);
         }
 
-        public void LoadContent()
+        public static void LoadContent()
         {
-            this.bonusImage.LoadContent();
+            Item.itemImage.LoadContent();
         }
 
-        public void UnloadContent()
+        public static void UnloadContent()
         {
-            this.bonusImage.UnloadContent();
+            Item.itemImage.UnloadContent();
         }
 
-        public void Update(GameTime gameTime)
+        public static void Update(GameTime gameTime)
         {
-            this.timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            this.timeCounter += (int)this.timer;
-            if (this.timer >= 1.0F)
+            Item.timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            Item.timeCounter += (int)Item.timer;
+            if (Item.timer >= 1.0F)
             {
-                this.timer = 0F;
+                Item.timer = 0F;
             }
 
-            if (Math.Abs(this.timeCounter % TIME_SHOWN) < 0.0000001)
+            if (Math.Abs(Item.timeCounter % TIME_SHOWN) < 0.0000001)
             {
-                this.stopWatch.Start();
-                this.draw = true;
+                Item.stopWatch.Start();
+                Item.draw = true;
             }
 
-            if (this.stopWatch.Elapsed.Seconds >= this.timeInterval
-                && Math.Abs(this.timeCounter % TIME_SHOWN) > 0.0000001)
+            if (Item.stopWatch.Elapsed.Seconds >= Item.timeInterval
+                && Math.Abs(Item.timeCounter % TIME_SHOWN) > 0.0000001)
             {
-                this.stopWatch.Stop();
-                this.stopWatch.Reset();
-                this.SetRandoms();
-                this.draw = false;
-            }
-        }
-
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            if (this.draw && this.stopWatch.Elapsed.Seconds <= TIME_SHOWN)
-            {
-                spriteBatch.Draw(this.bonusImage.Texture, this.position);
+                Item.stopWatch.Stop();
+                Item.stopWatch.Reset();
+                Item.SetRandoms();
+                itemImage = ShuffleItems.Shuffle(random);
+                itemImage.LoadContent();
+                Item.draw = false;
             }
         }
 
-        private void SetRandoms()
+        public static void Draw(SpriteBatch spriteBatch)
         {
-            this.position = new Vector2(
-                random.Next(0, (int)this.screenWidth - this.bonusImage.Texture.Width), 
-                random.Next(0, (int)this.screenHeight - this.bonusImage.Texture.Height));
+            if (Item.draw && Item.stopWatch.Elapsed.Seconds <= TIME_SHOWN)
+            {
+                spriteBatch.Draw(Item.itemImage.Texture, Item.position);
+            }
+        }
+
+        private static void SetRandoms()
+        {
+            Item.position = new Vector2(
+                random.Next(0, (int)Item.screenWidth - Item.itemImage.Texture.Width), 
+                random.Next(0, (int)Item.screenHeight - Item.itemImage.Texture.Height));
         }
     }
 }

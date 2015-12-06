@@ -16,7 +16,7 @@
 
     #endregion
 
-    public struct Player : IGet
+    public class Player : IGet
     {
         #region Fields
 
@@ -33,6 +33,12 @@
         private bool ballInitialised;
 
         private bool ballFired;
+
+        #endregion
+
+        #region Properties
+
+        public GameObjects.Players.Player CurrentPlayer => this.currentPlayer;
 
         #endregion
 
@@ -213,6 +219,7 @@
             CreatePotionEffect.ExtractEffect(this.currentPlayer.Ship, potionType);
         }
 
+        
         public void GetBonus(BonusType bonusType)
         {
             CreateBonusTypeEffect.ExtractEffect(this.currentPlayer.Ship, bonusType);

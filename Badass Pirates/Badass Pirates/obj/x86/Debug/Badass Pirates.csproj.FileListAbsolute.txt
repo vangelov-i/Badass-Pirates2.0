@@ -126,11 +126,13 @@ C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\cruiserRight.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerLeft.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerRight.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContent\boltBonus.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContent\freezBonus.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContent\shieldBonus.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContent\windBonus.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\PotionsContents\energyPotion.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\PotionsContents\hpPotion.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\PotionsContents\shieldPotion.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\diboss.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\boltBonus.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\freezBonus.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\laser.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\penetration.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\shieldBonus.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\windBonus.png

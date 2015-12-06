@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="EngineComponents\Managers\Menu.cs" />
     <Compile Include="EngineComponents\Managers\MenuManager.cs" />
+    <Compile Include="EngineComponents\Managers\ShuffleItems.cs" />
     <Compile Include="EngineComponents\MenuItem.cs" />
     <Compile Include="EngineComponents\Objects\Item.cs" />
     <Compile Include="EngineComponents\Objects\CannonBall.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="EngineComponents\Objects\Player.cs" />
     <Compile Include="Enums\CoordsDirections.cs" />
     <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\ItemTypes.cs" />
     <Compile Include="Exceptions\NotCorrectNameException.cs" />
     <Compile Include="Exceptions\OutOfEnergyException.cs" />
     <Compile Include="Exceptions\OutOfHealthException.cs" />
@@ -124,16 +126,22 @@
     <Content Include="Content\Backgrounds\sea.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BonusContent\boltBonus.png">
+    <Content Include="Content\BonusContents\boltBonus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BonusContent\freezBonus.png">
+    <Content Include="Content\BonusContents\freezBonus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BonusContent\shieldBonus.png">
+    <Content Include="Content\BonusContents\laser.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\BonusContent\windBonus.png">
+    <Content Include="Content\BonusContents\penetration.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\BonusContents\shieldBonus.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\BonusContents\windBonus.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\cannonball.png">
@@ -180,6 +188,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
+    <None Include="ClassDiagram2.cd" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
