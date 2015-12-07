@@ -2,6 +2,10 @@
 {
     #region
 
+    using System.Diagnostics;
+    using System.Text;
+
+    using Badass_Pirates.EngineComponents.Collisions;
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.GameObjects.Players;
@@ -18,9 +22,11 @@
     {
         private Image background;
 
-        private Image diBoss;
+        private Image smoke;
 
         private Player firstPlayer;
+
+        private bool colliding;
 
         public override void Initialise()
         {
@@ -28,6 +34,8 @@
             this.firstPlayer = new Player();
             this.firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
             this.background = new Image("Backgrounds/BG");
+            // Инициализация на класа колизия
+            this.colliding = ItemsCollision.Collide(this.firstPlayer.CurrentPlayer.Ship);
 
             // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
             Item.Initialise(6);
@@ -57,6 +65,9 @@
             base.Update(gameTime);
             this.firstPlayer.Update(gameTime);
             Item.Update(gameTime);
+
+            // проверка във всеки framе за колизия
+            this.colliding = ItemsCollision.Collide(this.firstPlayer.CurrentPlayer.Ship);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -64,7 +75,12 @@
             base.Draw(spriteBatch);
             this.background.Draw(spriteBatch, Vector2.Zero);
             this.firstPlayer.Draw(spriteBatch);
-            Item.Draw(spriteBatch);
+
+            // ако няма колизия,рисува Item-a
+            if (!this.colliding)
+            {
+                Item.Draw(spriteBatch);
+            }
         }
     }
 }

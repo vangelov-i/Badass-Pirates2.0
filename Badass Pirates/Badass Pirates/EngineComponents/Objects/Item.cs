@@ -54,6 +54,8 @@
 
         public static Item Instance => instance ?? (instance = new Item());
 
+        public static Point FrameSize = new Point(110, 70);
+
         #endregion
 
         private Item()

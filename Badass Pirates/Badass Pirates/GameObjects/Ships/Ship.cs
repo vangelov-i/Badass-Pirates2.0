@@ -16,6 +16,9 @@
 
     public abstract class Ship : IAttack, IMoveable, ISink, IPositionable
     {
+
+        public static readonly Point FrameSize = new Point(137, 150);
+
         private Vector2 position;
 
         protected Ship(int damage, int health, int shields, int energy, int speed)
@@ -49,6 +52,7 @@
         public int Energy { get; set; }
 
         public int Speed { get; set; }
+
 
         public abstract void Attack(Ship target);
 

@@ -1,24 +1,40 @@
 ﻿namespace Badass_Pirates.EngineComponents.Managers
 {
+    #region
+
+    using Badass_Pirates.Enums;
+
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
 
+    #endregion
+
     public class Image
     {
         private ContentManager content;
-        
+
+        private Vector2 position;
+
         public Image(string path)
         {
             this.Path = path;
+        }
+
+        public Vector2 Position
+        {
+            get
+            {
+                return this.position;
+            }
         }
 
         public Texture2D Texture { get; private set; }
 
         public bool IsActive { get; set; }
 
-        private string Path { get; set; }
-        
+        private string Path { get; }
+
         public virtual void Initialise()
         {
             this.IsActive = true;
@@ -41,9 +57,14 @@
         {
         }
 
-        public virtual void Draw(SpriteBatch spriteBatch, Vector2 position)
+        public virtual void Draw(SpriteBatch spriteBatch, Vector2 pos)
         {
-            spriteBatch.Draw(this.Texture, position);
+            spriteBatch.Draw(this.Texture, pos);
+        }
+
+        public void SetPosition(Vector2 pos)
+        {
+            this.position = pos;
         }
     }
 }
