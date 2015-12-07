@@ -12,7 +12,7 @@
     {
         public static ItemTypes type;
 
-        public static ItemTypes Type => type;
+        public static ItemTypes Type { get { return type; } }
 
         public static Image Shuffle(Random random)
         {
