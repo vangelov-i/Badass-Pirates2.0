@@ -33,7 +33,13 @@
         }
         public Image Fire { get; set; }
 
-        public Vector2 Position => this.position;
+        public Vector2 Position //=> this.position;
+        {
+            get
+            {
+                return this.position;
+            }
+        }
 
         public void Initialise(Vector2 pos)
         {
