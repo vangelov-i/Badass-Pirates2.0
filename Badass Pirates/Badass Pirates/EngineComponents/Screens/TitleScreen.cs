@@ -71,14 +71,15 @@
             this.background.Draw(spriteBatch, Vector2.Zero);
             this.firstPlayer.Draw(spriteBatch);
 
-            // ако няма колизия,рисува Item-a
-            if (!this.firstPlayer.Colliding)
-            // needs improvement -> made this way the item's not drawing only while the collision is presend
-            // in other words - when there is a collision at the current moment, the item isn't drawing, but it shouldn't start
-            // drawing again when the ship moves away. One option is to implement some counter checking if there was a collision 
-            // before the current moment and implement it in the if statement
-             Item.Draw(spriteBatch);
-            
+            /* ако няма колизия,рисува Item-a
+            needs improvement -> made this way the item's not drawing only while the collision is presend
+            in other words - when there is a collision at the current moment, the item isn't drawing, but it shouldn't start
+            drawing again when the ship moves away. One option is to implement some counter checking if there was a collision 
+            before the current moment and implement it in the if statement */
+            if (this.firstPlayer.Colliding == false)
+            {
+                Item.Draw(spriteBatch);
+            }
         }
     }
 }

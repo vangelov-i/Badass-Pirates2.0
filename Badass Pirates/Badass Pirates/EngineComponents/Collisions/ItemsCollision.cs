@@ -1,11 +1,7 @@
 ﻿namespace Badass_Pirates.EngineComponents.Collisions
 {
-    using System;
-    using System.Collections.Generic;
+    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
-    using System.Linq;
-    using System.Runtime.CompilerServices;
-    using System.Text;
 
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.GameObjects.Ships;
@@ -16,7 +12,7 @@
     {
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed. Suppression is OK here.")]
         private const int COLLISION_OFFSET = 10;
-
+        
         public static bool Collide(Ship shipColliding)
         {
             Rectangle shipRect = new Rectangle(
@@ -33,6 +29,7 @@
 
             if (shipRect.Intersects(itemRect))
             {
+                Item.Position = new Vector2(-900, -900);
                 return true;
             }
 

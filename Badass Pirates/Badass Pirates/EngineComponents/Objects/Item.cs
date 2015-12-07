@@ -18,11 +18,7 @@
     {
         #region Fields
 
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore",
-            Justification = "Reviewed. Suppression is OK here.")]
-        private const int TIME_SHOWN = 4;
-
-        private const int PET = 0;
+        private static int timeShown = 4;
 
         private static Random random;
 
@@ -48,6 +44,8 @@
 
         private static float timer;
 
+        private static int counter;
+
         #endregion
 
         #region Properties
@@ -57,6 +55,10 @@
             get
             {
                 return Item.position;
+            }
+            set
+            {
+                Item.position = value;
             }
         }
 
@@ -69,6 +71,31 @@
                     instance = new Item();
                 }
                 return instance;
+            }
+        }
+
+        public static int Counter
+        {
+            get
+            {
+                return counter;
+            }
+            set
+            {
+                counter = value;
+            }
+        }
+
+        public static bool DrawBool
+        {
+            get
+            {
+                return draw;
+            }
+
+            set
+            {
+                draw = value;
             }
         }
 
@@ -98,6 +125,7 @@
             Item.screenWidth = ScreenManager.Instance.Dimensions.Y;
             Item.stopWatch = new Stopwatch();
             Item.itemImage = ShuffleItems.Shuffle(Item.random);
+            counter = 0;
         }
 
         public static void LoadContent()
@@ -119,14 +147,14 @@
                 Item.timer = 0F;
             }
 
-            if (Math.Abs(Item.timeCounter % TIME_SHOWN) < 0.0000001)
+            if (Math.Abs(Item.timeCounter % timeShown) < 0.0000001)
             {
                 Item.stopWatch.Start();
                 Item.draw = true;
             }
 
             if (Item.stopWatch.Elapsed.Seconds >= Item.timeInterval
-                && Math.Abs(Item.timeCounter % TIME_SHOWN) > 0.0000001)
+                && Math.Abs(Item.timeCounter % timeShown) > 0.0000001)
             {
                 Item.stopWatch.Stop();
                 Item.stopWatch.Reset();
@@ -139,7 +167,7 @@
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            if (Item.draw && Item.stopWatch.Elapsed.Seconds <= TIME_SHOWN)
+            if (Item.draw && Item.stopWatch.Elapsed.Seconds <= timeShown)
             {
                 spriteBatch.Draw(Item.itemImage.Texture, Item.position);
             }

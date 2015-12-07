@@ -3,6 +3,7 @@
     #region
 
     using System;
+    using System.Diagnostics;
 
     using Badass_Pirates.EngineComponents.Collisions;
     using Badass_Pirates.EngineComponents.Managers;
@@ -40,6 +41,8 @@
 
         private bool colliding;
 
+        private Stopwatch collidingWatch;
+
         #endregion
 
         #region Properties
@@ -51,7 +54,7 @@
                 return this.currentPlayer;
             }
         }
-
+        
         public bool Colliding
         {
             get
@@ -67,7 +70,7 @@
         public void Initialise(ShipType type, PlayerTypes side)
         {
             this.ball = new CannonBall();
-
+            this.collidingWatch = new Stopwatch();
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -130,8 +133,7 @@
 
                     break;
             }
-
-            this.colliding = false;
+            
         }
 
         public void LoadContent()
@@ -148,8 +150,6 @@
 
         public void Update(GameTime gameTime)
         {
-            this.colliding = ItemsCollision.Collide(this.currentPlayer.Ship);
-
             this.shipImage.Update(gameTime);
             InputManager.Instance.RotateStates();
             if (InputManager.Instance.KeyDown(Keys.Down))
@@ -214,9 +214,12 @@
             {
                 this.ball.Update(gameTime);
             }
-            
+
+            this.colliding = ItemsCollision.Collide(this.currentPlayer.Ship);
+
             if (this.colliding)
             {
+                // не работи коректно ! ! !
                 switch (ShuffleItems.Type)
                 {
                         case ItemTypes.Damage:
@@ -231,11 +234,7 @@
                         this.GetPotion((PotionTypes)Enum.Parse(typeof(ItemTypes), ShuffleItems.Type.ToString()));
                         break;
                 }
-
-                this.colliding = false;
             }
-
-
             // ALWAYS MUST BE THE LAST LINE
             InputManager.Instance.Update();
         }
