@@ -26,16 +26,12 @@
 
         private Player firstPlayer;
 
-        private bool colliding;
-
         public override void Initialise()
         {
             base.Initialise();
             this.firstPlayer = new Player();
             this.firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
             this.background = new Image("Backgrounds/BG");
-            // Инициализация на класа колизия
-            this.colliding = ItemsCollision.Collide(this.firstPlayer.CurrentPlayer.Ship);
 
             // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
             Item.Initialise(6);
@@ -67,7 +63,6 @@
             Item.Update(gameTime);
 
             // проверка във всеки framе за колизия
-            this.colliding = ItemsCollision.Collide(this.firstPlayer.CurrentPlayer.Ship);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -77,11 +72,15 @@
             this.firstPlayer.Draw(spriteBatch);
 
             // ако няма колизия,рисува Item-a
+<<<<<<< HEAD
+            if (!this.firstPlayer.Colliding)
+=======
             // needs improvement -> made this way the item's not drawing only while the collision is presend
             // in other words - when there is a collision at the current moment, the item isn't drawing, but it shouldn't start
             // drawing again when the ship moves away. One option is to implement some counter checking if there was a collision 
             // before the current moment and implement it in the if statement
             if (!this.colliding)
+>>>>>>> origin/master
             {
                 Item.Draw(spriteBatch);
             }

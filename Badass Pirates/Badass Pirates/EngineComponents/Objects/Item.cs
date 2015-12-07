@@ -146,7 +146,11 @@
         private static void SetRandoms()
         {
             Item.position = new Vector2(
+<<<<<<< HEAD
+                random.Next(0, (int)Item.screenWidth - Item.itemImage.Texture.Width), 
+=======
                 random.Next(0, (int)Item.screenWidth - Item.itemImage.Texture.Width),
+>>>>>>> origin/master
                 random.Next(0, (int)Item.screenHeight - Item.itemImage.Texture.Height));
         }
     }
