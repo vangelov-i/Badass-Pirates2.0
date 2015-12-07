@@ -1,0 +1,29 @@
+diff a/Badass Pirates/Badass Pirates/EngineComponents/Objects/Item.cs b/Badass Pirates/Badass Pirates/EngineComponents/Objects/Item.cs	(rejected hunks)
+@@ -50,9 +50,25 @@
+ 
+         #region Properties
+ 
+-        public static Vector2 Position => Item.position;
++        public static Vector2 Position //=> Item.position;
++        {
++            get
++            {
++                return Item.position;
++            }
++        }
+ 
+-        public static Item Instance => instance ?? (instance = new Item());
++        public static Item Instance // => instance ?? (instance = new Item());
++        {
++            get
++            {
++                if (instance == null)
++                {
++                    instance = new Item();
++                }
++                return instance;
++            }
++        }
+ 
+         public static Point FrameSize = new Point(110, 70);
+ 
