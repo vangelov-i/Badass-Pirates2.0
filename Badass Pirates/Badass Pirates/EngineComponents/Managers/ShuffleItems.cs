@@ -10,6 +10,10 @@
 
     public static class ShuffleItems
     {
+        public static ItemTypes type;
+
+        public static ItemTypes Type => type;
+
         public static Image Shuffle(Random random)
         {
             switch (ReturnItem(random))
@@ -36,6 +40,7 @@
         private static ItemTypes ReturnItem(Random random)
         {
             var current = (ItemTypes)random.Next(1, 8);
+            type = current;
             return current;
         }
     }

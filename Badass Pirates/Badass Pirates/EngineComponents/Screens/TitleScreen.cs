@@ -26,16 +26,12 @@
 
         private Player firstPlayer;
 
-        private bool colliding;
-
         public override void Initialise()
         {
             base.Initialise();
             this.firstPlayer = new Player();
             this.firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
             this.background = new Image("Backgrounds/BG");
-            // Инициализация на класа колизия
-            this.colliding = ItemsCollision.Collide(this.firstPlayer.CurrentPlayer.Ship);
 
             // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
             Item.Initialise(6);
@@ -67,7 +63,6 @@
             Item.Update(gameTime);
 
             // проверка във всеки framе за колизия
-            this.colliding = ItemsCollision.Collide(this.firstPlayer.CurrentPlayer.Ship);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -77,7 +72,7 @@
             this.firstPlayer.Draw(spriteBatch);
 
             // ако няма колизия,рисува Item-a
-            if (!this.colliding)
+            if (!this.firstPlayer.Colliding)
             {
                 Item.Draw(spriteBatch);
             }

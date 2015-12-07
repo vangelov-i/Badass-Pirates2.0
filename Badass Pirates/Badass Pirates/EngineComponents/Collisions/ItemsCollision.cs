@@ -15,7 +15,7 @@
     public class ItemsCollision
     {
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed. Suppression is OK here.")]
-        private const int COLLISION_OFFSET = 30;
+        private const int COLLISION_OFFSET = 10;
 
         public static bool Collide(Ship shipColliding)
         {

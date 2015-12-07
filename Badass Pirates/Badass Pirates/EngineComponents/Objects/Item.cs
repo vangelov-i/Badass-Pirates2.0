@@ -130,8 +130,8 @@
         private static void SetRandoms()
         {
             Item.position = new Vector2(
-                random.Next(600, (int)Item.screenWidth - Item.itemImage.Texture.Width), 
-                random.Next(600, (int)Item.screenHeight - Item.itemImage.Texture.Height));
+                random.Next(0, (int)Item.screenWidth - Item.itemImage.Texture.Width), 
+                random.Next(0, (int)Item.screenHeight - Item.itemImage.Texture.Height));
         }
     }
 }
