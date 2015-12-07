@@ -44,8 +44,6 @@
 
         private static float timer;
 
-        private static int counter;
-
         #endregion
 
         #region Properties
@@ -74,31 +72,6 @@
             }
         }
 
-        public static int Counter
-        {
-            get
-            {
-                return counter;
-            }
-            set
-            {
-                counter = value;
-            }
-        }
-
-        public static bool DrawBool
-        {
-            get
-            {
-                return draw;
-            }
-
-            set
-            {
-                draw = value;
-            }
-        }
-
         public static Point FrameSize = new Point(110, 70);
 
         #endregion
@@ -106,7 +79,6 @@
         private Item()
         {
             Item.draw = false;
-            Item.position = new Vector2();
             Item.screenHeight = 0f;
             Item.screenWidth = 0f;
             Item.stopWatch = null;
@@ -114,6 +86,7 @@
             Item.timer = 0;
             Item.timeInterval = 0;
             Item.itemType = 0;
+            Item.position = new Vector2();
         }
 
         public static void Initialise(int intervalShown)
@@ -125,12 +98,12 @@
             Item.screenWidth = ScreenManager.Instance.Dimensions.Y;
             Item.stopWatch = new Stopwatch();
             Item.itemImage = ShuffleItems.Shuffle(Item.random);
-            counter = 0;
         }
 
         public static void LoadContent()
         {
             Item.itemImage.LoadContent();
+            SetRandomPositions();
         }
 
         public static void UnloadContent()
@@ -158,7 +131,7 @@
             {
                 Item.stopWatch.Stop();
                 Item.stopWatch.Reset();
-                Item.SetRandoms();
+                Item.SetRandomPositions();
                 itemImage = ShuffleItems.Shuffle(random);
                 itemImage.LoadContent();
                 Item.draw = false;
@@ -173,7 +146,7 @@
             }
         }
 
-        private static void SetRandoms()
+        private static void SetRandomPositions()
         {
             Item.position = new Vector2(
                 random.Next(0, (int)Item.screenWidth - Item.itemImage.Texture.Width),

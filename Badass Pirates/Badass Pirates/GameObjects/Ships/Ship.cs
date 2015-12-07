@@ -6,8 +6,6 @@
 
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects.Items;
-    using Badass_Pirates.GameObjects.Items.BonusTypes;
     using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;

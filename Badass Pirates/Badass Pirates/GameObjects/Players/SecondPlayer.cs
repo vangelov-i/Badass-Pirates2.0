@@ -16,6 +16,7 @@
         public SecondPlayer(ShipType type, string name)
             : base(type, name)
         {
+            this.Ship.Position = this.SpawnSecond;
         }
     }
 }

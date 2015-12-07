@@ -3,7 +3,6 @@
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
-    using Badass_Pirates.GameObjects.Items.BonusTypes;
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
 

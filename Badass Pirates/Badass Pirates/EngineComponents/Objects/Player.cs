@@ -9,7 +9,6 @@
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
-    using Badass_Pirates.GameObjects.Items.BonusTypes;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
@@ -220,20 +219,19 @@
             if (this.colliding)
             {
                 // не работи коректно ! ! !
-                switch (ShuffleItems.Type)
+                switch (ShuffleItems.typeBonus)
                 {
-                        case ItemTypes.Damage:
-                        case ItemTypes.Freeze:
-                        case ItemTypes.Speed:
-                        case ItemTypes.Wind:
-                        this.GetBonus((BonusType)Enum.Parse(typeof(ItemTypes), ShuffleItems.Type.ToString()));
-                        break;
-                        case ItemTypes.EnergyPotion:
-                        case ItemTypes.HPPotion:
-                        case ItemTypes.ShieldPotion:
-                        this.GetPotion((PotionTypes)Enum.Parse(typeof(ItemTypes), ShuffleItems.Type.ToString()));
+                        default:
+                        this.GetBonus(ShuffleItems.typeBonus);
                         break;
                 }
+                switch (ShuffleItems.typePotion)
+                {
+                        default:
+                        this.GetPotion(ShuffleItems.typePotion);
+                        break;
+                }
+                
             }
             // ALWAYS MUST BE THE LAST LINE
             InputManager.Instance.Update();
