@@ -18,13 +18,9 @@
 
     public class Player : IGet
     {
-        #region Properties
-
-        public GameObjects.Players.Player CurrentPlayer { get; private set; }
-
-        #endregion
-
         #region Fields
+
+        private GameObjects.Players.Player currentPlayer;
 
         private CannonBall ball;
 
@@ -38,7 +34,11 @@
 
         private bool ballFired;
 
-        private int fireFlashCounter;
+        #endregion
+
+        #region Properties
+
+        public GameObjects.Players.Player CurrentPlayer => this.currentPlayer;
 
         #endregion
 
@@ -55,25 +55,25 @@
                     {
                         case ShipType.Destroyer:
                             this.shipImage = new Image("ShipsContents/destroyerRight");
-                            this.CurrentPlayer = CreatePlayer.Create(
+                            this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipRight");
-                            this.CurrentPlayer = CreatePlayer.Create(
+                            this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.CurrentPlayer = CreatePlayer.Create(
+                            this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserRight");
-                            this.CurrentPlayer = CreatePlayer.Create(
+                            this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
@@ -87,21 +87,21 @@
                     {
                         case ShipType.Destroyer:
                             this.shipImage = new Image("ShipsContents/destroyerLeft");
-                            this.CurrentPlayer = CreatePlayer.Create(
+                            this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipLeft");
-                            this.CurrentPlayer = CreatePlayer.Create(
+                            this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserLeft");
-                            this.CurrentPlayer = CreatePlayer.Create(
+                            this.currentPlayer = CreatePlayer.Create(
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
@@ -131,40 +131,40 @@
             if (InputManager.Instance.KeyDown(Keys.Down))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
-                this.CurrentPlayer.Ship.Move(
+                this.currentPlayer.Ship.Move(
                     CoordsDirections.Ordinate, 
                     Direction.Positive, 
-                    this.CurrentPlayer.Ship.Speed);
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
             if (InputManager.Instance.KeyDown(Keys.Up))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
-                this.CurrentPlayer.Ship.Move(
+                this.currentPlayer.Ship.Move(
                     CoordsDirections.Ordinate, 
                     Direction.Negative, 
-                    this.CurrentPlayer.Ship.Speed);
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
             if (InputManager.Instance.KeyDown(Keys.Right))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
-                this.CurrentPlayer.Ship.Move(
+                this.currentPlayer.Ship.Move(
                     CoordsDirections.Abscissa, 
                     Direction.Positive, 
-                    this.CurrentPlayer.Ship.Speed);
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
             if (InputManager.Instance.KeyDown(Keys.Left))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
-                this.CurrentPlayer.Ship.Move(
+                this.currentPlayer.Ship.Move(
                     CoordsDirections.Abscissa, 
                     Direction.Negative, 
-                    this.CurrentPlayer.Ship.Speed);
+                    this.currentPlayer.Ship.Speed);
                 this.ValidateShipPosition();
             }
 
@@ -175,12 +175,11 @@
                 {
                     if (!this.ballInitialised)
                     {
-                        this.fireFlashCounter = 0;
                         this.ball.Initialise(
                             this.ballFiredPos =
                             new Vector2(
-                                this.CurrentPlayer.Ship.Position.X + this.shipImage.Texture.Width, 
-                                this.CurrentPlayer.Ship.Position.Y + (this.shipImage.Texture.Height / 2f)));
+                                this.currentPlayer.Ship.Position.X + this.shipImage.Texture.Width, 
+                                this.currentPlayer.Ship.Position.Y + (this.shipImage.Texture.Height / 2f)));
                         this.ballInitialised = true;
                     }
                 }
@@ -197,18 +196,7 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            if (this.ballFired && this.fireFlashCounter < 15)
-            {
-                this.ball.Fire.Draw(
-                    spriteBatch, 
-                    new Vector2(
-                        this.CurrentPlayer.Ship.Position.X + this.shipImage.Texture.Width,
-                        this.CurrentPlayer.Ship.Position.Y + (this.shipImage.Texture.Height / 2f)
-                        - (this.ball.Fire.Texture.Height / 2f)));
-                this.fireFlashCounter++;
-            }
-
-            spriteBatch.Draw(this.shipImage.Texture, this.CurrentPlayer.Ship.Position);
+            spriteBatch.Draw(this.shipImage.Texture, this.currentPlayer.Ship.Position);
             if (this.ballFired)
             {
                 this.ballRangeX.X = this.ballFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2)
@@ -228,42 +216,43 @@
 
         public void GetPotion(PotionTypes potionType)
         {
-            CreatePotionEffect.ExtractEffect(this.CurrentPlayer.Ship, potionType);
+            CreatePotionEffect.ExtractEffect(this.currentPlayer.Ship, potionType);
         }
 
+        
         public void GetBonus(BonusType bonusType)
         {
-            CreateBonusTypeEffect.ExtractEffect(this.CurrentPlayer.Ship, bonusType);
+            CreateBonusTypeEffect.ExtractEffect(this.currentPlayer.Ship, bonusType);
         }
 
         private void ValidateShipPosition()
         {
-            if (this.CurrentPlayer.Ship.Position.X < 0)
+            if (this.currentPlayer.Ship.Position.X < 0)
             {
-                this.CurrentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, 0);
+                this.currentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, 0);
             }
 
-            if (this.CurrentPlayer.Ship.Position.Y < 0)
+            if (this.currentPlayer.Ship.Position.Y < 0)
             {
                 /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
                             Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
-                this.CurrentPlayer.Ship.SetPosition(CoordsDirections.Ordinate, 0);
+                this.currentPlayer.Ship.SetPosition(CoordsDirections.Ordinate, 0);
             }
 
-            if (this.CurrentPlayer.Ship.Position.Y > ScreenManager.Instance.Dimensions.Y - this.shipImage.Texture.Height)
+            if (this.currentPlayer.Ship.Position.Y > ScreenManager.Instance.Dimensions.Y - this.shipImage.Texture.Height)
             {
                 /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
                             Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
-                this.CurrentPlayer.Ship.SetPosition(
+                this.currentPlayer.Ship.SetPosition(
                     CoordsDirections.Ordinate, 
                     ScreenManager.Instance.Dimensions.Y - this.shipImage.Texture.Height);
             }
 
-            if (this.CurrentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X - this.shipImage.Texture.Width)
+            if (this.currentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X - this.shipImage.Texture.Width)
             {
                 /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
                             Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
-                this.CurrentPlayer.Ship.SetPosition(
+                this.currentPlayer.Ship.SetPosition(
                     CoordsDirections.Abscissa, 
                     ScreenManager.Instance.Dimensions.X - this.shipImage.Texture.Width);
             }

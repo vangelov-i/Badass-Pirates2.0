@@ -18,7 +18,7 @@
     {
         private Image background;
 
-        private Image smoke;
+        private Image diBoss;
 
         private Player firstPlayer;
 
