@@ -21,7 +21,7 @@
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore",
             Justification = "Reviewed. Suppression is OK here.")]
         private const int TIME_SHOWN = 4;
-        
+
         private static Random random;
 
         private static Item instance;
@@ -50,9 +50,25 @@
 
         #region Properties
 
-        public static Vector2 Position => Item.position;
+        public static Vector2 Position //=> Item.position;
+        {
+            get
+            {
+                return Item.position;
+            }
+        }
 
-        public static Item Instance => instance ?? (instance = new Item());
+        public static Item Instance // => instance ?? (instance = new Item());
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Item();
+                }
+                return instance;
+            }
+        }
 
         public static Point FrameSize = new Point(110, 70);
 
@@ -130,8 +146,8 @@
         private static void SetRandoms()
         {
             Item.position = new Vector2(
-                random.Next(600, (int)Item.screenWidth - Item.itemImage.Texture.Width), 
-                random.Next(600, (int)Item.screenHeight - Item.itemImage.Texture.Height));
+                random.Next(0, (int)Item.screenWidth - Item.itemImage.Texture.Width),
+                random.Next(0, (int)Item.screenHeight - Item.itemImage.Texture.Height));
         }
     }
 }

@@ -33,7 +33,7 @@
 
         public bool IsActive { get; set; }
 
-        private string Path { get; }
+        private string Path { get; set; } // pyrvonachalno beshe bez setter, no pishteshe che iska!
 
         public virtual void Initialise()
         {
