@@ -30,7 +30,7 @@
         {
             base.Initialise();
             this.firstPlayer = new Player();
-            this.firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.SecondPlayer);
+            this.firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
             this.background = new Image("Backgrounds/BG");
 
             // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката

@@ -60,6 +60,7 @@
     <Compile Include="EngineComponents\MenuItem.cs" />
     <Compile Include="EngineComponents\Objects\Item.cs" />
     <Compile Include="EngineComponents\Objects\CannonBall.cs" />
+    <Compile Include="EngineComponents\PlayerControls\PlayerControls.cs" />
     <Compile Include="EngineComponents\Screens\GameScreen.cs" />
     <Compile Include="EngineComponents\Managers\Image.cs" />
     <Compile Include="EngineComponents\Managers\InputManager.cs" />
