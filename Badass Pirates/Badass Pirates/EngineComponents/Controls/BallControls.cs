@@ -115,7 +115,7 @@
                         ballSecond.Initialise(
                             ballSecond.BallFiredPos =
                             new Vector2(
-                                currentPlayer.Ship.Position.X - shipImage.Texture.Width,
+                                currentPlayer.Ship.Position.X - shipImage.Texture.Width/2f,
                                 currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)));
                         ballSecond.BallInitialised = true;
                     }
