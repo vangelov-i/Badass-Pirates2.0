@@ -174,30 +174,30 @@
         public void UpdateSecond(GameTime gameTime)
         {
             this.position.X -= 10;
-            if (!this.flipper && this.position.Y < this.heightMax - 100)
+            if (!this.flipper && this.position.Y > this.heightMax + 100)
             {
-                this.position.Y += 10;
+                this.position.Y -= 10;
             }
-            else if (!this.flipper && this.position.Y < this.heightMax)
+            else if (!this.flipper && this.position.Y > this.heightMax)
             {
-                this.position.Y += 4;
+                this.position.Y -= 4;
             }
             else if (!this.flipper)
             {
                 this.flipper = true;
-                this.position.Y -= 4;
+                this.position.Y += 4;
             }
-            else if (this.counter > 8)
+            else if (this.counter < 8)
             {
                 this.counter++;
             }
-            else if (this.flipper && this.position.Y < this.heightMax - 100)
+            else if (this.flipper && this.position.Y > this.heightMax + 100)
             {
                 this.position.Y += 4;
             }
             else
             {
-                this.position.Y -= 10;
+                this.position.Y += 10;
             }
         }
 

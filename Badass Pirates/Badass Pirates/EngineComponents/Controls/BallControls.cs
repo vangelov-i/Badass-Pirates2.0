@@ -1,17 +1,18 @@
 ﻿namespace Badass_Pirates.EngineComponents.Controls
 {
-    using System.Runtime.CompilerServices;
+    #region
 
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
-    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
-    using Player = GameObjects.Players.Player;
+    using Player = Badass_Pirates.GameObjects.Players.Player;
+
+    #endregion
 
     public class BallControls
     {
@@ -39,29 +40,37 @@
             ballSecond.UnloadContent();
         }
 
-        public static void CannonBallControls(PlayerTypes type,Player currentPlayer,Image shipImage,GameTime gameTime)
+        public static void CannonBallControls(
+            PlayerTypes type,
+            Player currentPlayer,
+            Image shipImage,
+            GameTime gameTime)
         {
             switch (type)
             {
-                    case PlayerTypes.FirstPlayer:
-                    FirstPlayerBallControls(currentPlayer,shipImage,gameTime);
+                case PlayerTypes.FirstPlayer:
+                    FirstPlayerBallControls(currentPlayer, shipImage, gameTime);
                     break;
-                    case PlayerTypes.SecondPlayer:
-                    SecondPlayerBallControls(currentPlayer,shipImage,gameTime);
+                case PlayerTypes.SecondPlayer:
+                    SecondPlayerBallControls(currentPlayer, shipImage, gameTime);
                     break;
             }
         }
 
-        public static void CannonBallDraw(PlayerTypes type,SpriteBatch spriteBatch, Player currentPlayer, Image shipImage)
+        public static void CannonBallDraw(
+            PlayerTypes type,
+            SpriteBatch spriteBatch,
+            Player currentPlayer,
+            Image shipImage)
         {
             switch (type)
             {
-                    case  PlayerTypes.FirstPlayer:
-                    FirstPlayerBallDraw(spriteBatch,currentPlayer,shipImage);
+                case PlayerTypes.FirstPlayer:
+                    FirstPlayerBallDraw(spriteBatch, currentPlayer, shipImage);
                     type = PlayerTypes.FirstPlayer;
                     break;
-                    case PlayerTypes.SecondPlayer:
-                    SecondPlayerBallDraw(spriteBatch,currentPlayer,shipImage);
+                case PlayerTypes.SecondPlayer:
+                    SecondPlayerBallDraw(spriteBatch, currentPlayer, shipImage);
                     type = PlayerTypes.SecondPlayer;
                     break;
             }
@@ -134,8 +143,8 @@
 
             if (ballFirst.BallFired)
             {
-                ballFirst.SetPositionRangeX((ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2)
-                                    - shipImage.Texture.Width));
+                ballFirst.SetPositionRangeX(
+                    (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - shipImage.Texture.Width));
 
                 if (ballFirst.Position.X < ballFirst.BallRangeX.X)
                 {
@@ -156,18 +165,19 @@
                 ballSecond.Fire.Draw(
                     spriteBatch,
                     new Vector2(
-                        currentPlayer.Ship.Position.X - shipImage.Texture.Width,
-                        currentPlayer.Ship.Position.Y - (shipImage.Texture.Height / 2f)
+                        currentPlayer.Ship.Position.X - 25,
+                        currentPlayer.Ship.Position.Y + 12 - (shipImage.Texture.Height / 2f)
                         + (ballSecond.Fire.Texture.Height / 2f)));
                 ballSecond.FireFlashCounter++;
             }
 
             if (ballSecond.BallFired)
             {
-                ballSecond.SetPositionRangeX((ScreenManager.Instance.Dimensions.X / 2) - ballSecond.BallFiredPos.X
-                                    + shipImage.Texture.Width);
+                ballSecond.SetPositionRangeX(
+                    (ScreenManager.Instance.Dimensions.X / 2) - ballSecond.BallFiredPos.X + shipImage.Texture.Width);
 
-                if (ballSecond.Position.X < ballSecond.BallRangeX.X)
+                if (ballSecond.Position.X > ballSecond.BallRangeX.X
+                    && (ballSecond.Position.Y < currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)))
                 {
                     ballSecond.Draw(spriteBatch);
                 }
