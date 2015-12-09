@@ -53,6 +53,7 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="EngineComponents\Collisions\BallCollision.cs" />
     <Compile Include="EngineComponents\Collisions\ItemsCollision.cs" />
     <Compile Include="EngineComponents\Controls\BallControls.cs" />
     <Compile Include="EngineComponents\Managers\Menu.cs" />

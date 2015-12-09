@@ -16,9 +16,10 @@
 
     public class BallControls
     {
-        private static CannonBall ballFirst;
+        // TODO NEED PROPERTY
+        public static CannonBall ballFirst;
 
-        private static CannonBall ballSecond;
+        public static CannonBall ballSecond;
 
         private PlayerTypes type;
 

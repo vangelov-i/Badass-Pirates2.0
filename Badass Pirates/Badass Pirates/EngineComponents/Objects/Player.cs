@@ -31,6 +31,8 @@
         
         private bool colliding;
 
+        private bool ballColliding;
+
         #endregion
 
         //public Player (PlayerTypes type)
@@ -70,6 +72,7 @@
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
+            this.ballColliding = false;
             BallControls.CannonBallInitialise();
             switch (side)
             {
@@ -157,6 +160,18 @@
             PlayerControls.ControlsPlayer(this.playerType, gameTime,this.currentPlayer,this.shipImage);
             BallControls.CannonBallControls(this.playerType,this.currentPlayer,this.shipImage,gameTime);
             this.colliding = ItemsCollision.Collide(this.currentPlayer.Ship);
+            if (BallControls.ballFirst == null)
+            {
+                this.ballColliding = BallCollision.Collide(this.currentPlayer.Ship, BallControls.ballSecond);
+                if (this.ballColliding)
+                {
+                    SecondPlayer            
+                }
+            }
+            else if (BallControls.ballSecond == null)
+            {
+                this.ballColliding = BallCollision.Collide(this.currentPlayer.Ship, BallControls.ballFirst);
+            }
 
             if (this.colliding)
             {

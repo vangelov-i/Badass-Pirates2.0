@@ -16,6 +16,8 @@
 
     public class CannonBall : IPositionable
     {
+        public static Point frameSize = new Point(64,64);
+
         private bool ballFired;
 
         private int fireFlashCounter;
@@ -120,6 +122,7 @@
                 this.ballInitialised = value;
             }
         }
+
 
         public void Initialise(Vector2 pos)
         {
