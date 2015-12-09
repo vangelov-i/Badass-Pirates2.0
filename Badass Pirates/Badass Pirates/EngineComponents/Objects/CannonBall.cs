@@ -16,6 +16,16 @@
 
     public class CannonBall : IPositionable
     {
+        private bool ballFired;
+
+        private int fireFlashCounter;
+
+        private bool ballInitialised;
+
+        private Vector2 ballFiredPos;
+
+        private Vector2 ballRangeX;
+
         private readonly Image Ball;
 
         private Vector2 position;
@@ -31,13 +41,83 @@
             this.Ball = new Image("cannonball");
             this.Fire = new Image("smoke41");
         }
+
+        public Vector2 BallFiredPos 
+        { 
+            get
+            {
+                return this.ballFiredPos;
+            }
+
+            set
+            {
+                this.ballFiredPos = value;
+            }
+        }
         public Image Fire { get; set; }
+
+        public Vector2 BallRangeX 
+        { 
+            get
+            {
+                return this.ballRangeX;
+            }
+
+            set
+            {
+                this.ballRangeX = value;
+            }
+        }
+
+        public bool BallFired 
+        { 
+            get
+            {
+                return this.ballFired;
+            }
+
+            set
+            {
+                this.ballFired = value;
+            }
+        }   
+
+        public int FireFlashCounter 
+        { 
+            get
+            {
+                return this.fireFlashCounter;
+            }
+
+            set
+            {
+                this.fireFlashCounter = value;
+            }
+        }
+
+        
 
         public Vector2 Position //=> this.position;
         {
             get
             {
                 return this.position;
+            }
+            set
+            {
+                this.position = value;
+            }
+        }
+
+        public bool BallInitialised
+        {
+            get
+            {
+                return this.ballInitialised;
+            }
+            set
+            {
+                this.ballInitialised = value;
             }
         }
 
@@ -61,7 +141,7 @@
             this.Fire.UnloadContent();
         }
 
-        public void Update(GameTime gameTime)
+        public void UpdateFirst(GameTime gameTime)
         {
             this.position.X += 10;
             if (!this.flipper && this.position.Y > this.heightMax + 100)
@@ -91,12 +171,42 @@
             }
         }
 
+        public void UpdateSecond(GameTime gameTime)
+        {
+            this.position.X -= 10;
+            if (!this.flipper && this.position.Y < this.heightMax - 100)
+            {
+                this.position.Y += 10;
+            }
+            else if (!this.flipper && this.position.Y < this.heightMax)
+            {
+                this.position.Y += 4;
+            }
+            else if (!this.flipper)
+            {
+                this.flipper = true;
+                this.position.Y -= 4;
+            }
+            else if (this.counter > 8)
+            {
+                this.counter++;
+            }
+            else if (this.flipper && this.position.Y < this.heightMax - 100)
+            {
+                this.position.Y += 4;
+            }
+            else
+            {
+                this.position.Y -= 10;
+            }
+        }
+
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.Ball.Texture, this.position);
         }
         
-        public void SetPosition(CoordsDirections coordsDirections, float value)
+        public void SetPosition(CoordsDirections coordsDirections,float value)
         {
             switch (coordsDirections)
             {
@@ -107,6 +217,11 @@
                     this.position.Y = value;
                     break;
             }
+        }
+
+        public void SetPositionRangeX(float value)
+        {
+            this.ballRangeX.X = value;
         }
     }
 }

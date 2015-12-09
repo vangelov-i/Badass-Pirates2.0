@@ -6,8 +6,8 @@
     using System.Diagnostics;
 
     using Badass_Pirates.EngineComponents.Collisions;
+    using Badass_Pirates.EngineComponents.Controls;
     using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.PlayerControls;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
@@ -70,7 +70,7 @@
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
-            PlayerControls.BallInitialise();
+            BallControls.CannonBallInitialise();
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -141,22 +141,21 @@
         public void LoadContent()
         {
             this.shipImage.LoadContent();
-            PlayerControls.BallLoadContent();
+            BallControls.CannonBallLoadContent();
         }
 
         public void UnloadContent()
         {
             this.shipImage.UnloadContent();
-            PlayerControls.BallUnloadContent();
+            BallControls.CannonBallUnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
             this.shipImage.Update(gameTime);
-            this.currentPlayer.instance.RotateStates();
+            this.currentPlayer.InputManagerInstance.RotateStates();
             PlayerControls.ControlsPlayer(this.playerType, gameTime,this.currentPlayer,this.shipImage);
-
-            PlayerControls.BallControls(this.currentPlayer,this.shipImage,gameTime);
+            BallControls.CannonBallControls(this.playerType,this.currentPlayer,this.shipImage,gameTime);
             this.colliding = ItemsCollision.Collide(this.currentPlayer.Ship);
 
             if (this.colliding)
@@ -176,13 +175,13 @@
                 
             }
             // ALWAYS MUST BE THE LAST LINE
-            this.currentPlayer.instance.Update();
+            this.currentPlayer.InputManagerInstance.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.shipImage.Texture, this.currentPlayer.Ship.Position);
-            PlayerControls.BallDraw(spriteBatch,this.currentPlayer,this.shipImage);
+            BallControls.CannonBallDraw(this.playerType,spriteBatch,this.currentPlayer,this.shipImage);
         }
 
         public void GetPotion(PotionTypes potionType)

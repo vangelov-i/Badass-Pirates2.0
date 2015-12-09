@@ -11,21 +11,21 @@
 
     public abstract class Player 
     {
-        public readonly Vector2 SpawnFirst = Vector2.Zero;
+        protected readonly Vector2 SpawnFirst = Vector2.Zero;
 
         // TODO Edit the image size
-        public readonly Vector2 SpawnSecond = new Vector2(1366 - 135, 768 - 150);
+        protected readonly Vector2 SpawnSecond = new Vector2(1366 - 135, 768 - 150);
 
         private string name;
 
         private Ship ship;
 
-        public InputManager instance;
+        public InputManager InputManagerInstance { get; }
 
         protected Player(ShipType type, string name)
         {
             this.Name = name;
-            this.instance = new InputManager();
+            this.InputManagerInstance = new InputManager();
             this.Ship = CreateShip.Create(type);            
         }
 

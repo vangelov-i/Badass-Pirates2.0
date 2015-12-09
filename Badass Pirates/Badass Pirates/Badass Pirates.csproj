@@ -54,13 +54,14 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="EngineComponents\Collisions\ItemsCollision.cs" />
+    <Compile Include="EngineComponents\Controls\BallControls.cs" />
     <Compile Include="EngineComponents\Managers\Menu.cs" />
     <Compile Include="EngineComponents\Managers\MenuManager.cs" />
     <Compile Include="EngineComponents\Managers\ShuffleItems.cs" />
     <Compile Include="EngineComponents\MenuItem.cs" />
     <Compile Include="EngineComponents\Objects\Item.cs" />
     <Compile Include="EngineComponents\Objects\CannonBall.cs" />
-    <Compile Include="EngineComponents\PlayerControls\PlayerControls.cs" />
+    <Compile Include="EngineComponents\Controls\PlayerControls.cs" />
     <Compile Include="EngineComponents\Screens\GameScreen.cs" />
     <Compile Include="EngineComponents\Managers\Image.cs" />
     <Compile Include="EngineComponents\Managers\InputManager.cs" />
