@@ -1,5 +1,6 @@
 ﻿namespace Badass_Pirates.GameObjects.Players
 {
+    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
@@ -19,9 +20,12 @@
 
         private Ship ship;
 
+        public InputManager instance;
+
         protected Player(ShipType type, string name)
         {
             this.Name = name;
+            this.instance = new InputManager();
             this.Ship = CreateShip.Create(type);            
         }
 

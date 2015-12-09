@@ -2,30 +2,30 @@
 {
     #region
 
+    using System.Linq;
+
     using Microsoft.Xna.Framework.Input;
 
     #endregion
 
     public class InputManager
     {
-        private static InputManager instance;
-
         private KeyboardState currentState;
 
         private KeyboardState prevState;
 
-        public static InputManager Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new InputManager();
-                }
+        //public static InputManager Instance
+        //{
+        //    get
+        //    {
+        //        if (instance == null)
+        //        {
+        //            instance = new InputManager();
+        //        }
 
-                return instance;
-            }
-        } // => instance ?? (instance = new InputManager());
+        //        return instance;
+        //    }
+        //} // => instance ?? (instance = new InputManager());
 
         public void Update()
         {
@@ -37,19 +37,22 @@
             this.prevState = this.currentState;
         }
 
-        public bool KeyPressed(Keys keys)
+        public bool KeyPressed(params Keys[] keys)
         {
-            return this.currentState.IsKeyDown(keys) && this.prevState.IsKeyUp(keys);
+            return keys.Any(key => this.currentState.IsKeyDown(key) && this.prevState.IsKeyUp(key));
+            //return this.currentState.IsKeyDown(keys) && this.prevState.IsKeyUp(keys);
         }
 
-        public bool KeyDown(Keys keys)
+        public bool KeyDown(params Keys[] keys)
         {
-            return this.currentState.IsKeyDown(keys);
+            return keys.Any(key => this.currentState.IsKeyDown(key));
+            //return this.currentState.IsKeyDown(keys);
         }
 
-        public bool KeyReleased(Keys keys)
+        public bool KeyReleased(params Keys[] keys)
         {
-            return this.currentState.IsKeyUp(keys) && this.prevState.IsKeyDown(keys);
+            return keys.Any(key => this.currentState.IsKeyUp(key) && this.prevState.IsKeyDown(key));
+            //return this.currentState.IsKeyUp(keys) && this.prevState.IsKeyDown(keys);
         }
     }
 }

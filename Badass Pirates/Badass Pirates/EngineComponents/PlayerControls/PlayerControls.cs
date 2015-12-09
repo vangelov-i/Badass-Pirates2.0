@@ -57,8 +57,8 @@
         
         private static void UpdateFirstPlayer(GameTime gameTime, Player currentPlayer,Image shipImage)
         {
-            InputManager.Instance.RotateStates();
-            if (InputManager.Instance.KeyDown(Keys.S))
+            currentPlayer.instance.RotateStates();
+            if (currentPlayer.instance.KeyDown(Keys.S))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -68,7 +68,7 @@
                 PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
             }
 
-            if (InputManager.Instance.KeyDown(Keys.W))
+            if (currentPlayer.instance.KeyDown(Keys.W))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -78,7 +78,7 @@
                 PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
             }
 
-            if (InputManager.Instance.KeyDown(Keys.D))
+            if (currentPlayer.instance.KeyDown(Keys.D))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -88,7 +88,7 @@
                 PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
             }
 
-            if (InputManager.Instance.KeyDown(Keys.A))
+            if (currentPlayer.instance.KeyDown(Keys.A))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -98,13 +98,13 @@
                 PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
             }
 
-            InputManager.Instance.Update();
+            currentPlayer.instance.Update();
         }
 
         private static void UpdateSecondPlayer(GameTime gameTime, Player currentPlayer, Image shipImage)
         {
-            InputManager.Instance.RotateStates();
-            if (InputManager.Instance.KeyDown(Keys.Down))
+            currentPlayer.instance.RotateStates();
+            if (currentPlayer.instance.KeyDown(Keys.Down))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -114,7 +114,7 @@
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
-            if (InputManager.Instance.KeyDown(Keys.Up))
+            if (currentPlayer.instance.KeyDown(Keys.Up))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -124,7 +124,7 @@
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
-            if (InputManager.Instance.KeyDown(Keys.Right))
+            if (currentPlayer.instance.KeyDown(Keys.Right))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -134,7 +134,7 @@
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
-            if (InputManager.Instance.KeyDown(Keys.Left))
+            if (currentPlayer.instance.KeyDown(Keys.Left))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
                 currentPlayer.Ship.Move(
@@ -144,14 +144,14 @@
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
-            InputManager.Instance.Update();
+            currentPlayer.instance.Update();
         }
         
 
         public static void BallControls(Player currentPlayer,Image shipImage,GameTime gameTime)
         {
             
-           if (InputManager.Instance.KeyDown(Keys.Space))
+           if (currentPlayer.instance.KeyDown(Keys.Space))
             {
                 ballFired = true;
                 if (ballFired)

@@ -26,11 +26,17 @@
 
         private Player firstPlayer;
 
+        private Player secondPlayer;
+
+        private GameObjects.Players.FirstPlayer player;
+
         public override void Initialise()
         {
             base.Initialise();
             this.firstPlayer = new Player();
+            this.secondPlayer = new Player();
             this.firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
+            this.secondPlayer.Initialise(ShipType.Cruiser, PlayerTypes.SecondPlayer);
             this.background = new Image("Backgrounds/BG");
 
             // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
@@ -44,6 +50,7 @@
         {
             base.LoadContent();
             this.firstPlayer.LoadContent();
+            this.secondPlayer.LoadContent();
             this.background.LoadContent();
             Item.LoadContent();
         }
@@ -52,6 +59,7 @@
         {
             base.UnloadContent();
             this.firstPlayer.UnloadContent();
+            this.secondPlayer.UnloadContent();
             this.background.UnloadContent();
             Item.UnloadContent();
         }
@@ -60,6 +68,7 @@
         {
             base.Update(gameTime);
             this.firstPlayer.Update(gameTime);
+            this.secondPlayer.Update(gameTime);
             Item.Update(gameTime);
 
             // проверка във всеки framе за колизия
@@ -70,6 +79,7 @@
             base.Draw(spriteBatch);
             this.background.Draw(spriteBatch, Vector2.Zero);
             this.firstPlayer.Draw(spriteBatch);
+            this.secondPlayer.Draw(spriteBatch);
 
             /* ако няма колизия,рисува Item-a
             needs improvement -> made this way the item's not drawing only while the collision is presend

@@ -26,11 +26,21 @@
         private GameObjects.Players.Player currentPlayer;
 
         private Image shipImage;
+
+        private PlayerTypes playerType;
         
         private bool colliding;
 
         #endregion
 
+        //public Player (PlayerTypes type)
+        //{
+        //    switch (type)
+        //    {
+        //            case PlayerTypes.FirstPlayer:
+        //    }
+        //}
+       
         #region Properties
 
         public GameObjects.Players.Player CurrentPlayer
@@ -38,6 +48,11 @@
             get
             {
                 return this.currentPlayer;
+            }
+
+            set
+            {
+                this.currentPlayer = value;
             }
         }
         
@@ -67,6 +82,7 @@
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
+                            this.playerType = PlayerTypes.SecondPlayer;
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipRight");
@@ -74,10 +90,7 @@
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
-                            this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.SecondPlayer, 
-                                type, 
-                                "not implemented class Ships.Player");
+                            this.playerType = PlayerTypes.SecondPlayer;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserRight");
@@ -85,6 +98,7 @@
                                 PlayerTypes.SecondPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
+                            this.playerType = PlayerTypes.SecondPlayer;
                             break;
                     }
 
@@ -99,6 +113,7 @@
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
+                            this.playerType = PlayerTypes.FirstPlayer;
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipLeft");
@@ -106,6 +121,7 @@
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
+                            this.playerType = PlayerTypes.FirstPlayer;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserLeft");
@@ -113,6 +129,7 @@
                                 PlayerTypes.FirstPlayer, 
                                 type, 
                                 "not implemented class Ships.Player");
+                            this.playerType = PlayerTypes.FirstPlayer;
                             break;
                     }
 
@@ -136,8 +153,9 @@
         public void Update(GameTime gameTime)
         {
             this.shipImage.Update(gameTime);
-            InputManager.Instance.RotateStates();
-            PlayerControls.ControlsPlayer(PlayerTypes.FirstPlayer, gameTime,this.currentPlayer,this.shipImage);
+            this.currentPlayer.instance.RotateStates();
+            PlayerControls.ControlsPlayer(this.playerType, gameTime,this.currentPlayer,this.shipImage);
+
             PlayerControls.BallControls(this.currentPlayer,this.shipImage,gameTime);
             this.colliding = ItemsCollision.Collide(this.currentPlayer.Ship);
 
@@ -158,7 +176,7 @@
                 
             }
             // ALWAYS MUST BE THE LAST LINE
-            InputManager.Instance.Update();
+            this.currentPlayer.instance.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
