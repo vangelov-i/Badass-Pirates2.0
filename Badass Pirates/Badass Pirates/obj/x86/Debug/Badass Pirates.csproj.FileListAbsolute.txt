@@ -167,3 +167,5 @@ C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pi
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerLeft.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerRight.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\smoke1.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.exe
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
