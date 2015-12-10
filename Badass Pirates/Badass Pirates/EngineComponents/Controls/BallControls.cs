@@ -147,7 +147,7 @@
                 ballFirst.SetPositionRangeX(
                     (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - shipImage.Texture.Width));
 
-                if (ballFirst.Position.X < ballFirst.BallRangeX.X)
+                if (ballFirst.Position.Y < ballFirst.BallFiredPos.Y) // ballFirst.Position.X < ballFirst.BallRangeX.X
                 {
                     ballFirst.Draw(spriteBatch);
                 }
@@ -175,10 +175,10 @@
             if (ballSecond.BallFired)
             {
                 ballSecond.SetPositionRangeX(
-                    (ScreenManager.Instance.Dimensions.X / 2) - ballSecond.BallFiredPos.X + shipImage.Texture.Width);
+                    (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - shipImage.Texture.Width));  // ScreenManager.Instance.Dimensions.X / 2) - ballSecond.BallFiredPos.X + shipImage.Texture.Width
 
-                if (ballSecond.Position.X > ballSecond.BallRangeX.X
-                    && (ballSecond.Position.Y < currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)))
+                if (ballSecond.Position.Y < ballSecond.BallFiredPos.Y) // && (ballSecond.Position.Y < currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)
+                      // version 2 ballSecond.Position.X > ScreenManager.Instance.Dimensions.X - ballSecond.BallFiredPos.X - ballSecond.BallRangeX.X
                 {
                     ballSecond.Draw(spriteBatch);
                 }
