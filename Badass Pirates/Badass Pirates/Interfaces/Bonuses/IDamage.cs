@@ -4,12 +4,12 @@
 
     using Badass_Pirates.GameObjects.Ships;
 
-    public interface IFreeze
+    public interface IDamage
     {
-        Stopwatch FreezTimeOut { get; set; }
+        Stopwatch BonusDamageTimeOut { get; set; }
 
-        void Freeze();
+        void BonusDamage();
 
-        void DeFrost();
+        void UnBonusDamage();
     }
 }

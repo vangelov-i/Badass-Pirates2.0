@@ -56,7 +56,7 @@
             this.background = new Image("Backgrounds/BG");
 
             // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
-            Item.Initialise(6);
+            Item.Initialise(3);
 
             // Чрез параметърът на Initialise,се подава интервала,през който се показва Item - a
             this.background.Initialise();

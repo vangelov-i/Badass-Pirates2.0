@@ -1,9 +1,18 @@
-﻿namespace Badass_Pirates.Interfaces.Bonuses
-{
-    using Badass_Pirates.GameObjects.Ships;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 
-    public interface IWind
+namespace Badass_Pirates.Interfaces.Bonuses
+{
+    using System.Diagnostics;
+
+    interface IWind
     {
-        void Wind(Ship targetShip);
+        Stopwatch WindTimeOut { get; set; }
+
+        void Wind();
+
+        void UnWind();
     }
 }

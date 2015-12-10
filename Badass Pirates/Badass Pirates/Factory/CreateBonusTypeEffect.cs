@@ -10,11 +10,14 @@
             // TODO : % stats
             switch (type)
             {
-                case BonusType.Wind:
-                    targetShip.Speed -= (int)BonusType.Wind; // should get back speed to normal later...
-                    break;
                 case BonusType.Freeze:
-                    targetShip.Speed = (int)BonusType.Freeze; // should get back speed to normal later...
+                    targetShip.Freeze();
+                    break;
+                case BonusType.Damage:
+                    targetShip.BonusDamage();
+                    break;
+                case BonusType.Wind:
+                    targetShip.Wind();
                     break;
             }
         }

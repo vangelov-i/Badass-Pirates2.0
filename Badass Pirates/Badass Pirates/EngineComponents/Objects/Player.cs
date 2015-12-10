@@ -160,6 +160,21 @@ namespace Badass_Pirates.EngineComponents.Objects
 
         public void Update(GameTime gameTime)
         {
+            if (this.currentPlayer.Ship.FreezTimeOut.Elapsed.Seconds > 5)
+            {
+                this.currentPlayer.Ship.DeFrost();
+            }
+
+            if (this.currentPlayer.Ship.BonusDamageTimeOut.Elapsed.Seconds > 10)
+            {
+                this.currentPlayer.Ship.UnBonusDamage();
+            }
+
+            if (this.currentPlayer.Ship.WindTimeOut.Elapsed.Seconds > 10)
+            {
+                this.currentPlayer.Ship.UnWind();
+            }
+
             this.shipImage.Update(gameTime);
             this.currentPlayer.InputManagerInstance.RotateStates();
             PlayerControls.ControlsPlayer(this.playerType, gameTime,this.currentPlayer,this.shipImage);
@@ -198,19 +213,14 @@ namespace Badass_Pirates.EngineComponents.Objects
             #region Items Collision
             if (this.colliding)
             {
-                switch (ShuffleItems.typeBonus)
+                if (ShuffleItems.typeBonus == 0)
                 {
-                        default:
-                        this.GetBonus(ShuffleItems.typeBonus);
-                        break;
+                    this.GetPotion(ShuffleItems.typePotion);
                 }
-                switch (ShuffleItems.typePotion)
+                else if (ShuffleItems.typePotion == 0)
                 {
-                        default:
-                        this.GetPotion(ShuffleItems.typePotion);
-                        break;
+                    this.GetBonus(ShuffleItems.typeBonus);
                 }
-                
             }
             #endregion
             // ALWAYS MUST BE THE LAST LINE
@@ -225,14 +235,14 @@ namespace Badass_Pirates.EngineComponents.Objects
             {
                 this.currentFont.Draw(spriteBatch,
                     new Vector2(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.X + 120f, TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.Y),  
-                    string.Format("-" + TitleScreen.FirstPlayer.CurrentPlayer.Ship.Damage.ToString())); // moje i po elegantno :D
+                    string.Format("-" + TitleScreen.SecondPlayer.CurrentPlayer.Ship.Damage)); // moje i po elegantno :D
                 this.firstPlayerHitCounter++;
             }
             if (this.secondPlayerHitCounter < 15 && this.secondPlayerHitCounter != null)
             {
                 this.currentFont.Draw(spriteBatch, 
                     TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position, 
-                    string.Format("-" + TitleScreen.SecondPlayer.CurrentPlayer.Ship.Damage.ToString())); // moje i po elegantno :D
+                    string.Format("-" + TitleScreen.FirstPlayer.CurrentPlayer.Ship.Damage)); // moje i po elegantno :D
                 this.secondPlayerHitCounter++;
             }
         }

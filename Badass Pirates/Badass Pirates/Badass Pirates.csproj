@@ -89,6 +89,7 @@
     <Compile Include="Enums\PlayerTypes.cs" />
     <Compile Include="GameObjects\Players\SecondPlayer.cs" />
     <Compile Include="Handler\CombatHandler\CombatHandler.cs" />
+    <Compile Include="Interfaces\Bonuses\IWind.cs" />
     <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Interfaces\Specialties\ILightning.cs" />
@@ -104,7 +105,7 @@
     <Compile Include="Interfaces\IGet.cs" />
     <Compile Include="Interfaces\IMoveable.cs" />
     <Compile Include="Interfaces\ISink.cs" />
-    <Compile Include="Interfaces\Bonuses\IWind.cs" />
+    <Compile Include="Interfaces\Bonuses\IDamage.cs" />
     <Compile Include="Interfaces\Specialties\IRocket.cs" />
     <Compile Include="Interfaces\Specialties\IMine.cs" />
     <Compile Include="Interfaces\Bonuses\IFreeze.cs" />

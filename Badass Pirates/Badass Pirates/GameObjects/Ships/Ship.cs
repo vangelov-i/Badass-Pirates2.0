@@ -3,21 +3,25 @@
     #region
 
     using System;
+    using System.Diagnostics;
 
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Interfaces.Bonuses;
 
     using Microsoft.Xna.Framework;
 
     #endregion
 
-    public abstract class Ship : IAttack, IMoveable, ISink, IPositionable
+    public abstract class Ship : IAttack, IMoveable, ISink, IPositionable, IFreeze, IDamage, IWind
     {
 
         public static readonly Point FrameSize = new Point(137, 150);
 
         private Vector2 position;
+
+        private readonly int previousSpeed;
 
         protected Ship(int damage, int health, int shields, int energy, int speed)
         {
@@ -26,6 +30,11 @@
             this.Shields = shields;
             this.Energy = energy;
             this.Speed = speed;
+            this.FreezTimeOut = new Stopwatch();
+            this.BonusDamageTimeOut = new Stopwatch();
+            this.WindTimeOut = new Stopwatch();
+            this.previousSpeed = this.Speed;
+
         }
 
         public Vector2 Position
@@ -102,6 +111,52 @@
                     this.position.Y = value;
                     break;
             }
+        }
+
+        public Stopwatch FreezTimeOut { get; set; }
+
+        public void Freeze()
+        {
+            this.FreezTimeOut.Start();
+
+            this.Speed = (int)BonusType.Freeze;
+        }
+
+        public void DeFrost()
+        {
+            this.Speed = this.previousSpeed;
+            this.FreezTimeOut.Stop();
+            this.FreezTimeOut.Reset();
+        }
+
+        public Stopwatch BonusDamageTimeOut { get; set; }
+
+        public void BonusDamage()
+        {
+            this.BonusDamageTimeOut.Start();
+            this.Damage += (int)BonusType.Damage;
+        }
+
+        public void UnBonusDamage()
+        {
+            this.BonusDamageTimeOut.Stop();
+            this.BonusDamageTimeOut.Reset();
+            this.Damage -= (int)BonusType.Damage;
+        }
+
+        public Stopwatch WindTimeOut { get; set; }
+
+        public void Wind()
+        {
+            this.WindTimeOut.Start();
+            this.Speed += (int)BonusType.Wind;
+        }
+
+        public void UnWind()
+        {
+            this.Speed -= (int)BonusType.Wind;
+            this.WindTimeOut.Stop();
+            this.WindTimeOut.Reset();
         }
     }
 }
