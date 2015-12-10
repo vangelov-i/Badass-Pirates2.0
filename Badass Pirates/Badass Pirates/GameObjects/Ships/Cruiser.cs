@@ -7,7 +7,7 @@
     {
         private const int HEALTH = 100;
 
-        private const int DAMAGE = 100;
+        private const int DAMAGE = 10;
 
         private const int SHIELDS = 100;
 
@@ -20,13 +20,13 @@
 
 
         public Cruiser()
-            : base(HEALTH, DAMAGE, SHIELDS, ENERGY, SPEED)
+            : base(DAMAGE, HEALTH, SHIELDS, ENERGY, SPEED)
         {
         }
 
         public override void Attack(Ship target)
         {
-            target.Health -= this.Damage;
+            target.Health = target.Health - this.Damage;
         }
 
         public void Rocket(Ship targetShip)

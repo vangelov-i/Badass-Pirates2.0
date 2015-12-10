@@ -1,4 +1,6 @@
-﻿namespace Badass_Pirates.EngineComponents.Objects
+﻿using Badass_Pirates.EngineComponents.Screens;
+
+namespace Badass_Pirates.EngineComponents.Objects
 {
     #region
 
@@ -160,17 +162,30 @@
             PlayerControls.ControlsPlayer(this.playerType, gameTime,this.currentPlayer,this.shipImage);
             BallControls.CannonBallControls(this.playerType,this.currentPlayer,this.shipImage,gameTime);
             this.colliding = ItemsCollision.Collide(this.currentPlayer.Ship);
-            if (BallControls.ballFirst == null)
+
+            if (true)    //BallControls.ballFirst == null
             {
-                this.ballColliding = BallCollision.Collide(this.currentPlayer.Ship, BallControls.ballSecond);
+                this.ballColliding = BallCollision.Collide(TitleScreen.FirstPlayer.CurrentPlayer.Ship, BallControls.ballSecond);
                 if (this.ballColliding)
                 {
-                    SecondPlayer            
+                    TitleScreen.SecondPlayer.CurrentPlayer.Ship.Attack(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
+                }
+                if (TitleScreen.FirstPlayer.CurrentPlayer.Ship.Health < 0)
+                {
+                    throw new ArgumentOutOfRangeException("nqh nqh");
                 }
             }
-            else if (BallControls.ballSecond == null)
+            if (true)    // BallControls.ballSecond == null
             {
-                this.ballColliding = BallCollision.Collide(this.currentPlayer.Ship, BallControls.ballFirst);
+                this.ballColliding = BallCollision.Collide(TitleScreen.SecondPlayer.CurrentPlayer.Ship, BallControls.ballFirst);
+                if (this.ballColliding)
+                {
+                    TitleScreen.FirstPlayer.CurrentPlayer.Ship.Attack(TitleScreen.SecondPlayer.CurrentPlayer.Ship);
+                    if (TitleScreen.SecondPlayer.CurrentPlayer.Ship.Health < 0)
+                    {
+                        throw new ArgumentOutOfRangeException("nqh nqh");
+                    }
+                }
             }
 
             if (this.colliding)

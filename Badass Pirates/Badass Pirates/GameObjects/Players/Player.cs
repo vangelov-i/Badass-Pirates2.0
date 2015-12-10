@@ -1,4 +1,6 @@
-﻿namespace Badass_Pirates.GameObjects.Players
+﻿using System.Security.AccessControl;
+
+namespace Badass_Pirates.GameObjects.Players
 {
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
@@ -54,5 +56,6 @@
                 this.ship = value;
             }
         }
+
     }
 }
