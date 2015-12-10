@@ -28,6 +28,7 @@ namespace Badass_Pirates.EngineComponents.Collisions
 
             if (shipRect.Intersects(cannonBall))
             {
+
                 ball.Position = new Vector2(9000,9000);
                 return true;
             }

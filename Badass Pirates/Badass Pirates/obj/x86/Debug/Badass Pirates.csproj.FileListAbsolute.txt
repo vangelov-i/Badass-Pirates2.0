@@ -195,3 +195,10 @@ C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Bada
 C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.pdb
 C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
 C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\OpenTK.dll
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Linds.ttf
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Miramo.ttf
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Miramob.ttf
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Peric.ttf
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pericl.ttf
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pesca.ttf
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pescab.ttf

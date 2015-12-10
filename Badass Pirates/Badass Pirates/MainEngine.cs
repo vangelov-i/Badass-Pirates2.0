@@ -21,7 +21,7 @@
         private SpriteBatch spriteBatch;
 
         public static SpriteBatch InstanceBatch;
-
+        
         public MainEngine()
         {
             this.graphics = new GraphicsDeviceManager(this);

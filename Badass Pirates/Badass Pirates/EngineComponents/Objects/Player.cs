@@ -9,8 +9,10 @@ namespace Badass_Pirates.EngineComponents.Objects
 
     using Badass_Pirates.EngineComponents.Collisions;
     using Badass_Pirates.EngineComponents.Controls;
+    using Badass_Pirates.EngineComponents.Fonts;
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
+    using Badass_Pirates.Exceptions;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
@@ -29,21 +31,20 @@ namespace Badass_Pirates.EngineComponents.Objects
 
         private Image shipImage;
 
+        private Font currentFont;
+
         private PlayerTypes playerType;
         
         private bool colliding;
 
         private bool ballColliding;
 
+        private int? firstPlayerHitCounter;
+
+        private int? secondPlayerHitCounter;
+        
         #endregion
 
-        //public Player (PlayerTypes type)
-        //{
-        //    switch (type)
-        //    {
-        //            case PlayerTypes.FirstPlayer:
-        //    }
-        //}
        
         #region Properties
 
@@ -74,6 +75,7 @@ namespace Badass_Pirates.EngineComponents.Objects
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
+            this.currentFont = new Font(Color.Red,"Fonts", "big");
             this.ballColliding = false;
             BallControls.CannonBallInitialise();
             switch (side)
@@ -147,6 +149,7 @@ namespace Badass_Pirates.EngineComponents.Objects
         {
             this.shipImage.LoadContent();
             BallControls.CannonBallLoadContent();
+            this.currentFont.LoadContent();
         }
 
         public void UnloadContent()
@@ -165,14 +168,17 @@ namespace Badass_Pirates.EngineComponents.Objects
 
             if (true)    //BallControls.ballFirst == null
             {
+                // KOGATO TEPAT PURVIQ
                 this.ballColliding = BallCollision.Collide(TitleScreen.FirstPlayer.CurrentPlayer.Ship, BallControls.ballSecond);
                 if (this.ballColliding)
                 {
+                    this.firstPlayerHitCounter = 0;
                     TitleScreen.SecondPlayer.CurrentPlayer.Ship.Attack(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
+
                 }
                 if (TitleScreen.FirstPlayer.CurrentPlayer.Ship.Health < 0)
                 {
-                    throw new ArgumentOutOfRangeException("nqh nqh");
+                    throw new OutOfHealthException();
                 }
             }
             if (true)    // BallControls.ballSecond == null
@@ -180,14 +186,16 @@ namespace Badass_Pirates.EngineComponents.Objects
                 this.ballColliding = BallCollision.Collide(TitleScreen.SecondPlayer.CurrentPlayer.Ship, BallControls.ballFirst);
                 if (this.ballColliding)
                 {
+                    this.secondPlayerHitCounter = 0;
                     TitleScreen.FirstPlayer.CurrentPlayer.Ship.Attack(TitleScreen.SecondPlayer.CurrentPlayer.Ship);
                     if (TitleScreen.SecondPlayer.CurrentPlayer.Ship.Health < 0)
                     {
-                        throw new ArgumentOutOfRangeException("nqh nqh");
+                        throw new OutOfHealthException();
                     }
                 }
             }
 
+            #region Items Collision
             if (this.colliding)
             {
                 switch (ShuffleItems.typeBonus)
@@ -204,6 +212,7 @@ namespace Badass_Pirates.EngineComponents.Objects
                 }
                 
             }
+            #endregion
             // ALWAYS MUST BE THE LAST LINE
             this.currentPlayer.InputManagerInstance.Update();
         }
@@ -212,6 +221,20 @@ namespace Badass_Pirates.EngineComponents.Objects
         {
             spriteBatch.Draw(this.shipImage.Texture, this.currentPlayer.Ship.Position);
             BallControls.CannonBallDraw(this.playerType,spriteBatch,this.currentPlayer,this.shipImage);
+            if (this.firstPlayerHitCounter < 15 && this.firstPlayerHitCounter != null) // this.ballColliding && 
+            {
+                this.currentFont.Draw(spriteBatch,
+                    new Vector2(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.X + 120f, TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.Y),  
+                    string.Format("-" + TitleScreen.FirstPlayer.CurrentPlayer.Ship.Damage.ToString())); // moje i po elegantno :D
+                this.firstPlayerHitCounter++;
+            }
+            if (this.secondPlayerHitCounter < 15 && this.secondPlayerHitCounter != null)
+            {
+                this.currentFont.Draw(spriteBatch, 
+                    TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position, 
+                    string.Format("-" + TitleScreen.SecondPlayer.CurrentPlayer.Ship.Damage.ToString())); // moje i po elegantno :D
+                this.secondPlayerHitCounter++;
+            }
         }
 
         public void GetPotion(PotionTypes potionType)

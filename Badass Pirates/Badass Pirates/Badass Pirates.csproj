@@ -56,6 +56,7 @@
     <Compile Include="EngineComponents\Collisions\BallCollision.cs" />
     <Compile Include="EngineComponents\Collisions\ItemsCollision.cs" />
     <Compile Include="EngineComponents\Controls\BallControls.cs" />
+    <Compile Include="EngineComponents\Fonts\Font.cs" />
     <Compile Include="EngineComponents\Managers\Menu.cs" />
     <Compile Include="EngineComponents\Managers\MenuManager.cs" />
     <Compile Include="EngineComponents\Managers\ShuffleItems.cs" />
@@ -199,7 +200,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
+    <None Include="Content\Fonts\big.xnb" />
+    <None Include="Content\Fonts\kooten.ttf" />
+    <None Include="Content\Fonts\Linds.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Miramo.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Miramob.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Peric.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Pericl.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Pesca.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <None Include="Content\Fonts\Pescab.ttf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.0">
