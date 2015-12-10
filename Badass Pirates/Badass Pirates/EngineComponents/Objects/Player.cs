@@ -1,16 +1,12 @@
-﻿using Badass_Pirates.EngineComponents.Screens;
-
-namespace Badass_Pirates.EngineComponents.Objects
+﻿namespace Badass_Pirates.EngineComponents.Objects
 {
     #region
-
-    using System;
-    using System.Diagnostics;
 
     using Badass_Pirates.EngineComponents.Collisions;
     using Badass_Pirates.EngineComponents.Controls;
     using Badass_Pirates.EngineComponents.Fonts;
     using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Exceptions;
     using Badass_Pirates.Factory;
@@ -20,54 +16,38 @@ namespace Badass_Pirates.EngineComponents.Objects
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
 
     #endregion
 
     public class Player : IGet
     {
         #region Fields
-        private GameObjects.Players.Player currentPlayer;
 
         private Image shipImage;
 
-        private Font currentFont;
+        private Font damageFont;
 
         private PlayerTypes playerType;
-        
-        private bool colliding;
 
         private bool ballColliding;
 
         private int? firstPlayerHitCounter;
 
         private int? secondPlayerHitCounter;
-        
+
+        private Font hpFont;
+
+        private Font shieldFont;
+
+        private Font energyFont;
+
         #endregion
 
-       
         #region Properties
 
-        public GameObjects.Players.Player CurrentPlayer
-        {
-            get
-            {
-                return this.currentPlayer;
-            }
+        public GameObjects.Players.Player CurrentPlayer { get; set; }
 
-            set
-            {
-                this.currentPlayer = value;
-            }
-        }
-        
-        public bool Colliding
-        {
-            get
-            {
-                return this.colliding;
-            }
-        }
+        public bool Colliding { get; private set; }
 
         #endregion
 
@@ -75,7 +55,10 @@ namespace Badass_Pirates.EngineComponents.Objects
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
-            this.currentFont = new Font(Color.Red,"Fonts", "big");
+            this.energyFont = new Font(Color.Yellow, "Fonts", "big");
+            this.hpFont = new Font(Color.Green, "Fonts", "big");
+            this.shieldFont = new Font(Color.Black, "Fonts", "big");
+            this.damageFont = new Font(Color.Red, "Fonts", "big");
             this.ballColliding = false;
             BallControls.CannonBallInitialise();
             switch (side)
@@ -85,25 +68,25 @@ namespace Badass_Pirates.EngineComponents.Objects
                     {
                         case ShipType.Destroyer:
                             this.shipImage = new Image("ShipsContents/destroyerRight");
-                            this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.SecondPlayer, 
-                                type, 
+                            this.CurrentPlayer = CreatePlayer.Create(
+                                PlayerTypes.SecondPlayer,
+                                type,
                                 "not implemented class Ships.Player");
                             this.playerType = PlayerTypes.SecondPlayer;
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipRight");
-                            this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.SecondPlayer, 
-                                type, 
+                            this.CurrentPlayer = CreatePlayer.Create(
+                                PlayerTypes.SecondPlayer,
+                                type,
                                 "not implemented class Ships.Player");
                             this.playerType = PlayerTypes.SecondPlayer;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserRight");
-                            this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.SecondPlayer, 
-                                type, 
+                            this.CurrentPlayer = CreatePlayer.Create(
+                                PlayerTypes.SecondPlayer,
+                                type,
                                 "not implemented class Ships.Player");
                             this.playerType = PlayerTypes.SecondPlayer;
                             break;
@@ -116,25 +99,25 @@ namespace Badass_Pirates.EngineComponents.Objects
                     {
                         case ShipType.Destroyer:
                             this.shipImage = new Image("ShipsContents/destroyerLeft");
-                            this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.FirstPlayer, 
-                                type, 
+                            this.CurrentPlayer = CreatePlayer.Create(
+                                PlayerTypes.FirstPlayer,
+                                type,
                                 "not implemented class Ships.Player");
                             this.playerType = PlayerTypes.FirstPlayer;
                             break;
                         case ShipType.Battleship:
                             this.shipImage = new Image("ShipsContents/battleshipLeft");
-                            this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.FirstPlayer, 
-                                type, 
+                            this.CurrentPlayer = CreatePlayer.Create(
+                                PlayerTypes.FirstPlayer,
+                                type,
                                 "not implemented class Ships.Player");
                             this.playerType = PlayerTypes.FirstPlayer;
                             break;
                         case ShipType.Cruiser:
                             this.shipImage = new Image("ShipsContents/cruiserLeft");
-                            this.currentPlayer = CreatePlayer.Create(
-                                PlayerTypes.FirstPlayer, 
-                                type, 
+                            this.CurrentPlayer = CreatePlayer.Create(
+                                PlayerTypes.FirstPlayer,
+                                type,
                                 "not implemented class Ships.Player");
                             this.playerType = PlayerTypes.FirstPlayer;
                             break;
@@ -142,63 +125,72 @@ namespace Badass_Pirates.EngineComponents.Objects
 
                     break;
             }
-            
         }
 
         public void LoadContent()
         {
             this.shipImage.LoadContent();
             BallControls.CannonBallLoadContent();
-            this.currentFont.LoadContent();
+            this.damageFont.LoadContent();
+            this.energyFont.LoadContent();
+            this.hpFont.LoadContent();
+            this.shieldFont.LoadContent();
         }
 
         public void UnloadContent()
         {
             this.shipImage.UnloadContent();
             BallControls.CannonBallUnloadContent();
+            this.energyFont.UnloadContent();
+            this.hpFont.UnloadContent();
+            this.shieldFont.UnloadContent();
+            this.damageFont.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
         {
-            if (this.currentPlayer.Ship.FreezTimeOut.Elapsed.Seconds > 5)
+            if (this.CurrentPlayer.Ship.FreezTimeOut.Elapsed.Seconds > 5)
             {
-                this.currentPlayer.Ship.DeFrost();
+                this.CurrentPlayer.Ship.DeFrost();
             }
 
-            if (this.currentPlayer.Ship.BonusDamageTimeOut.Elapsed.Seconds > 10)
+            if (this.CurrentPlayer.Ship.BonusDamageTimeOut.Elapsed.Seconds > 10)
             {
-                this.currentPlayer.Ship.UnBonusDamage();
+                this.CurrentPlayer.Ship.UnBonusDamage();
             }
 
-            if (this.currentPlayer.Ship.WindTimeOut.Elapsed.Seconds > 10)
+            if (this.CurrentPlayer.Ship.WindTimeOut.Elapsed.Seconds > 10)
             {
-                this.currentPlayer.Ship.UnWind();
+                this.CurrentPlayer.Ship.UnWind();
             }
 
             this.shipImage.Update(gameTime);
-            this.currentPlayer.InputManagerInstance.RotateStates();
-            PlayerControls.ControlsPlayer(this.playerType, gameTime,this.currentPlayer,this.shipImage);
-            BallControls.CannonBallControls(this.playerType,this.currentPlayer,this.shipImage,gameTime);
-            this.colliding = ItemsCollision.Collide(this.currentPlayer.Ship);
+            this.CurrentPlayer.InputManagerInstance.RotateStates();
+            PlayerControls.ControlsPlayer(this.playerType, gameTime, this.CurrentPlayer, this.shipImage);
+            BallControls.CannonBallControls(this.playerType, this.CurrentPlayer, this.shipImage, gameTime);
+            this.Colliding = ItemsCollision.Collide(this.CurrentPlayer.Ship);
 
-            if (true)    //BallControls.ballFirst == null
+            if (true) //BallControls.ballFirst == null
             {
                 // KOGATO TEPAT PURVIQ
-                this.ballColliding = BallCollision.Collide(TitleScreen.FirstPlayer.CurrentPlayer.Ship, BallControls.ballSecond);
+                this.ballColliding = BallCollision.Collide(
+                    TitleScreen.FirstPlayer.CurrentPlayer.Ship,
+                    BallControls.ballSecond);
                 if (this.ballColliding)
                 {
                     this.firstPlayerHitCounter = 0;
                     TitleScreen.SecondPlayer.CurrentPlayer.Ship.Attack(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
-
                 }
                 if (TitleScreen.FirstPlayer.CurrentPlayer.Ship.Health < 0)
                 {
                     throw new OutOfHealthException();
                 }
             }
-            if (true)    // BallControls.ballSecond == null
+            if (true) // BallControls.ballSecond == null
             {
-                this.ballColliding = BallCollision.Collide(TitleScreen.SecondPlayer.CurrentPlayer.Ship, BallControls.ballFirst);
+                this.ballColliding = BallCollision.Collide(
+                    TitleScreen.SecondPlayer.CurrentPlayer.Ship,
+                    BallControls.ballFirst);
                 if (this.ballColliding)
                 {
                     this.secondPlayerHitCounter = 0;
@@ -211,7 +203,8 @@ namespace Badass_Pirates.EngineComponents.Objects
             }
 
             #region Items Collision
-            if (this.colliding)
+
+            if (this.Colliding)
             {
                 if (ShuffleItems.typeBonus == 0)
                 {
@@ -222,26 +215,47 @@ namespace Badass_Pirates.EngineComponents.Objects
                     this.GetBonus(ShuffleItems.typeBonus);
                 }
             }
+
             #endregion
+
             // ALWAYS MUST BE THE LAST LINE
-            this.currentPlayer.InputManagerInstance.Update();
+            this.CurrentPlayer.InputManagerInstance.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.shipImage.Texture, this.currentPlayer.Ship.Position);
-            BallControls.CannonBallDraw(this.playerType,spriteBatch,this.currentPlayer,this.shipImage);
+            this.hpFont.Draw(
+                spriteBatch,
+                new Vector2(this.CurrentPlayer.Ship.Position.X, this.CurrentPlayer.Ship.Position.Y - 20),
+                this.CurrentPlayer.Ship.Health.ToString());
+            this.energyFont.Draw(
+                spriteBatch,
+                new Vector2(this.CurrentPlayer.Ship.Position.X + 40, this.CurrentPlayer.Ship.Position.Y - 20),
+                this.CurrentPlayer.Ship.Energy.ToString());
+            this.shieldFont.Draw(
+                spriteBatch,
+                new Vector2(this.CurrentPlayer.Ship.Position.X + 70, this.CurrentPlayer.Ship.Position.Y - 20),
+                this.CurrentPlayer.Ship.Shields.ToString());
+
+            spriteBatch.Draw(this.shipImage.Texture, this.CurrentPlayer.Ship.Position);
+            BallControls.CannonBallDraw(this.playerType, spriteBatch, this.CurrentPlayer, this.shipImage);
             if (this.firstPlayerHitCounter < 15 && this.firstPlayerHitCounter != null) // this.ballColliding && 
             {
-                this.currentFont.Draw(spriteBatch,
-                    new Vector2(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.X + 120f, TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.Y),  
+                this.damageFont.Draw(
+                    spriteBatch,
+                    new Vector2(
+                        TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.X,
+                        TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.Y -40),
                     string.Format("-" + TitleScreen.SecondPlayer.CurrentPlayer.Ship.Damage)); // moje i po elegantno :D
                 this.firstPlayerHitCounter++;
             }
             if (this.secondPlayerHitCounter < 15 && this.secondPlayerHitCounter != null)
             {
-                this.currentFont.Draw(spriteBatch, 
-                    TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position, 
+                this.damageFont.Draw(
+                    spriteBatch,
+                    new Vector2(
+                        TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position.X,
+                        TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position.Y -40),
                     string.Format("-" + TitleScreen.FirstPlayer.CurrentPlayer.Ship.Damage)); // moje i po elegantno :D
                 this.secondPlayerHitCounter++;
             }
@@ -249,13 +263,14 @@ namespace Badass_Pirates.EngineComponents.Objects
 
         public void GetPotion(PotionTypes potionType)
         {
-            CreatePotionEffect.ExtractEffect(this.currentPlayer.Ship, potionType);
+            CreatePotionEffect.ExtractEffect(this.CurrentPlayer.Ship, potionType);
         }
 
         public void GetBonus(BonusType bonusType)
         {
-            CreateBonusTypeEffect.ExtractEffect(this.currentPlayer.Ship, bonusType);
+            CreateBonusTypeEffect.ExtractEffect(this.CurrentPlayer.Ship, bonusType);
         }
+
         #endregion
     }
 }

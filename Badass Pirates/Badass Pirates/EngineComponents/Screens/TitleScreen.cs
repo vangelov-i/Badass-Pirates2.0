@@ -2,10 +2,7 @@
 {
     #region
 
-    using System.Diagnostics;
-    using System.Text;
-
-    using Badass_Pirates.EngineComponents.Collisions;
+    using Badass_Pirates.EngineComponents.Fonts;
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.GameObjects.Players;
@@ -46,6 +43,7 @@
             }    
         }
 
+        
         public override void Initialise()
         {
             base.Initialise();
@@ -54,11 +52,9 @@
             firstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
             secondPlayer.Initialise(ShipType.Cruiser, PlayerTypes.SecondPlayer);
             this.background = new Image("Backgrounds/BG");
-
-            // Чрез конструктор се създава нов Item.Като параметър му се подава пътя на картинката
+            
             Item.Initialise(3);
-
-            // Чрез параметърът на Initialise,се подава интервала,през който се показва Item - a
+            
             this.background.Initialise();
         }
 

@@ -66,6 +66,10 @@
             if (target.Shields > 0)
             {
                 target.Shields -= this.Damage;
+                if (target.Shields < 0)
+                {
+                    target.Shields = 0;
+                }
             }
             else
             {
