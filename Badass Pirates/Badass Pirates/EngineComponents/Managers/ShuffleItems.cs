@@ -25,7 +25,7 @@
                 case ItemTypes.Damage:
                     typeBonus = BonusType.Damage;
                     typePotion = 0;
-                    return new Image("BonusContents/laser");
+                    return new Image("BonusContents/boltBonus");
                 //case ItemTypes.Speed:
                 //    typeBonus = BonusType.Speed;
                 //    typePotion = 0;
@@ -47,13 +47,14 @@
                     typePotion = 0;
                     return new Image("BonusContents/windBonus");
                 default:
+                    // TODO NOT WORKING PROPERLY
                     throw new NotImplementedException("inccorect shuffle case !");
             }
         }
 
         private static ItemTypes ReturnItem(Random random)
         {
-            var current = (ItemTypes)random.Next(1, 8);
+            var current = (ItemTypes)random.Next(1, 7);
             return current;
         }
     }

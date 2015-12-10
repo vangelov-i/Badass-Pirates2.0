@@ -61,7 +61,17 @@
         public int Speed { get; set; }
 
 
-        public abstract void Attack(Ship target);
+        public void Attack(Ship target)
+        {
+            if (target.Shields > 0)
+            {
+                target.Shields -= this.Damage;
+            }
+            else
+            {
+                target.Health -= this.Damage;
+            }
+        }
 
         public void Sink(Ship target)
         {

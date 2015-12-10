@@ -5,6 +5,7 @@
     using System;
     using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
+    using System.Runtime.CompilerServices;
 
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
@@ -113,6 +114,7 @@
 
         public static void Update(GameTime gameTime)
         {
+            Item.random = new Random();
             Item.timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
             Item.timeCounter += (int)Item.timer;
             if (Item.timer >= 1.0F)
@@ -149,8 +151,8 @@
         private static void SetRandomPositions()
         {
             Item.position = new Vector2(
-                random.Next(0, (int)Item.screenWidth - Item.itemImage.Texture.Width),
-                random.Next(0, (int)Item.screenHeight - Item.itemImage.Texture.Height));
+                random.Next(50, (int)Item.screenWidth - Item.itemImage.Texture.Width*2),
+                random.Next(50, (int)Item.screenHeight - Item.itemImage.Texture.Height*2));
         }
     }
 }

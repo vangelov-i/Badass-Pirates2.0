@@ -121,7 +121,6 @@ C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\penetration.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\shieldBonus.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\windBonus.png
-C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\smoke1.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0-1f77cc664fc048621282da7977cb2560c034c0f9\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.exe
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0-1f77cc664fc048621282da7977cb2560c034c0f9\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0-1f77cc664fc048621282da7977cb2560c034c0f9\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
@@ -202,3 +201,5 @@ C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pericl.ttf
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pesca.ttf
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pescab.ttf
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\secondFire.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\firstFire.png

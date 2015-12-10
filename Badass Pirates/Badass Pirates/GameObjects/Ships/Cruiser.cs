@@ -7,16 +7,15 @@
     {
         private const int HEALTH = 100;
 
-        private const int DAMAGE = 10;
+        private const int DAMAGE = 8;
 
-        private const int SHIELDS = 100;
+        private const int SHIELDS = 20;
 
-        private const int ENERGY = 100;
+        private const int ENERGY = 80;
 
-        private const int SPEED = 3;
+        private const int SPEED = 4;
 
-
-        private const int SPECIALTYDMG = 150; // TODO: balance and change the specials
+        private const int SPECIALTYDMG = 30; // TODO: balance and change the specials
 
 
         public Cruiser()
@@ -24,10 +23,7 @@
         {
         }
 
-        public override void Attack(Ship target)
-        {
-            target.Health = target.Health - this.Damage;
-        }
+        
 
         public void Rocket(Ship targetShip)
         {

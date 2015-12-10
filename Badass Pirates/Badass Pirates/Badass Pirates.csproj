@@ -156,6 +156,9 @@
     <Content Include="Content\diboss.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\firstFire.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Load\SplashScreen.xml">
       <SubType>Designer</SubType>
     </Content>
@@ -168,6 +171,9 @@
     </Content>
     <Content Include="Content\PotionsContents\shieldPotion.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\secondFire.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Content\ShipsContents\battleshipLeft.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -187,13 +193,6 @@
     <Content Include="Content\ShipsContents\destroyerRight.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\smoke1.png">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\smoke2.png" />
-    <Content Include="Content\smoke3.png" />
-    <Content Include="Content\smoke4.png" />
-    <Content Include="Content\smoke41.png" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>

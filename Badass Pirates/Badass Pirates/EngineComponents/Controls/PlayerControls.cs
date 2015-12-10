@@ -1,5 +1,7 @@
 ﻿namespace Badass_Pirates.EngineComponents.Controls
 {
+    using System.Linq.Expressions;
+
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.Enums;
@@ -120,9 +122,37 @@
         
         private static void ValidateShipPosition(Player currentPlayer,Image shipImage)
         {
-            if (currentPlayer.Ship.Position.X < 0)
+            if (currentPlayer is FirstPlayer)
             {
-                currentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, 0);
+                if (currentPlayer.Ship.Position.X < 0)
+                {
+                    currentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, 0);
+                }
+
+                if (currentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X/2 - shipImage.Texture.Width*1.5f)
+                {
+                    /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
+                                Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
+                    currentPlayer.Ship.SetPosition(
+                        CoordsDirections.Abscissa,
+                        ScreenManager.Instance.Dimensions.X/2 - shipImage.Texture.Width*1.5f);
+                }
+            }
+            else
+            {
+                if (currentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X - shipImage.Texture.Width)
+                {
+                    currentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, ScreenManager.Instance.Dimensions.X - shipImage.Texture.Width);
+                }
+
+                if (currentPlayer.Ship.Position.X < ScreenManager.Instance.Dimensions.X/2 + shipImage.Texture.Width/2f)
+                {
+                    /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
+                                Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
+                    currentPlayer.Ship.SetPosition(
+                        CoordsDirections.Abscissa,
+                        ScreenManager.Instance.Dimensions.X/2 + shipImage.Texture.Width/2f);
+                }
             }
 
             if (currentPlayer.Ship.Position.Y < 0)
@@ -141,14 +171,6 @@
                     ScreenManager.Instance.Dimensions.Y - shipImage.Texture.Height);
             }
 
-            if (currentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X - shipImage.Texture.Width)
-            {
-                /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
-                            Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
-                currentPlayer.Ship.SetPosition(
-                    CoordsDirections.Abscissa,
-                    ScreenManager.Instance.Dimensions.X - shipImage.Texture.Width);
-            }
         }
     }
 }

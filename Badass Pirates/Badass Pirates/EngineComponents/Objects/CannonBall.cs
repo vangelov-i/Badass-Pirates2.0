@@ -7,6 +7,7 @@
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Enums;
+    using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
@@ -46,7 +47,7 @@
             //this.position.Y = DefaultInitPos.Y;
             this.position = DefaultInitPos;
             this.Ball = new Image("cannonball");
-            this.Fire = new Image("smoke41");
+            this.Fire = new Image("firstFire");
         }
 
         public Vector2 BallFiredPos 
@@ -61,6 +62,7 @@
                 this.ballFiredPos = value;
             }
         }
+
         public Image Fire { get; set; }
 
         public Vector2 BallRangeX 
@@ -129,12 +131,23 @@
         }
 
 
-        public void Initialise(Vector2 pos)
+        public void Initialise(Vector2 pos,PlayerTypes type)
         {
             this.position = pos;
             this.heightMax = pos.Y - 150;
             this.counter = 0;
             this.flipper = false;
+            switch (type)
+            {
+                case PlayerTypes.FirstPlayer:
+                    this.Fire = new Image("firstFire");
+                    this.LoadContent();
+                    break;
+                case PlayerTypes.SecondPlayer:
+                    this.Fire = new Image("secondFire");
+                    this.LoadContent();
+                    break;
+            }
         }
 
         public void LoadContent()
