@@ -3,6 +3,7 @@
     using System.Linq.Expressions;
 
     using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
@@ -18,7 +19,7 @@
     {
         public static bool control = true;
 
-        public static void ControlsPlayer(PlayerTypes type,GameTime gameTime,Player currentPlayer,Image shipImage)
+        public static void ControlsPlayer(PlayerTypes type, GameTime gameTime, Player currentPlayer, Image shipImage)
         {
             if (control)
             {
@@ -33,8 +34,8 @@
                 }
             }
         }
-        
-        private static void UpdateFirstPlayer(GameTime gameTime, Player currentPlayer,Image shipImage)
+
+        private static void UpdateFirstPlayer(GameTime gameTime, Player currentPlayer, Image shipImage)
         {
             currentPlayer.InputManagerInstance.RotateStates();
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.S))
@@ -44,7 +45,7 @@
                     CoordsDirections.Ordinate,
                     Direction.Positive,
                     currentPlayer.Ship.Speed);
-                PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
+                PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.W))
@@ -54,7 +55,7 @@
                     CoordsDirections.Ordinate,
                     Direction.Negative,
                     currentPlayer.Ship.Speed);
-                PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
+                PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.D))
@@ -64,7 +65,7 @@
                     CoordsDirections.Abscissa,
                     Direction.Positive,
                     currentPlayer.Ship.Speed);
-                PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
+                PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.A))
@@ -74,17 +75,15 @@
                     CoordsDirections.Abscissa,
                     Direction.Negative,
                     currentPlayer.Ship.Speed);
-                PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
+                PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
-                // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
-                if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.FirstPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
-                {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
-                    currentPlayer.Ship.Energy = 0;
-                }
-            
-            
+            // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
+            if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.FirstPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
+            {
+                currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                //currentPlayer.Ship.Energy = 0;
+            }
 
             currentPlayer.InputManagerInstance.Update();
         }
@@ -132,17 +131,17 @@
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
 
-                // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
-                if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.SecondPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
-                {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
-                    currentPlayer.Ship.Energy = 0;
-                }
+            // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
+            if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.SecondPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
+            {
+                currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                //currentPlayer.Ship.Energy = 0;
+            }
 
             currentPlayer.InputManagerInstance.Update();
         }
-        
-        private static void ValidateShipPosition(Player currentPlayer,Image shipImage)
+
+        private static void ValidateShipPosition(Player currentPlayer, Image shipImage)
         {
             if (currentPlayer is FirstPlayer)
             {
@@ -151,13 +150,13 @@
                     currentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, 0);
                 }
 
-                if (currentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X/2 - shipImage.Texture.Width*1.5f)
+                if (currentPlayer.Ship.Position.X > ScreenManager.Instance.Dimensions.X / 2 - shipImage.Texture.Width * 1.5f)
                 {
                     /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
                                 Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
                     currentPlayer.Ship.SetPosition(
                         CoordsDirections.Abscissa,
-                        ScreenManager.Instance.Dimensions.X/2 - shipImage.Texture.Width*1.5f);
+                        ScreenManager.Instance.Dimensions.X / 2 - shipImage.Texture.Width * 1.5f);
                 }
             }
             else
@@ -167,13 +166,13 @@
                     currentPlayer.Ship.SetPosition(CoordsDirections.Abscissa, ScreenManager.Instance.Dimensions.X - shipImage.Texture.Width);
                 }
 
-                if (currentPlayer.Ship.Position.X < ScreenManager.Instance.Dimensions.X/2 + shipImage.Texture.Width/2f)
+                if (currentPlayer.Ship.Position.X < ScreenManager.Instance.Dimensions.X / 2 + shipImage.Texture.Width / 2f)
                 {
                     /* setter - а на Vector2 е недостъпен.Изисква собствена имплементация,минаваща през полето ! ! !
                                 Имплементирана е в абстрактния клас Ship,чрез метода : SetPosition() */
                     currentPlayer.Ship.SetPosition(
                         CoordsDirections.Abscissa,
-                        ScreenManager.Instance.Dimensions.X/2 + shipImage.Texture.Width/2f);
+                        ScreenManager.Instance.Dimensions.X / 2 + shipImage.Texture.Width / 2f);
                 }
             }
 

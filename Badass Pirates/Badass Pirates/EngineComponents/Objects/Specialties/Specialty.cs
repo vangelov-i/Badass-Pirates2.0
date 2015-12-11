@@ -8,7 +8,7 @@
 
     public class Specialty 
     {
-        private Image image;
+        protected Image image;
 
         private Point frameSize;
 
@@ -18,12 +18,17 @@
 
         private int damage;
 
+        protected bool draw;
+
         protected Specialty(string path, Point frameSize,int dmg)
         {
             this.image = new Image(path);
             this.frameSize = frameSize;
             this.Damage = dmg;
             this.specialtyFired = false;
+            /* добави тази булева във валидацията на draw-а тук ( && draw) 
+            и я прави false във ъпдейта на DMine */
+            this.draw = false;
         }
 
         #region Properties
@@ -91,7 +96,7 @@
 
         #region Methods
 
-        public void Initialise(Vector2 pos)
+        public virtual void Initialise(Vector2 pos)
         {
             this.image.IsActive = true;
             this.position = pos;
@@ -111,7 +116,7 @@
         {
         }
 
-        public void Draw(SpriteBatch spriteBatch,Vector2 pos)
+        public virtual void Draw(SpriteBatch spriteBatch,Vector2 pos)
         {
             //TODO how much time to draw
             // TODO ADD SPECIALTYFIRED = FALSE;
