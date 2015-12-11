@@ -134,7 +134,7 @@
         public void Initialise(Vector2 pos,PlayerTypes type)
         {
             this.position = pos;
-            this.heightMax = pos.Y - 150;
+            this.heightMax = pos.Y - 50; // - 150
             this.counter = 0;
             this.flipper = false;
             switch (type)
@@ -164,19 +164,19 @@
 
         public void UpdateFirst(GameTime gameTime)
         {
-            this.position.X += 10;
+            this.position.X += 13;
             if (!this.flipper && this.position.Y > this.heightMax + 100)
             {
-                this.position.Y -= 10;
+                this.position.Y -= 5;
             }
             else if (!this.flipper && this.position.Y > this.heightMax)
             {
-                this.position.Y -= 4;
+                this.position.Y -= 2;
             }
             else if (!this.flipper)
             {
                 this.flipper = true;
-                this.position.Y += 4;
+                this.position.Y += 2;
             }
             else if (this.counter < 8)
             {
@@ -184,29 +184,29 @@
             }
             else if (this.flipper && this.position.Y > this.heightMax + 100)
             {
-                this.position.Y += 4;
+                this.position.Y += 2;
             }
             else
             {
-                this.position.Y += 10;
+                this.position.Y += 5;
             }
         }
 
         public void UpdateSecond(GameTime gameTime)
         {
-            this.position.X -= 10;
+            this.position.X -= 13;
             if (!this.flipper && this.position.Y > this.heightMax + 100)
             {
-                this.position.Y -= 10;
+                this.position.Y -= 5; //-=10
             }
             else if (!this.flipper && this.position.Y > this.heightMax)
             {
-                this.position.Y -= 4;
+                this.position.Y -= 2; // -= 4
             }
             else if (!this.flipper)
             {
                 this.flipper = true;
-                this.position.Y += 4;
+                this.position.Y += 2; // +=4
             }
             else if (this.counter < 8)
             {
@@ -214,11 +214,11 @@
             }
             else if (this.flipper && this.position.Y > this.heightMax + 100)
             {
-                this.position.Y += 4;
+                this.position.Y += 2; // +=4
             }
             else
             {
-                this.position.Y += 10;
+                this.position.Y += 5; // += 10
             }
         }
 

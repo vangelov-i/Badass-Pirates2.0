@@ -2,8 +2,6 @@
 {
     #region
 
-    using System;
-
     using Badass_Pirates.EngineComponents.Controls;
     using Badass_Pirates.EngineComponents.Fonts;
     using Badass_Pirates.EngineComponents.Managers;
@@ -23,9 +21,9 @@
     {
         private Image background;
 
-        private Font gameOver;
-
         private bool end;
+
+        private Font gameOver;
 
         private FirstPlayer player;
 
@@ -97,8 +95,7 @@
                 this.gameOver.Draw(
                     spriteBatch,
                     new Vector2(400, 140),
-                    $"SHIP {(FirstPlayer.CurrentPlayer.Ship.Health <= 0  ? " Second" : $" {(SecondPlayer.CurrentPlayer.Ship.Health <= 0 ? "First" : null)} VICTORY")}");
-                    
+                    $"SHIP {(FirstPlayer.CurrentPlayer.Ship.Health <= 0 ? " Second" : $" {(SecondPlayer.CurrentPlayer.Ship.Health <= 0 ? "First" : null)} VICTORY")}");
             }
             if (FirstPlayer.Colliding == false)
             {
