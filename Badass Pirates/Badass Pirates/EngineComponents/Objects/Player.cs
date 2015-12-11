@@ -135,6 +135,7 @@
             this.energyFont.LoadContent();
             this.hpFont.LoadContent();
             this.shieldFont.LoadContent();
+            this.CurrentPlayer.Ship.Specialty.LoadContent();
         }
 
         public void UnloadContent()
@@ -145,6 +146,7 @@
             this.hpFont.UnloadContent();
             this.shieldFont.UnloadContent();
             this.damageFont.UnloadContent();
+            this.CurrentPlayer.Ship.Specialty.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
@@ -163,7 +165,7 @@
             {
                 this.CurrentPlayer.Ship.UnWind();
             }
-
+            
             this.shipImage.Update(gameTime);
             this.CurrentPlayer.InputManagerInstance.RotateStates();
             PlayerControls.ControlsPlayer(this.playerType, gameTime, this.CurrentPlayer, this.shipImage);
@@ -237,6 +239,7 @@
                 new Vector2(this.CurrentPlayer.Ship.Position.X + 70, this.CurrentPlayer.Ship.Position.Y - 20),
                 this.CurrentPlayer.Ship.Shields.ToString());
 
+           
             spriteBatch.Draw(this.shipImage.Texture, this.CurrentPlayer.Ship.Position);
             BallControls.CannonBallDraw(this.playerType, spriteBatch, this.CurrentPlayer, this.shipImage);
             if (this.firstPlayerHitCounter < 15 && this.firstPlayerHitCounter != null) // this.ballColliding && 
@@ -259,6 +262,9 @@
                     string.Format("-" + TitleScreen.FirstPlayer.CurrentPlayer.Ship.Damage)); // moje i po elegantno :D
                 this.secondPlayerHitCounter++;
             }
+
+            // SPECIALTY DRAW
+            this.CurrentPlayer.Ship.Specialty.Draw(spriteBatch,new Vector2(this.CurrentPlayer.Ship.Position.X + 100, this.CurrentPlayer.Ship.Position.Y));
         }
 
         public void GetPotion(PotionTypes potionType)

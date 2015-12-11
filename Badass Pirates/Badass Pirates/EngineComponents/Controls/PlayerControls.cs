@@ -4,8 +4,10 @@
 
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
+    using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.GameObjects.Ships;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -74,6 +76,21 @@
                     Direction.Negative,
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
+            }
+
+            if (currentPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
+            {
+                if (currentPlayer.Ship.Energy >= Ship.energyStatic )
+                {
+                   currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.SecondPlayer.CurrentPlayer.Ship);
+                }
+            }
+            if (currentPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
+            {
+                if (currentPlayer.Ship.Energy >= Ship.energyStatic)
+                {
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
+                }
             }
 
             currentPlayer.InputManagerInstance.Update();

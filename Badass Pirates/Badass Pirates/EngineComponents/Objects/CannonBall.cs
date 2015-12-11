@@ -17,7 +17,7 @@
 
     public class CannonBall : IPositionable
     {
-        private readonly Vector2 DefaultInitPos = new Vector2(9000f, 9000f);
+        private readonly Vector2 DefaultInitPos = new Vector2(900f, 900f);
 
         public static Point frameSize = new Point(42,42);
 
@@ -64,20 +64,7 @@
         }
 
         public Image Fire { get; set; }
-
-        public Vector2 BallRangeX 
-        { 
-            get
-            {
-                return this.ballRangeX;
-            }
-
-            set
-            {
-                this.ballRangeX = value;
-            }
-        }
-
+        
         public bool BallFired 
         { 
             get
@@ -104,8 +91,6 @@
             }
         }
 
-        
-
         public Vector2 Position //=> this.position;
         {
             get
@@ -129,7 +114,6 @@
                 this.ballInitialised = value;
             }
         }
-
 
         public void Initialise(Vector2 pos,PlayerTypes type)
         {
@@ -164,7 +148,7 @@
 
         public void UpdateFirst(GameTime gameTime)
         {
-            this.position.X += 13;
+            this.position.X += 14;
             if (!this.flipper && this.position.Y > this.heightMax + 100)
             {
                 this.position.Y -= 5;

@@ -5,7 +5,9 @@
     using System;
     using System.Diagnostics;
 
+    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
+    using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Interfaces.Bonuses;
@@ -23,18 +25,25 @@
 
         private readonly int previousSpeed;
 
-        protected Ship(int damage, int health, int shields, int energy, int speed)
+        public static int energyStatic = 100;
+
+        private int specialtyDamage;
+
+        private Specialty specialty;
+
+        protected Ship(int damage, int health, int shields, int energy, int speed, int specialtyDamage, Specialty specialty)
         {
             this.Damage = damage;
             this.Health = health;
             this.Shields = shields;
             this.Energy = energy;
             this.Speed = speed;
+            this.specialtyDamage = specialtyDamage;
             this.FreezTimeOut = new Stopwatch();
             this.BonusDamageTimeOut = new Stopwatch();
             this.WindTimeOut = new Stopwatch();
             this.previousSpeed = this.Speed;
-
+            this.specialty = specialty;
         }
 
         public Vector2 Position
@@ -60,6 +69,33 @@
 
         public int Speed { get; set; }
 
+        //public bool SpecialtyFiredFirst { get; set; }
+
+        //public bool SpecialtyFiredSecond { get; set; }
+
+        public Stopwatch WindTimeOut { get; set; }
+        public Stopwatch BonusDamageTimeOut { get; set; }
+        public Stopwatch FreezTimeOut { get; set; }
+
+        public int SpecialtyDamage
+        {
+            get
+            {
+                return this.specialtyDamage;
+            }
+        }
+
+        public Specialty Specialty
+        {
+            get
+            {
+                return this.specialty;
+            }
+            set
+            {
+                this.specialty = value;
+            }
+        }
 
         public void Attack(Ship target)
         {
@@ -126,9 +162,7 @@
                     break;
             }
         }
-
-        public Stopwatch FreezTimeOut { get; set; }
-
+        
         public void Freeze()
         {
             this.FreezTimeOut.Start();
@@ -143,7 +177,6 @@
             this.FreezTimeOut.Reset();
         }
 
-        public Stopwatch BonusDamageTimeOut { get; set; }
 
         public void BonusDamage()
         {
@@ -157,9 +190,7 @@
             this.BonusDamageTimeOut.Reset();
             this.Damage -= (int)BonusType.Damage;
         }
-
-        public Stopwatch WindTimeOut { get; set; }
-
+        
         public void Wind()
         {
             this.WindTimeOut.Start();
