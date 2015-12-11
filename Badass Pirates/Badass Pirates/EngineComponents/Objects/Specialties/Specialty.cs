@@ -26,8 +26,6 @@
             this.frameSize = frameSize;
             this.Damage = dmg;
             this.specialtyFired = false;
-            /* добави тази булева във валидацията на draw-а тук ( && draw) 
-            и я прави false във ъпдейта на DMine */
             this.draw = false;
         }
 

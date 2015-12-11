@@ -81,7 +81,15 @@
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
             if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.FirstPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
             {
-                currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                if (currentPlayer.Ship is Battleship)
+                {
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.SecondPlayer.CurrentPlayer);
+                }
+                else
+                {
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                }
+
                 //currentPlayer.Ship.Energy = 0;
             }
 
@@ -134,7 +142,15 @@
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
             if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.SecondPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
             {
-                currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                if (currentPlayer.Ship is Battleship)
+                {
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.FirstPlayer.CurrentPlayer);
+                }
+                else
+                {
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                }
+
                 //currentPlayer.Ship.Energy = 0;
             }
 

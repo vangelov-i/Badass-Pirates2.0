@@ -5,7 +5,10 @@ using System.Text;
 
 namespace Badass_Pirates.EngineComponents.Collisions
 {
-    class SpecialtyCollision
+    public class SpecialtyCollision
     {
+        private const int OFFSET = 10;
+
+
     }
 }

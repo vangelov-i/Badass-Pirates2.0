@@ -46,6 +46,7 @@
             this.specialty = specialty;
         }
 
+        #region Properties
         public Vector2 Position
         {
             get
@@ -68,23 +69,13 @@
         public int Energy { get; set; }
 
         public int Speed { get; set; }
-
-        //public bool SpecialtyFiredFirst { get; set; }
-
-        //public bool SpecialtyFiredSecond { get; set; }
-
+        
         public Stopwatch WindTimeOut { get; set; }
+
         public Stopwatch BonusDamageTimeOut { get; set; }
+
         public Stopwatch FreezTimeOut { get; set; }
-
-        public int SpecialtyDamage
-        {
-            get
-            {
-                return this.specialtyDamage;
-            }
-        }
-
+        
         public Specialty Specialty
         {
             get
@@ -97,6 +88,10 @@
             }
         }
 
+        #endregion
+
+        #region Methods
+
         public void Attack(Ship target)
         {
             if (target.Shields > 0)
@@ -104,6 +99,7 @@
                 target.Shields -= this.Damage;
                 if (target.Shields < 0)
                 {
+                    target.Health += target.Shields;
                     target.Shields = 0;
                 }
             }
@@ -111,6 +107,28 @@
             {
                 target.Health -= this.Damage;
             }
+        }
+
+        public void SpecialtyAttack(Ship target)
+        {
+            if (target.Shields > 0)
+            {
+                target.Shields -= this.specialtyDamage;
+                if (target.Shields < 0)
+                {
+                    target.Health += target.Shields;
+                    target.Shields = 0;
+                }
+            }
+            else
+            {
+                target.Health -= this.specialtyDamage;
+            }
+        }
+
+        private void ValidateShields(Ship target)
+        {
+           throw new NotImplementedException();
         }
 
         public void Sink(Ship target)
@@ -177,7 +195,6 @@
             this.FreezTimeOut.Reset();
         }
 
-
         public void BonusDamage()
         {
             this.BonusDamageTimeOut.Start();
@@ -203,5 +220,7 @@
             this.WindTimeOut.Stop();
             this.WindTimeOut.Reset();
         }
+
+        #endregion
     }
 }

@@ -7,11 +7,7 @@ using Microsoft.Xna.Framework;
 
 namespace Badass_Pirates.EngineComponents.Objects.Specialties
 {
-    using System.Collections.Specialized;
-
-    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
-    using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -24,7 +20,7 @@ namespace Badass_Pirates.EngineComponents.Objects.Specialties
 
         private const string PATH = "Specialties/seamineResized";
         
-        private static readonly Point FRAMESIZE = new Point(64, 63);
+        public static readonly Point FRAMESIZE = new Point(64, 63);
 
         private static Vector2 mineStartPos;
 
@@ -80,6 +76,10 @@ namespace Badass_Pirates.EngineComponents.Objects.Specialties
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 pos)
         {
+            // TODO Change this.draw to false only when collision is on
+            // TODO when draw is already false set the position outside the screen
+            // TODO set timeout by energy points needed
+
             if (this.draw)
             {
                 this.image.Draw(spriteBatch, pos);

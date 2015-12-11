@@ -198,7 +198,7 @@
                     this.firstPlayerHitCounter = 0;
                     TitleScreen.SecondPlayer.CurrentPlayer.Ship.Attack(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
                 }
-                if (TitleScreen.FirstPlayer.CurrentPlayer.Ship.Health < 0)
+                if (TitleScreen.FirstPlayer.CurrentPlayer.Ship.Health <= 0)
                 {
                     throw new OutOfHealthException();
                 }
@@ -212,7 +212,7 @@
                 {
                     this.secondPlayerHitCounter = 0;
                     TitleScreen.FirstPlayer.CurrentPlayer.Ship.Attack(TitleScreen.SecondPlayer.CurrentPlayer.Ship);
-                    if (TitleScreen.SecondPlayer.CurrentPlayer.Ship.Health < 0)
+                    if (TitleScreen.SecondPlayer.CurrentPlayer.Ship.Health <= 0)
                     {
                         throw new OutOfHealthException();
                     }
