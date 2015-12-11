@@ -17,9 +17,9 @@
 
     public class CannonBall : IPositionable
     {
-        private readonly Vector2 DefaultInitPos = new Vector2(-900f, -900f);
+        private readonly Vector2 DefaultInitPos = new Vector2(9000f, 9000f);
 
-        public static Point frameSize = new Point(64,64);
+        public static Point frameSize = new Point(42,42);
 
         private bool ballFired;
 
@@ -45,7 +45,7 @@
         {
             //this.position.X = DefaultInitPos.X;
             //this.position.Y = DefaultInitPos.Y;
-            this.position = DefaultInitPos;
+            this.position = this.DefaultInitPos;
             this.Ball = new Image("cannonball");
             this.Fire = new Image("firstFire");
         }
