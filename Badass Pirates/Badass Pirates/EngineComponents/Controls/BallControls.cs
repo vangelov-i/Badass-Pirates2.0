@@ -21,6 +21,8 @@
 
         public static CannonBall ballSecond;
 
+        public static bool controls = true;
+
         private PlayerTypes type;
 
         public static void CannonBallInitialise()
@@ -47,14 +49,17 @@
             Image shipImage,
             GameTime gameTime)
         {
-            switch (type)
+            if (controls)
             {
-                case PlayerTypes.FirstPlayer:
-                    FirstPlayerBallControls(currentPlayer, shipImage, gameTime);
-                    break;
-                case PlayerTypes.SecondPlayer:
-                    SecondPlayerBallControls(currentPlayer, shipImage, gameTime);
-                    break;
+                switch (type)
+                {
+                    case PlayerTypes.FirstPlayer:
+                        FirstPlayerBallControls(currentPlayer, shipImage, gameTime);
+                        break;
+                    case PlayerTypes.SecondPlayer:
+                        SecondPlayerBallControls(currentPlayer, shipImage, gameTime);
+                        break;
+                }
             }
         }
 

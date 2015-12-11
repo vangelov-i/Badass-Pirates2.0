@@ -90,7 +90,6 @@
     <Compile Include="GameObjects\Players\SecondPlayer.cs" />
     <Compile Include="Handler\CombatHandler\CombatHandler.cs" />
     <Compile Include="Interfaces\Bonuses\IWind.cs" />
-    <Compile Include="Interfaces\IItem.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Interfaces\Specialties\ILightning.cs" />
     <Compile Include="MainEngine.cs" />

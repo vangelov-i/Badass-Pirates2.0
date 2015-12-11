@@ -15,16 +15,21 @@
 
     public class PlayerControls
     {
+        public static bool control = true;
+
         public static void ControlsPlayer(PlayerTypes type,GameTime gameTime,Player currentPlayer,Image shipImage)
         {
-            switch (type)
+            if (control)
             {
+                switch (type)
+                {
                     case PlayerTypes.FirstPlayer:
-                    PlayerControls.UpdateFirstPlayer(gameTime,currentPlayer,shipImage);
-                    break;
+                        PlayerControls.UpdateFirstPlayer(gameTime, currentPlayer, shipImage);
+                        break;
                     case PlayerTypes.SecondPlayer:
-                    PlayerControls.UpdateSecondPlayer(gameTime,currentPlayer,shipImage);
-                    break;
+                        PlayerControls.UpdateSecondPlayer(gameTime, currentPlayer, shipImage);
+                        break;
+                }
             }
         }
         
