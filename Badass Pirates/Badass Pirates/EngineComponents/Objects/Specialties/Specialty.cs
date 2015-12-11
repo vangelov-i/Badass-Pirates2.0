@@ -1,31 +1,27 @@
 ﻿namespace Badass_Pirates.EngineComponents.Objects.Specialties
 {
     using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.GameObjects.Ships;
-    using Badass_Pirates.Interfaces;
-
+    using Badass_Pirates.EngineComponents.Screens;
+    using Badass_Pirates.GameObjects.Players;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Specialty : ISpecialty
+    public class Specialty 
     {
         private Image image;
 
         private Point frameSize;
 
-        private Vector2 position;
+        protected Vector2 position;
 
         private bool specialtyFired;
 
         private int damage;
 
-        private readonly Vector2 DefaultInitialPosition = new Vector2(9900f,9900f);
-
         protected Specialty(string path, Point frameSize,int dmg)
         {
             this.image = new Image(path);
             this.frameSize = frameSize;
-            this.position = this.DefaultInitialPosition;
             this.Damage = dmg;
             this.specialtyFired = false;
         }
@@ -95,9 +91,10 @@
 
         #region Methods
 
-        public void Initialise()
+        public void Initialise(Vector2 pos)
         {
             this.image.IsActive = true;
+            this.position = pos;
         }
 
         public void LoadContent()
@@ -110,41 +107,33 @@
             this.image.UnloadContent();
         }
 
-        public virtual void Update(GameTime gameTime)
+        public virtual void Update(GameTime gameTime, GameObjects.Players.Player currentPlayer)
         {
         }
 
         public void Draw(SpriteBatch spriteBatch,Vector2 pos)
         {
-            // TODO how much time to draw
+            //TODO how much time to draw
             // TODO ADD SPECIALTYFIRED = FALSE;
             if (this.SpecialtyFired)
             {
-                this.image.Draw(spriteBatch,  pos);
+                this.image.Draw(spriteBatch, pos);
+            }
+        }
+
+        public virtual void ActivateSpecialty(Player currentPlayer)
+        {
+            if (currentPlayer is FirstPlayer)
+            {
+                TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Initialise(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position);
+            }
+            else
+            {
+                TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.Initialise(TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position);
             }
 
+            this.specialtyFired = true;
         }
-
-        public virtual void ActivateSpecialty(Ship targetShip)
-        {
-            // NEED TO BE CORRECTED - kogato shilds = 1 i se nanese damage, health-a shte e nezasegnat
-            //if (targetShip.Shields > 0)
-            //{
-            //    targetShip.Shields -= this.Damage;
-            //    if (targetShip.Shields < 0)
-            //    {
-            //        targetShip.Health -= targetShip.Shields;
-            //        targetShip.Shields = 0;
-            //    }
-            //}
-            //else
-            //{
-            //    targetShip.Health -= this.Damage;
-            //}
-
-            this.SpecialtyFired = true;
-        }
-
         #endregion
 
     }

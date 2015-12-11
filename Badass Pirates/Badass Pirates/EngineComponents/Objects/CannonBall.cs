@@ -17,29 +17,29 @@
 
     public class CannonBall : IPositionable
     {
-        private readonly Vector2 DefaultInitPos = new Vector2(900f, 900f);
+        protected readonly Vector2 DefaultInitPos = new Vector2(900f, 900f);
 
         public static Point frameSize = new Point(42,42);
 
-        private bool ballFired;
+        protected bool ballFired;
 
-        private int fireFlashCounter;
+        protected int fireFlashCounter;
 
-        private bool ballInitialised;
+        protected bool ballInitialised;
 
-        private Vector2 ballFiredPos;
+        protected Vector2 ballFiredPos;
 
-        private Vector2 ballRangeX;
+        protected Vector2 ballRangeX;
 
-        private readonly Image Ball;
+        protected Image Ball;
 
-        private Vector2 position;
+        protected Vector2 position;
 
-        private float heightMax;
+        protected float heightMax;
 
-        private bool flipper;
+        protected bool flipper;
 
-        private int counter;
+        protected int counter;
 
         public CannonBall()
         {
@@ -115,7 +115,7 @@
             }
         }
 
-        public void Initialise(Vector2 pos,PlayerTypes type)
+        public virtual void Initialise(Vector2 pos,PlayerTypes type)
         {
             this.position = pos;
             this.heightMax = pos.Y - 50; // - 150
@@ -134,19 +134,19 @@
             }
         }
 
-        public void LoadContent()
+        public virtual void LoadContent()
         {
             this.Ball.LoadContent();
             this.Fire.LoadContent();
         }
 
-        public void UnloadContent()
+        public virtual void UnloadContent()
         {
             this.Ball.UnloadContent();
             this.Fire.UnloadContent();
         }
 
-        public void UpdateFirst(GameTime gameTime)
+        public virtual void UpdateFirst(GameTime gameTime)
         {
             this.position.X += 14;
             if (!this.flipper && this.position.Y > this.heightMax + 100)
@@ -176,7 +176,7 @@
             }
         }
 
-        public void UpdateSecond(GameTime gameTime)
+        public virtual void UpdateSecond(GameTime gameTime)
         {
             this.position.X -= 13;
             if (!this.flipper && this.position.Y > this.heightMax + 100)

@@ -49,6 +49,15 @@
 
         public bool Colliding { get; private set; }
 
+        public PlayerTypes PlayerType
+        {
+            get
+            {
+                return this.playerType;
+            }
+        
+        }
+
         #endregion
 
         #region Methods
@@ -125,6 +134,8 @@
 
                     break;
             }
+
+            
         }
 
         public void LoadContent()
@@ -135,7 +146,9 @@
             this.energyFont.LoadContent();
             this.hpFont.LoadContent();
             this.shieldFont.LoadContent();
-            this.CurrentPlayer.Ship.Specialty.LoadContent();
+            //this.CurrentPlayer.Ship.Specialty.LoadContent();
+            TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.LoadContent();
+            TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.LoadContent();
         }
 
         public void UnloadContent()
@@ -151,6 +164,8 @@
 
         public void Update(GameTime gameTime)
         {
+            this.CurrentPlayer.Ship.Specialty.Update(gameTime, this.CurrentPlayer);
+            
             if (this.CurrentPlayer.Ship.FreezTimeOut.Elapsed.Seconds > 5)
             {
                 this.CurrentPlayer.Ship.DeFrost();
@@ -226,6 +241,7 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            #region Fonts
             this.hpFont.Draw(
                 spriteBatch,
                 new Vector2(this.CurrentPlayer.Ship.Position.X, this.CurrentPlayer.Ship.Position.Y - 20),
@@ -238,10 +254,11 @@
                 spriteBatch,
                 new Vector2(this.CurrentPlayer.Ship.Position.X + 70, this.CurrentPlayer.Ship.Position.Y - 20),
                 this.CurrentPlayer.Ship.Shields.ToString());
+            #endregion
 
-           
             spriteBatch.Draw(this.shipImage.Texture, this.CurrentPlayer.Ship.Position);
             BallControls.CannonBallDraw(this.playerType, spriteBatch, this.CurrentPlayer, this.shipImage);
+
             if (this.firstPlayerHitCounter < 15 && this.firstPlayerHitCounter != null) // this.ballColliding && 
             {
                 this.damageFont.Draw(
@@ -264,7 +281,10 @@
             }
 
             // SPECIALTY DRAW
-            this.CurrentPlayer.Ship.Specialty.Draw(spriteBatch,new Vector2(this.CurrentPlayer.Ship.Position.X + 100, this.CurrentPlayer.Ship.Position.Y));
+            //this.CurrentPlayer.Ship.Specialty.Draw(spriteBatch,new Vector2(this.CurrentPlayer.Ship.Position.X + 100, this.CurrentPlayer.Ship.Position.Y));
+            TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Draw(spriteBatch, TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Position);
+            TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.Draw(spriteBatch, TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.Position);
+
         }
 
         public void GetPotion(PotionTypes potionType)

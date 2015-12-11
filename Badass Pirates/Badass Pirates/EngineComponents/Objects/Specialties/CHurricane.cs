@@ -5,7 +5,12 @@ using System.Text;
 
 namespace Badass_Pirates.EngineComponents.Objects.Specialties
 {
+    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.GameObjects.Ships;
+
     using Microsoft.Xna.Framework;
+
+    using Player = Badass_Pirates.EngineComponents.Objects.Player;
 
     public class CHurricane : Specialty
     {
@@ -18,6 +23,21 @@ namespace Badass_Pirates.EngineComponents.Objects.Specialties
         public CHurricane()
             : base(PATH, FRAMESIZE, DAMAGE)
         {
+        }
+
+        public override void Update(GameTime gameTime, GameObjects.Players.Player currentPlayer)
+        {
+            if (this.SpecialtyFired)
+            {
+                if (currentPlayer is FirstPlayer)
+                {
+                    this.position.X += 5;
+                }
+                else
+                {
+                    this.position.X -= 5;
+                }
+            }
         }
     }
 }

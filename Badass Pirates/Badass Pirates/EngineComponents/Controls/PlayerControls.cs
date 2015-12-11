@@ -3,7 +3,6 @@
     using System.Linq.Expressions;
 
     using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
@@ -78,20 +77,14 @@
                 PlayerControls.ValidateShipPosition(currentPlayer,shipImage);
             }
 
-            if (currentPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
-            {
-                if (currentPlayer.Ship.Energy >= Ship.energyStatic )
+                // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
+                if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.FirstPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
                 {
-                   currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.SecondPlayer.CurrentPlayer.Ship);
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                    currentPlayer.Ship.Energy = 0;
                 }
-            }
-            if (currentPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
-            {
-                if (currentPlayer.Ship.Energy >= Ship.energyStatic)
-                {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
-                }
-            }
+            
+            
 
             currentPlayer.InputManagerInstance.Update();
         }
@@ -138,6 +131,13 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
+
+                // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
+                if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.SecondPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
+                {
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
+                    currentPlayer.Ship.Energy = 0;
+                }
 
             currentPlayer.InputManagerInstance.Update();
         }

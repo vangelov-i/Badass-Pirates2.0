@@ -4,6 +4,6 @@
 
     public interface ISpecialty
     {
-        void ActivateSpecialty(Ship targetShip);
+        void ActivateSpecialty();
     }
 }

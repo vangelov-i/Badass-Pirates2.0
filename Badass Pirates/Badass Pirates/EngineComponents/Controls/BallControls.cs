@@ -4,6 +4,7 @@
 
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.EngineComponents.Objects;
+    using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.GameObjects.Players;
 
     using Microsoft.Xna.Framework;
@@ -87,20 +88,19 @@
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.LeftControl))
             {
                 ballFirst.BallFired = true;
-                if (ballFirst.BallFired)
+
+                if (!ballFirst.BallInitialised)
                 {
-                    if (!ballFirst.BallInitialised)
-                    {
-                        ballFirst.FireFlashCounter = 0;
-                        ballFirst.Initialise(
-                            ballFirst.BallFiredPos =
-                            new Vector2(
-                                currentPlayer.Ship.Position.X + shipImage.Texture.Width,
-                                currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)),
-                            currentPlayer.TypeOfPlayer);
-                        ballFirst.BallInitialised = true;
-                    }
+                    ballFirst.FireFlashCounter = 0;
+                    ballFirst.Initialise(
+                        ballFirst.BallFiredPos =
+                        new Vector2(
+                            currentPlayer.Ship.Position.X + shipImage.Texture.Width,
+                            currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)),
+                        currentPlayer.TypeOfPlayer);
+                    ballFirst.BallInitialised = true;
                 }
+
             }
 
             if (ballFirst.BallFired)
@@ -114,20 +114,19 @@
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.RightControl))
             {
                 ballSecond.BallFired = true;
-                if (ballSecond.BallFired)
+
+                if (!ballSecond.BallInitialised)
                 {
-                    if (!ballSecond.BallInitialised)
-                    {
-                        ballSecond.FireFlashCounter = 0;
-                        ballSecond.Initialise(
-                            ballSecond.BallFiredPos =
-                            new Vector2(
-                                currentPlayer.Ship.Position.X - shipImage.Texture.Width / 2f,
-                                currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)),
-                            currentPlayer.TypeOfPlayer);
-                        ballSecond.BallInitialised = true;
-                    }
+                    ballSecond.FireFlashCounter = 0;
+                    ballSecond.Initialise(
+                        ballSecond.BallFiredPos =
+                        new Vector2(
+                            currentPlayer.Ship.Position.X - shipImage.Texture.Width / 2f,
+                            currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)),
+                        currentPlayer.TypeOfPlayer);
+                    ballSecond.BallInitialised = true;
                 }
+
             }
 
             if (ballSecond.BallFired)
@@ -144,7 +143,7 @@
                     spriteBatch,
                     new Vector2(
                         currentPlayer.Ship.Position.X + shipImage.Texture.Width,
-                        currentPlayer.Ship.Position.Y +(shipImage.Texture.Height * 0.6f)
+                        currentPlayer.Ship.Position.Y + (shipImage.Texture.Height * 0.6f)
                         - (ballFirst.Fire.Texture.Height / 2f)));
                 ballFirst.FireFlashCounter++;
             }
@@ -173,8 +172,8 @@
                 ballSecond.Fire.Draw(
                     spriteBatch,
                     new Vector2(
-                        currentPlayer.Ship.Position.X - shipImage.Texture.Width*0.9f ,
-                        currentPlayer.Ship.Position.Y + shipImage.Texture.Height*0.1f));
+                        currentPlayer.Ship.Position.X - shipImage.Texture.Width * 0.9f,
+                        currentPlayer.Ship.Position.Y + shipImage.Texture.Height * 0.1f));
                 ballSecond.FireFlashCounter++;
             }
 
@@ -182,11 +181,11 @@
             {
                 ballSecond.SetPositionRangeX(
                     (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - shipImage.Texture.Width));
-                    // ScreenManager.Instance.Dimensions.X / 2) - ballSecond.BallFiredPos.X + shipImage.Texture.Width
+                // ScreenManager.Instance.Dimensions.X / 2) - ballSecond.BallFiredPos.X + shipImage.Texture.Width
 
                 if (ballSecond.Position.Y < ballSecond.BallFiredPos.Y)
-                    // && (ballSecond.Position.Y < currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)
-                    // version 2 ballSecond.Position.X > ScreenManager.Instance.Dimensions.X - ballSecond.BallFiredPos.X - ballSecond.BallRangeX.X
+                // && (ballSecond.Position.Y < currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)
+                // version 2 ballSecond.Position.X > ScreenManager.Instance.Dimensions.X - ballSecond.BallFiredPos.X - ballSecond.BallRangeX.X
                 {
                     ballSecond.Draw(spriteBatch);
                 }

@@ -55,7 +55,9 @@
   <ItemGroup>
     <Compile Include="EngineComponents\Collisions\BallCollision.cs" />
     <Compile Include="EngineComponents\Collisions\ItemsCollision.cs" />
+    <Compile Include="EngineComponents\Collisions\SpecialtyCollision.cs" />
     <Compile Include="EngineComponents\Controls\BallControls.cs" />
+    <Compile Include="EngineComponents\Controls\MineControls.cs" />
     <Compile Include="EngineComponents\Fonts\Font.cs" />
     <Compile Include="EngineComponents\Managers\Menu.cs" />
     <Compile Include="EngineComponents\Managers\MenuManager.cs" />
@@ -67,6 +69,7 @@
     <Compile Include="EngineComponents\Objects\Specialties\CHurricane.cs" />
     <Compile Include="EngineComponents\Objects\Specialties\BLightning.cs" />
     <Compile Include="EngineComponents\Objects\Specialties\DMine.cs" />
+    <Compile Include="EngineComponents\Objects\Specialties\Mine.cs" />
     <Compile Include="EngineComponents\Objects\Specialties\Specialty.cs" />
     <Compile Include="EngineComponents\Screens\GameScreen.cs" />
     <Compile Include="EngineComponents\Managers\Image.cs" />
@@ -95,6 +98,7 @@
     <Compile Include="Handler\CombatHandler\CombatHandler.cs" />
     <Compile Include="Interfaces\Bonuses\IWind.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
+    <Compile Include="Interfaces\IShoot.cs" />
     <Compile Include="MainEngine.cs" />
     <Compile Include="Enums\PotionTypes.cs" />
     <Compile Include="GameObjects\Mobs\Boss\Boss.cs" />
@@ -251,6 +255,9 @@
       <ProductName>Windows Installer 4.5</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Badass_Pirates\" />
   </ItemGroup>
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
