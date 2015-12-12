@@ -1,10 +1,6 @@
 ﻿namespace Badass_Pirates.EngineComponents.Managers
 {
-    using System;
     using System.Diagnostics;
-    using System.Runtime.CompilerServices;
-
-    using Badass_Pirates.EngineComponents.Objects;
 
     using Microsoft.Xna.Framework;
 
@@ -12,58 +8,36 @@
 
     public static class RegenManager
     {
-        private static int regenTimeSeconds = 2;
+        private static int regenTimeSeconds = 1;
 
-        private static double regenValue = 1 / 132.0;
+        private static int regenValue = 1;
 
         private static readonly Stopwatch stopWatch;
 
-        private static int timeCounter;
-
-        private static float timer;
-
-        private static int previousSeconds = 0;
+        private static int elapsedTimeValidation = 1;
 
         static RegenManager()
         {
             stopWatch = new Stopwatch();
-            //previousSeconds = 1;
+            stopWatch.Start();
         }
 
         public static void EnergyRegenUpdate(GameTime gameTime, Player firstPlayer,Player secondPlayer)
         {
-            //if (gameTime.ElapsedGameTime.Seconds != RegenManager.previousSeconds)
-            //{
-            //    firstPlayer.Ship.Energy += regenValue;
-            //    secondPlayer.Ship.Energy += regenValue;
-            //    RegenManager.previousSeconds = gameTime.ElapsedGameTime.Seconds;
-            //}
-
-            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timeCounter += (int)timer;
-            if (timer >= 1.0F)
+            if ((int)RegenManager.stopWatch.Elapsed.TotalSeconds == RegenManager.elapsedTimeValidation)
             {
-                timer = 0F;
-            }
-
-            if (Math.Abs(timeCounter % regenTimeSeconds) < 0.0000001)
-            {
-                stopWatch.Start();
-            }
-
-            if (stopWatch.Elapsed.Seconds % regenTimeSeconds == 0)
-            {
-                firstPlayer.Ship.Energy += (int)regenValue;
-                secondPlayer.Ship.Energy += (int)regenValue;
+                firstPlayer.Ship.Energy += regenValue;
+                secondPlayer.Ship.Energy += regenValue;
+                RegenManager.elapsedTimeValidation = (int)RegenManager.stopWatch.Elapsed.TotalSeconds + regenTimeSeconds;
             }
         }
 
-        public static void ChangeRegenTime(int timeSeconds = 1)
+        public static void ChangeRegenTime(int timeSeconds)
         {
             RegenManager.regenTimeSeconds = timeSeconds;
         }
 
-        public static void ChangeRegenValue(int value = 2)
+        public static void ChangeRegenValue(int value)
         {
             RegenManager.regenValue = value;
         }
