@@ -6,11 +6,13 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Specialty 
+    public abstract class Specialty 
     {
+        public bool draw;
+
         protected Image image;
 
-        private Point FRAMESIZE;
+        internal Point FRAMESIZE;
 
         protected Vector2 position;
 
@@ -18,11 +20,12 @@
 
         private int damage;
 
-        public bool draw;
-
         protected Player firstPlayer ;
 
         protected Player secondPlayer;
+
+        protected static bool collide;
+
 
         protected Specialty(string path, Point framesize,int dmg)
         {

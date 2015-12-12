@@ -8,7 +8,7 @@
 
     using Microsoft.Xna.Framework;
 
-    public class BLightning : Specialty
+    public class Lightning : Specialty
     {
         private const string PATH = "Specialties/lightningResized";
 
@@ -16,11 +16,11 @@
 
         private const int LIGHTNING_TIME = 3;
 
-        private const int DAMAGE = 35;
+        private const int DAMAGE = 25;
 
         private readonly Stopwatch lightningTimer;
         
-        public BLightning()
+        public Lightning()
             : base(PATH, FRAMESIZE, DAMAGE)
         {
             this.lightningTimer = new Stopwatch();

@@ -62,14 +62,15 @@
     <Compile Include="EngineComponents\Managers\Menu.cs" />
     <Compile Include="EngineComponents\Managers\MenuManager.cs" />
     <Compile Include="EngineComponents\Managers\PlayersInfo.cs" />
+    <Compile Include="EngineComponents\Managers\RegenManager.cs" />
     <Compile Include="EngineComponents\Managers\ShuffleItems.cs" />
     <Compile Include="EngineComponents\MenuItem.cs" />
     <Compile Include="EngineComponents\Objects\Item.cs" />
     <Compile Include="EngineComponents\Objects\CannonBall.cs" />
     <Compile Include="EngineComponents\Controls\PlayerControls.cs" />
-    <Compile Include="EngineComponents\Objects\Specialties\CHurricane.cs" />
-    <Compile Include="EngineComponents\Objects\Specialties\BLightning.cs" />
-    <Compile Include="EngineComponents\Objects\Specialties\DMine.cs" />
+    <Compile Include="EngineComponents\Objects\Specialties\Hurricane.cs" />
+    <Compile Include="EngineComponents\Objects\Specialties\Lightning.cs" />
+    <Compile Include="EngineComponents\Objects\Specialties\Mine.cs" />
     <Compile Include="EngineComponents\Objects\Specialties\Specialty.cs" />
     <Compile Include="EngineComponents\Screens\GameScreen.cs" />
     <Compile Include="EngineComponents\Managers\Image.cs" />
@@ -213,8 +214,7 @@
     <MonoGameContentReference Include="Content\Content.mgcb" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
-    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram.cd" />
     <None Include="Content\Fonts\big.xnb" />
     <None Include="Content\Fonts\kooten.ttf" />
     <None Include="Content\Fonts\Linds.ttf">

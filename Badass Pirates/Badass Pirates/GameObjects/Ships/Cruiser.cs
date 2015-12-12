@@ -20,7 +20,7 @@
 
         private const int SPECIALTYDMG = 30; // TODO: balance and change the specials
 
-        private static readonly Specialty SPECIALTY = new CHurricane();
+        private static readonly Specialty SPECIALTY = new Hurricane();
 
 
         public Cruiser()

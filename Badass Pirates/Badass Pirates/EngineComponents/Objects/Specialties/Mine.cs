@@ -6,37 +6,35 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class DMine : Specialty
+    public class Mine : Specialty
     {
         #region Fields
 
         private const int DAMAGE = 45;
 
         private const string PATH = "Specialties/seamineResized";
-        
-        public static readonly Point FRAMESIZE = new Point(64, 63);
+
+        private static readonly Point FRAMESIZE = new Point(150, 150);
 
         private static Vector2 mineStartPos;
 
-        private static int counter;
-
-        private static bool collide;
+        private static int flag;
 
         #endregion
 
         #region Constructor
         
-        public DMine()
+        public Mine()
             : base(PATH, FRAMESIZE, DAMAGE)
         {
-            counter = 0;
+            flag = 0;
         }
         #endregion
 
-        public static int Counter
+        public static int Flag
         {
-            get { return counter; }
-            set { counter = value; }
+            get { return flag; }
+            set { flag = value; }
         }
 
         public override void Initialise(Vector2 pos)
@@ -70,9 +68,8 @@
             if (this.SpecialtyFired)
             {
                 this.draw = true;
-                // TODO
-                counter++; 
-                if (counter == 1)
+                flag++; 
+                if (flag == 1)
                 {
                     mineStartPos = new Vector2(currentPlayer.Ship.Position.X, currentPlayer.Ship.Position.Y);
                     this.position.X = ScreenManager.Instance.Dimensions.X - currentPlayer.Ship.Position.X;
@@ -86,14 +83,12 @@
             else
             {
                 this.SpecialtyFired = false;
-                counter = 0;
+                flag = 0;
             }
         }
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 pos)
         {
-            // TODO Change this.draw to false only when collision is on
-            // TODO when draw is already false set the position outside the screen
             // TODO set timeout by energy points needed
 
             if (this.draw)

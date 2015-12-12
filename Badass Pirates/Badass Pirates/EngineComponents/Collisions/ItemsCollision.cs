@@ -1,6 +1,5 @@
 ﻿namespace Badass_Pirates.EngineComponents.Collisions
 {
-    using System.Diagnostics;
     using System.Diagnostics.CodeAnalysis;
 
     using Badass_Pirates.EngineComponents.Objects;
@@ -11,7 +10,7 @@
     public class ItemsCollision
     {
         [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed. Suppression is OK here.")]
-        private const int COLLISION_OFFSET = 10;
+        private const int COLLISION_OFFSET = 5;
         
         public static bool Collide(Ship shipColliding)
         {
@@ -29,7 +28,7 @@
 
             if (shipRect.Intersects(itemRect))
             {
-                Item.Position = new Vector2(-900, -900);
+                Item.Position = new Vector2(9900,9900);
                 return true;
             }
 

@@ -10,7 +10,7 @@ namespace Badass_Pirates.EngineComponents.Collisions
 {
     public class BallCollision
     {
-        private const int COLLISION_OFFSET = 10;
+        private const int COLLISION_OFFSET = 5;
 
         public static bool Collide(Ship shipColliding, CannonBall ball)
         {

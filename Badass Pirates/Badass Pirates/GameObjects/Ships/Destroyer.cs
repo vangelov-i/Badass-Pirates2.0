@@ -20,7 +20,7 @@
 
         private const int SPEED = 3;
 
-        private static readonly Specialty SPECIALTY = new DMine();
+        private static readonly Specialty SPECIALTY = new Mine();
         
         public Destroyer()
             : base(DAMAGE, HEALTH, SHIELDS, ENERGY, SPEED,SPECIALTYDMG, SPECIALTY)

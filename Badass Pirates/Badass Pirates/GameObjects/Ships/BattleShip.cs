@@ -25,7 +25,7 @@
 
         private const int SPECIALTYDMG = 35; // TODO: balance and change the specials
 
-        private static readonly Specialty SPECIALTY = new BLightning();
+        private static readonly Specialty SPECIALTY = new Lightning();
 
         public Battleship()
             : base(DAMAGE, HEALTH, SHIELDS, ENERGY, SPEED,SPECIALTYDMG, SPECIALTY)

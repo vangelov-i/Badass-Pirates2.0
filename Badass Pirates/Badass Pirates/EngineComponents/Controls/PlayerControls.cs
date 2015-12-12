@@ -9,15 +9,15 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Input;
 
-    using Player = Badass_Pirates.GameObjects.Players.Player;
+    using Player = GameObjects.Players.Player;
 
-    public class PlayerControls
+    public static class PlayerControls
     {
         public static bool control = true;
 
-        private static Player firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
+        private static readonly Player firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
 
-        private static Player secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
+        private static readonly Player secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
 
         public static void ControlsPlayer(PlayerTypes type, GameTime gameTime, Player currentPlayer, Image shipImage)
         {
@@ -38,6 +38,8 @@
         private static void UpdateFirstPlayer(GameTime gameTime, Player currentPlayer, Image shipImage)
         {
             currentPlayer.InputManagerInstance.RotateStates();
+
+            #region Key S
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.S))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -47,7 +49,8 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
-
+            #endregion
+            #region Key W
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.W))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -57,7 +60,8 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
-
+            #endregion
+            #region Key D
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.D))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -67,7 +71,8 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
-
+            #endregion
+            #region Key A
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.A))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -77,6 +82,7 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
+            #endregion
 
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
             if (currentPlayer.Ship.Energy >= Ship.energyStatic && PlayerControls.firstPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
@@ -90,7 +96,7 @@
                     currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
                 }
 
-                //currentPlayer.Ship.Energy = 0;
+                currentPlayer.Ship.Energy = 0;
             }
 
             currentPlayer.InputManagerInstance.Update();
@@ -99,6 +105,8 @@
         private static void UpdateSecondPlayer(GameTime gameTime, Player currentPlayer, Image shipImage)
         {
             currentPlayer.InputManagerInstance.RotateStates();
+
+            #region Key Down
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.Down))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -108,7 +116,8 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
-
+            #endregion
+            #region Key Up
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.Up))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -118,7 +127,8 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
-
+            #endregion
+            #region Key Right
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.Right))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -128,7 +138,8 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
-
+            #endregion
+            #region Key Left
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.Left))
             {
                 // имплементиран е метод Move.Намира се в абстрактния клас Ship
@@ -138,6 +149,7 @@
                     currentPlayer.Ship.Speed);
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
+            #endregion
 
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
             if (currentPlayer.Ship.Energy >= Ship.energyStatic && PlayerControls.secondPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
@@ -150,8 +162,8 @@
                 {
                     currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
                 }
-
-                //currentPlayer.Ship.Energy = 0;
+                
+                currentPlayer.Ship.Energy = 0;
             }
 
             currentPlayer.InputManagerInstance.Update();
