@@ -48,7 +48,7 @@
             }
             else
             {
-                this.position = new Vector2(this.firstPlayer.Ship.Position.X + this.image.Texture.Width / 2f, this.firstPlayer.Ship.Position.Y - this.image.Texture.Height);
+                this.position = new Vector2(this.firstPlayer.Ship.Position.X - this.image.Texture.Width/2f , this.firstPlayer.Ship.Position.Y - this.image.Texture.Height);
                 if (this.lightningTimer.Elapsed.Seconds > LIGHTNING_TIME)
                 {
                     currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);

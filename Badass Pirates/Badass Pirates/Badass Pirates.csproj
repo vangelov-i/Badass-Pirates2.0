@@ -100,6 +100,7 @@
     <Compile Include="Interfaces\Bonuses\IWind.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Interfaces\IShoot.cs" />
+    <Compile Include="Interfaces\IXnaDependences.cs" />
     <Compile Include="MainEngine.cs" />
     <Compile Include="Enums\PotionTypes.cs" />
     <Compile Include="GameObjects\Mobs\Boss\Boss.cs" />

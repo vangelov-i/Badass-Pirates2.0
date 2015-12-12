@@ -19,23 +19,23 @@
 
         private static readonly Player secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
 
-        public static void ControlsPlayer(PlayerTypes type, GameTime gameTime, Player currentPlayer, Image shipImage)
+        public static void ControlsPlayer(PlayerTypes type, Player currentPlayer, Image shipImage)
         {
             if (control)
             {
                 switch (type)
                 {
                     case PlayerTypes.FirstPlayer:
-                        PlayerControls.UpdateFirstPlayer(gameTime, currentPlayer, shipImage);
+                        PlayerControls.UpdateFirstPlayer(currentPlayer, shipImage);
                         break;
                     case PlayerTypes.SecondPlayer:
-                        PlayerControls.UpdateSecondPlayer(gameTime, currentPlayer, shipImage);
+                        PlayerControls.UpdateSecondPlayer(currentPlayer, shipImage);
                         break;
                 }
             }
         }
 
-        private static void UpdateFirstPlayer(GameTime gameTime, Player currentPlayer, Image shipImage)
+        private static void UpdateFirstPlayer(Player currentPlayer, Image shipImage)
         {
             currentPlayer.InputManagerInstance.RotateStates();
 
@@ -85,24 +85,12 @@
             #endregion
 
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
-            if (currentPlayer.Ship.Energy >= Ship.energyStatic && PlayerControls.firstPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
-            {
-                if (currentPlayer.Ship is Battleship)
-                {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(PlayerControls.secondPlayer);
-                }
-                else
-                {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
-                }
-
-                currentPlayer.Ship.Energy = 0;
-            }
+            
 
             currentPlayer.InputManagerInstance.Update();
         }
 
-        private static void UpdateSecondPlayer(GameTime gameTime, Player currentPlayer, Image shipImage)
+        private static void UpdateSecondPlayer(Player currentPlayer, Image shipImage)
         {
             currentPlayer.InputManagerInstance.RotateStates();
 
@@ -152,19 +140,7 @@
             #endregion
 
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
-            if (currentPlayer.Ship.Energy >= Ship.energyStatic && PlayerControls.secondPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
-            {
-                if (currentPlayer.Ship is Battleship)
-                {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(PlayerControls.firstPlayer);
-                }
-                else
-                {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(currentPlayer);
-                }
-                
-                currentPlayer.Ship.Energy = 0;
-            }
+           
 
             currentPlayer.InputManagerInstance.Update();
         }

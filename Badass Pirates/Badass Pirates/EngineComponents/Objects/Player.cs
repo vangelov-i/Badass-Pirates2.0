@@ -11,6 +11,7 @@
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Handler.CombatHandler;
     using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework;
@@ -23,15 +24,7 @@
 
         private Image shipImage;
 
-        private Font damageFont;
-
         private PlayerTypes playerType;
-
-        private bool ballColliding;
-
-        private int? firstPlayerHitCounter;
-
-        private int? secondPlayerHitCounter;
 
         private Font hpFont;
 
@@ -40,7 +33,7 @@
         private Font energyFont;
 
         private GameObjects.Players.Player firstPlayer;
-                                           
+
         private GameObjects.Players.Player secondPlayer;
 
 
@@ -50,7 +43,7 @@
 
         public GameObjects.Players.Player CurrentPlayer { get; set; }
 
-        public bool Colliding { get; private set; }
+        public bool itemColliding { get; private set; }
 
         public PlayerTypes PlayerType
         {
@@ -58,7 +51,7 @@
             {
                 return this.playerType;
             }
-        
+
         }
 
         #endregion
@@ -70,9 +63,8 @@
             this.energyFont = new Font(Color.Yellow, "Fonts", "big");
             this.hpFont = new Font(Color.Green, "Fonts", "big");
             this.shieldFont = new Font(Color.Black, "Fonts", "big");
-            this.damageFont = new Font(Color.Red, "Fonts", "big");
-            this.ballColliding = false;
-            BallControls.CannonBallInitialise();
+
+
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -137,23 +129,22 @@
 
                     break;
             }
-            
+            CombatHandler.Initilialise(this.CurrentPlayer);
+
         }
-        
+
 
 
         public void LoadContent()
         {
             this.shipImage.LoadContent();
             BallControls.CannonBallLoadContent();
-            this.damageFont.LoadContent();
             this.energyFont.LoadContent();
             this.hpFont.LoadContent();
             this.shieldFont.LoadContent();
-            this.firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
-            this.secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
-            this.firstPlayer.Ship.Specialty.LoadContent();
-            this.secondPlayer.Ship.Specialty.LoadContent();
+
+            CombatHandler.LoadContent();
+            
         }
 
         public void UnloadContent()
@@ -163,14 +154,14 @@
             this.energyFont.UnloadContent();
             this.hpFont.UnloadContent();
             this.shieldFont.UnloadContent();
-            this.damageFont.UnloadContent();
-            this.CurrentPlayer.Ship.Specialty.UnloadContent();
+
+            CombatHandler.UnloadContent();
+            
         }
 
         public void Update(GameTime gameTime)
         {
-            this.CurrentPlayer.Ship.Specialty.Update(gameTime, this.CurrentPlayer);
-            
+            #region Items
             if (this.CurrentPlayer.Ship.FreezTimeOut.Elapsed.Seconds > 5)
             {
                 this.CurrentPlayer.Ship.DeFrost();
@@ -186,49 +177,9 @@
                 this.CurrentPlayer.Ship.UnWind();
             }
 
-            RegenManager.EnergyRegenUpdate(this.firstPlayer,this.secondPlayer);
-            
-            this.shipImage.Update(gameTime);
-            this.CurrentPlayer.InputManagerInstance.RotateStates();
-            PlayerControls.ControlsPlayer(this.playerType, gameTime, this.CurrentPlayer, this.shipImage);
-            BallControls.CannonBallControls(this.playerType, this.CurrentPlayer, this.shipImage, gameTime);
-            this.Colliding = ItemsCollision.Collide(this.CurrentPlayer.Ship);
-
-            if (true) //BallControls.ballFirst == null
-            {
-                // KOGATO TEPAT PURVIQ
-                this.ballColliding = BallCollision.Collide(
-                    this.firstPlayer.Ship,
-                    BallControls.ballSecond);
-                if (this.ballColliding)
-                {
-                    this.firstPlayerHitCounter = 0;
-                    this.secondPlayer.Ship.Attack(this.firstPlayer.Ship);
-                }
-                if (this.firstPlayer.Ship.Health <= 0)
-                {
-                    throw new OutOfHealthException();
-                }
-            }
-            if (true) // BallControls.ballSecond == null
-            {
-                this.ballColliding = BallCollision.Collide(
-                    this.secondPlayer.Ship,
-                    BallControls.ballFirst);
-                if (this.ballColliding)
-                {
-                    this.secondPlayerHitCounter = 0;
-                    this.firstPlayer.Ship.Attack(this.secondPlayer.Ship);
-                    if (this.secondPlayer.Ship.Health <= 0)
-                    {
-                        throw new OutOfHealthException();
-                    }
-                }
-            }
-
             #region Items Collision
 
-            if (this.Colliding)
+            if (this.itemColliding)
             {
                 if (ShuffleItems.typeBonus == 0)
                 {
@@ -242,12 +193,25 @@
 
             #endregion
 
+            #endregion
+            
+            this.shipImage.Update(gameTime);
+            this.CurrentPlayer.InputManagerInstance.RotateStates();
+
+
+            PlayerControls.ControlsPlayer(this.playerType, this.CurrentPlayer, this.shipImage);
+            BallControls.CannonBallControls(this.playerType, this.CurrentPlayer, this.shipImage, gameTime);
+            this.itemColliding = ItemsCollision.Collide(this.CurrentPlayer.Ship);
+            CombatHandler.Update(gameTime, this.playerType, this.CurrentPlayer);
+
+
             // ALWAYS MUST BE THE LAST LINE
             this.CurrentPlayer.InputManagerInstance.Update();
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
+            // Fonts must be in TittleScreen.cs
             #region Fonts
             this.hpFont.Draw(
                 spriteBatch,
@@ -261,38 +225,16 @@
                 spriteBatch,
                 new Vector2(this.CurrentPlayer.Ship.Position.X + 70, this.CurrentPlayer.Ship.Position.Y - 20),
                 this.CurrentPlayer.Ship.Shields.ToString());
+
+            
+
             #endregion
 
             spriteBatch.Draw(this.shipImage.Texture, this.CurrentPlayer.Ship.Position);
             BallControls.CannonBallDraw(this.playerType, spriteBatch, this.CurrentPlayer, this.shipImage);
-
-            if (this.firstPlayerHitCounter < 15 && this.firstPlayerHitCounter != null) // this.ballColliding && 
-            {
-                this.damageFont.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        this.firstPlayer.Ship.Position.X,
-                        this.firstPlayer.Ship.Position.Y -40),
-                    string.Format("-" + this.secondPlayer.Ship.Damage)); // moje i po elegantno :D
-                this.firstPlayerHitCounter++;
-            }
-            if (this.secondPlayerHitCounter < 15 && this.secondPlayerHitCounter != null)
-            {
-                this.damageFont.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        this.secondPlayer.Ship.Position.X,
-                        this.secondPlayer.Ship.Position.Y -40),
-                    string.Format("-" + this.firstPlayer.Ship.Damage)); // moje i po elegantno :D
-                this.secondPlayerHitCounter++;
-            }
-
-            // SPECIALTY DRAW
-            //this.CurrentPlayer.Ship.Specialty.Draw(spriteBatch,new Vector2(this.CurrentPlayer.Ship.Position.X + 100, this.CurrentPlayer.Ship.Position.Y));
-            this.firstPlayer.Ship.Specialty.Draw(spriteBatch, this.firstPlayer.Ship.Specialty.Position);
-            this.secondPlayer.Ship.Specialty.Draw(spriteBatch, this.secondPlayer.Ship.Specialty.Position);
-
+            CombatHandler.Draw(spriteBatch);
         }
+
 
         public void GetPotion(PotionTypes potionType)
         {

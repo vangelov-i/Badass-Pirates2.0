@@ -119,9 +119,7 @@
             this.image.UnloadContent();
         }
 
-        public virtual void Update(GameTime gameTime, GameObjects.Players.Player currentPlayer)
-        {
-        }
+        public abstract void Update(GameTime gameTime, GameObjects.Players.Player currentPlayer);
 
         public virtual void Draw(SpriteBatch spriteBatch,Vector2 pos)
         {

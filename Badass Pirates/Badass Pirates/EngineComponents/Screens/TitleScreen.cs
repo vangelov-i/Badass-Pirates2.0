@@ -37,7 +37,7 @@
             FirstPlayer = new Player();
             SecondPlayer = new Player();
             FirstPlayer.Initialise(ShipType.Battleship, PlayerTypes.FirstPlayer);
-            SecondPlayer.Initialise(ShipType.Battleship, PlayerTypes.SecondPlayer);
+            SecondPlayer.Initialise(ShipType.Destroyer, PlayerTypes.SecondPlayer);
             this.end = false;
             this.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             this.background = new Image("Backgrounds/BG");
@@ -95,7 +95,7 @@
                     new Vector2(400, 140),
                     $"SHIP {(FirstPlayer.CurrentPlayer.Ship.Health <= 0 ? " Second" : $" {(SecondPlayer.CurrentPlayer.Ship.Health <= 0 ? "First" : null)} VICTORY")}");
             }
-            if (FirstPlayer.Colliding == false)
+            if (FirstPlayer.itemColliding == false)
             {
                 Item.Draw(spriteBatch);
             }
