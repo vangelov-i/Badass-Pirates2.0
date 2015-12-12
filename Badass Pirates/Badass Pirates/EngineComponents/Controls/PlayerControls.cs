@@ -1,16 +1,12 @@
 ﻿namespace Badass_Pirates.EngineComponents.Controls
 {
-    using System.Linq.Expressions;
-
     using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
 
     using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
     using Player = Badass_Pirates.GameObjects.Players.Player;
@@ -18,6 +14,10 @@
     public class PlayerControls
     {
         public static bool control = true;
+
+        private static Player firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
+
+        private static Player secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
 
         public static void ControlsPlayer(PlayerTypes type, GameTime gameTime, Player currentPlayer, Image shipImage)
         {
@@ -79,11 +79,11 @@
             }
 
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
-            if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.FirstPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
+            if (currentPlayer.Ship.Energy >= Ship.energyStatic && PlayerControls.firstPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
             {
                 if (currentPlayer.Ship is Battleship)
                 {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.SecondPlayer.CurrentPlayer);
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(PlayerControls.secondPlayer);
                 }
                 else
                 {
@@ -140,11 +140,11 @@
             }
 
             // Проверка дали е натиснат бутона и има достатъчно енергия за изпълнението на специала
-            if (currentPlayer.Ship.Energy >= Ship.energyStatic && TitleScreen.SecondPlayer.CurrentPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
+            if (currentPlayer.Ship.Energy >= Ship.energyStatic && PlayerControls.secondPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
             {
                 if (currentPlayer.Ship is Battleship)
                 {
-                    currentPlayer.Ship.Specialty.ActivateSpecialty(TitleScreen.FirstPlayer.CurrentPlayer);
+                    currentPlayer.Ship.Specialty.ActivateSpecialty(PlayerControls.firstPlayer);
                 }
                 else
                 {

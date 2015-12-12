@@ -1,11 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Microsoft.Xna.Framework;
-
-namespace Badass_Pirates.EngineComponents.Objects.Specialties
+﻿namespace Badass_Pirates.EngineComponents.Objects.Specialties
 {
     using Badass_Pirates.GameObjects.Players;
 

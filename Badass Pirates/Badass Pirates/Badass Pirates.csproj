@@ -61,6 +61,7 @@
     <Compile Include="EngineComponents\Fonts\Font.cs" />
     <Compile Include="EngineComponents\Managers\Menu.cs" />
     <Compile Include="EngineComponents\Managers\MenuManager.cs" />
+    <Compile Include="EngineComponents\Managers\PlayersInfo.cs" />
     <Compile Include="EngineComponents\Managers\ShuffleItems.cs" />
     <Compile Include="EngineComponents\MenuItem.cs" />
     <Compile Include="EngineComponents\Objects\Item.cs" />

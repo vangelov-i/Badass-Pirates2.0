@@ -4,9 +4,7 @@
 
     using System;
     using System.Diagnostics;
-
-    using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Objects;
+    
     using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Interfaces;
@@ -27,7 +25,7 @@
 
         public static int energyStatic = 100;
 
-        private int specialtyDamage;
+        private readonly int specialtyDamage;
 
         private Specialty specialty;
 

@@ -20,6 +20,10 @@
 
         protected bool draw;
 
+        protected Player firstPlayer ;
+
+        protected Player secondPlayer;
+
         protected Specialty(string path, Point frameSize,int dmg)
         {
             this.image = new Image(path);
@@ -102,6 +106,8 @@
 
         public void LoadContent()
         {
+            this.firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
+            this.secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
             this.image.LoadContent();
         }
 

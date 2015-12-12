@@ -34,16 +34,14 @@
         public override void Initialise()
         {
             base.Initialise();
-            this.end = false;
-            this.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             FirstPlayer = new Player();
             SecondPlayer = new Player();
             FirstPlayer.Initialise(ShipType.Battleship, PlayerTypes.FirstPlayer);
             SecondPlayer.Initialise(ShipType.Cruiser, PlayerTypes.SecondPlayer);
+            this.end = false;
+            this.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             this.background = new Image("Backgrounds/BG");
-
             Item.Initialise(3);
-
             this.background.Initialise();
         }
 

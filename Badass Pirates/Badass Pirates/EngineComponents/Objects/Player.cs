@@ -6,7 +6,6 @@
     using Badass_Pirates.EngineComponents.Controls;
     using Badass_Pirates.EngineComponents.Fonts;
     using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Exceptions;
     using Badass_Pirates.Factory;
@@ -16,7 +15,6 @@
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
-
     #endregion
 
     public class Player : IGet
@@ -40,6 +38,11 @@
         private Font shieldFont;
 
         private Font energyFont;
+
+        private GameObjects.Players.Player firstPlayer;
+                                           
+        private GameObjects.Players.Player secondPlayer;
+
 
         #endregion
 
@@ -134,9 +137,10 @@
 
                     break;
             }
-
             
         }
+        
+
 
         public void LoadContent()
         {
@@ -146,9 +150,10 @@
             this.energyFont.LoadContent();
             this.hpFont.LoadContent();
             this.shieldFont.LoadContent();
-            //this.CurrentPlayer.Ship.Specialty.LoadContent();
-            TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.LoadContent();
-            TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.LoadContent();
+            this.firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
+            this.secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
+            this.firstPlayer.Ship.Specialty.LoadContent();
+            this.secondPlayer.Ship.Specialty.LoadContent();
         }
 
         public void UnloadContent()
@@ -191,14 +196,14 @@
             {
                 // KOGATO TEPAT PURVIQ
                 this.ballColliding = BallCollision.Collide(
-                    TitleScreen.FirstPlayer.CurrentPlayer.Ship,
+                    this.firstPlayer.Ship,
                     BallControls.ballSecond);
                 if (this.ballColliding)
                 {
                     this.firstPlayerHitCounter = 0;
-                    TitleScreen.SecondPlayer.CurrentPlayer.Ship.Attack(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
+                    this.secondPlayer.Ship.Attack(this.firstPlayer.Ship);
                 }
-                if (TitleScreen.FirstPlayer.CurrentPlayer.Ship.Health <= 0)
+                if (this.firstPlayer.Ship.Health <= 0)
                 {
                     throw new OutOfHealthException();
                 }
@@ -206,13 +211,13 @@
             if (true) // BallControls.ballSecond == null
             {
                 this.ballColliding = BallCollision.Collide(
-                    TitleScreen.SecondPlayer.CurrentPlayer.Ship,
+                    this.secondPlayer.Ship,
                     BallControls.ballFirst);
                 if (this.ballColliding)
                 {
                     this.secondPlayerHitCounter = 0;
-                    TitleScreen.FirstPlayer.CurrentPlayer.Ship.Attack(TitleScreen.SecondPlayer.CurrentPlayer.Ship);
-                    if (TitleScreen.SecondPlayer.CurrentPlayer.Ship.Health <= 0)
+                    this.firstPlayer.Ship.Attack(this.secondPlayer.Ship);
+                    if (this.secondPlayer.Ship.Health <= 0)
                     {
                         throw new OutOfHealthException();
                     }
@@ -264,9 +269,9 @@
                 this.damageFont.Draw(
                     spriteBatch,
                     new Vector2(
-                        TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.X,
-                        TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.Y -40),
-                    string.Format("-" + TitleScreen.SecondPlayer.CurrentPlayer.Ship.Damage)); // moje i po elegantno :D
+                        this.firstPlayer.Ship.Position.X,
+                        this.firstPlayer.Ship.Position.Y -40),
+                    string.Format("-" + this.secondPlayer.Ship.Damage)); // moje i po elegantno :D
                 this.firstPlayerHitCounter++;
             }
             if (this.secondPlayerHitCounter < 15 && this.secondPlayerHitCounter != null)
@@ -274,16 +279,16 @@
                 this.damageFont.Draw(
                     spriteBatch,
                     new Vector2(
-                        TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position.X,
-                        TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position.Y -40),
-                    string.Format("-" + TitleScreen.FirstPlayer.CurrentPlayer.Ship.Damage)); // moje i po elegantno :D
+                        this.secondPlayer.Ship.Position.X,
+                        this.secondPlayer.Ship.Position.Y -40),
+                    string.Format("-" + this.firstPlayer.Ship.Damage)); // moje i po elegantno :D
                 this.secondPlayerHitCounter++;
             }
 
             // SPECIALTY DRAW
             //this.CurrentPlayer.Ship.Specialty.Draw(spriteBatch,new Vector2(this.CurrentPlayer.Ship.Position.X + 100, this.CurrentPlayer.Ship.Position.Y));
-            TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Draw(spriteBatch, TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Position);
-            TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.Draw(spriteBatch, TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.Position);
+            this.firstPlayer.Ship.Specialty.Draw(spriteBatch, this.firstPlayer.Ship.Specialty.Position);
+            this.secondPlayer.Ship.Specialty.Draw(spriteBatch, this.secondPlayer.Ship.Specialty.Position);
 
         }
 

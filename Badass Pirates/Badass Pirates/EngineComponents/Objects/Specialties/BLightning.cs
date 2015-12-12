@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Badass_Pirates.EngineComponents.Objects.Specialties
+﻿namespace Badass_Pirates.EngineComponents.Objects.Specialties
 {
     using System.Diagnostics;
 
@@ -41,21 +36,22 @@ namespace Badass_Pirates.EngineComponents.Objects.Specialties
 
         public override void Update(GameTime gameTime, Player currentPlayer)
         {
+
             // NEEDS LOTS OF ELEGANCE
             if (currentPlayer is FirstPlayer)
             {
-                this.position = new Vector2(TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position.X - this.image.Texture.Width / 2f, TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position.Y - this.image.Texture.Height);
+                this.position = new Vector2(this.secondPlayer.Ship.Position.X - this.image.Texture.Width / 2f, this.secondPlayer.Ship.Position.Y - this.image.Texture.Height);
                 if (this.lightningTimer.Elapsed.Seconds > LIGHTNING_TIME)
                 {
-                    currentPlayer.Ship.SpecialtyAttack(TitleScreen.SecondPlayer.CurrentPlayer.Ship);
+                    currentPlayer.Ship.SpecialtyAttack(this.secondPlayer.Ship);
                 }
             }
             else
             {
-                this.position = new Vector2(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.X + this.image.Texture.Width / 2f, TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position.Y - this.image.Texture.Height);
+                this.position = new Vector2(this.firstPlayer.Ship.Position.X + this.image.Texture.Width / 2f, this.firstPlayer.Ship.Position.Y - this.image.Texture.Height);
                 if (this.lightningTimer.Elapsed.Seconds > LIGHTNING_TIME)
                 {
-                    currentPlayer.Ship.SpecialtyAttack(TitleScreen.FirstPlayer.CurrentPlayer.Ship);
+                    currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);
                 }
             }
 

@@ -26,10 +26,6 @@
                     typeBonus = BonusType.Damage;
                     typePotion = 0;
                     return new Image("BonusContents/boltBonus");
-                //case ItemTypes.Speed:
-                //    typeBonus = BonusType.Speed;
-                //    typePotion = 0;
-                //    return new Image("BonusContents/penetration");
                 case ItemTypes.Freeze:
                     typeBonus = BonusType.Freeze;
                     typePotion = 0;
