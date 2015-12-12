@@ -1,11 +1,6 @@
 ﻿namespace Badass_Pirates
 {
-    using System.Runtime.CompilerServices;
-
-    using Badass_Pirates.EngineComponents;
-    using Badass_Pirates.Factory;
-    using Badass_Pirates.GameObjects.Players;
-    using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

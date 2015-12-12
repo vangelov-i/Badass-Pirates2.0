@@ -1,19 +1,19 @@
-﻿namespace Badass_Pirates.EngineComponents.Screens
+﻿namespace Badass_Pirates.Screens
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Controls;
-    using Badass_Pirates.EngineComponents.Fonts;
-    using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Objects;
+    using Badass_Pirates.Controls;
     using Badass_Pirates.Exceptions;
+    using Badass_Pirates.Fonts;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Managers;
+    using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    using Player = Badass_Pirates.EngineComponents.Objects.Player;
+    using Player = Badass_Pirates.Objects.Player;
 
     #endregion
 
@@ -24,9 +24,7 @@
         private bool end;
 
         private Font gameOver;
-
-        private FirstPlayer player;
-
+        
         public static Player FirstPlayer { get; private set; }
 
         public static Player SecondPlayer { get; private set; }

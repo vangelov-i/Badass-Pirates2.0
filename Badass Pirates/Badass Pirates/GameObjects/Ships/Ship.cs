@@ -5,10 +5,10 @@
     using System;
     using System.Diagnostics;
     
-    using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Interfaces.Bonuses;
+    using Badass_Pirates.Objects.Specialties;
 
     using Microsoft.Xna.Framework;
 

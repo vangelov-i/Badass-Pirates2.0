@@ -1,9 +1,9 @@
-﻿namespace Badass_Pirates.EngineComponents.Collisions
+﻿namespace Badass_Pirates.Collisions
 {
     using System.Diagnostics.CodeAnalysis;
 
-    using Badass_Pirates.EngineComponents.Objects;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
 

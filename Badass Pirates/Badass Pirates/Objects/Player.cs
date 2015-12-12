@@ -1,21 +1,21 @@
-﻿namespace Badass_Pirates.EngineComponents.Objects
+﻿namespace Badass_Pirates.Objects
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Collisions;
-    using Badass_Pirates.EngineComponents.Controls;
-    using Badass_Pirates.EngineComponents.Fonts;
-    using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.Collisions;
+    using Badass_Pirates.Controls;
     using Badass_Pirates.Enums;
-    using Badass_Pirates.Exceptions;
     using Badass_Pirates.Factory;
+    using Badass_Pirates.Fonts;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
-    using Badass_Pirates.Handler.CombatHandler;
+    using Badass_Pirates.Handler;
     using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+
     #endregion
 
     public class Player : IGet

@@ -1,14 +1,13 @@
-﻿namespace Badass_Pirates.EngineComponents.Objects
+﻿namespace Badass_Pirates.Objects
 {
     #region
 
     using System;
     using System.Diagnostics;
-    using System.Diagnostics.CodeAnalysis;
-    using System.Runtime.CompilerServices;
 
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

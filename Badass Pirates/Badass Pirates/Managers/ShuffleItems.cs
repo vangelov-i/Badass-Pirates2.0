@@ -1,4 +1,4 @@
-﻿namespace Badass_Pirates.EngineComponents.Managers
+﻿namespace Badass_Pirates.Managers
 {
     #region
 

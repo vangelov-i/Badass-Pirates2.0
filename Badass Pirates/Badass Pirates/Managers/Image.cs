@@ -1,8 +1,6 @@
-﻿namespace Badass_Pirates.EngineComponents.Managers
+﻿namespace Badass_Pirates.Managers
 {
     #region
-
-    using Badass_Pirates.Enums;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;

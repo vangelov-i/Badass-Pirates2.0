@@ -1,8 +1,9 @@
-﻿namespace Badass_Pirates.EngineComponents
+﻿namespace Badass_Pirates.Managers
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Screens;
+    using Badass_Pirates.EngineComponents;
+    using Badass_Pirates.Screens;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;

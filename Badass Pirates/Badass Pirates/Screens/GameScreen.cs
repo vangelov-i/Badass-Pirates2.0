@@ -1,9 +1,9 @@
-﻿namespace Badass_Pirates.EngineComponents.Screens
+﻿namespace Badass_Pirates.Screens
 {
     using System;
     using System.Xml.Serialization;
 
-    using Badass_Pirates.EngineComponents.Managers;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Content;

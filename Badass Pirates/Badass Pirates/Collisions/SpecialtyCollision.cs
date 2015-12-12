@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace Badass_Pirates.EngineComponents.Collisions
+﻿namespace Badass_Pirates.Collisions
 {
-    using Badass_Pirates.EngineComponents.Objects;
-    using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Objects.Specialties;
 
     using Microsoft.Xna.Framework;
 

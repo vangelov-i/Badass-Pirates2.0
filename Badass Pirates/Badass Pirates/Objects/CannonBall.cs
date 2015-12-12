@@ -1,14 +1,11 @@
-﻿namespace Badass_Pirates.EngineComponents.Objects
+﻿namespace Badass_Pirates.Objects
 {
     #region
-
-    using System.Runtime.CompilerServices;
-
-    using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Screens;
+    
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

@@ -2,12 +2,7 @@
 {
     #region
 
-    using System;
-    using System.Collections.Generic;
-
-    using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Objects.Specialties;
-    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Objects.Specialties;
 
     #endregion
 

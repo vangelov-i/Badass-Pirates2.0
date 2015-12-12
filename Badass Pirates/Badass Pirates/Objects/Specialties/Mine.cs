@@ -1,7 +1,8 @@
-﻿namespace Badass_Pirates.EngineComponents.Objects.Specialties
+﻿namespace Badass_Pirates.Objects.Specialties
 {
-    using Badass_Pirates.EngineComponents.Collisions;
+    using Badass_Pirates.Collisions;
     using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Badass_Pirates.EngineComponents.Objects;
-using Badass_Pirates.GameObjects.Ships;
-using Microsoft.Xna.Framework;
-
-namespace Badass_Pirates.EngineComponents.Collisions
+﻿namespace Badass_Pirates.Collisions
 {
+    using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Objects;
+
+    using Microsoft.Xna.Framework;
+
     public class BallCollision
     {
         private const int COLLISION_OFFSET = 5;

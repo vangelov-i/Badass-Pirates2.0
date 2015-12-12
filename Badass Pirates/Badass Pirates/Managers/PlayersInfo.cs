@@ -1,9 +1,9 @@
-﻿namespace Badass_Pirates.EngineComponents.Managers
+﻿namespace Badass_Pirates.Managers
 {
     using System;
 
-    using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Screens;
 
     public static class PlayersInfo
     {

@@ -53,32 +53,32 @@
     <ApplicationIcon>Icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="EngineComponents\Collisions\BallCollision.cs" />
-    <Compile Include="EngineComponents\Collisions\ItemsCollision.cs" />
-    <Compile Include="EngineComponents\Collisions\SpecialtyCollision.cs" />
-    <Compile Include="EngineComponents\Controls\BallControls.cs" />
-    <Compile Include="EngineComponents\Controls\MineControls.cs" />
-    <Compile Include="EngineComponents\Fonts\Font.cs" />
-    <Compile Include="EngineComponents\Managers\Menu.cs" />
-    <Compile Include="EngineComponents\Managers\MenuManager.cs" />
-    <Compile Include="EngineComponents\Managers\PlayersInfo.cs" />
-    <Compile Include="EngineComponents\Managers\RegenManager.cs" />
-    <Compile Include="EngineComponents\Managers\ShuffleItems.cs" />
-    <Compile Include="EngineComponents\MenuItem.cs" />
-    <Compile Include="EngineComponents\Objects\Item.cs" />
-    <Compile Include="EngineComponents\Objects\CannonBall.cs" />
-    <Compile Include="EngineComponents\Controls\PlayerControls.cs" />
-    <Compile Include="EngineComponents\Objects\Specialties\Hurricane.cs" />
-    <Compile Include="EngineComponents\Objects\Specialties\Lightning.cs" />
-    <Compile Include="EngineComponents\Objects\Specialties\Mine.cs" />
-    <Compile Include="EngineComponents\Objects\Specialties\Specialty.cs" />
-    <Compile Include="EngineComponents\Screens\GameScreen.cs" />
-    <Compile Include="EngineComponents\Managers\Image.cs" />
-    <Compile Include="EngineComponents\Managers\InputManager.cs" />
-    <Compile Include="EngineComponents\Managers\ScreenManager.cs" />
-    <Compile Include="EngineComponents\Managers\XmlManager.cs" />
-    <Compile Include="EngineComponents\Screens\TitleScreen.cs" />
-    <Compile Include="EngineComponents\Objects\Player.cs" />
+    <Compile Include="Collisions\BallCollision.cs" />
+    <Compile Include="Collisions\ItemsCollision.cs" />
+    <Compile Include="Collisions\SpecialtyCollision.cs" />
+    <Compile Include="Controls\BallControls.cs" />
+    <Compile Include="Controls\MineControls.cs" />
+    <Compile Include="Fonts\Font.cs" />
+    <Compile Include="Managers\Menu.cs" />
+    <Compile Include="Managers\MenuManager.cs" />
+    <Compile Include="Managers\PlayersInfo.cs" />
+    <Compile Include="Managers\RegenManager.cs" />
+    <Compile Include="Managers\ShuffleItems.cs" />
+    <Compile Include="Screens\MenuItem.cs" />
+    <Compile Include="Objects\Item.cs" />
+    <Compile Include="Objects\CannonBall.cs" />
+    <Compile Include="Controls\PlayerControls.cs" />
+    <Compile Include="Objects\Specialties\Hurricane.cs" />
+    <Compile Include="Objects\Specialties\Lightning.cs" />
+    <Compile Include="Objects\Specialties\Mine.cs" />
+    <Compile Include="Objects\Specialties\Specialty.cs" />
+    <Compile Include="Screens\GameScreen.cs" />
+    <Compile Include="Managers\Image.cs" />
+    <Compile Include="Managers\InputManager.cs" />
+    <Compile Include="Managers\ScreenManager.cs" />
+    <Compile Include="Managers\XmlManager.cs" />
+    <Compile Include="Screens\TitleScreen.cs" />
+    <Compile Include="Objects\Player.cs" />
     <Compile Include="Enums\CoordsDirections.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Enums\ItemTypes.cs" />
@@ -96,7 +96,7 @@
     <Compile Include="GameObjects\Players\Player.cs" />
     <Compile Include="Enums\PlayerTypes.cs" />
     <Compile Include="GameObjects\Players\SecondPlayer.cs" />
-    <Compile Include="Handler\CombatHandler\CombatHandler.cs" />
+    <Compile Include="Handler\CombatHandler.cs" />
     <Compile Include="Interfaces\Bonuses\IWind.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Interfaces\IShoot.cs" />
@@ -257,9 +257,7 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Badass_Pirates\" />
-  </ItemGroup>
+  <ItemGroup />
   <!-- Specify the search path explicitly so the ResolveAssemblyReferences task picks the right ones -->
   <Target Name="BeforeResolveReferences">
     <CreateProperty Value="$(MSBuildProgramFiles32)\MonoGame\v3.0\Assemblies\Windows;$(AssemblySearchPaths)">

@@ -1,17 +1,13 @@
-﻿namespace Badass_Pirates.Handler.CombatHandler
+﻿namespace Badass_Pirates.Handler
 {
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Text;
-
-    using Badass_Pirates.EngineComponents.Collisions;
-    using Badass_Pirates.EngineComponents.Controls;
-    using Badass_Pirates.EngineComponents.Fonts;
+    using Badass_Pirates.Collisions;
+    using Badass_Pirates.Controls;
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Exceptions;
+    using Badass_Pirates.Fonts;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

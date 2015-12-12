@@ -1,11 +1,10 @@
-﻿namespace Badass_Pirates.EngineComponents.Controls
+﻿namespace Badass_Pirates.Controls
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Objects;
-    using Badass_Pirates.EngineComponents.Objects.Specialties;
     using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Managers;
+    using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

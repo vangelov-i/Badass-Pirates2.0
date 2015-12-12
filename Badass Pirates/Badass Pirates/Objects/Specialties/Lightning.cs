@@ -1,9 +1,7 @@
-﻿namespace Badass_Pirates.EngineComponents.Objects.Specialties
+﻿namespace Badass_Pirates.Objects.Specialties
 {
     using System.Diagnostics;
 
-    using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Screens;
     using Badass_Pirates.GameObjects.Players;
 
     using Microsoft.Xna.Framework;

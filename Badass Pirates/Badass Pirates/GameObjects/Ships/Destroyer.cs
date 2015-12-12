@@ -1,10 +1,6 @@
 ﻿namespace Badass_Pirates.GameObjects.Ships
 {
-    using System.Collections.Generic;
-    using System.ComponentModel;
-
-    using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.EngineComponents.Objects.Specialties;
+    using Badass_Pirates.Objects.Specialties;
 
     public class Destroyer : Ship
     {

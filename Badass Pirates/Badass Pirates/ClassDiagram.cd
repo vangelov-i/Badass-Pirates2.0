@@ -1,219 +1,84 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
-  <Class Name="Badass_Pirates.EngineComponents.Collisions.BallCollision" Collapsed="true">
-    <Position X="7.75" Y="0.5" Width="1.5" />
+  <Class Name="Badass_Pirates.Collisions.BallCollision" Collapsed="true">
+    <Position X="11" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Collisions\BallCollision.cs</FileName>
+      <FileName>Collisions\BallCollision.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Collisions.ItemsCollision" Collapsed="true">
-    <Position X="9.5" Y="2.5" Width="1.5" />
+  <Class Name="Badass_Pirates.Collisions.ItemsCollision" Collapsed="true">
+    <Position X="12.75" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Collisions\ItemsCollision.cs</FileName>
+      <FileName>Collisions\ItemsCollision.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Collisions.SpecialtyCollision" Collapsed="true">
-    <Position X="16.75" Y="4.5" Width="1.5" />
+  <Class Name="Badass_Pirates.Collisions.SpecialtyCollision" Collapsed="true">
+    <Position X="11" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAACAAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Collisions\SpecialtyCollision.cs</FileName>
+      <FileName>Collisions\SpecialtyCollision.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Controls.BallControls" Collapsed="true">
-    <Position X="9.5" Y="0.5" Width="1.5" />
+  <Class Name="Badass_Pirates.Controls.BallControls" Collapsed="true">
+    <Position X="12.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAABAQAAAAAAQAAAAAARAAAAABAKgAACABEAAAAQA=</HashCode>
-      <FileName>EngineComponents\Controls\BallControls.cs</FileName>
+      <FileName>Controls\BallControls.cs</FileName>
     </TypeIdentifier>
   </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Controls.PlayerControls" Collapsed="true">
-    <Position X="16.75" Y="3.5" Width="1.5" />
+  <Class Name="Badass_Pirates.Controls.PlayerControls" Collapsed="true">
+    <Position X="19.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AKAAAQAAAAAAJAAAAAAIAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Controls\PlayerControls.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Fonts.Font" Collapsed="true">
-    <Position X="13" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAACEAIAAAAAAgAAAAAAAAAAAAAAAACAAMAAAAAAAAQ=</HashCode>
-      <FileName>EngineComponents\Fonts\Font.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Managers.Image" Collapsed="true">
-    <Position X="14.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQCEAAAAAAAAwIgEAAAIAAAAAAAAgAAAAIAAAAAAAQ=</HashCode>
-      <FileName>EngineComponents\Managers\Image.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Managers.InputManager" Collapsed="true">
-    <Position X="16.75" Y="1.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAAAAAAAAgAQAIAAAAAAAAAAAAAAAAAAAABBAABA=</HashCode>
-      <FileName>EngineComponents\Managers\InputManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Managers.Menu" Collapsed="true">
-    <Position X="13" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Managers\Menu.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Managers.MenuManager" Collapsed="true">
-    <Position X="16.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Managers\MenuManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Managers.PlayersInfo" Collapsed="true">
-    <Position X="7.75" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAgAAAAAAAAAIAAAAAAAAAAAAAAABAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Managers\PlayersInfo.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Managers.ShuffleItems" Collapsed="true">
-    <Position X="13" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAEgA=</HashCode>
-      <FileName>EngineComponents\Managers\ShuffleItems.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.ScreenManager" Collapsed="true">
-    <Position X="11.25" Y="4.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAEAAAAgAAAwAAAAAAAAIAAABAAAAAQCAkAAAAAAQ=</HashCode>
-      <FileName>EngineComponents\Managers\ScreenManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.XmlManager&lt;T&gt;" Collapsed="true">
-    <Position X="7.75" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAgIAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>EngineComponents\Managers\XmlManager.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.MenuItem" Collapsed="true">
-    <Position X="14.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAAIAAAAAA=</HashCode>
-      <FileName>EngineComponents\MenuItem.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Objects.CannonBall" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="13" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAIUAAAAkAAAwBgAAAAIAAABgAGEgEQAQACEIEAAIQ=</HashCode>
-      <FileName>EngineComponents\Objects\CannonBall.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Objects.Item" Collapsed="true">
-    <Position X="7.75" Y="2.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAGAgAAABAAwAgAAICIAAAAAhAAAAAQAwCYAAAAAQ=</HashCode>
-      <FileName>EngineComponents\Objects\Item.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Objects.Player" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="14.75" Y="3.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AEQAEAAAAAAABwAAAAAIgMCAAAAQAkAAIAABgEAABQQ=</HashCode>
-      <FileName>EngineComponents\Objects\Player.cs</FileName>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Objects.Specialties.Hurricane" Collapsed="true">
-    <Position X="0.75" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAYAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgA=</HashCode>
-      <FileName>EngineComponents\Objects\Specialties\Hurricane.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Objects.Specialties.Lightning" Collapsed="true">
-    <Position X="3" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAACAAAAAAAAAAAAAEAAAAAAAAAAASAAAAAAAAgA=</HashCode>
-      <FileName>EngineComponents\Objects\Specialties\Lightning.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Objects.Specialties.Mine" Collapsed="true">
-    <Position X="5.25" Y="6.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAAACAAAAAAwAAAIAAAACAAAAAAAAAAAAAAAAAAgQ=</HashCode>
-      <FileName>EngineComponents\Objects\Specialties\Mine.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Objects.Specialties.Specialty" Collapsed="true">
-    <Position X="3" Y="5.25" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>ACQAEACAAAAAgwAgAAIKMAAAEAAEABAAAAABAAAgAAQ=</HashCode>
-      <FileName>EngineComponents\Objects\Specialties\Specialty.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Screens.GameScreen" Collapsed="true">
-    <Position X="5.25" Y="0.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQAEAAAAgAAAwAAAAAAAAAAAAAAAAAAAQAAAAAAAAQ=</HashCode>
-      <FileName>EngineComponents\Screens\GameScreen.cs</FileName>
-    </TypeIdentifier>
-  </Class>
-  <Class Name="Badass_Pirates.EngineComponents.Screens.TitleScreen" Collapsed="true">
-    <Position X="5.25" Y="2.75" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAQIEAACAAAAAwAAAAAAAAAAAAAAAAABAAAAAAAAIYQ=</HashCode>
-      <FileName>EngineComponents\Screens\TitleScreen.cs</FileName>
+      <HashCode>AKAAAQAAAAAAJAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Controls\PlayerControls.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.GameObjects.Players.FirstPlayer" Collapsed="true">
-    <Position X="2.75" Y="9" Width="1.5" />
+    <Position X="0.5" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Players\FirstPlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.GameObjects.Players.Player" Collapsed="true">
-    <Position X="1.75" Y="7.75" Width="1.5" />
+    <Position X="1.75" Y="6.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAMAAAAAAAAQCAACAAAAAAAAAAAIAAAA=</HashCode>
       <FileName>GameObjects\Players\Player.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.GameObjects.Players.SecondPlayer" Collapsed="true">
-    <Position X="0.75" Y="9" Width="1.5" />
+    <Position X="2.75" Y="7.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>GameObjects\Players\SecondPlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.GameObjects.Ships.Battleship" Collapsed="true">
-    <Position X="0.75" Y="4.25" Width="1.5" />
+    <Position X="5.25" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAABAEAAAAAIAAACAAAAoA=</HashCode>
       <FileName>GameObjects\Ships\BattleShip.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.GameObjects.Ships.Cruiser" Collapsed="true">
-    <Position X="3" Y="4.25" Width="1.5" />
+    <Position X="0.75" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAABAEAAAAAIAAACAAAAoA=</HashCode>
       <FileName>GameObjects\Ships\Cruiser.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.GameObjects.Ships.Destroyer" Collapsed="true">
-    <Position X="5.25" Y="4.25" Width="1.5" />
+    <Position X="3" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAAAAAAAAAAAAAAAAAAAAABAEAAAAAIAAACAAAAoA=</HashCode>
       <FileName>GameObjects\Ships\Destroyer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.GameObjects.Ships.Ship" Collapsed="true">
-    <Position X="3" Y="2" Width="1.5" />
+    <Position X="3" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAACACEEIAAAgAiAABGIBIBAIAiAgQAAAAEAARAAAI=</HashCode>
       <FileName>GameObjects\Ships\Ship.cs</FileName>
@@ -221,219 +86,360 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="Badass_Pirates.Exceptions.NotCorrectNameException" Collapsed="true">
-    <Position X="7.75" Y="3.5" Width="1.5" />
+    <Position X="11" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\NotCorrectNameException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Exceptions.OutOfEnergyException" Collapsed="true">
-    <Position X="9.5" Y="3.5" Width="1.5" />
+    <Position X="12.75" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\OutOfEnergyException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Exceptions.OutOfHealthException" Collapsed="true">
-    <Position X="11.25" Y="3.5" Width="1.5" />
+    <Position X="14.5" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\OutOfHealthException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Exceptions.OutOfShieldsException" Collapsed="true">
-    <Position X="13" Y="3.5" Width="1.5" />
+    <Position X="16.25" Y="3.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Exceptions\OutOfShieldsException.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Factory.CreateBonusTypeEffect" Collapsed="true">
-    <Position X="16.75" Y="0.5" Width="1.5" />
+    <Position X="19.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factory\CreateBonusTypeEffect.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Factory.CreatePlayer" Collapsed="true">
-    <Position X="7.75" Y="1.5" Width="1.5" />
+    <Position X="11" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Factory\CreatePlayer.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Factory.CreatePotionEffect" Collapsed="true">
-    <Position X="9.5" Y="1.5" Width="1.5" />
+    <Position X="12.75" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factory\CreatePotionEffect.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Factory.CreateShip" Collapsed="true">
-    <Position X="11.25" Y="1.5" Width="1.5" />
+    <Position X="14.5" Y="1.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAA=</HashCode>
       <FileName>Factory\CreateShip.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Factory.SpawnBoss" Collapsed="true">
-    <Position X="14.75" Y="4.5" Width="1.5" />
+    <Position X="19.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Factory\SpawnBoss.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Badass_Pirates.Fonts.Font" Collapsed="true">
+    <Position X="16.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACEAIAAAAAAgAAAAAAAAAAAAAAAACAAMAAAAAAAAQ=</HashCode>
+      <FileName>Fonts\Font.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Class Name="Badass_Pirates.GameObjects.Mobs.Boss.Boss" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="11.25" Y="0.5" Width="1.5" />
+    <Position X="14.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACACAAIAAgAAAAAAAAAABAIAAAwAAAAAAAAAAAAg=</HashCode>
       <FileName>GameObjects\Mobs\Boss\Boss.cs</FileName>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
-  <Class Name="Badass_Pirates.Handler.CombatHandler.CombatHandler" Collapsed="true">
-    <Position X="14.75" Y="0.5" Width="1.5" />
+  <Class Name="Badass_Pirates.Handler.CombatHandler" Collapsed="true">
+    <Position X="18" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
-      <FileName>Handler\CombatHandler\CombatHandler.cs</FileName>
+      <HashCode>AOQAEQAAAAAABgAAAAAIAAAAAAAAAECAAAABAAABBQQ=</HashCode>
+      <FileName>Handler\CombatHandler.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.MainEngine" Collapsed="true">
-    <Position X="11.25" Y="2.5" Width="1.5" />
+    <Position X="14.5" Y="2.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAQAEEAAAAAAAwACAAAAAAAAAAAAAAgAAAAAAAAAAAQ=</HashCode>
       <FileName>MainEngine.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="Badass_Pirates.Program" Collapsed="true">
-    <Position X="9.5" Y="4.5" Width="1.5" />
+    <Position X="12.75" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
       <FileName>Program.cs</FileName>
     </TypeIdentifier>
   </Class>
+  <Class Name="Badass_Pirates.Managers.Image" Collapsed="true">
+    <Position X="18" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQCEAAAAAAAAwIgEAAAIAAAAAAAAgAAAAIAAAAAAAQ=</HashCode>
+      <FileName>Managers\Image.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Managers.PlayersInfo" Collapsed="true">
+    <Position X="11" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\PlayersInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Managers.ScreenManager" Collapsed="true">
+    <Position X="16.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAgAAAwAAAAAAAAIAAABAAAAAQCAkAAAAAAQ=</HashCode>
+      <FileName>Managers\ScreenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Managers.ShuffleItems" Collapsed="true">
+    <Position X="18" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAQAAAAgAAAAAAAAAAAAAAAAAAAAAAAEgA=</HashCode>
+      <FileName>Managers\ShuffleItems.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.EngineComponents.Managers.InputManager" Collapsed="true">
+    <Position X="19.75" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAgAQAIAAAAAAAAAAAAAAAAAAAABBAABA=</HashCode>
+      <FileName>Managers\InputManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.EngineComponents.Managers.Menu" Collapsed="true">
+    <Position X="16.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\Menu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.EngineComponents.Managers.MenuManager" Collapsed="true">
+    <Position X="19.75" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\MenuManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.EngineComponents.Managers.RegenManager" Collapsed="true">
+    <Position X="14.5" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAAAAAAAAAAAAAEAAAAQAABAAAgAAABAABA=</HashCode>
+      <FileName>Managers\RegenManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.EngineComponents.XmlManager&lt;T&gt;" Collapsed="true">
+    <Position X="12.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgIAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Managers\XmlManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Objects.CannonBall" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIUAAAAkAAAwBgAAAAIAAABgAGEgEQAQACEIEAAIQ=</HashCode>
+      <FileName>Objects\CannonBall.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Badass_Pirates.Objects.Item" Collapsed="true">
+    <Position X="11" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAGAgAAABAAwAgAAICIAAAAAhAAAAAQAwCYAAAAAQ=</HashCode>
+      <FileName>Objects\Item.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Objects.Player" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAAABwAAAAAIgMCAAIAAAgAAIAABgEAAAAQ=</HashCode>
+      <FileName>Objects\Player.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Badass_Pirates.Objects.Specialties.Hurricane" Collapsed="true">
+    <Position X="0.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYAAACAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAgA=</HashCode>
+      <FileName>Objects\Specialties\Hurricane.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Objects.Specialties.Lightning" Collapsed="true">
+    <Position X="3" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAAAAAAAAEAAAAAAAAAAASAAAAAAAAgA=</HashCode>
+      <FileName>Objects\Specialties\Lightning.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Objects.Specialties.Mine" Collapsed="true">
+    <Position X="5.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAACAAAAAAwAAAIAAAACAAAEAAAAAAAAAAAAAAgQ=</HashCode>
+      <FileName>Objects\Specialties\Mine.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Objects.Specialties.Specialty" Collapsed="true">
+    <Position X="3" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ACQAEACAAAAAgwAgAAIKMAAAEAAEABAAAAABAAAgAAQ=</HashCode>
+      <FileName>Objects\Specialties\Specialty.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Screens.GameScreen" Collapsed="true">
+    <Position X="5.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAgAAAwAAAAAAAAAAAAAAAAAAAQAAAAAAAAQ=</HashCode>
+      <FileName>Screens\GameScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Screens.MenuItem" Collapsed="true">
+    <Position X="18" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgABAAAAAAIAAAAAA=</HashCode>
+      <FileName>Screens\MenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Badass_Pirates.Screens.TitleScreen" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQIEAACAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAIYQ=</HashCode>
+      <FileName>Screens\TitleScreen.cs</FileName>
+    </TypeIdentifier>
+  </Class>
   <Interface Name="Badass_Pirates.Interfaces.Bonuses.IDamage" Collapsed="true">
-    <Position X="9.75" Y="6.5" Width="1.5" />
+    <Position X="12.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AgAAAAAAAAAAAgAAAAAAABAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\Bonuses\IDamage.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.Bonuses.IFreeze" Collapsed="true">
-    <Position X="11.75" Y="6.5" Width="1.5" />
+    <Position X="14.5" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAgAAAAAAAAAAAAAAAAQAAAAAAAAAAAI=</HashCode>
       <FileName>Interfaces\Bonuses\IFreeze.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.Bonuses.IWind" Collapsed="true">
-    <Position X="9.75" Y="7.5" Width="1.5" />
+    <Position X="12.75" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAA=</HashCode>
       <FileName>Interfaces\Bonuses\IWind.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.IAttack" Collapsed="true">
-    <Position X="7.5" Y="6.5" Width="1.5" />
+    <Position X="11" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IAttack.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.IGet" Collapsed="true">
-    <Position X="13.75" Y="6.5" Width="1.5" />
+    <Position X="16.25" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAIAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IGet.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.IMoveable" Collapsed="true">
-    <Position X="15.5" Y="6.5" Width="1.5" />
+    <Position X="18" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IMoveable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.IPositionable" Collapsed="true">
-    <Position X="5.25" Y="7.75" Width="1.5" />
+    <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\IPositionable.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.IShoot" Collapsed="true">
-    <Position X="5.25" Y="9" Width="1.5" />
-    <InheritanceLine Type="Badass_Pirates.Interfaces.IPositionable" ManuallyRouted="true" FixedFromPoint="true">
-      <Path>
-        <Point X="6" Y="8.312" />
-        <Point X="6" Y="8.625" />
-        <Point X="6" Y="8.625" />
-        <Point X="6" Y="9" />
-      </Path>
-    </InheritanceLine>
+    <Position X="8.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AABIEAAAAEAAEwAAAAADAAAAAQACAAMAAAAAAABAAAU=</HashCode>
       <FileName>Interfaces\IShoot.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.ISink" Collapsed="true">
-    <Position X="17.25" Y="6.5" Width="1.5" />
+    <Position X="19.75" Y="6.75" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\ISink.cs</FileName>
     </TypeIdentifier>
   </Interface>
   <Interface Name="Badass_Pirates.Interfaces.ISpecialty" Collapsed="true">
-    <Position X="7.5" Y="7.5" Width="1.5" />
+    <Position X="11" Y="7.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Interfaces\ISpecialty.cs</FileName>
     </TypeIdentifier>
   </Interface>
+  <Interface Name="Badass_Pirates.Interfaces.IXnaDependences" Collapsed="true">
+    <Position X="14.5" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAEAAAAAAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>Interfaces\IXnaDependences.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
   <Enum Name="Badass_Pirates.Enums.BonusType" Collapsed="true">
-    <Position X="7.5" Y="8.5" Width="1.5" />
+    <Position X="11" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAIEAAAAAAI=</HashCode>
       <FileName>Enums\BonusType.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Badass_Pirates.Enums.CoordsDirections" Collapsed="true">
-    <Position X="9.75" Y="8.5" Width="1.5" />
+    <Position X="12.75" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAIAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Enums\CoordsDirections.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Badass_Pirates.Enums.Direction" Collapsed="true">
-    <Position X="9.75" Y="9.25" Width="1.5" />
+    <Position X="14.5" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
       <FileName>Enums\Direction.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Badass_Pirates.Enums.ItemTypes" Collapsed="true">
-    <Position X="12" Y="8.5" Width="1.5" />
+    <Position X="16.25" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAAAAAAAACAAIEAACBAAI=</HashCode>
       <FileName>Enums\ItemTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Badass_Pirates.Enums.PotionTypes" Collapsed="true">
-    <Position X="14" Y="8.5" Width="1.5" />
+    <Position X="19.75" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAACAAAAAAAAAAAAAAEAAAAAAAgAAAAAAIAAAAAAAA=</HashCode>
       <FileName>Enums\PotionTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Badass_Pirates.GameObjects.Players.PlayerTypes" Collapsed="true">
-    <Position X="12" Y="9.25" Width="1.5" />
+    <Position X="18" Y="8.5" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQA=</HashCode>
       <FileName>Enums\PlayerTypes.cs</FileName>
     </TypeIdentifier>
   </Enum>
   <Enum Name="Badass_Pirates.GameObjects.Ships.ShipType" Collapsed="true">
-    <Position X="7.5" Y="9.25" Width="1.5" />
+    <Position X="11" Y="9.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAAAAIA=</HashCode>
       <FileName>Enums\ShipType.cs</FileName>
