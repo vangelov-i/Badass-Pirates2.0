@@ -10,7 +10,7 @@
     {
         protected Image image;
 
-        private Point frameSize;
+        private Point FRAMESIZE;
 
         protected Vector2 position;
 
@@ -18,16 +18,16 @@
 
         private int damage;
 
-        protected bool draw;
+        public bool draw;
 
         protected Player firstPlayer ;
 
         protected Player secondPlayer;
 
-        protected Specialty(string path, Point frameSize,int dmg)
+        protected Specialty(string path, Point framesize,int dmg)
         {
             this.image = new Image(path);
-            this.frameSize = frameSize;
+            this.FRAMESIZE = framesize;
             this.Damage = dmg;
             this.specialtyFired = false;
             this.draw = false;
@@ -46,15 +46,15 @@
             }
         }
 
-        public Point FrameSize
+        public Point Framesize
         {
             get
             {
-                return this.frameSize;
+                return this.FRAMESIZE;
             }
             set
             {
-                this.frameSize = value;
+                this.FRAMESIZE = value;
             }
         }
 

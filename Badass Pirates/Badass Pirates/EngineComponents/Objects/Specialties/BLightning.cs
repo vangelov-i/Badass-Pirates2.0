@@ -18,7 +18,7 @@
 
         private const int DAMAGE = 35;
 
-        private Stopwatch lightningTimer;
+        private readonly Stopwatch lightningTimer;
         
         public BLightning()
             : base(PATH, FRAMESIZE, DAMAGE)

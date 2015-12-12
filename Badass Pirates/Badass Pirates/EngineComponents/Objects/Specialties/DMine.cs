@@ -1,5 +1,6 @@
 ﻿namespace Badass_Pirates.EngineComponents.Objects.Specialties
 {
+    using Badass_Pirates.EngineComponents.Collisions;
     using Badass_Pirates.GameObjects.Players;
 
     using Microsoft.Xna.Framework;
@@ -18,6 +19,8 @@
         private static Vector2 mineStartPos;
 
         private static int counter;
+
+        private static bool collide;
 
         #endregion
 
@@ -44,6 +47,26 @@
 
         public override void Update(GameTime gameTime, Player currentPlayer)
         {
+            // Проверка за играча и колизия с мината
+            if (currentPlayer != this.firstPlayer)
+            {
+                collide = SpecialtyCollision.Collide(this.firstPlayer.Ship, this);
+                if (collide)
+                {
+                    currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);
+                    this.draw = false;
+                }
+            }
+            else
+            {
+                collide = SpecialtyCollision.Collide(this.secondPlayer.Ship, this);
+                if (collide)
+                {
+                    currentPlayer.Ship.SpecialtyAttack(this.secondPlayer.Ship);
+                    this.draw = false;
+                }
+            }
+            
             if (this.SpecialtyFired)
             {
                 this.draw = true;

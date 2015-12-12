@@ -12,7 +12,7 @@ namespace Badass_Pirates.EngineComponents.Collisions
     {
         private const int COLLISION_OFFSET = 10;
 
-        public static bool Collide(Ship shipColliding,CannonBall ball)
+        public static bool Collide(Ship shipColliding, CannonBall ball)
         {
             Rectangle shipRect = new Rectangle(
                (int)shipColliding.Position.X + COLLISION_OFFSET,
@@ -31,7 +31,7 @@ namespace Badass_Pirates.EngineComponents.Collisions
                 ball.Position = new Vector2(9999,9999); // might be buggy
                 return true;
             }
-            else if (ball.Position.Y >= ball.BallFiredPos.Y)
+            if (ball.Position.Y >= ball.BallFiredPos.Y)
             {
                 ball.Position = new Vector2(999,999);
             }

@@ -36,7 +36,7 @@
             base.Initialise();
             FirstPlayer = new Player();
             SecondPlayer = new Player();
-            FirstPlayer.Initialise(ShipType.Battleship, PlayerTypes.FirstPlayer);
+            FirstPlayer.Initialise(ShipType.Destroyer, PlayerTypes.FirstPlayer);
             SecondPlayer.Initialise(ShipType.Cruiser, PlayerTypes.SecondPlayer);
             this.end = false;
             this.gameOver = new Font(Color.DarkRed, "Fonts", "big");
