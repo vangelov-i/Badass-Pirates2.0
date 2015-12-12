@@ -186,7 +186,7 @@
                 this.CurrentPlayer.Ship.UnWind();
             }
 
-            RegenManager.EnergyRegenUpdate(gameTime, this.firstPlayer,this.secondPlayer);
+            RegenManager.EnergyRegenUpdate(this.firstPlayer,this.secondPlayer);
             
             this.shipImage.Update(gameTime);
             this.CurrentPlayer.InputManagerInstance.RotateStates();

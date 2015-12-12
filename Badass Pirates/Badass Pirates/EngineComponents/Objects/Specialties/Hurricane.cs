@@ -9,14 +9,14 @@
     {
         private const string PATH = "Specialties/hurricaneResized";
 
-        private static readonly Point FRAMESIZE = new Point(250, 250);
+        private static readonly Point frameSize = new Point(250, 250);
 
         private const int DAMAGE = 30;
 
         private const int HURRICANE_SPEED = 10;
 
         public Hurricane()
-            : base(PATH, FRAMESIZE, DAMAGE)
+            : base(PATH, frameSize, DAMAGE)
         {
         }
 

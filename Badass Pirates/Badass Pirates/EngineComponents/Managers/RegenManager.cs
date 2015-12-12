@@ -22,7 +22,7 @@
             stopWatch.Start();
         }
 
-        public static void EnergyRegenUpdate(GameTime gameTime, Player firstPlayer,Player secondPlayer)
+        public static void EnergyRegenUpdate(Player firstPlayer,Player secondPlayer)
         {
             if ((int)RegenManager.stopWatch.Elapsed.TotalSeconds == RegenManager.elapsedTimeValidation)
             {

@@ -18,6 +18,8 @@
 
         private static Vector2 mineStartPos;
 
+        private static int SPEED = 10;
+
         private static int flag;
 
         #endregion
@@ -45,7 +47,7 @@
 
         public override void Update(GameTime gameTime, Player currentPlayer)
         {
-            // Проверка за играча и колизия с мината
+            // ЛОГИКА ПРИ КОЛИЗИЯ НА МИНАТА
             if (currentPlayer != this.firstPlayer)
             {
                 collide = SpecialtyCollision.Collide(this.firstPlayer.Ship, this);
@@ -65,20 +67,21 @@
                 }
             }
             
+            // НАСТРОЙКА НА ПОЗИЦИЯТА ПРИ ПУСКАНЕ НА МИНАТА
             if (this.SpecialtyFired)
             {
                 this.draw = true;
                 flag++; 
                 if (flag == 1)
                 {
-                    mineStartPos = new Vector2(currentPlayer.Ship.Position.X, currentPlayer.Ship.Position.Y);
-                    this.position.X = ScreenManager.Instance.Dimensions.X - currentPlayer.Ship.Position.X;
+                    mineStartPos = new Vector2(currentPlayer.Ship.Position.X - this.image.Texture.Width, currentPlayer.Ship.Position.Y);
+                    this.position.X = ScreenManager.Instance.Dimensions.X - this.image.Texture.Width - currentPlayer.Ship.Position.X;
                     this.position.Y = -30f;
                 }
             }
             if (this.position.Y < mineStartPos.Y)
             {
-                this.position.Y += 5;
+                this.position.Y += SPEED;
             }
             else
             {
