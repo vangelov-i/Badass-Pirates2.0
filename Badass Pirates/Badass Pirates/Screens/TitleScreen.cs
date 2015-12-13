@@ -90,17 +90,17 @@
             base.Update(gameTime);
             Item.Update(gameTime);
 
-            try
-            {
+            //try
+            //{
                 FirstPlayer.Update(gameTime);
                 SecondPlayer.Update(gameTime);
-            }
-            catch (OutOfHealthException)
-            {
-                this.end = true;
-                PlayerControls.control = false;
-                BallControls.control = false;
-            }
+            //}
+            //catch (OutOfHealthException)
+            //{
+            //    this.end = true;
+            //    PlayerControls.control = false;
+            //    BallControls.control = false;
+            //}
 
             FontsManager.Update(gameTime, this.end);
         }

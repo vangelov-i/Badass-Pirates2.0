@@ -140,7 +140,7 @@
         {
             current.InputManagerInstance.RotateStates();
 
-            if (current.Ship.Energy >= Ship.energyStatic && firstPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
+            if (current.Ship.Energy >= Ship.MAX_ENERGY && firstPlayer.InputManagerInstance.KeyDown(Keys.LeftShift))
             {
                 if (current.Ship is Battleship)
                 {
@@ -161,7 +161,7 @@
         {
             current.InputManagerInstance.RotateStates();
 
-            if (current.Ship.Energy >= Ship.energyStatic && secondPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
+            if (current.Ship.Energy >= Ship.MAX_ENERGY && secondPlayer.InputManagerInstance.KeyDown(Keys.RightShift))
             {
                 if (current.Ship is Battleship)
                 {

@@ -14,7 +14,7 @@
 
         private static Font energyFont;
 
-        private static Font gameOver;
+        //private static Font gameOver;
 
         private static Player firstPlayer;
 
@@ -27,7 +27,7 @@
             FontsManager.energyFont = new Font(Color.Yellow, "Fonts", "big");
             FontsManager.hpFont = new Font(Color.Green, "Fonts", "big");
             FontsManager.shieldFont = new Font(Color.Black, "Fonts", "big");
-            FontsManager.gameOver = new Font(Color.DarkRed, "Fonts", "big");
+            //FontsManager.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             FontsManager.end = false;
             firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
             secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
@@ -38,7 +38,7 @@
             FontsManager.energyFont.LoadContent();
             FontsManager.hpFont.LoadContent();
             FontsManager.shieldFont.LoadContent();
-            FontsManager.gameOver.LoadContent();
+            //FontsManager.gameOver.LoadContent();
         }
 
         public static void UnloadContent()
@@ -46,12 +46,12 @@
             FontsManager.energyFont.UnloadContent();
             FontsManager.hpFont.UnloadContent();
             FontsManager.shieldFont.UnloadContent();
-            FontsManager.gameOver.UnloadContent();
+            //FontsManager.gameOver.UnloadContent();
         }
 
         public static void Update(GameTime gameTime,bool endDraw)
         {
-            FontsManager.end = endDraw;
+            //FontsManager.end = endDraw;
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -90,13 +90,13 @@
 
             #region GameOver
 
-            if (FontsManager.end)
-            {
-                FontsManager.gameOver.Draw(
-                    spriteBatch,
-                    new Vector2(400, 140),
-                    $"SHIP {(firstPlayer.Ship.Health <= 0 ? " Second" : $" {(secondPlayer.Ship.Health <= 0 ? "First" : null)} VICTORY")}");
-            }
+            //if (FontsManager.end)
+            //{
+            //    FontsManager.gameOver.Draw(
+            //        spriteBatch,
+            //        new Vector2(400, 140),
+            //        $"SHIP {(firstPlayer.Ship.Health <= 0 ? " Second" : $" {(secondPlayer.Ship.Health <= 0 ? "First" : null)} VICTORY")}");
+            //}
 
             #endregion
 

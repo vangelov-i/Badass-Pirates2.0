@@ -16,18 +16,31 @@
 
     public abstract class Ship : IAttack, IMoveable, ISink, IPositionable, IFreeze, IDamage, IWind
     {
-
+        #region Fields
         public static readonly Point FrameSize = new Point(137, 150);
 
         private Vector2 position;
 
         private readonly int previousSpeed;
 
-        public static int energyStatic = 100;
+        public const int MAX_ENERGY = 100;
 
         private readonly int specialtyDamage;
 
         private Specialty specialty;
+
+        #region Points
+        private int damage;
+        private int health;
+        private int shields;
+        private int energy;
+        private int speed;
+        private int flag;
+
+        #endregion
+
+
+        #endregion
 
         protected Ship(int damage, int health, int shields, int energy, int speed, int specialtyDamage, Specialty specialty)
         {
@@ -42,6 +55,7 @@
             this.WindTimeOut = new Stopwatch();
             this.previousSpeed = this.Speed;
             this.specialty = specialty;
+            this.flag = -1;
         }
 
         #region Properties
@@ -58,15 +72,7 @@
             }
         }
 
-        public int Damage { get; set; }
-
-        public int Health { get; set; }
-
-        public int Shields { get; set; }
-
-        public int Energy { get; set; }
-
-        public int Speed { get; set; }
+       
         
         public Stopwatch WindTimeOut { get; set; }
 
@@ -83,6 +89,115 @@
             set
             {
                 this.specialty = value;
+            }
+        }
+
+        public int Damage
+        {
+            get
+            {
+                return this.damage;
+            }
+
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value),"cannot be negative !");
+                }
+                this.damage = value;
+            }
+        }
+
+        public int Health
+        {
+            get
+            {
+                return this.health;
+            }
+
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "cannot be negative !");
+                }
+                if (value > 101)
+                {
+                    this.flag = 0;
+                }
+                if (this.flag == 0)
+                {
+                    value = 100;
+                }
+
+                this.health = value;
+                this.flag = -1;
+            }
+        }
+
+        public int Shields
+        {
+            get
+            {
+                return this.shields;
+            }
+            set
+            {
+                this.shields = value;
+            }
+        }
+
+        public int Energy
+        {
+            get
+            {
+                return this.energy;
+            }
+            set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "cannot be negative !");
+                }
+                if (this.energy + value > 100)
+                {
+                    this.flag = 0;
+                }
+                if (this.flag == 0)
+                {
+                    value = 100;
+                }
+
+                this.energy = value;
+                this.flag = -1;
+            }
+        }
+
+        public int Speed
+        {
+            get
+            {
+                return this.speed;
+            }
+
+            private set
+            {
+                if (value < 0)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(value), "cannot be negative !");
+                }
+                if (this.speed + value > 8)
+                {
+                    this.flag = 0;
+                }
+                if (this.flag == 0)
+                {
+                    value = 8;
+                }
+
+                this.speed = value;
+                this.flag = -1;
             }
         }
 
@@ -122,11 +237,6 @@
             {
                 target.Health -= this.specialtyDamage;
             }
-        }
-
-        private void ValidateShields(Ship target)
-        {
-           throw new NotImplementedException();
         }
 
         public void Sink(Ship target)

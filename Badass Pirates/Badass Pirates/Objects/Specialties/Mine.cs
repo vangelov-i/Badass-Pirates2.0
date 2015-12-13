@@ -15,8 +15,8 @@
 
         private const string PATH = "Specialties/seamineResized";
 
-        private static readonly Point FRAMESIZE = new Point(150, 150);
-
+        private static readonly Point frameSize = new Point(150, 150);
+        
         private static Vector2 mineStartPos;
 
         private static int SPEED = 10;
@@ -28,9 +28,11 @@
         #region Constructor
         
         public Mine()
-            : base(PATH, FRAMESIZE, DAMAGE)
+            : base(PATH, frameSize, DAMAGE)
         {
             flag = 0;
+            this.position.X = 9000f;//ScreenManager.Instance.Dimensions.X - pos.X;
+            this.position.Y = 9000f;
         }
         #endregion
 
@@ -42,31 +44,34 @@
 
         public override void Initialise(Vector2 pos)
         {
-            this.position.X = ScreenManager.Instance.Dimensions.X - pos.X;
-            this.position.Y = -30f;
+            //this.position.X = ScreenManager.Instance.Dimensions.X - pos.X;
+            //this.position.Y = -30f;
         }
 
         public override void Update(GameTime gameTime, Player currentPlayer)
         {
             // ЛОГИКА ПРИ КОЛИЗИЯ НА МИНАТА
-            if (currentPlayer != this.firstPlayer)
-            {
-                collide = SpecialtyCollision.Collide(this.firstPlayer.Ship, this);
-                if (collide)
+            // TODO NOT WORKING COLLISION
+            
+                if (currentPlayer != this.firstPlayer)
                 {
-                    currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);
-                    this.draw = false;
+                    collide = SpecialtyCollision.Collide(this.firstPlayer.Ship, this);
+                    if (collide)
+                    {
+                        currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);
+                        this.draw = false;
+                    }
                 }
-            }
-            else
-            {
-                collide = SpecialtyCollision.Collide(this.secondPlayer.Ship, this);
-                if (collide)
+                else
                 {
-                    currentPlayer.Ship.SpecialtyAttack(this.secondPlayer.Ship);
-                    this.draw = false;
+                    collide = SpecialtyCollision.Collide(this.secondPlayer.Ship, this);
+                    if (collide)
+                    {
+                        currentPlayer.Ship.SpecialtyAttack(this.secondPlayer.Ship);
+                        this.draw = false;
+                    }
                 }
-            }
+           
             
             // НАСТРОЙКА НА ПОЗИЦИЯТА ПРИ ПУСКАНЕ НА МИНАТА
             if (this.SpecialtyFired)
@@ -93,8 +98,6 @@
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 pos)
         {
-            // TODO set timeout by energy points needed
-
             if (this.draw)
             {
                 this.image.Draw(spriteBatch, pos);

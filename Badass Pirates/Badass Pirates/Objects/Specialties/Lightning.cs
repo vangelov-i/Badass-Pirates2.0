@@ -10,7 +10,7 @@
     {
         private const string PATH = "Specialties/lightningResized";
 
-        private static readonly Point FRAMESIZE = new Point(250,245);
+        private static readonly Point frameSize = new Point(250,245);
 
         private const int LIGHTNING_TIME = 3;
 
@@ -19,7 +19,7 @@
         private readonly Stopwatch lightningTimer;
         
         public Lightning()
-            : base(PATH, FRAMESIZE, DAMAGE)
+            : base(PATH, frameSize, DAMAGE)
         {
             this.lightningTimer = new Stopwatch();
         }

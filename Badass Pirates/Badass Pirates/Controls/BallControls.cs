@@ -23,8 +23,6 @@
 
         public static bool control = true;
 
-        private PlayerTypes type;
-
         public static void CannonBallInitialise()
         {
             ballFirst = new CannonBall();
@@ -180,11 +178,8 @@
             {
                 ballSecond.SetPositionRangeX(
                     (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - shipImage.Texture.Width));
-                // ScreenManager.Instance.Dimensions.X / 2) - ballSecond.BallFiredPos.X + shipImage.Texture.Width
 
                 if (ballSecond.Position.Y < ballSecond.BallFiredPos.Y)
-                // && (ballSecond.Position.Y < currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)
-                // version 2 ballSecond.Position.X > ScreenManager.Instance.Dimensions.X - ballSecond.BallFiredPos.X - ballSecond.BallRangeX.X
                 {
                     ballSecond.Draw(spriteBatch);
                 }
