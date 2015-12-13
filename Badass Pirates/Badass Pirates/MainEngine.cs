@@ -14,8 +14,7 @@
         private GraphicsDeviceManager graphics;
 
         private SpriteBatch spriteBatch;
-
-        public static SpriteBatch InstanceBatch;
+        
         
         public MainEngine()
         {
@@ -31,7 +30,6 @@
         /// </summary>
         protected override void Initialize()
         {
-            MainEngine.InstanceBatch = this.spriteBatch;
             // TODO: Add your initialization logic here
             this.Content.RootDirectory = "Content";
             this.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;

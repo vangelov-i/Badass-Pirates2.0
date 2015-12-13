@@ -14,9 +14,16 @@
 
         public static PotionTypes typePotion = 0;
 
-        public static Image Shuffle(Random random)
+        private static Random random;
+
+        static ShuffleItems()
         {
-            switch (ReturnItem(random))
+            random = new Random();
+        }
+
+        public static Image Shuffle()
+        {
+            switch (ReturnItem())
             {
                 case ItemTypes.EnergyPotion:
                     typePotion = PotionTypes.Energy;
@@ -48,7 +55,7 @@
             }
         }
 
-        private static ItemTypes ReturnItem(Random random)
+        private static ItemTypes ReturnItem()
         {
             var current = (ItemTypes)random.Next(1, 7);
             return current;

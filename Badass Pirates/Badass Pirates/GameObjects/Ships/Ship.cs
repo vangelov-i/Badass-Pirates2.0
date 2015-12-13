@@ -6,6 +6,7 @@
     using System.Diagnostics;
     
     using Badass_Pirates.Enums;
+    using Badass_Pirates.Exceptions;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Interfaces.Bonuses;
     using Badass_Pirates.Objects.Specialties;
@@ -25,7 +26,7 @@
 
         public const int MAX_ENERGY = 100;
 
-        private readonly int MAX_SPEED;
+        protected readonly int MAX_SPEED;
 
         private readonly int specialtyDamage;
 
@@ -37,8 +38,6 @@
         private int shields;
         private int energy;
         private int speed;
-        private int flagMax;
-        private int flagMin;
 
         #endregion
 
@@ -50,17 +49,15 @@
             this.Damage = damage;
             this.Health = health;
             this.Shields = shields;
+            this.previousSpeed = speed;
+            this.MAX_SPEED = speed + (int)BonusType.Wind;
+            this.Speed = speed;
             this.Energy = energy;
             this.specialtyDamage = specialtyDamage;
             this.FreezTimeOut = new Stopwatch();
             this.BonusDamageTimeOut = new Stopwatch();
             this.WindTimeOut = new Stopwatch();
-            this.previousSpeed = this.Speed;
             this.specialty = specialty;
-            this.flagMax = 0;
-            this.flagMin = 0;
-            this.MAX_SPEED = speed + (int)BonusType.Wind;
-            this.Speed = speed;
         }
 
         #region Properties
@@ -76,8 +73,6 @@
                 this.position = value;
             }
         }
-
-       
         
         public Stopwatch WindTimeOut { get; set; }
 
@@ -125,19 +120,14 @@
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), "cannot be negative !");
+                    throw new OutOfHealthException();
                 }
-                if (value > 101)
-                {
-                    this.flagMax = 1;
-                }
-                if (this.flagMax == 1)
+                if (value > 100)
                 {
                     value = 100;
                 }
 
                 this.health = value;
-                this.flagMax = 0;
             }
         }
 
@@ -163,22 +153,18 @@
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), "cannot be negative !");
+                    throw new OutOfEnergyException();
                 }
                 if (value > 100)
-                {
-                    this.flagMax = 1;
-                }
-                if (this.flagMax == 1)
                 {
                     value = 100;
                 }
 
                 this.energy = value;
-                this.flagMax = 0;
             }
         }
 
+        // TODO not set correctly when ship speed is less than 0 ! ! !
         public int Speed
         {
             get
@@ -188,27 +174,14 @@
 
             private set
             {
-                if (this.speed <= 0)
-                {
-                    this.flagMin = 1;
-                }
-                if (this.flagMin == 1)
-                {
-                    value = this.MAX_SPEED - (int)BonusType.Wind;
-                }
                 if (value > this.MAX_SPEED)
-                {
-                    this.flagMax = 1;
-                }
-                if (this.flagMax == 1)
                 {
                     value = this.MAX_SPEED;
                 }
 
                 this.speed = value;
-                this.flagMax = 0;
-                this.flagMin = 0;
             }
+
         }
 
         #endregion
@@ -301,9 +274,12 @@
         
         public void Freeze()
         {
-            this.FreezTimeOut.Start();
+            if (this.FreezTimeOut.IsRunning == false)
+            {
+                this.FreezTimeOut.Start();
 
-            this.Speed = (int)BonusType.Freeze;
+                this.Speed = (int)BonusType.Freeze;
+            }
         }
 
         public void DeFrost()

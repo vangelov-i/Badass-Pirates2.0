@@ -25,8 +25,8 @@
                         PlayerControls.UpdateSecondPlayer(currentPlayer, shipImage);
                         break;
                 }
-            }
         }
+    }
 
         private static void UpdateFirstPlayer(Player currentPlayer, Image shipImage)
         {

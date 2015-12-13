@@ -7,6 +7,7 @@
 
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
+    using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
@@ -17,6 +18,8 @@
     public class Item
     {
         #region Fields
+
+        private const int ShipImageWidth = 137;
 
         private static int timeShown = 4;
 
@@ -97,7 +100,7 @@
             Item.screenHeight = ScreenManager.Instance.Dimensions.X;
             Item.screenWidth = ScreenManager.Instance.Dimensions.Y;
             Item.stopWatch = new Stopwatch();
-            Item.itemImage = ShuffleItems.Shuffle(Item.random);
+            Item.itemImage = ShuffleItems.Shuffle();
         }
 
         public static void LoadContent()
@@ -133,7 +136,7 @@
                 Item.stopWatch.Stop();
                 Item.stopWatch.Reset();
                 Item.SetRandomPositions();
-                itemImage = ShuffleItems.Shuffle(random);
+                itemImage = ShuffleItems.Shuffle();
                 itemImage.LoadContent();
                 Item.draw = false;
             }
@@ -149,9 +152,20 @@
 
         private static void SetRandomPositions()
         {
-            Item.position = new Vector2(
-                random.Next(50, (int)Item.screenWidth - Item.itemImage.Texture.Width*2),
-                random.Next(50, (int)Item.screenHeight - Item.itemImage.Texture.Height*2));
+            var x = 0;
+            do
+            {
+                 x = random.Next(itemImage.Texture.Width, (int)ScreenManager.Instance.Dimensions.X - itemImage.Texture.Width);
+            }
+            while (x > ScreenManager.Instance.Dimensions.X / 2 - ShipImageWidth * 1.5f &&
+                    x < ScreenManager.Instance.Dimensions.X / 2 + ShipImageWidth / 2f);
+            
+            Item.position = new Vector2(x,
+                random.Next(itemImage.Texture.Height, (int)ScreenManager.Instance.Dimensions.Y - itemImage.Texture.Height));
+            
         }
+        //random.Next(50, (int)Item.screenWidth - Item.itemImage.Texture.Width*2),
+        //        random.Next(50, (int)Item.screenHeight - Item.itemImage.Texture.Height*2));
+
     }
 }

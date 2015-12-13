@@ -8,7 +8,6 @@
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
-    using Badass_Pirates.Handler;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
 

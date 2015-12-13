@@ -1,4 +1,4 @@
-﻿namespace Badass_Pirates.Handler
+﻿namespace Badass_Pirates.Managers
 {
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
@@ -7,7 +7,6 @@
     using Badass_Pirates.Fonts;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
-    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -58,7 +57,7 @@
 
             RegenManager.EnergyRegenUpdate(firstPlayer,secondPlayer);
             current.Ship.Specialty.Update(gameTime, current);
-            ControlsPlayer(type, gameTime, current);
+            ControlsPlayer(type, current);
 
             #region Ball
 
@@ -89,7 +88,6 @@
                 }
             }
             #endregion
-
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -101,7 +99,7 @@
                     new Vector2(
                         firstPlayer.Ship.Position.X,
                         firstPlayer.Ship.Position.Y - 40),
-                    string.Format("-" + secondPlayer.Ship.Damage)); // moje i po elegantno :D
+                    string.Format((secondPlayer.Ship.Damage * -1).ToString())); // moje i po elegantno :D
                 firstPlayerHitCounter++;
             }
             if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null)
@@ -111,32 +109,31 @@
                     new Vector2(
                         secondPlayer.Ship.Position.X,
                         secondPlayer.Ship.Position.Y - 40),
-                    string.Format("-" + firstPlayer.Ship.Damage)); // moje i po elegantno :D
+                    string.Format((firstPlayer.Ship.Damage * -1).ToString())); // moje i po elegantno :D
                 secondPlayerHitCounter++;
             }
 
             firstPlayer.Ship.Specialty.Draw(spriteBatch, firstPlayer.Ship.Specialty.Position);
             secondPlayer.Ship.Specialty.Draw(spriteBatch, secondPlayer.Ship.Specialty.Position);
         }
-
-
-        private static void ControlsPlayer(PlayerTypes type, GameTime gameTime, Player current)
+        
+        private static void ControlsPlayer(PlayerTypes type, Player current)
         {
             if (control)
             {
                 switch (type)
                 {
                     case PlayerTypes.FirstPlayer:
-                        CombatManager.UpdateFirstPlayer(gameTime, current);
+                        CombatManager.UpdateFirstPlayer(current);
                         break;
                     case PlayerTypes.SecondPlayer:
-                        CombatManager.UpdateSecondPlayer(gameTime, current);
+                        CombatManager.UpdateSecondPlayer(current);
                         break;
                 }
             }
         }
 
-        private static void UpdateFirstPlayer(GameTime gameTime, Player current)
+        private static void UpdateFirstPlayer(Player current)
         {
             current.InputManagerInstance.RotateStates();
 
@@ -157,7 +154,7 @@
             current.InputManagerInstance.Update();
         }
 
-        private static void UpdateSecondPlayer(GameTime gameTime, Player current)
+        private static void UpdateSecondPlayer(Player current)
         {
             current.InputManagerInstance.RotateStates();
 
