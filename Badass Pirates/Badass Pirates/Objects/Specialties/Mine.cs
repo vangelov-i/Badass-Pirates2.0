@@ -31,6 +31,7 @@
             : base(PATH, frameSize, DAMAGE)
         {
             flag = 0;
+            // Needs some constants
             this.position.X = 9000f;//ScreenManager.Instance.Dimensions.X - pos.X;
             this.position.Y = 9000f;
         }

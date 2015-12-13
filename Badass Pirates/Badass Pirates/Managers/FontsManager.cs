@@ -25,8 +25,8 @@
         public static void Initialise()
         {
             FontsManager.energyFont = new Font(Color.Yellow, "Fonts", "big");
-            FontsManager.hpFont = new Font(Color.Green, "Fonts", "big");
-            FontsManager.shieldFont = new Font(Color.Black, "Fonts", "big");
+            FontsManager.hpFont = new Font(Color.Red, "Fonts", "big");
+            FontsManager.shieldFont = new Font(Color.Blue, "Fonts", "big");
             //FontsManager.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             FontsManager.end = false;
             firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
@@ -63,11 +63,11 @@
                 firstPlayer.Ship.Health.ToString());
             FontsManager.energyFont.Draw(
                 spriteBatch,
-                new Vector2(firstPlayer.Ship.Position.X + 40, firstPlayer.Ship.Position.Y - 20),
+                new Vector2(firstPlayer.Ship.Position.X + 70, firstPlayer.Ship.Position.Y - 20),
                 firstPlayer.Ship.Energy.ToString());
             FontsManager.shieldFont.Draw(
                 spriteBatch,
-                new Vector2(firstPlayer.Ship.Position.X + 70, firstPlayer.Ship.Position.Y - 20),
+                new Vector2(firstPlayer.Ship.Position.X + 40, firstPlayer.Ship.Position.Y - 20),
                 firstPlayer.Ship.Shields.ToString());
             #endregion
 
@@ -79,11 +79,11 @@
                 secondPlayer.Ship.Health.ToString());
             FontsManager.energyFont.Draw(
                 spriteBatch,
-                new Vector2(secondPlayer.Ship.Position.X + 40, secondPlayer.Ship.Position.Y - 20),
+                new Vector2(secondPlayer.Ship.Position.X + 70, secondPlayer.Ship.Position.Y - 20),
                 secondPlayer.Ship.Energy.ToString());
             FontsManager.shieldFont.Draw(
                 spriteBatch,
-                new Vector2(secondPlayer.Ship.Position.X + 70, secondPlayer.Ship.Position.Y - 20),
+                new Vector2(secondPlayer.Ship.Position.X + 40, secondPlayer.Ship.Position.Y - 20),
                 secondPlayer.Ship.Shields.ToString());
 
             #endregion

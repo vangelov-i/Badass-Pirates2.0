@@ -59,7 +59,7 @@
             FirstPlayer.Initialise(ShipType.Battleship, PlayerTypes.FirstPlayer);
             SecondPlayer.Initialise(ShipType.Destroyer, PlayerTypes.SecondPlayer);
             this.end = false;
-            this.background = new Image("Backgrounds/BG");
+            this.background = new Image("Backgrounds/seajpg");
             FontsManager.Initialise();
             Item.Initialise(3);
             this.background.Initialise();

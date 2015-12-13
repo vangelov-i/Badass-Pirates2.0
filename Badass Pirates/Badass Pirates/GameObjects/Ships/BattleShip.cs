@@ -2,6 +2,7 @@
 {
     #region
 
+    using Badass_Pirates.Enums;
     using Badass_Pirates.Objects.Specialties;
 
     #endregion

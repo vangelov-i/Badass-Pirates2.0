@@ -25,6 +25,8 @@
 
         public const int MAX_ENERGY = 100;
 
+        private readonly int MAX_SPEED;
+
         private readonly int specialtyDamage;
 
         private Specialty specialty;
@@ -35,7 +37,8 @@
         private int shields;
         private int energy;
         private int speed;
-        private int flag;
+        private int flagMax;
+        private int flagMin;
 
         #endregion
 
@@ -48,14 +51,16 @@
             this.Health = health;
             this.Shields = shields;
             this.Energy = energy;
-            this.Speed = speed;
             this.specialtyDamage = specialtyDamage;
             this.FreezTimeOut = new Stopwatch();
             this.BonusDamageTimeOut = new Stopwatch();
             this.WindTimeOut = new Stopwatch();
             this.previousSpeed = this.Speed;
             this.specialty = specialty;
-            this.flag = -1;
+            this.flagMax = 0;
+            this.flagMin = 0;
+            this.MAX_SPEED = speed + (int)BonusType.Wind;
+            this.Speed = speed;
         }
 
         #region Properties
@@ -124,15 +129,15 @@
                 }
                 if (value > 101)
                 {
-                    this.flag = 0;
+                    this.flagMax = 1;
                 }
-                if (this.flag == 0)
+                if (this.flagMax == 1)
                 {
                     value = 100;
                 }
 
                 this.health = value;
-                this.flag = -1;
+                this.flagMax = 0;
             }
         }
 
@@ -160,17 +165,17 @@
                 {
                     throw new ArgumentOutOfRangeException(nameof(value), "cannot be negative !");
                 }
-                if (this.energy + value > 100)
+                if (value > 100)
                 {
-                    this.flag = 0;
+                    this.flagMax = 1;
                 }
-                if (this.flag == 0)
+                if (this.flagMax == 1)
                 {
                     value = 100;
                 }
 
                 this.energy = value;
-                this.flag = -1;
+                this.flagMax = 0;
             }
         }
 
@@ -183,21 +188,26 @@
 
             private set
             {
-                if (value < 0)
+                if (this.speed <= 0)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value), "cannot be negative !");
+                    this.flagMin = 1;
                 }
-                if (this.speed + value > 8)
+                if (this.flagMin == 1)
                 {
-                    this.flag = 0;
+                    value = this.MAX_SPEED - (int)BonusType.Wind;
                 }
-                if (this.flag == 0)
+                if (value > this.MAX_SPEED)
                 {
-                    value = 8;
+                    this.flagMax = 1;
+                }
+                if (this.flagMax == 1)
+                {
+                    value = this.MAX_SPEED;
                 }
 
                 this.speed = value;
-                this.flag = -1;
+                this.flagMax = 0;
+                this.flagMin = 0;
             }
         }
 
