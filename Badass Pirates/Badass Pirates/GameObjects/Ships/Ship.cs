@@ -4,11 +4,15 @@
 
     using System;
     using System.Diagnostics;
-    
+
+    using Badass_Pirates.Controls;
+    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Exceptions;
+    using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Interfaces.Bonuses;
+    using Badass_Pirates.Managers;
     using Badass_Pirates.Objects.Specialties;
 
     using Microsoft.Xna.Framework;
@@ -118,10 +122,6 @@
 
             set
             {
-                if (value < 0)
-                {
-                    throw new OutOfHealthException();
-                }
                 if (value > 100)
                 {
                     value = 100;
@@ -222,9 +222,12 @@
             }
         }
 
-        public void Sink(Ship target)
+        public void Sink(Objects.Player player)
         {
-            throw new NotImplementedException("METHOD SINK NOT IMPLEMENTED");
+            var sinkingSpeed = 1;
+            PlayerControls.control = false;
+            BallControls.control = false;
+            player.CurrentPlayer.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }
 
         public void Move(CoordsDirections coordsDirection, Direction direction, int movingSpeed)

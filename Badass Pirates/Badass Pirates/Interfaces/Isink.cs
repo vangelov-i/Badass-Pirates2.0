@@ -8,6 +8,6 @@
 
     internal interface ISink
     {
-        void Sink(Ship target);
+        void Sink(Objects.Player player);
     }
 }

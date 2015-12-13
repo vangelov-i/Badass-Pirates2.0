@@ -7,17 +7,33 @@
 
     public static class PlayersInfo
     {
-        public static GameObjects.Players.Player GetCurrentPlayer(PlayerTypes type)
+        public static Player GetCurrentPlayerAsGameObj(PlayerTypes type)
         {
             switch (type)
             {
-                    case PlayerTypes.FirstPlayer:
+                case PlayerTypes.FirstPlayer:
                     return TitleScreen.FirstPlayer.CurrentPlayer;
-                    case PlayerTypes.SecondPlayer:
+                case PlayerTypes.SecondPlayer:
                     return TitleScreen.SecondPlayer.CurrentPlayer;
+                default:
+                    throw new NotImplementedException("no such player !");
+            }
+        }
+
+        public static Objects.Player GetCurrentPlayerAsObj(PlayerTypes type)
+        {
+            switch (type)
+            {
+                case PlayerTypes.FirstPlayer:
+                    return TitleScreen.FirstPlayer;
+                case PlayerTypes.SecondPlayer:
+                    return TitleScreen.SecondPlayer;
                 default:
                     throw new NotImplementedException("no such player !");
             }
         }
     }
 }
+
+
+

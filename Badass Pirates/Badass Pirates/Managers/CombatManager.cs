@@ -34,8 +34,8 @@
             damageFont = new Font(Color.Red, "Fonts", "big");
             currentPlayer = currPlayer;
             ballColliding = false;
-            firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
-            secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
+            firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
+            secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
             BallControls.CannonBallInitialise();
         }
 
@@ -54,7 +54,6 @@
 
         public static void Update(GameTime gameTime, PlayerTypes type, Player current)
         {
-
             RegenManager.EnergyRegenUpdate(firstPlayer,secondPlayer);
             current.Ship.Specialty.Update(gameTime, current);
             ControlsPlayer(type, current);
@@ -72,7 +71,7 @@
             }
             if (firstPlayer.Ship.Health <= 0)
             {
-                throw new OutOfHealthException();
+                PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.FirstPlayer).Sinked = true;
             }
 
             ballColliding = BallCollision.Collide(
@@ -84,7 +83,7 @@
                 firstPlayer.Ship.Attack(secondPlayer.Ship);
                 if (secondPlayer.Ship.Health <= 0)
                 {
-                    throw new OutOfHealthException();
+                    PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.SecondPlayer).Sinked = true;
                 }
             }
             #endregion

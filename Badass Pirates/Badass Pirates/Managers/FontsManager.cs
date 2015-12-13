@@ -29,8 +29,8 @@
             FontsManager.shieldFont = new Font(Color.Blue, "Fonts", "big");
             //FontsManager.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             FontsManager.end = false;
-            firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
-            secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
+            firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
+            secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
         }
 
         public static void LoadContent()
