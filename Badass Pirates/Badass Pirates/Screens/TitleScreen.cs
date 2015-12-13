@@ -23,11 +23,33 @@
 
         private bool end;
 
-        private Font gameOver;
-        
-        public static Player FirstPlayer { get; private set; }
+        private static Player firstPlayer;
 
-        public static Player SecondPlayer { get; private set; }
+        private static Player secondPlayer;
+
+        public static Player FirstPlayer
+        {
+            get
+            {
+                return firstPlayer;
+            }
+            set
+            {
+                firstPlayer = value;
+            }
+        }
+
+        public static Player SecondPlayer
+        {
+            get
+            {
+                return secondPlayer;
+            }
+            set
+            {
+                secondPlayer = value;
+            }
+        }
 
         public override void Initialise()
         {
@@ -37,8 +59,8 @@
             FirstPlayer.Initialise(ShipType.Battleship, PlayerTypes.FirstPlayer);
             SecondPlayer.Initialise(ShipType.Destroyer, PlayerTypes.SecondPlayer);
             this.end = false;
-            this.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             this.background = new Image("Backgrounds/BG");
+            FontsManager.Initialise();
             Item.Initialise(3);
             this.background.Initialise();
         }
@@ -49,7 +71,7 @@
             FirstPlayer.LoadContent();
             SecondPlayer.LoadContent();
             this.background.LoadContent();
-            this.gameOver.LoadContent();
+            FontsManager.LoadContent();
             Item.LoadContent();
         }
 
@@ -59,25 +81,28 @@
             FirstPlayer.UnloadContent();
             SecondPlayer.UnloadContent();
             this.background.UnloadContent();
-            this.gameOver.UnloadContent();
+            FontsManager.UnloadContent();
             Item.UnloadContent();
         }
 
         public override void Update(GameTime gameTime)
         {
+            base.Update(gameTime);
+            Item.Update(gameTime);
+
             try
             {
-                base.Update(gameTime);
                 FirstPlayer.Update(gameTime);
                 SecondPlayer.Update(gameTime);
-                Item.Update(gameTime);
             }
             catch (OutOfHealthException)
             {
                 this.end = true;
                 PlayerControls.control = false;
-                BallControls.controls = false;
+                BallControls.control = false;
             }
+
+            FontsManager.Update(gameTime, this.end);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -86,13 +111,9 @@
             this.background.Draw(spriteBatch, Vector2.Zero);
             FirstPlayer.Draw(spriteBatch);
             SecondPlayer.Draw(spriteBatch);
-            if (this.end)
-            {
-                this.gameOver.Draw(
-                    spriteBatch,
-                    new Vector2(400, 140),
-                    $"SHIP {(FirstPlayer.CurrentPlayer.Ship.Health <= 0 ? " Second" : $" {(SecondPlayer.CurrentPlayer.Ship.Health <= 0 ? "First" : null)} VICTORY")}");
-            }
+
+            FontsManager.Draw(spriteBatch);
+
             if (FirstPlayer.itemColliding == false)
             {
                 Item.Draw(spriteBatch);

@@ -62,6 +62,7 @@
     <Compile Include="Managers\Menu.cs" />
     <Compile Include="Managers\MenuManager.cs" />
     <Compile Include="Managers\PlayersInfo.cs" />
+    <Compile Include="Managers\FontsManager.cs" />
     <Compile Include="Managers\RegenManager.cs" />
     <Compile Include="Managers\ShuffleItems.cs" />
     <Compile Include="Screens\MenuItem.cs" />
@@ -96,7 +97,7 @@
     <Compile Include="GameObjects\Players\Player.cs" />
     <Compile Include="Enums\PlayerTypes.cs" />
     <Compile Include="GameObjects\Players\SecondPlayer.cs" />
-    <Compile Include="Handler\CombatHandler.cs" />
+    <Compile Include="Managers\CombatManager.cs" />
     <Compile Include="Interfaces\Bonuses\IWind.cs" />
     <Compile Include="Interfaces\IPositionable.cs" />
     <Compile Include="Interfaces\IShoot.cs" />

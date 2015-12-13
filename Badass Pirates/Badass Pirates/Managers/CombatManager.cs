@@ -13,7 +13,7 @@
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
-    public static class CombatHandler
+    public static class CombatManager
     {
         #region Fields
 
@@ -127,10 +127,10 @@
                 switch (type)
                 {
                     case PlayerTypes.FirstPlayer:
-                        CombatHandler.UpdateFirstPlayer(gameTime, current);
+                        CombatManager.UpdateFirstPlayer(gameTime, current);
                         break;
                     case PlayerTypes.SecondPlayer:
-                        CombatHandler.UpdateSecondPlayer(gameTime, current);
+                        CombatManager.UpdateSecondPlayer(gameTime, current);
                         break;
                 }
             }

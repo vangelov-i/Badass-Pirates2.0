@@ -6,7 +6,6 @@
     using Badass_Pirates.Controls;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
-    using Badass_Pirates.Fonts;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Handler;
@@ -25,18 +24,7 @@
         private Image shipImage;
 
         private PlayerTypes playerType;
-
-        private Font hpFont;
-
-        private Font shieldFont;
-
-        private Font energyFont;
-
-        private GameObjects.Players.Player firstPlayer;
-
-        private GameObjects.Players.Player secondPlayer;
-
-
+       
         #endregion
 
         #region Properties
@@ -60,11 +48,6 @@
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
-            this.energyFont = new Font(Color.Yellow, "Fonts", "big");
-            this.hpFont = new Font(Color.Green, "Fonts", "big");
-            this.shieldFont = new Font(Color.Black, "Fonts", "big");
-
-
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -129,34 +112,23 @@
 
                     break;
             }
-            CombatHandler.Initilialise(this.CurrentPlayer);
+
+            CombatManager.Initilialise(this.CurrentPlayer);
 
         }
-
-
 
         public void LoadContent()
         {
             this.shipImage.LoadContent();
             BallControls.CannonBallLoadContent();
-            this.energyFont.LoadContent();
-            this.hpFont.LoadContent();
-            this.shieldFont.LoadContent();
-
-            CombatHandler.LoadContent();
-            
+            CombatManager.LoadContent();
         }
 
         public void UnloadContent()
         {
             this.shipImage.UnloadContent();
             BallControls.CannonBallUnloadContent();
-            this.energyFont.UnloadContent();
-            this.hpFont.UnloadContent();
-            this.shieldFont.UnloadContent();
-
-            CombatHandler.UnloadContent();
-            
+            CombatManager.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
@@ -194,16 +166,14 @@
             #endregion
 
             #endregion
-            
+
             this.shipImage.Update(gameTime);
             this.CurrentPlayer.InputManagerInstance.RotateStates();
-
 
             PlayerControls.ControlsPlayer(this.playerType, this.CurrentPlayer, this.shipImage);
             BallControls.CannonBallControls(this.playerType, this.CurrentPlayer, this.shipImage, gameTime);
             this.itemColliding = ItemsCollision.Collide(this.CurrentPlayer.Ship);
-            CombatHandler.Update(gameTime, this.playerType, this.CurrentPlayer);
-
+            CombatManager.Update(gameTime, this.playerType, this.CurrentPlayer);
 
             // ALWAYS MUST BE THE LAST LINE
             this.CurrentPlayer.InputManagerInstance.Update();
@@ -211,28 +181,9 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            // Fonts must be in TittleScreen.cs
-            #region Fonts
-            this.hpFont.Draw(
-                spriteBatch,
-                new Vector2(this.CurrentPlayer.Ship.Position.X, this.CurrentPlayer.Ship.Position.Y - 20),
-                this.CurrentPlayer.Ship.Health.ToString());
-            this.energyFont.Draw(
-                spriteBatch,
-                new Vector2(this.CurrentPlayer.Ship.Position.X + 40, this.CurrentPlayer.Ship.Position.Y - 20),
-                this.CurrentPlayer.Ship.Energy.ToString());
-            this.shieldFont.Draw(
-                spriteBatch,
-                new Vector2(this.CurrentPlayer.Ship.Position.X + 70, this.CurrentPlayer.Ship.Position.Y - 20),
-                this.CurrentPlayer.Ship.Shields.ToString());
-
-            
-
-            #endregion
-
             spriteBatch.Draw(this.shipImage.Texture, this.CurrentPlayer.Ship.Position);
             BallControls.CannonBallDraw(this.playerType, spriteBatch, this.CurrentPlayer, this.shipImage);
-            CombatHandler.Draw(spriteBatch);
+            CombatManager.Draw(spriteBatch);
         }
 
 

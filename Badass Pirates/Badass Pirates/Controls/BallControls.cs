@@ -21,7 +21,7 @@
 
         public static CannonBall ballSecond;
 
-        public static bool controls = true;
+        public static bool control = true;
 
         private PlayerTypes type;
 
@@ -49,7 +49,7 @@
             Image shipImage,
             GameTime gameTime)
         {
-            if (controls)
+            if (control)
             {
                 switch (type)
                 {
