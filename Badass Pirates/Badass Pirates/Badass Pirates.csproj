@@ -82,7 +82,7 @@
     <Compile Include="Managers\ScreenManager.cs" />
     <Compile Include="Managers\XmlManager.cs" />
     <Compile Include="Screens\TitleScreen.cs" />
-    <Compile Include="Objects\Player.cs" />
+    <Compile Include="Objects\VirtualPlayer.cs" />
     <Compile Include="Enums\CoordsDirections.cs" />
     <Compile Include="Enums\Direction.cs" />
     <Compile Include="Enums\ItemTypes.cs" />

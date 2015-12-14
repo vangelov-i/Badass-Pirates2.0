@@ -19,7 +19,7 @@
 
     #endregion
 
-    public class Player : IGet
+    public class VirtualPlayer : IGet
     {
         #region Properties
 
@@ -146,7 +146,7 @@
 
             if (this.Sinked)
             {
-                Player player;
+                VirtualPlayer player;
                 if (this.CurrentPlayer is FirstPlayer)
                 {
                     player = PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.FirstPlayer);

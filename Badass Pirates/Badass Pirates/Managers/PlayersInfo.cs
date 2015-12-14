@@ -20,7 +20,7 @@
             }
         }
 
-        public static Objects.Player GetCurrentPlayerAsObj(PlayerTypes type)
+        public static Objects.VirtualPlayer GetCurrentPlayerAsObj(PlayerTypes type)
         {
             switch (type)
             {

@@ -16,7 +16,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    using Player = Badass_Pirates.Objects.Player;
+    using VirtualPlayer = Badass_Pirates.Objects.VirtualPlayer;
 
     #endregion
 
@@ -26,13 +26,13 @@
 
         private bool end;
 
-        private static Player firstPlayer;
+        private static VirtualPlayer firstPlayer;
 
-        private static Player secondPlayer;
+        private static VirtualPlayer secondPlayer;
 
         private bool callTheBoss = false;
 
-        public static Player FirstPlayer
+        public static VirtualPlayer FirstPlayer
         {
             get
             {
@@ -44,7 +44,7 @@
             }
         }
 
-        public static Player SecondPlayer
+        public static VirtualPlayer SecondPlayer
         {
             get
             {
@@ -60,8 +60,8 @@
         public override void Initialise()
         {
             base.Initialise();
-            FirstPlayer = new Player();
-            SecondPlayer = new Player();
+            FirstPlayer = new VirtualPlayer();
+            SecondPlayer = new VirtualPlayer();
             FirstPlayer.Initialise(ShipType.Battleship, PlayerTypes.FirstPlayer);
             SecondPlayer.Initialise(ShipType.Cruiser, PlayerTypes.SecondPlayer);
             this.end = false;

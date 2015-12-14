@@ -8,6 +8,6 @@
 
     internal interface ISink
     {
-        void Sink(Objects.Player player);
+        void Sink(Objects.VirtualPlayer player);
     }
 }

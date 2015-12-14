@@ -223,7 +223,7 @@
             }
         }
 
-        public void Sink(Objects.Player player)
+        public void Sink(Objects.VirtualPlayer player)
         {
             var sinkingSpeed = 1;
             PlayerControls.control = false;

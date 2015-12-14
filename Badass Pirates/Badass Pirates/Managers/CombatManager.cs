@@ -3,7 +3,6 @@
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
     using Badass_Pirates.EngineComponents.Managers;
-    using Badass_Pirates.Exceptions;
     using Badass_Pirates.Fonts;
     using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Players;
@@ -21,6 +20,7 @@
         private static Player firstPlayer;
         private static Player secondPlayer;
         private static Player currentPlayer;
+        private static int playerFlagBossCollide;
         private static bool ballColliding;
         private static bool bossBallCollide;
         private static bool bossVsShipCollide;
@@ -47,6 +47,7 @@
             firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
             secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
             BallControls.CannonBallInitialise();
+            playerFlagBossCollide = -1;
         }
 
         public static void LoadContent()
@@ -124,6 +125,14 @@
                 {
                     bossHitCounter = 0;
                     Boss.Attack(current.Ship);
+                    if (current is FirstPlayer)
+                    {
+                        playerFlagBossCollide = 1;
+                    }
+                    else
+                    {
+                        playerFlagBossCollide = 0;
+                    }
                 }
             }
 
@@ -139,7 +148,6 @@
             {
                 PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.SecondPlayer).Sinked = true;
             }
-
         }
 
         public static void Draw(SpriteBatch spriteBatch)
@@ -168,28 +176,26 @@
 
             if (bossHitCounter < 15 && bossHitCounter != null)
             {
-                if (currentPlayer is FirstPlayer)
+                if (playerFlagBossCollide == 1)
                 {
                     damageFont.Draw(
-                        spriteBatch,
-                        new Vector2(
-                        firstPlayer.Ship.Position.X,
-                        firstPlayer.Ship.Position.Y - 40),
-                        string.Format((Boss.Damage * -1).ToString())); // moje i po elegantno :D
+                            spriteBatch,
+                            new Vector2(
+                            firstPlayer.Ship.Position.X,
+                            firstPlayer.Ship.Position.Y - 40),
+                            string.Format((Boss.Damage * -1).ToString())); // moje i po elegantno :D
                     bossHitCounter++;
                 }
-                else
+                else if(playerFlagBossCollide == 0)
                 {
                     damageFont.Draw(
-                        spriteBatch,
-                        new Vector2(
-                        secondPlayer.Ship.Position.X,
-                        secondPlayer.Ship.Position.Y - 40),
-                        string.Format((Boss.Damage * -1).ToString())); // moje i po elegantno :D
+                            spriteBatch,
+                            new Vector2(
+                            secondPlayer.Ship.Position.X,
+                            secondPlayer.Ship.Position.Y - 40),
+                            string.Format((Boss.Damage * -1).ToString())); // moje i po elegantno :D
                     bossHitCounter++;
-
                 }
-
             }
 
             // kogato e udaren bossyt
