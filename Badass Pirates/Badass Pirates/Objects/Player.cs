@@ -192,7 +192,7 @@
 
             #endregion
 
-            this.ShipImage.Update(gameTime);
+            this.ShipImage.Update(gameTime); // nenujen red (Update) na imate e prazen metod
             this.CurrentPlayer.InputManagerInstance.RotateStates();
 
             PlayerControls.ControlsPlayer(this.PlayerType, this.CurrentPlayer, this.ShipImage);

@@ -21,6 +21,7 @@
         private static Player secondPlayer;
         private static Player currentPlayer;
         private static bool ballColliding;
+        private static bool bossBallCollide;
         private static int? firstPlayerHitCounter;
         private static int? secondPlayerHitCounter;
         private static Font damageFont;
@@ -36,6 +37,7 @@
             damageFont = new Font(Color.Red, "Fonts", "big");
             currentPlayer = currPlayer;
             ballColliding = false;
+            bossBallCollide = false;
             firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
             secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
             BallControls.CannonBallInitialise();
@@ -56,7 +58,7 @@
 
         public static void Update(GameTime gameTime, PlayerTypes type, Player current)
         {
-            RegenManager.EnergyRegenUpdate(firstPlayer,secondPlayer);
+            RegenManager.EnergyRegenUpdate(firstPlayer, secondPlayer);
             current.Ship.Specialty.Update(gameTime, current);
             ControlsPlayer(type, current);
 
@@ -79,7 +81,7 @@
             {
                 secondPlayerHitCounter = 0;
                 firstPlayer.Ship.Attack(secondPlayer.Ship);
-                
+
             }
             #endregion
 
@@ -88,16 +90,18 @@
             if (Objects.Player.Watch.Elapsed.TotalSeconds > 5)
             {
                 // topchEto na pyrviq igrach
-                ballColliding = OctopusCollision.BossBallCollide(BallControls.ballFirst);
-                if (ballColliding)
+                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.ballFirst);
+                if (bossBallCollide)
                 {
+                    firstPlayerHitCounter = 0;
                     Boss.Health -= firstPlayer.Ship.Damage;  // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
                 }
 
                 // topchEto na vtoriq igrach
-                ballColliding = OctopusCollision.BossBallCollide(BallControls.ballSecond);
-                if (ballColliding)
+                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.ballSecond);
+                if (bossBallCollide)
                 {
+                    secondPlayerHitCounter = 0;
                     Boss.Health -= secondPlayer.Ship.Damage;  // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
                 }
             }
@@ -118,7 +122,7 @@
 
         public static void Draw(SpriteBatch spriteBatch)
         {
-            if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null) // ballColliding && 
+            if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null && ballColliding) // ballColliding && 
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -128,7 +132,7 @@
                     string.Format((secondPlayer.Ship.Damage * -1).ToString())); // moje i po elegantno :D
                 firstPlayerHitCounter++;
             }
-            if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null)
+            if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null && ballColliding)
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -139,10 +143,36 @@
                 secondPlayerHitCounter++;
             }
 
+            // boss-a
+            if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null)
+            {
+                damageFont.Draw(
+    spriteBatch,
+    new Vector2(
+        Boss.Position.X + Boss.image.Texture.Width / 2f - 25,
+        Boss.Position.Y),
+    string.Format((firstPlayer.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
+                firstPlayerHitCounter++;
+
+            }
+
+            if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null)
+            {
+                damageFont.Draw(
+    spriteBatch,
+    new Vector2(
+        Boss.Position.X + Boss.image.Texture.Width / 2f - 25,
+        Boss.Position.Y),
+    string.Format((secondPlayer.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
+                secondPlayerHitCounter++;
+
+            }
+
+
             firstPlayer.Ship.Specialty.Draw(spriteBatch, firstPlayer.Ship.Specialty.Position);
             secondPlayer.Ship.Specialty.Draw(spriteBatch, secondPlayer.Ship.Specialty.Position);
         }
-        
+
         private static void ControlsPlayer(PlayerTypes type, Player current)
         {
             if (control)
