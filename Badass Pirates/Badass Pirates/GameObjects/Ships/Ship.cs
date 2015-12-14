@@ -6,13 +6,10 @@
     using System.Diagnostics;
 
     using Badass_Pirates.Controls;
-    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Exceptions;
-    using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Interfaces.Bonuses;
-    using Badass_Pirates.Managers;
     using Badass_Pirates.Objects.Specialties;
 
     using Microsoft.Xna.Framework;
@@ -125,6 +122,7 @@
                 if (value < 0)
                 {
                     value = 0;
+                    
                 }
                 if (value > 100)
                 {

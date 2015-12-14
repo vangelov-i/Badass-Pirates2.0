@@ -2,10 +2,13 @@
 {
     #region
 
+    using System.Diagnostics;
+
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
     using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
+    using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
@@ -19,7 +22,7 @@
     public class Player : IGet
     {
         #region Fields
-
+        private static Stopwatch watch;
         #endregion
 
         #region Properties
@@ -34,12 +37,22 @@
 
         public bool Sinked { get; set; }
 
+        public static Stopwatch Watch
+        {
+            get
+            {
+                return watch;
+            }
+
+        }
+
         #endregion
 
         #region Methods
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
+            watch = new Stopwatch();
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -107,6 +120,7 @@
 
             this.Sinked = false;
             CombatManager.Initilialise(this.CurrentPlayer);
+            Boss.Initialise();
         }
 
         public void LoadContent()
@@ -114,6 +128,8 @@
             this.ShipImage.LoadContent();
             BallControls.CannonBallLoadContent();
             CombatManager.LoadContent();
+            Boss.LoadContent();
+            watch.Start();
         }
 
         public void UnloadContent()
@@ -121,6 +137,7 @@
             this.ShipImage.UnloadContent();
             BallControls.CannonBallUnloadContent();
             CombatManager.UnloadContent();
+            Boss.UnloadContent();
         }
 
         public void Update(GameTime gameTime)
@@ -182,6 +199,11 @@
             BallControls.CannonBallControls(this.PlayerType, this.CurrentPlayer, this.ShipImage, gameTime);
             this.itemColliding = ItemsCollision.Collide(this.CurrentPlayer.Ship);
             CombatManager.Update(gameTime, this.PlayerType, this.CurrentPlayer);
+            if (watch.Elapsed.TotalSeconds > 5)
+            {
+                Boss.Update();
+                OctopusCollision.Collide(this.CurrentPlayer.Ship);
+            }
 
             // ALWAYS MUST BE THE LAST LINE
             this.CurrentPlayer.InputManagerInstance.Update();
@@ -210,6 +232,7 @@
 
             BallControls.CannonBallDraw(this.PlayerType, spriteBatch, this.CurrentPlayer, this.ShipImage);
             CombatManager.Draw(spriteBatch);
+            Boss.Draw(spriteBatch);
         }
 
         public void GetPotion(PotionTypes potionType)

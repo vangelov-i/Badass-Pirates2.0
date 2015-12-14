@@ -1,5 +1,6 @@
 ﻿namespace Badass_Pirates.Fonts
 {
+    using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Managers;
 
@@ -86,6 +87,13 @@
                 new Vector2(secondPlayer.Ship.Position.X + 40, secondPlayer.Ship.Position.Y - 20),
                 secondPlayer.Ship.Shields.ToString());
 
+            #endregion
+
+            #region Boss
+            FontsManager.hpFont.Draw(
+                spriteBatch,
+                new Vector2(Boss.Position.X + Boss.image.Texture.Width/2f - 25, Boss.Position.Y + 30),
+                Boss.Health.ToString());
             #endregion
 
             #region GameOver

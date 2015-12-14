@@ -6,98 +6,92 @@
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
-    using Badass_Pirates.Screens;
-
+    using Objects;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public class Boss : IAttack, IMoveable, IPositionable
+    public class Boss 
     {
         // ТАКА НЕ БИВА ! ! !
 
-        public Image image;
+        public static Image image;
+        
+        public static Vector2 position;
 
-        private static Boss instance;
+        private static int health;
 
-        public static Boss Instance
+        private static int damage;
+
+        public static Vector2 speed;
+
+        private static bool sinked;
+
+        private static Vector2 textureOrigin;
+
+        public static readonly Point frameSize = new Point(250,208);
+
+        static Boss()
+        {
+            Health = 100;
+            Damage = 40;
+            speed.X = 2;
+            speed.Y = 2;
+            sinked = false;
+        }
+
+        public static int Health
         {
             get
             {
-                //if (instance == null && MainEngine.timeCounter > 4)
-                //{
-                //    instance = new Boss();
-                //}
-
-                return instance;
-            }
-            set
-            {
-                instance = value;
-            }
-        }
-
-        public Vector2 position;
-
-        private int health;
-
-        private int damage;
-
-        public Vector2 speed;
-
-        public readonly Point frameSize = new Point(250,208);
-
-        public Boss()
-        {
-            this.Health = 3000;
-            this.Damage = 85;
-            this.speed.X = 6;
-            this.speed.Y = 6;
-            this.position = new Vector2(500,200);
-        }
-
-        public int Health
-        {
-            get
-            {
-                return this.health;
+                return health;
             }
 
             set
             {
-                this.health = value;
+                if (value < 0)
+                {
+                    value = 0;
+                    sinked = true;
+                }
+                if (value > 100)
+                {
+                    value = 100;
+                }
+
+                health = value;
             }
         }
 
-        public int Damage
+        public static int Damage
         {
             get
             {
-                return this.damage;
+                return damage;
             }
 
             set
             {
-                this.damage = value;
+                damage = value;
             }
         }
 
-        public Vector2 Position
+        public static Vector2 Position
         {
             get
             {
-                return this.position;
+                return position;
             }
             set
             {
-                this.position = value;
+                position = value;
             }
         }
 
-        public void Attack(Ship target)
+        public static void Attack(Ship target)
         {
             if (target.Shields > 0)
             {
-                target.Shields -= this.Damage;
+                target.Shields -= Damage;
                 if (target.Shields < 0)
                 {
                     target.Health += target.Shields;
@@ -106,83 +100,131 @@
             }
             else
             {
-                target.Health -= this.Damage;
+                target.Health -= Damage;
             }
         }
 
-        public void Move(CoordsDirections coordsDirection, Direction direction, int movingSpeed)
+        public static void Initialise()
         {
-            throw new NotImplementedException();
+            image = new Image("dibossBIG");
+            image.Initialise();
+            position = new Vector2(500, 200);
         }
 
-        public void SetPosition(CoordsDirections coordsDirections, float value)
+        public static void LoadContent()
         {
-            throw new NotImplementedException();
+            image.LoadContent();
+            textureOrigin = new Vector2(image.Texture.Width / 2f, image.Texture.Height / 2f);
+
         }
 
-        public void Initialise()
+        public static void UnloadContent()
         {
-            this.image = new Image("dibossBIG");
-            this.image.Initialise();
+            image.UnloadContent();
         }
 
-        public void LoadContent()
+        public static void Update()
         {
-            this.image.LoadContent();
-        }
-
-        public void UnloadContent()
-        {
-            this.image.UnloadContent();
-        }
-
-        public void Update()
-        {
-            this.position += this.speed;
-
-            int MaxX =
-                (int)ScreenManager.Instance.Dimensions.X - this.image.Texture.Width;
-            int MinX = 0;
-            int MaxY =
-                (int)ScreenManager.Instance.Dimensions.Y - this.image.Texture.Height;
-            int MinY = 0;
-
-            // Check for bounce.
-            if (this.position.X > MaxX)
+            if (!sinked)
             {
-                this.speed.X *= -1;
-                this.position.X = MaxX;
-            }
+                position += speed;
 
-            else if (this.position.X < MinX)
-            {
-                this.speed.X *= -1;
-                this.position.X = MinX;
-            }
+                int MaxX =
+                    (int)ScreenManager.Instance.Dimensions.X - image.Texture.Width;
+                int MinX = 0;
+                int MaxY =
+                    (int)ScreenManager.Instance.Dimensions.Y - image.Texture.Height;
+                int MinY = 0;
 
-            if (this.position.Y > MaxY)
-            {
-                this.speed.Y *= -1;
-                this.position.Y = MaxY;
-            }
+                // Check for bounce.
+                if (position.X > MaxX)
+                {
+                    speed.X *= -1;
+                    position.X = MaxX;
+                }
 
-            else if (this.position.Y < MinY)
+                else if (position.X < MinX)
+                {
+                    speed.X *= -1;
+                    position.X = MinX;
+                }
+
+                if (position.Y > MaxY)
+                {
+                    speed.Y *= -1;
+                    position.Y = MaxY;
+                }
+
+                else if (position.Y < MinY)
+                {
+                    speed.Y *= -1;
+                    position.Y = MinY;
+                }
+            }
+            else
             {
-                this.speed.Y *= -1;
-                this.position.Y = MinY;
+                Boss.Sink();
             }
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public static void Draw(SpriteBatch spriteBatch)
         {
-            this.image.Draw(spriteBatch,this.position);
+
+            if (!sinked)
+            {
+                image.Draw(spriteBatch, position);
+            }
+            else
+            {
+                spriteBatch.Draw(
+                    image.Texture,
+                    Boss.Position,
+                    null,
+                    Color.DarkCyan,
+                    0f,
+                    textureOrigin,
+                    1.0f,
+                    SpriteEffects.FlipVertically,
+                    0f);
+            }
         }
 
-        public void CallTheBoss()
+        public static void Move(CoordsDirections coordsDirection, Direction direction, int movingSpeed)
         {
-            Boss.instance.Initialise();
-            Boss.instance.LoadContent();
+            switch (direction)
+            {
+                case Direction.Positive:
+                    switch (coordsDirection)
+                    {
+                        case CoordsDirections.Abscissa:
+                            Boss.position.X += movingSpeed;
+                            break;
+                        case CoordsDirections.Ordinate:
+                            Boss.position.Y += movingSpeed;
+                            break;
+                    }
 
+                    break;
+
+                case Direction.Negative:
+                    switch (coordsDirection)
+                    {
+                        case CoordsDirections.Abscissa:
+                            Boss.position.X -= movingSpeed;
+                            break;
+                        case CoordsDirections.Ordinate:
+                            Boss.position.Y -= movingSpeed;
+                            break;
+                    }
+
+                    break;
+            }
+        }
+
+        static void Sink()
+        {
+            var sinkingSpeed = 1;
+            Boss.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }
     }
 }

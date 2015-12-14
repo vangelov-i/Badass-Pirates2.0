@@ -6,24 +6,24 @@ using System.Text;
 namespace Badass_Pirates.Collisions
 {
     using System.Diagnostics;
-    using System.Runtime.CompilerServices;
 
     using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Ships;
-    using Badass_Pirates.Managers;
     using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
 
-    public class OctopusCollision
+    public static class OctopusCollision
     {
-        private const int COLLISION_OFFSET = 5;
+        private const int BALL_COLLISION_OFFSET = 5;
+
+        private const int COLLISION_OFFSET = 40;
 
         // GROZNO E, NE BIVA
-        public static Stopwatch collidedStopWatch = new Stopwatch();
+        public static readonly Stopwatch collidedStopWatch = new Stopwatch();
         //
 
-        public static bool Collide(Ship shipColliding, Boss boss)
+        public static bool Collide(Ship shipColliding)
         {
             if (!collidedStopWatch.IsRunning)
             {
@@ -34,27 +34,56 @@ namespace Badass_Pirates.Collisions
                    Ship.FrameSize.Y - (COLLISION_OFFSET * 2));
 
                 Rectangle diBoss = new Rectangle(
-                    (int)boss.Position.X + COLLISION_OFFSET,
-                    (int)boss.Position.Y + COLLISION_OFFSET,
-                    boss.frameSize.X - (COLLISION_OFFSET * 2),
-                    boss.frameSize.Y - (COLLISION_OFFSET * 2));
+                    (int)Boss.Position.X + COLLISION_OFFSET,
+                    (int)Boss.Position.Y + COLLISION_OFFSET,
+                    Boss.frameSize.X - (COLLISION_OFFSET * 2),
+                    Boss.frameSize.Y - (COLLISION_OFFSET * 2));
 
                 if (shipRect.Intersects(diBoss))
                 {
+                    Boss.Attack(shipColliding);
+                    OctopusCollision.collidedStopWatch.Start();
                     return true;
                 }
             }
-            
-
+            else if (OctopusCollision.collidedStopWatch.Elapsed.TotalSeconds > 2)
+            {
+                OctopusCollision.collidedStopWatch.Stop();
+                OctopusCollision.collidedStopWatch.Reset();
+            }
 
             return false;
         }
 
-        //private static void Intersect(Boss boss)
-        //{
-        //        boss.speed.X *= -1;
-        //        boss.speed.Y *= -1;
-        //}
+        #region Balls Collisions
 
+        public static bool BossBallCollide(CannonBall ball)
+        {
+            Rectangle bossRect = new Rectangle(
+               (int)Boss.Position.X + BALL_COLLISION_OFFSET,
+               (int)Boss.Position.Y + BALL_COLLISION_OFFSET,
+               Boss.frameSize.X - (BALL_COLLISION_OFFSET * 2),
+               Boss.frameSize.Y - (BALL_COLLISION_OFFSET * 2));
+
+            Rectangle cannonBall = new Rectangle(
+                (int)ball.Position.X + BALL_COLLISION_OFFSET,
+                (int)ball.Position.Y + BALL_COLLISION_OFFSET,
+                CannonBall.frameSize.X - (BALL_COLLISION_OFFSET * 2),
+                CannonBall.frameSize.Y - (BALL_COLLISION_OFFSET * 2));
+
+            if (bossRect.Intersects(cannonBall))
+            {
+                ball.Position = new Vector2(9999, 9999); // might be buggy
+                return true;
+            }
+            if (ball.Position.Y >= ball.BallFiredPos.Y)
+            {
+                ball.Position = new Vector2(999, 999);
+            }
+
+            return false;
+        }
+
+        #endregion
     }
 }

@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="Collisions\BallCollision.cs" />
     <Compile Include="Collisions\ItemsCollision.cs" />
+    <Compile Include="Collisions\OctopusBallsCollision.cs" />
     <Compile Include="Collisions\OctopusCollision.cs" />
     <Compile Include="Collisions\SpecialtyCollision.cs" />
     <Compile Include="Controls\BallControls.cs" />

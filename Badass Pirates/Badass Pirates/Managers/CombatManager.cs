@@ -24,6 +24,7 @@
         private static int? firstPlayerHitCounter;
         private static int? secondPlayerHitCounter;
         private static Font damageFont;
+
         public static bool control = true;
 
 
@@ -58,22 +59,8 @@
             RegenManager.EnergyRegenUpdate(firstPlayer,secondPlayer);
             current.Ship.Specialty.Update(gameTime, current);
             ControlsPlayer(type, current);
-            if (MainEngine.timeCounter > 5 && OctopusCollision.Collide(current.Ship, Boss.Instance))
-            {
-                if (!OctopusCollision.collidedStopWatch.IsRunning)
-                {
-                    Boss.Instance.Attack(current.Ship);
-                    OctopusCollision.collidedStopWatch.Start();
-                }
-            }
-            if (OctopusCollision.collidedStopWatch.Elapsed.TotalSeconds > 3)
-            {
-                OctopusCollision.collidedStopWatch.Stop();
-                OctopusCollision.collidedStopWatch.Reset();
-            }
 
-
-            #region Ball
+            #region Ball Players Collisions
 
             // KOGATO TEPAT PURVIQ
             ballColliding = BallCollision.Collide(
@@ -96,6 +83,28 @@
             }
             #endregion
 
+            #region Ball Boss Collisions
+            // 5 - const i za spawn na bossa
+            if (Objects.Player.Watch.Elapsed.TotalSeconds > 5)
+            {
+                // topchEto na pyrviq igrach
+                ballColliding = OctopusCollision.BossBallCollide(BallControls.ballFirst);
+                if (ballColliding)
+                {
+                    Boss.Health -= firstPlayer.Ship.Damage;  // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
+                }
+
+                // topchEto na vtoriq igrach
+                ballColliding = OctopusCollision.BossBallCollide(BallControls.ballSecond);
+                if (ballColliding)
+                {
+                    Boss.Health -= secondPlayer.Ship.Damage;  // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
+                }
+            }
+            #endregion
+
+
+            // Трябва да се премести в пропърти на кораба
             if (firstPlayer.Ship.Health <= 0)
             {
                 PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.FirstPlayer).Sinked = true;
