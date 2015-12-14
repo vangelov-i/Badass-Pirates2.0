@@ -5,6 +5,7 @@
     using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Exceptions;
     using Badass_Pirates.Fonts;
+    using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
 
@@ -57,6 +58,20 @@
             RegenManager.EnergyRegenUpdate(firstPlayer,secondPlayer);
             current.Ship.Specialty.Update(gameTime, current);
             ControlsPlayer(type, current);
+            if (MainEngine.timeCounter > 5 && OctopusCollision.Collide(current.Ship, Boss.Instance))
+            {
+                if (!OctopusCollision.collidedStopWatch.IsRunning)
+                {
+                    Boss.Instance.Attack(current.Ship);
+                    OctopusCollision.collidedStopWatch.Start();
+                }
+            }
+            if (OctopusCollision.collidedStopWatch.Elapsed.TotalSeconds > 3)
+            {
+                OctopusCollision.collidedStopWatch.Stop();
+                OctopusCollision.collidedStopWatch.Reset();
+            }
+
 
             #region Ball
 
@@ -69,10 +84,6 @@
                 firstPlayerHitCounter = 0;
                 secondPlayer.Ship.Attack(firstPlayer.Ship);
             }
-            if (firstPlayer.Ship.Health <= 0)
-            {
-                PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.FirstPlayer).Sinked = true;
-            }
 
             ballColliding = BallCollision.Collide(
                 secondPlayer.Ship,
@@ -81,12 +92,19 @@
             {
                 secondPlayerHitCounter = 0;
                 firstPlayer.Ship.Attack(secondPlayer.Ship);
-                if (secondPlayer.Ship.Health <= 0)
-                {
-                    PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.SecondPlayer).Sinked = true;
-                }
+                
             }
             #endregion
+
+            if (firstPlayer.Ship.Health <= 0)
+            {
+                PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.FirstPlayer).Sinked = true;
+            }
+            if (secondPlayer.Ship.Health <= 0)
+            {
+                PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.SecondPlayer).Sinked = true;
+            }
+
         }
 
         public static void Draw(SpriteBatch spriteBatch)

@@ -1,6 +1,7 @@
 ﻿namespace Badass_Pirates
 {
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -14,8 +15,11 @@
         private GraphicsDeviceManager graphics;
 
         private SpriteBatch spriteBatch;
-        
-        
+
+        public static float timer;
+
+        public static float timeCounter;
+
         public MainEngine()
         {
             this.graphics = new GraphicsDeviceManager(this);
@@ -73,6 +77,13 @@
                 || Keyboard.GetState().IsKeyDown(Keys.Escape))
             {
                 this.Exit();
+            }
+
+            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
+            timeCounter += (int)timer;
+            if (timer >= 1.0F)
+            {
+                timer = 0F;
             }
 
             ScreenManager.Instance.Update(gameTime);

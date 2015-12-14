@@ -122,6 +122,10 @@
 
             set
             {
+                if (value < 0)
+                {
+                    value = 0;
+                }
                 if (value > 100)
                 {
                     value = 100;
@@ -163,8 +167,7 @@
                 this.energy = value;
             }
         }
-
-        // TODO not set correctly when ship speed is less than 0 ! ! !
+        
         public int Speed
         {
             get

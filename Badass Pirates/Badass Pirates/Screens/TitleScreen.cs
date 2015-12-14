@@ -2,9 +2,11 @@
 {
     #region
 
+    using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
     using Badass_Pirates.Exceptions;
     using Badass_Pirates.Fonts;
+    using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Managers;
@@ -27,6 +29,10 @@
 
         private static Player secondPlayer;
 
+        private bool callTheBoss = false;
+
+        private bool bassCalled = false;
+        
         public static Player FirstPlayer
         {
             get
@@ -50,6 +56,7 @@
                 secondPlayer = value;
             }
         }
+        
 
         public override void Initialise()
         {
@@ -78,6 +85,7 @@
         public override void UnloadContent()
         {
             base.UnloadContent();
+            Boss.Instance.UnloadContent();
             FirstPlayer.UnloadContent();
             SecondPlayer.UnloadContent();
             this.background.UnloadContent();
@@ -90,9 +98,21 @@
             base.Update(gameTime);
             Item.Update(gameTime);
 
+            if (!this.bassCalled && gameTime.ElapsedGameTime.TotalSeconds > 5)
+            {
+                Boss.Instance = new Boss();
+                this.callTheBoss = true;
+                this.bassCalled = true;
+                Boss.Instance.CallTheBoss();
+                //Boss.Instance.Update();
+            }
+            else if (this.bassCalled)
+            {
+                Boss.Instance.Update();
+            }
             //try
             //{
-                FirstPlayer.Update(gameTime);
+            FirstPlayer.Update(gameTime);
                 SecondPlayer.Update(gameTime);
             //}
             //catch (OutOfHealthException)
@@ -109,6 +129,12 @@
         {
             base.Draw(spriteBatch);
             this.background.Draw(spriteBatch, Vector2.Zero);
+
+            if (this.callTheBoss)
+            {
+                Boss.Instance.Draw(spriteBatch);
+            }
+
             FirstPlayer.Draw(spriteBatch);
             SecondPlayer.Draw(spriteBatch);
 

@@ -8,7 +8,7 @@
 
     public class Lightning : Specialty
     {
-        private const string PATH = "Specialties/lightningResized";
+        private const string PATH = "Specialties/lightingResized";
 
         private static readonly Point frameSize = new Point(250,245);
 
