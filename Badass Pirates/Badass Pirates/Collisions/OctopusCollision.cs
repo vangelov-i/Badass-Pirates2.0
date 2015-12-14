@@ -41,7 +41,7 @@ namespace Badass_Pirates.Collisions
 
                 if (shipRect.Intersects(diBoss))
                 {
-                    Boss.Attack(shipColliding);
+                    //Boss.Attack(shipColliding);
                     OctopusCollision.collidedStopWatch.Start();
                     return true;
                 }

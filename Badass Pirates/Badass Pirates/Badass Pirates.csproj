@@ -67,6 +67,7 @@
     <Compile Include="Managers\FontsManager.cs" />
     <Compile Include="Managers\RegenManager.cs" />
     <Compile Include="Managers\ShuffleItems.cs" />
+    <Compile Include="Managers\StopWatch.cs" />
     <Compile Include="Screens\MenuItem.cs" />
     <Compile Include="Objects\Item.cs" />
     <Compile Include="Objects\CannonBall.cs" />

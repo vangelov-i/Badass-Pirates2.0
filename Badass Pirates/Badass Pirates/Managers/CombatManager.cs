@@ -12,6 +12,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using System.Diagnostics;
 
     public static class CombatManager
     {
@@ -22,9 +23,12 @@
         private static Player currentPlayer;
         private static bool ballColliding;
         private static bool bossBallCollide;
+        private static bool bossVsShipCollide;
         private static int? firstPlayerHitCounter;
         private static int? secondPlayerHitCounter;
+        private static int? bossHitCounter;
         private static Font damageFont;
+        private static Stopwatch watch;
 
         public static bool control = true;
 
@@ -34,10 +38,12 @@
         #region Methods
         public static void Initilialise(Player currPlayer)
         {
+            watch = new Stopwatch();
             damageFont = new Font(Color.Red, "Fonts", "big");
             currentPlayer = currPlayer;
             ballColliding = false;
             bossBallCollide = false;
+            bossVsShipCollide = false;
             firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
             secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
             BallControls.CannonBallInitialise();
@@ -48,6 +54,7 @@
             damageFont.LoadContent();
             firstPlayer.Ship.Specialty.LoadContent();
             secondPlayer.Ship.Specialty.LoadContent();
+            watch.Start();
         }
 
         public static void UnloadContent()
@@ -87,7 +94,7 @@
 
             #region Ball Boss Collisions
             // 5 - const i za spawn na bossa
-            if (Objects.Player.Watch.Elapsed.TotalSeconds > 5)
+            if (watch.Elapsed.TotalSeconds > 5)
             {
                 // topchEto na pyrviq igrach
                 bossBallCollide = OctopusCollision.BossBallCollide(BallControls.ballFirst);
@@ -107,6 +114,21 @@
             }
             #endregion
 
+            #region BossVsPlayer Collisions
+
+            if (watch.Elapsed.TotalSeconds > 5)
+            {
+                Boss.Update();
+                bossVsShipCollide = OctopusCollision.Collide(current.Ship);
+                if (bossVsShipCollide)
+                {
+                    bossHitCounter = 0;
+                    Boss.Attack(current.Ship);
+                }
+            }
+
+            #endregion
+
 
             // Трябва да се премести в пропърти на кораба
             if (firstPlayer.Ship.Health <= 0)
@@ -122,6 +144,7 @@
 
         public static void Draw(SpriteBatch spriteBatch)
         {
+            //igrachite
             if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null && ballColliding) // ballColliding && 
             {
                 damageFont.Draw(
@@ -143,28 +166,54 @@
                 secondPlayerHitCounter++;
             }
 
-            // boss-a
+            if (bossHitCounter < 15 && bossHitCounter != null)
+            {
+                if (currentPlayer is FirstPlayer)
+                {
+                    damageFont.Draw(
+                        spriteBatch,
+                        new Vector2(
+                        firstPlayer.Ship.Position.X,
+                        firstPlayer.Ship.Position.Y - 40),
+                        string.Format((Boss.Damage * -1).ToString())); // moje i po elegantno :D
+                    bossHitCounter++;
+                }
+                else
+                {
+                    damageFont.Draw(
+                        spriteBatch,
+                        new Vector2(
+                        secondPlayer.Ship.Position.X,
+                        secondPlayer.Ship.Position.Y - 40),
+                        string.Format((Boss.Damage * -1).ToString())); // moje i po elegantno :D
+                    bossHitCounter++;
+
+                }
+
+            }
+
+            // kogato e udaren bossyt
             if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null)
             {
                 damageFont.Draw(
-    spriteBatch,
-    new Vector2(
-        Boss.Position.X + Boss.image.Texture.Width / 2f - 25,
-        Boss.Position.Y),
-    string.Format((firstPlayer.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
-                firstPlayerHitCounter++;
+                    spriteBatch,
+                    new Vector2(
+                        Boss.Position.X + Boss.image.Texture.Width / 2f - 25,
+                        Boss.Position.Y),
+                        string.Format((firstPlayer.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
+                        firstPlayerHitCounter++;
 
             }
 
             if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null)
             {
                 damageFont.Draw(
-    spriteBatch,
-    new Vector2(
-        Boss.Position.X + Boss.image.Texture.Width / 2f - 25,
-        Boss.Position.Y),
-    string.Format((secondPlayer.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
-                secondPlayerHitCounter++;
+                    spriteBatch,
+                    new Vector2(
+                        Boss.Position.X + Boss.image.Texture.Width / 2f - 25,
+                        Boss.Position.Y),
+                        string.Format((secondPlayer.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
+                        secondPlayerHitCounter++;
 
             }
 

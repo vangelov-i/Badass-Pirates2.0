@@ -21,10 +21,6 @@
 
     public class Player : IGet
     {
-        #region Fields
-        private static Stopwatch watch;
-        #endregion
-
         #region Properties
 
         public GameObjects.Players.Player CurrentPlayer { get; set; }
@@ -37,22 +33,12 @@
 
         public bool Sinked { get; set; }
 
-        public static Stopwatch Watch
-        {
-            get
-            {
-                return watch;
-            }
-
-        }
-
         #endregion
 
         #region Methods
 
         public void Initialise(ShipType type, PlayerTypes side)
         {
-            watch = new Stopwatch();
             switch (side)
             {
                 case PlayerTypes.SecondPlayer:
@@ -129,7 +115,6 @@
             BallControls.CannonBallLoadContent();
             CombatManager.LoadContent();
             Boss.LoadContent();
-            watch.Start();
         }
 
         public void UnloadContent()
@@ -199,11 +184,11 @@
             BallControls.CannonBallControls(this.PlayerType, this.CurrentPlayer, this.ShipImage, gameTime);
             this.itemColliding = ItemsCollision.Collide(this.CurrentPlayer.Ship);
             CombatManager.Update(gameTime, this.PlayerType, this.CurrentPlayer);
-            if (watch.Elapsed.TotalSeconds > 5)
-            {
-                Boss.Update();
-                OctopusCollision.Collide(this.CurrentPlayer.Ship);
-            }
+            //if (watch.Elapsed.TotalSeconds > 5)
+            //{
+            //    Boss.Update();
+            //    OctopusCollision.Collide(this.CurrentPlayer.Ship);
+            //}
 
             // ALWAYS MUST BE THE LAST LINE
             this.CurrentPlayer.InputManagerInstance.Update();
