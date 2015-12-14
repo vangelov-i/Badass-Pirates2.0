@@ -24,7 +24,7 @@
             this.Ship = CreateShip.Create(type);
         }
 
-        public InputManager InputManagerInstance { get; }
+        public InputManager InputManagerInstance { get; private set; }
 
         public PlayerTypes TypeOfPlayer
         {

@@ -68,17 +68,6 @@ C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\ob
 C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.pdb
 C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\obj\x86\Debug\Badass Pirates.csprojResolveAssemblyReference.cache
 C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\BG.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IFreeze.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_1.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\IWind_2.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\lightning.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusItems\wind.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\energy_potion.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\health_potion.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Potions\shield_potion.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship1.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\Ship2.png
-C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ships\ship3novo.png
 C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.exe
 C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.pdb
 C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\MonoGame.Framework.dll
@@ -207,3 +196,35 @@ C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\seajpg.jpg
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\dibossBIG.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Specialties\lightingResized.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\image.jpg
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\sea.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\seajpg.jpg
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\boltBonus.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\freezBonus.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\laser.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\penetration.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\shieldBonus.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\BonusContents\windBonus.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\PotionsContents\energyPotion.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\PotionsContents\hpPotion.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\PotionsContents\shieldPotion.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\battleshipLeft.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\battleshipRight.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\cruiserLeft.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\cruiserRight.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerLeft.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\ShipsContents\destroyerRight.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Linds.ttf
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Miramo.ttf
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Miramob.ttf
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Peric.ttf
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pericl.ttf
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pesca.ttf
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Fonts\Pescab.ttf
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\cannonball.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\dibossBIG.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\firstFire.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\secondFire.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Specialties\lightingResized.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Specialties\seamineResized.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Specialties\hurricaneResized.png

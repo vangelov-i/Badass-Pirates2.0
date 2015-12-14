@@ -104,7 +104,7 @@
             {
                 if (value < 0)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(value),"cannot be negative !");
+                    throw new ArgumentOutOfRangeException("value","cannot be negative !");
                 }
                 this.damage = value;
             }
