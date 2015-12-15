@@ -21,7 +21,7 @@
 
         public bool IsActive { get; set; }
 
-        private string Path { get; } // pyrvonachalno beshe bez setter, no pishteshe che iska!
+        private string Path { get; set; } // pyrvonachalno beshe bez setter, no pishteshe che iska!
 
         public void Initialise()
         {

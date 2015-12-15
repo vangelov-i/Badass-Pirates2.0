@@ -154,7 +154,7 @@
         public static void Draw(SpriteBatch spriteBatch)
         {
             //igrachite
-            if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null && ballColliding) // ballColliding && 
+            if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null) // ballColliding && 
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -164,7 +164,7 @@
                     string.Format((secondPlayer.Ship.Damage * -1).ToString())); // moje i po elegantno :D
                 firstPlayerHitCounter++;
             }
-            if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null && ballColliding)
+            if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null)
             {
                 damageFont.Draw(
                     spriteBatch,
