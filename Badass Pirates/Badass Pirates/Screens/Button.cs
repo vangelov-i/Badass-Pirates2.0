@@ -1,72 +1,89 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Microsoft.Xna.Framework;
-using Microsoft.Xna.Framework.Graphics;
-using Microsoft.Xna.Framework.Input;
-
-namespace Badass_Pirates.Screens
+﻿namespace Badass_Pirates.Screens
 {
+    #region
+
+    using Badass_Pirates.Managers;
+
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
+
+    #endregion
+
     class Button
     {
-        Texture2D texture;
+        readonly Texture2D texture;
+
+        Color colour = new Color(255, 255, 255, 255);
+
+        bool down;
+
+        public bool isClicked;
 
         Vector2 position;
 
         Rectangle rectangle;
 
-        Color colour = new Color(255, 255, 255, 255);
-
         public Vector2 size;
 
-        public Button(Texture2D newTexture, GraphicsDevice graphics)
+        private readonly GraphicsDevice graphics;
+
+        public Button(Texture2D newTexture)
         {
-            texture = newTexture;
+            this.graphics = ScreenManager.instance.GraphicsDevice;
+            this.texture = newTexture;
             //screenWidth = 800, ScreenHeight = 600
             //ImageWidth = 100, ImageHeight = 20
-            size = new Vector2(graphics.Viewport.Width / 8f, graphics.Viewport.Height / 30f);
+            this.size = new Vector2(this.graphics.Viewport.Width / 8f, this.graphics.Viewport.Height / 30f);
         }
-
-        bool down;
-        public bool isClicked;
 
         public void Update(MouseState mouse)
         {
-            rectangle = new Rectangle((int)position.X, (int)position.Y,
-                (int)size.X, (int)size.Y);
+            this.rectangle = new Rectangle(
+                (int)this.position.X,
+                (int)this.position.Y,
+                (int)this.size.X,
+                (int)this.size.Y);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            if (mouseRectangle.Intersects(rectangle))
+            if (mouseRectangle.Intersects(this.rectangle))
             {
-                if (colour.A == 255)
+                if (this.colour.A == 255)
                 {
-                    down = false;   
+                    this.down = false;
                 }
-                if (colour.A == 0)
-                    down = true;
-                if (down)
-                    colour.A += 3;
+                if (this.colour.A == 0)
+                {
+                    this.down = true;
+                }
+                if (this.down)
+                {
+                    this.colour.A += 3;
+                }
                 else
-                    colour.A -= 3;
+                {
+                    this.colour.A -= 3;
+                }
                 if (mouse.LeftButton == ButtonState.Pressed)
-                    isClicked = true;
+                {
+                    this.isClicked = true;
+                }
             }
-            else if (colour.A < 255)
+            else if (this.colour.A < 255)
             {
-                colour.A += 3;
-                isClicked = false;
+                this.colour.A += 3;
+                this.isClicked = false;
             }
         }
 
         public void setPosition(Vector2 newPosition)
         {
-            position = newPosition;
+            this.position = newPosition;
         }
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(texture,rectangle,colour);
+            spriteBatch.Draw(this.texture, this.rectangle, this.colour);
         }
     }
 }

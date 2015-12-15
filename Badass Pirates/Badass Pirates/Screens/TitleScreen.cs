@@ -2,12 +2,7 @@
 {
     #region
 
-    using Badass_Pirates.Collisions;
-    using Badass_Pirates.Controls;
-    using Badass_Pirates.Exceptions;
-    using Badass_Pirates.Factory;
     using Badass_Pirates.Fonts;
-    using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Managers;
@@ -29,8 +24,6 @@
         private static VirtualPlayer firstPlayer;
 
         private static VirtualPlayer secondPlayer;
-
-        private bool callTheBoss = false;
 
         public static VirtualPlayer FirstPlayer
         {
@@ -56,8 +49,13 @@
             }
         }
 
+        public TitleScreen ()
+        {
+            this.Initialise();
+            this.LoadContent();
+        }
 
-        public override void Initialise()
+        public sealed override void Initialise()
         {
             base.Initialise();
             FirstPlayer = new VirtualPlayer();
@@ -71,7 +69,7 @@
             this.background.Initialise();
         }
 
-        public override void LoadContent()
+        public sealed override void LoadContent()
         {
             base.LoadContent();
             FirstPlayer.LoadContent();

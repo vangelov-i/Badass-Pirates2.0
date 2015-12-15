@@ -24,6 +24,7 @@
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
+            this.IsMouseVisible = true;
         }
 
         /// <summary>
@@ -38,7 +39,7 @@
             this.Content.RootDirectory = "Content";
             this.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             this.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            //this.graphics.IsFullScreen = this.IsActive;
+            this.graphics.IsFullScreen = this.IsActive;
             ScreenManager.Instance.Initialise();
             base.Initialize();
         }

@@ -252,3 +252,4 @@ C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Cont
 C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Specialties\lightingResized.png
 C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Specialties\seamineResized.png
 C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Specialties\hurricaneResized.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\button.png

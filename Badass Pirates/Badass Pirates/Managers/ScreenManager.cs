@@ -15,9 +15,10 @@
     {
         #region Properties
 
-        private static ScreenManager instance;
+        // TODO MAKE PROPERTY NOT PUBLIC FIELD !!!
+        public static ScreenManager instance;
 
-        private readonly GameScreen currentScreen;
+        public /*readonly*/ GameScreen currentScreen;
 
         #region Constructor
 
@@ -25,7 +26,8 @@
         {
             // TODO HERE PUT THE TYPE OF THE SCREEN WHICH WILL BE INITIALISED
             this.Dimensions = new Vector2(1366, 768);
-            this.currentScreen = new TitleScreen();
+            //this.currentScreen = new TitleScreen();
+            this.currentScreen = new MenuScreen();
             this.XmlGamescreenManager = new XmlManager<GameScreen>();
             this.XmlGamescreenManager.Tpye = this.currentScreen.Type;
 
