@@ -5,9 +5,7 @@
     using System;
     using System.Diagnostics;
 
-    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
@@ -15,6 +13,8 @@
 
     #endregion
 
+
+    // TODO CONSTs
     public class Item
     {
         #region Fields
@@ -51,7 +51,7 @@
 
         #region Properties
 
-        public static Vector2 Position //=> Item.position;
+        public static Vector2 Position 
         {
             get
             {
@@ -62,19 +62,7 @@
                 Item.position = value;
             }
         }
-
-        public static Item Instance // => instance ?? (instance = new Item());
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new Item();
-                }
-                return instance;
-            }
-        }
-
+        
         public static Point FrameSize = new Point(110, 70);
 
         #endregion
@@ -164,8 +152,5 @@
                 random.Next(itemImage.Texture.Height, (int)ScreenManager.Instance.Dimensions.Y - itemImage.Texture.Height));
             
         }
-        //random.Next(50, (int)Item.screenWidth - Item.itemImage.Texture.Width*2),
-        //        random.Next(50, (int)Item.screenHeight - Item.itemImage.Texture.Height*2));
-
     }
 }

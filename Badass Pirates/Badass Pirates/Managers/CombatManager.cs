@@ -2,7 +2,6 @@
 {
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
-    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Fonts;
     using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Players;
@@ -44,9 +43,11 @@
             ballColliding = false;
             bossBallCollide = false;
             bossVsShipCollide = false;
-            firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
-            secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
+            firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
+            secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
             BallControls.CannonBallInitialise();
+
+            // TODO Could be ENUM
             playerFlagBossCollide = -1;
         }
 
@@ -142,11 +143,11 @@
             // Трябва да се премести в пропърти на кораба
             if (firstPlayer.Ship.Health <= 0)
             {
-                PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.FirstPlayer).Sinked = true;
+                PlayersInfo.GetCurrentVirtualPlayer(PlayerTypes.FirstPlayer).Sinked = true;
             }
             if (secondPlayer.Ship.Health <= 0)
             {
-                PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.SecondPlayer).Sinked = true;
+                PlayersInfo.GetCurrentVirtualPlayer(PlayerTypes.SecondPlayer).Sinked = true;
             }
         }
 

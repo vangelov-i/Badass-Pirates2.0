@@ -1,6 +1,7 @@
 ﻿namespace Badass_Pirates.Objects.Specialties
 {
     using Badass_Pirates.Collisions;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
 
     using Microsoft.Xna.Framework;
@@ -24,25 +25,27 @@
         {
             if (this.SpecialtyFired)
             {
+                // TODO moje da se izvede v private method void Move() i Atack() primerno..
+                // nqkak da se porazkachi Update() (ako ima vreme)
                 if (currentPlayer is FirstPlayer)
                 {
-                    collide = SpecialtyCollision.Collide(this.secondPlayer.Ship, this);
-                    if (collide)
+                    Collide = SpecialtyCollision.Collide(this.SecondPlayer.Ship, this);
+                    if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.secondPlayer.Ship);
+                        currentPlayer.Ship.SpecialtyAttack(this.SecondPlayer.Ship);
                     }
 
-                    this.position.X += HURRICANE_SPEED;
+                    this.AddToPosition(Direction.Positive, CoordsDirections.Abscissa, HURRICANE_SPEED);
                 }
                 else
                 {
-                    collide = SpecialtyCollision.Collide(this.firstPlayer.Ship, this);
-                    if (collide)
+                    Collide = SpecialtyCollision.Collide(this.FirstPlayer.Ship, this);
+                    if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);
+                        currentPlayer.Ship.SpecialtyAttack(this.FirstPlayer.Ship);
                     }
 
-                    this.position.X -= HURRICANE_SPEED;
+                    this.AddToPosition(Direction.Negative, CoordsDirections.Abscissa, HURRICANE_SPEED);
                 }
             }
         }

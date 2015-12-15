@@ -2,7 +2,6 @@
 {
     #region
 
-    using Badass_Pirates.EngineComponents;
     using Badass_Pirates.Screens;
 
     using Microsoft.Xna.Framework;
@@ -11,27 +10,21 @@
 
     #endregion
 
+    // TODO ЧИСТИЧЪК И СПРЕТНАТ
     public class ScreenManager
     {
         #region Properties
+        
+        private static ScreenManager instance;
 
-        // TODO MAKE PROPERTY NOT PUBLIC FIELD !!!
-        public static ScreenManager instance;
-
-        public /*readonly*/ GameScreen currentScreen;
+        private GameScreen currentScreen;
 
         #region Constructor
 
-        public ScreenManager()
+        private ScreenManager()
         {
-            // TODO HERE PUT THE TYPE OF THE SCREEN WHICH WILL BE INITIALISED
             this.Dimensions = new Vector2(1366, 768);
-            //this.currentScreen = new TitleScreen();
             this.currentScreen = new MenuScreen();
-            this.XmlGamescreenManager = new XmlManager<GameScreen>();
-            this.XmlGamescreenManager.Tpye = this.currentScreen.Type;
-
-            // this.currentScreen = this.XmlGamescreenManager.Load("Content/Load/SplashScreen.xml");
         }
 
         #endregion
@@ -51,13 +44,25 @@
 
         public GraphicsDevice GraphicsDevice { get; set; }
 
+        // TODO referenciii beeee !!!! trqa sa slojat! da sa polzva tva
+
         public SpriteBatch SpriteBatch { get; set; }
 
         public Vector2 Dimensions { get; private set; }
 
         public ContentManager Content { get; private set; }
 
-        public XmlManager<GameScreen> XmlGamescreenManager { get; set; }
+        public GameScreen CurrentScreen
+        {
+            get
+            {
+                return this.currentScreen;
+            }
+            set
+            {
+                this.currentScreen = value;
+            }
+        }
 
         #endregion
 

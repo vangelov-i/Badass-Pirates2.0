@@ -1,9 +1,7 @@
 ﻿namespace Badass_Pirates.Objects
 {
     #region
-
-    using System.Diagnostics;
-
+    
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
     using Badass_Pirates.Enums;
@@ -19,11 +17,12 @@
 
     #endregion
 
+    // TODO CONSTs
     public class VirtualPlayer : IGet
     {
         #region Properties
 
-        public GameObjects.Players.Player CurrentPlayer { get; set; }
+        public Player CurrentPlayer { get; private set; }
 
         public bool itemColliding { get; private set; }
 
@@ -147,13 +146,14 @@
             if (this.Sinked)
             {
                 VirtualPlayer player;
+
                 if (this.CurrentPlayer is FirstPlayer)
                 {
-                    player = PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.FirstPlayer);
+                    player = PlayersInfo.GetCurrentVirtualPlayer(PlayerTypes.FirstPlayer);
                 }
                 else
                 {
-                    player = PlayersInfo.GetCurrentPlayerAsObj(PlayerTypes.SecondPlayer);
+                    player = PlayersInfo.GetCurrentVirtualPlayer(PlayerTypes.SecondPlayer);
                 }
 
                 this.CurrentPlayer.Ship.Sink(player);
@@ -163,13 +163,13 @@
 
             if (this.itemColliding)
             {
-                if (ShuffleItems.typeBonus == 0)
+                if (ShuffleItems.TypeBonus == 0)
                 {
-                    this.GetPotion(ShuffleItems.typePotion);
+                    this.GetPotion(ShuffleItems.TypePotion);
                 }
-                else if (ShuffleItems.typePotion == 0)
+                else if (ShuffleItems.TypePotion == 0)
                 {
-                    this.GetBonus(ShuffleItems.typeBonus);
+                    this.GetBonus(ShuffleItems.TypeBonus);
                 }
             }
 
@@ -177,18 +177,12 @@
 
             #endregion
 
-            this.ShipImage.Update(gameTime); // nenujen red (Update) na imate e prazen metod
             this.CurrentPlayer.InputManagerInstance.RotateStates();
 
             PlayerControls.ControlsPlayer(this.PlayerType, this.CurrentPlayer, this.ShipImage);
             BallControls.CannonBallControls(this.PlayerType, this.CurrentPlayer, this.ShipImage, gameTime);
             this.itemColliding = ItemsCollision.Collide(this.CurrentPlayer.Ship);
             CombatManager.Update(gameTime, this.PlayerType, this.CurrentPlayer);
-            //if (watch.Elapsed.TotalSeconds > 5)
-            //{
-            //    Boss.Update();
-            //    OctopusCollision.Collide(this.CurrentPlayer.Ship);
-            //}
 
             // ALWAYS MUST BE THE LAST LINE
             this.CurrentPlayer.InputManagerInstance.Update();

@@ -8,17 +8,44 @@
 
     #endregion
 
+    // TODO ЧИСТИЧЪК И СПРЕТНАТ
     public static class ShuffleItems
     {
-        public static BonusType typeBonus = 0;
+        private static BonusType typeBonus;
 
-        public static PotionTypes typePotion = 0;
+        private static PotionTypes typePotion;
 
-        private static Random random;
+        private static readonly Random random;
 
         static ShuffleItems()
         {
             random = new Random();
+            typeBonus = 0;
+            typePotion = 0;
+        }
+
+        public static BonusType TypeBonus
+        {
+            get
+            {
+                return typeBonus;
+            }
+            set
+            {
+                typeBonus = value;
+            }
+        }
+
+        public static PotionTypes TypePotion
+        {
+            get
+            {
+                return typePotion;
+            }
+            set
+            {
+                typePotion = value;
+            }
         }
 
         public static Image Shuffle()

@@ -26,8 +26,8 @@
 
         public override void ActivateSpecialty(Player currentPlayer) // currentPlayer is the enemy 
         {
-            // this position might have bugs when applied to the FirstPlayer
-            this.position = new Vector2(currentPlayer.Ship.Position.X - this.image.Texture.Width/2f, currentPlayer.Ship.Position.Y - this.image.Texture.Height);
+            // this Position might have bugs when applied to the FirstPlayer
+            this.Position = new Vector2(currentPlayer.Ship.Position.X - this.Image.Texture.Width/2f, currentPlayer.Ship.Position.Y - this.Image.Texture.Height);
             this.SpecialtyFired = true;
             this.lightningTimer.Start();
         }
@@ -38,18 +38,18 @@
             // NEEDS LOTS OF ELEGANCE
             if (currentPlayer is FirstPlayer)
             {
-                this.position = new Vector2(this.secondPlayer.Ship.Position.X - this.image.Texture.Width / 2f, this.secondPlayer.Ship.Position.Y - this.image.Texture.Height);
+                this.Position = new Vector2(this.SecondPlayer.Ship.Position.X - this.Image.Texture.Width / 2f, this.SecondPlayer.Ship.Position.Y - this.Image.Texture.Height);
                 if (this.lightningTimer.Elapsed.Seconds > LIGHTNING_TIME)
                 {
-                    currentPlayer.Ship.SpecialtyAttack(this.secondPlayer.Ship);
+                    currentPlayer.Ship.SpecialtyAttack(this.SecondPlayer.Ship);
                 }
             }
             else
             {
-                this.position = new Vector2(this.firstPlayer.Ship.Position.X - this.image.Texture.Width/2f , this.firstPlayer.Ship.Position.Y - this.image.Texture.Height);
+                this.Position = new Vector2(this.FirstPlayer.Ship.Position.X - this.Image.Texture.Width/2f , this.FirstPlayer.Ship.Position.Y - this.Image.Texture.Height);
                 if (this.lightningTimer.Elapsed.Seconds > LIGHTNING_TIME)
                 {
-                    currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);
+                    currentPlayer.Ship.SpecialtyAttack(this.FirstPlayer.Ship);
                 }
             }
 

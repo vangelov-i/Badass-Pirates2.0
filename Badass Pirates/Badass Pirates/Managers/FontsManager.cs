@@ -30,8 +30,8 @@
             FontsManager.shieldFont = new Font(Color.Blue, "Fonts", "big");
             //FontsManager.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             FontsManager.end = false;
-            firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
-            secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
+            firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
+            secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
         }
 
         public static void LoadContent()
@@ -47,17 +47,16 @@
             FontsManager.energyFont.UnloadContent();
             FontsManager.hpFont.UnloadContent();
             FontsManager.shieldFont.UnloadContent();
-            //FontsManager.gameOver.UnloadContent();
         }
 
-        public static void Update(GameTime gameTime,bool endDraw)
+        public static void Update(GameTime gameTime)
         {
-            //FontsManager.end = endDraw;
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
             #region First Player
+
             FontsManager.hpFont.Draw(
                 spriteBatch,
                 new Vector2(firstPlayer.Ship.Position.X, firstPlayer.Ship.Position.Y - 20),
@@ -70,6 +69,7 @@
                 spriteBatch,
                 new Vector2(firstPlayer.Ship.Position.X + 40, firstPlayer.Ship.Position.Y - 20),
                 firstPlayer.Ship.Shields.ToString());
+
             #endregion
 
             #region Second Player
@@ -90,24 +90,13 @@
             #endregion
 
             #region Boss
+
             FontsManager.hpFont.Draw(
                 spriteBatch,
                 new Vector2(Boss.Position.X + Boss.image.Texture.Width/2f - 25, Boss.Position.Y + 30),
                 Boss.Health.ToString());
-            #endregion
-
-            #region GameOver
-
-            //if (FontsManager.end)
-            //{
-            //    FontsManager.gameOver.Draw(
-            //        spriteBatch,
-            //        new Vector2(400, 140),
-            //        $"SHIP {(firstPlayer.Ship.Health <= 0 ? " Second" : $" {(secondPlayer.Ship.Health <= 0 ? "First" : null)} VICTORY")}");
-            //}
 
             #endregion
-
         }
     }
 }

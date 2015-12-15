@@ -20,8 +20,8 @@
             Rectangle mineRectangle = new Rectangle(
                 (int)specialtyItem.Position.X + OFFSET,
                 (int)specialtyItem.Position.Y + OFFSET,
-                specialtyItem.FRAMESIZE.X - (OFFSET * 2),
-                specialtyItem.FRAMESIZE.Y - (OFFSET * 2));
+                specialtyItem.FrameSize.X - (OFFSET * 2),
+                specialtyItem.FrameSize.Y - (OFFSET * 2));
 
             if (shipRect.Intersects(mineRectangle))
             {

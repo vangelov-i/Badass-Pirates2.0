@@ -104,8 +104,6 @@
             ScreenManager.Instance.Draw(this.spriteBatch);
             this.spriteBatch.End();
             base.Draw(gameTime);
-
-
         }
     }
 }

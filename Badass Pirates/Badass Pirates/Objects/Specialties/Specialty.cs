@@ -1,5 +1,6 @@
 ﻿namespace Badass_Pirates.Objects.Specialties
 {
+    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Managers;
     using Badass_Pirates.Screens;
@@ -9,35 +10,52 @@
 
     public abstract class Specialty 
     {
-        public bool draw;
+        #region Fields
 
-        protected Image image;
+        private bool doDraw;
 
-        internal Point FRAMESIZE;
+        private Image image;
 
-        protected Vector2 position;
+        private Point frameSize;
+
+        private Vector2 position;
 
         private bool specialtyFired;
 
         private int damage;
 
-        protected Player firstPlayer ;
+        private Player firstPlayer;
 
-        protected Player secondPlayer;
+        private Player secondPlayer;
 
-        protected static bool collide;
+        private static bool collide;
 
+        #endregion
 
-        protected Specialty(string path, Point framesize,int dmg)
+        protected Specialty(string path, Point frameSize,int dmg)
         {
             this.image = new Image(path);
-            this.FRAMESIZE = framesize;
+            this.frameSize = frameSize;
             this.Damage = dmg;
             this.specialtyFired = false;
-            this.draw = false;
+            this.doDraw = false;
         }
 
+
         #region Properties
+
+        public bool DoDraw
+        {
+            get
+            {
+                return this.doDraw;
+            }
+            set
+            {
+                this.doDraw = value;
+            }
+        }
+
         public Image Image
         {
             get
@@ -50,15 +68,15 @@
             }
         }
 
-        public Point Framesize
+        public Point FrameSize
         {
             get
             {
-                return this.FRAMESIZE;
+                return this.frameSize;
             }
             set
             {
-                this.FRAMESIZE = value;
+                this.frameSize = value;
             }
         }
 
@@ -74,6 +92,18 @@
             }
         }
 
+        public bool SpecialtyFired
+        {
+            get
+            {
+                return this.specialtyFired;
+            }
+            set
+            {
+                this.specialtyFired = value;
+            }
+        }
+
         public int Damage
         {
             get
@@ -86,17 +116,42 @@
             }
         }
 
-        public bool SpecialtyFired
+        public Player FirstPlayer
         {
             get
             {
-                return this.specialtyFired;
+                return this.firstPlayer;
             }
             set
             {
-                this.specialtyFired = value;
+                this.firstPlayer = value;
             }
         }
+
+        public Player SecondPlayer
+        {
+            get
+            {
+                return this.secondPlayer;
+            }
+            set
+            {
+                this.secondPlayer = value;
+            }
+        }
+
+        public static bool Collide
+        {
+            get
+            {
+                return collide;
+            }
+            set
+            {
+                collide = value;
+            }
+        }
+
 
         #endregion
 
@@ -110,8 +165,8 @@
 
         public void LoadContent()
         {
-            this.firstPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.FirstPlayer);
-            this.secondPlayer = PlayersInfo.GetCurrentPlayerAsGameObj(PlayerTypes.SecondPlayer);
+            this.firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
+            this.secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
             this.image.LoadContent();
         }
 
@@ -144,6 +199,48 @@
             }
 
             this.specialtyFired = true;
+        }
+
+        protected void SetPosition(CoordsDirections direction,float val)
+        {
+            switch (direction)
+                {
+                    case CoordsDirections.Abscissa:
+                        this.position.X = val;
+                        break;
+                    case CoordsDirections.Ordinate:
+                        this.position.Y = val;
+                        break;
+                }
+        }
+
+        protected void AddToPosition(Direction plusOrMinus, CoordsDirections direction, float val)
+        {
+            switch (plusOrMinus)
+            {
+                case Direction.Positive:
+                    switch (direction)
+                    {
+                        case CoordsDirections.Abscissa:
+                            this.position.X += val;
+                            break;
+                        case CoordsDirections.Ordinate:
+                            this.position.Y += val;
+                            break;
+                    }
+                    break;
+                case Direction.Negative:
+                    switch (direction)
+                    {
+                        case CoordsDirections.Abscissa:
+                            this.position.X -= val;
+                            break;
+                        case CoordsDirections.Ordinate:
+                            this.position.Y -= val;
+                            break;
+                    }
+                    break;
+            }
         }
         #endregion
 

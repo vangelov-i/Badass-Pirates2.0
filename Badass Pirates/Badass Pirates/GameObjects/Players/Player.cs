@@ -2,9 +2,9 @@
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Factory;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
 

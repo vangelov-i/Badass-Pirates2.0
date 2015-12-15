@@ -1,6 +1,7 @@
 ﻿namespace Badass_Pirates.Objects.Specialties
 {
     using Badass_Pirates.Collisions;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Managers;
 
@@ -31,45 +32,32 @@
             : base(PATH, frameSize, DAMAGE)
         {
             flag = 0;
-            // Needs some constants
-            this.position.X = 9000f;//ScreenManager.Instance.Dimensions.X - pos.X;
-            this.position.Y = 9000f;
+            this.SetPosition(CoordsDirections.Abscissa, 9000);
+            this.SetPosition(CoordsDirections.Ordinate, 9000);
         }
         #endregion
-
-        public static int Flag
-        {
-            get { return flag; }
-            set { flag = value; }
-        }
-
-        public override void Initialise(Vector2 pos)
-        {
-            //this.position.X = ScreenManager.Instance.Dimensions.X - pos.X;
-            //this.position.Y = -30f;
-        }
-
+        
         public override void Update(GameTime gameTime, Player currentPlayer)
         {
             // ЛОГИКА ПРИ КОЛИЗИЯ НА МИНАТА
             // TODO NOT WORKING COLLISION
             
-                if (currentPlayer != this.firstPlayer)
+                if (currentPlayer != this.FirstPlayer)
                 {
-                    collide = SpecialtyCollision.Collide(this.firstPlayer.Ship, this);
-                    if (collide)
+                    Collide = SpecialtyCollision.Collide(this.FirstPlayer.Ship, this);
+                    if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.firstPlayer.Ship);
-                        this.draw = false;
+                        currentPlayer.Ship.SpecialtyAttack(this.FirstPlayer.Ship);
+                        this.DoDraw = false;
                     }
                 }
                 else
                 {
-                    collide = SpecialtyCollision.Collide(this.secondPlayer.Ship, this);
-                    if (collide)
+                    Collide = SpecialtyCollision.Collide(this.SecondPlayer.Ship, this);
+                    if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.secondPlayer.Ship);
-                        this.draw = false;
+                        currentPlayer.Ship.SpecialtyAttack(this.SecondPlayer.Ship);
+                        this.DoDraw = false;
                     }
                 }
            
@@ -77,18 +65,18 @@
             // НАСТРОЙКА НА ПОЗИЦИЯТА ПРИ ПУСКАНЕ НА МИНАТА
             if (this.SpecialtyFired)
             {
-                this.draw = true;
+                this.DoDraw = true;
                 flag++; 
                 if (flag == 1)
                 {
-                    mineStartPos = new Vector2(currentPlayer.Ship.Position.X - this.image.Texture.Width, currentPlayer.Ship.Position.Y);
-                    this.position.X = ScreenManager.Instance.Dimensions.X - this.image.Texture.Width - currentPlayer.Ship.Position.X;
-                    this.position.Y = -30f;
+                    mineStartPos = new Vector2(currentPlayer.Ship.Position.X - this.Image.Texture.Width, currentPlayer.Ship.Position.Y);
+                    this.SetPosition(CoordsDirections.Abscissa, ScreenManager.Instance.Dimensions.X - this.Image.Texture.Width - currentPlayer.Ship.Position.X);
+                    this.SetPosition(CoordsDirections.Ordinate, -30);
                 }
             }
-            if (this.position.Y < mineStartPos.Y)
+            if (this.Position.Y < mineStartPos.Y)
             {
-                this.position.Y += SPEED;
+                this.AddToPosition(Direction.Positive, CoordsDirections.Ordinate, SPEED);
             }
             else
             {
@@ -99,9 +87,9 @@
 
         public override void Draw(SpriteBatch spriteBatch, Vector2 pos)
         {
-            if (this.draw)
+            if (this.DoDraw)
             {
-                this.image.Draw(spriteBatch, pos);
+                this.Image.Draw(spriteBatch, pos);
             }
         }
     }

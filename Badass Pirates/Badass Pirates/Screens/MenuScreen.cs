@@ -25,9 +25,6 @@
         public override void LoadContent()
         {
             base.LoadContent();
-            //graphics.PrefferedBackBufferWidth = screenWidth;
-            //graphics.PrefferedBackBufferHeight = screenHeight;
-            //graphics.ApplayChanges();
             this._btnPlay = new Button(this.Content.Load<Texture2D>("button"));
             this._btnPlay.setPosition(new Vector2(350, 300));
         }
@@ -46,7 +43,7 @@
                     break;
 
                 case GameState.Playing:
-                    ScreenManager.instance.currentScreen = new TitleScreen();
+                    ScreenManager.Instance.CurrentScreen = new TitleScreen();
                     break;
 
                 case GameState.GameOver:

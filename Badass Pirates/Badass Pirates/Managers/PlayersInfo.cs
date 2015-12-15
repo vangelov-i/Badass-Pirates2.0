@@ -3,11 +3,13 @@
     using System;
 
     using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Objects;
     using Badass_Pirates.Screens;
 
+    // TODO ЧИСТИЧЪК И СПРЕТНАТ
     public static class PlayersInfo
     {
-        public static Player GetCurrentPlayerAsGameObj(PlayerTypes type)
+        public static Player GetCurrentPlayer(PlayerTypes type)
         {
             switch (type)
             {
@@ -20,7 +22,7 @@
             }
         }
 
-        public static Objects.VirtualPlayer GetCurrentPlayerAsObj(PlayerTypes type)
+        public static VirtualPlayer GetCurrentVirtualPlayer(PlayerTypes type)
         {
             switch (type)
             {

@@ -2,7 +2,6 @@
 {
     #region
 
-    using Badass_Pirates.EngineComponents.Managers;
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Players;
 

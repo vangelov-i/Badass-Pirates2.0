@@ -1,16 +1,15 @@
-﻿namespace Badass_Pirates.EngineComponents.Managers
+﻿namespace Badass_Pirates.Managers
 {
     using System.Diagnostics;
 
-    using Microsoft.Xna.Framework;
+    using Badass_Pirates.GameObjects.Players;
 
-    using Player = Badass_Pirates.GameObjects.Players.Player;
-
+    // TODO ЧИСТИЧЪК И СПРЕТНАТ
     public static class RegenManager
     {
         private static int regenTimeSeconds = 1;
 
-        private static int regenValue = 1;
+        private static int regenValue = 2;
 
         private static readonly Stopwatch stopWatch;
 

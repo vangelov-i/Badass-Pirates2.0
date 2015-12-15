@@ -11,8 +11,6 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    using VirtualPlayer = Badass_Pirates.Objects.VirtualPlayer;
-
     #endregion
 
     public class TitleScreen : GameScreen
@@ -96,9 +94,6 @@
 
             FirstPlayer.Update(gameTime);
             SecondPlayer.Update(gameTime);
-
-
-            FontsManager.Update(gameTime, this.end);
         }
 
         public override void Draw(SpriteBatch spriteBatch)

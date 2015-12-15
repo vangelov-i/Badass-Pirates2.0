@@ -1,4 +1,4 @@
-﻿namespace Badass_Pirates.EngineComponents.Managers
+﻿namespace Badass_Pirates.Managers
 {
     #region
 
@@ -7,25 +7,12 @@
     using Microsoft.Xna.Framework.Input;
 
     #endregion
-
+    // TODO ЧИСТИЧЪК И СПРЕТНАТ (евентуално,могат да се поразгледат методите KeyPressed & KeyReleased)
     public class InputManager
     {
         private KeyboardState currentState;
 
         private KeyboardState prevState;
-
-        //public static InputManager Instance
-        //{
-        //    get
-        //    {
-        //        if (instance == null)
-        //        {
-        //            instance = new InputManager();
-        //        }
-
-        //        return instance;
-        //    }
-        //} // => instance ?? (instance = new InputManager());
 
         public void Update()
         {
@@ -40,19 +27,16 @@
         public bool KeyPressed(params Keys[] keys)
         {
             return keys.Any(key => this.currentState.IsKeyDown(key) && this.prevState.IsKeyUp(key));
-            //return this.currentState.IsKeyDown(keys) && this.prevState.IsKeyUp(keys);
         }
 
         public bool KeyDown(params Keys[] keys)
         {
             return keys.Any(key => this.currentState.IsKeyDown(key));
-            //return this.currentState.IsKeyDown(keys);
         }
 
         public bool KeyReleased(params Keys[] keys)
         {
             return keys.Any(key => this.currentState.IsKeyUp(key) && this.prevState.IsKeyDown(key));
-            //return this.currentState.IsKeyUp(keys) && this.prevState.IsKeyDown(keys);
         }
     }
 }

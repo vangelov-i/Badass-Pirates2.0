@@ -30,7 +30,7 @@
 
         public Button(Texture2D newTexture)
         {
-            this.graphics = ScreenManager.instance.GraphicsDevice;
+            this.graphics = ScreenManager.Instance.GraphicsDevice;
             this.texture = newTexture;
             //screenWidth = 800, ScreenHeight = 600
             //ImageWidth = 100, ImageHeight = 20
