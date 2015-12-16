@@ -11,7 +11,6 @@
 
     public class GameScreen
     {
-        [XmlIgnore]
         public Type Type { get; set; }
 
         public GameScreen()

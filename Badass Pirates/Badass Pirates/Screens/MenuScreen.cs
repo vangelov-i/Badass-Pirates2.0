@@ -2,6 +2,7 @@
 {
     #region
 
+    using Badass_Pirates.Enums;
     using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
@@ -14,6 +15,8 @@
     {
         private Button _btnPlay;
 
+        private Image button;
+
         private GameState _currentGameState = GameState.MainMenu;
 
         //Screen Adjustments
@@ -21,6 +24,7 @@
         private const int _screenWidth = 1366;
 
         private const int _screenHeight = 768;
+
 
         public override void LoadContent()
         {
@@ -77,15 +81,6 @@
                     break;
             }
             spriteBatch.End();
-        }
-
-        enum GameState
-        {
-            MainMenu,
-
-            Playing,
-
-            GameOver
         }
     }
 }

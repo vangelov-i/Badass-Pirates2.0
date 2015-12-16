@@ -60,6 +60,7 @@
     <Compile Include="Collisions\SpecialtyCollision.cs" />
     <Compile Include="Controls\BallControls.cs" />
     <Compile Include="Controls\MineControls.cs" />
+    <Compile Include="Enums\GameState.cs" />
     <Compile Include="Fonts\Font.cs" />
     <Compile Include="Managers\PlayersInfo.cs" />
     <Compile Include="Managers\FontsManager.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Objects\Specialties\Lightning.cs" />
     <Compile Include="Objects\Specialties\Mine.cs" />
     <Compile Include="Objects\Specialties\Specialty.cs" />
+    <Compile Include="Screens\SelectShipScreen.cs" />
     <Compile Include="Screens\GameScreen.cs" />
     <Compile Include="Managers\Image.cs" />
     <Compile Include="Managers\InputManager.cs" />
