@@ -47,7 +47,7 @@
         {
             base.LoadContent();
             this._btnPlay = new Button(this.Content.Load<Texture2D>("button"));
-            this._btnPlay.setPosition(new Vector2(570, 270));
+            this._btnPlay.setPosition(new Vector2(570, 290));
 
             this.destroyer = new Button(this.Content.Load<Texture2D>("ShipsContents/destroyerLeft"));
             this.destroyer.setPosition(new Vector2(100, 140));
