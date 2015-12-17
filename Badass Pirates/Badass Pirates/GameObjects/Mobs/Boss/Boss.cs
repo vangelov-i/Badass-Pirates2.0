@@ -33,7 +33,7 @@
         static Boss()
         {
             Health = 200;
-            Damage = 40;
+            Damage = 20;
             speed.X = 2;
             speed.Y = 2;
             sinked = false;

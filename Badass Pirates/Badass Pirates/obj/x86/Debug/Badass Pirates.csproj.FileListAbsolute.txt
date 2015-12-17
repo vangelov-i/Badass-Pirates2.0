@@ -261,3 +261,4 @@ C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pi
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\wasd.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ctrl.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Shift.png
+C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\seaFaded.jpg

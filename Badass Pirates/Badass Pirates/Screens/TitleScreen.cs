@@ -61,7 +61,7 @@
             FirstPlayer.Initialise(MenuScreen.FirstShip, PlayerTypes.FirstPlayer);
             SecondPlayer.Initialise(MenuScreen.SecondShip, PlayerTypes.SecondPlayer);
             this.end = false;
-            this.background = new Image("Backgrounds/seajpg");
+            this.background = new Image("Backgrounds/seaFaded");
             FontsManager.Initialise();
             Item.Initialise(3);
             this.background.Initialise();
