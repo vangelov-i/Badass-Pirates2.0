@@ -69,7 +69,7 @@
             switch (this._currentGameState)
             {
                 case GameState.MainMenu:
-                    if (this._btnPlay.isClicked && this.firstChoiceMade && this.secondChoiceMade)
+                    if (this._btnPlay.IsClicked && this.firstChoiceMade && this.secondChoiceMade)
                     {
                         this._currentGameState = GameState.Playing;
                     }
@@ -88,46 +88,40 @@
             #region SelectShipScreen
 
             // destroyer
-            if (this.destroyer.isClicked && !this.firstChoiceMade)
+            if (this.destroyer.IsClicked && !this.firstChoiceMade)
             {
                 this.firstChoiceMade = true;
-                this.destroyer.ShipTaken = true;
                 FirstShip = ShipType.Destroyer;
             }
-            else if (this.destroyer.isClicked && this.firstChoiceMade && FirstShip != ShipType.Destroyer)
+            else if (this.destroyer.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Destroyer)
             {
                 this.secondChoiceMade = true;
-                this.destroyer.ShipTaken = true;
                 SecondShip = ShipType.Destroyer;
             }
             //
 
             // battleship
-            if (this.battleship.isClicked && !this.firstChoiceMade)
+            if (this.battleship.IsClicked && !this.firstChoiceMade)
             {
                 this.firstChoiceMade = true;
-                this.battleship.ShipTaken = true;
                 FirstShip = ShipType.Battleship;
             }
-            else if (this.battleship.isClicked && this.firstChoiceMade && FirstShip != ShipType.Battleship)
+            else if (this.battleship.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Battleship)
             {
                 this.secondChoiceMade = true;
-                this.battleship.ShipTaken = true;
                 SecondShip = ShipType.Battleship;
             }
             //
 
             // cruiser
-            if (this.cruiser.isClicked && !this.firstChoiceMade)
+            if (this.cruiser.IsClicked && !this.firstChoiceMade)
             {
                 this.firstChoiceMade = true;
-                this.cruiser.ShipTaken = true;
                 FirstShip = ShipType.Cruiser;
             }
-            else if (this.cruiser.isClicked && this.firstChoiceMade && FirstShip != ShipType.Cruiser)
+            else if (this.cruiser.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Cruiser)
             {
                 this.secondChoiceMade = true;
-                this.cruiser.ShipTaken = true;
                 SecondShip = ShipType.Cruiser;
             }
             //

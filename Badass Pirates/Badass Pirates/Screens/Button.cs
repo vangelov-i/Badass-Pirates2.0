@@ -18,7 +18,7 @@
 
         bool down;
 
-        public bool isClicked;
+        private bool shipTaken;
 
         Vector2 position;
 
@@ -39,7 +39,8 @@
 
         // if the first player has choosen a ship the button won't change
         // anymore when hovering the mouse
-        public bool ShipTaken { get; set; }
+
+        public bool IsClicked { get; set; }
 
         public Vector2 Position
         {
@@ -55,7 +56,7 @@
                 (int)this.size.Y);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            if (mouseRectangle.Intersects(this.rectangle) && !this.ShipTaken)
+            if (mouseRectangle.Intersects(this.rectangle) && !this.shipTaken)
             {
                 if (this.colour.A == 255)
                 {
@@ -75,13 +76,14 @@
                 }
                 if (mouse.LeftButton == ButtonState.Pressed)
                 {
-                    this.isClicked = true;
+                    this.IsClicked = true;
+                    this.shipTaken = true;
                 }
             }
             else if (this.colour.A < 255)
             {
                 this.colour.A += 3;
-                this.isClicked = false;
+                this.IsClicked = false;
             }
         }
 

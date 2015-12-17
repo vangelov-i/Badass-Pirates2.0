@@ -5,11 +5,10 @@
     using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Managers;
     using Badass_Pirates.Objects;
-
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
-
+    using System.Diagnostics;
     using Player = Badass_Pirates.GameObjects.Players.Player;
 
     #endregion
@@ -17,11 +16,19 @@
     public class BallControls
     {
         // TODO NEED PROPERTY
+        private const int DefaultBallTimer = 2;
+
+
         public static CannonBall ballFirst;
 
         public static CannonBall ballSecond;
 
         public static bool control = true;
+
+        private static Stopwatch firstBallTimer = new Stopwatch();
+                
+        private static Stopwatch secondBallTimer = new Stopwatch();
+
 
         public static void CannonBallInitialise()
         {
@@ -85,6 +92,7 @@
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.LeftControl))
             {
                 ballFirst.BallFired = true;
+                firstBallTimer.Start();
 
                 if (!ballFirst.BallInitialised)
                 {
@@ -111,6 +119,7 @@
             if (currentPlayer.InputManagerInstance.KeyDown(Keys.RightControl))
             {
                 ballSecond.BallFired = true;
+                secondBallTimer.Start();
 
                 if (!ballSecond.BallInitialised)
                 {
@@ -154,10 +163,12 @@
                 {
                     ballFirst.Draw(spriteBatch);
                 }
-                else
+                else if (firstBallTimer.Elapsed.TotalSeconds > DefaultBallTimer)
                 {
                     ballFirst.BallInitialised = false;
                     ballFirst.BallFired = false;
+                    firstBallTimer.Stop();
+                    firstBallTimer.Reset();
                 }
             }
         }
@@ -183,10 +194,12 @@
                 {
                     ballSecond.Draw(spriteBatch);
                 }
-                else
+                else if (secondBallTimer.Elapsed.TotalSeconds > DefaultBallTimer)
                 {
                     ballSecond.BallInitialised = false;
                     ballSecond.BallFired = false;
+                    secondBallTimer.Stop();
+                    secondBallTimer.Reset();
                 }
             }
         }
