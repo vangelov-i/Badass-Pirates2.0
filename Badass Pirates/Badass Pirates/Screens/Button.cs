@@ -37,6 +37,15 @@
             this.size = new Vector2(this.graphics.Viewport.Width / 8f, this.graphics.Viewport.Height / 30f);
         }
 
+        // if the first player has choosen a ship the button won't change
+        // anymore when hovering the mouse
+        public bool ShipTaken { get; set; }
+
+        public Vector2 Position
+        {
+            get { return this.position; }
+        }
+
         public void Update(MouseState mouse)
         {
             this.rectangle = new Rectangle(
@@ -46,7 +55,7 @@
                 (int)this.size.Y);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            if (mouseRectangle.Intersects(this.rectangle))
+            if (mouseRectangle.Intersects(this.rectangle) && !this.ShipTaken)
             {
                 if (this.colour.A == 255)
                 {

@@ -58,8 +58,8 @@
             base.Initialise();
             FirstPlayer = new VirtualPlayer();
             SecondPlayer = new VirtualPlayer();
-            FirstPlayer.Initialise(ShipType.Battleship, PlayerTypes.FirstPlayer);
-            SecondPlayer.Initialise(ShipType.Cruiser, PlayerTypes.SecondPlayer);
+            FirstPlayer.Initialise(MenuScreen.FirstShip, PlayerTypes.FirstPlayer);
+            SecondPlayer.Initialise(MenuScreen.SecondShip, PlayerTypes.SecondPlayer);
             this.end = false;
             this.background = new Image("Backgrounds/seajpg");
             FontsManager.Initialise();
