@@ -15,6 +15,9 @@
     public static class CombatManager
     {
         #region Fields
+        private const int BossActivationSeconds = 60;
+        private const int DamageFontShowingTime = 150;
+
 
         private static Player firstPlayer;
         private static Player secondPlayer;
@@ -27,7 +30,7 @@
         private static int? secondPlayerHitCounter;
         private static int? bossHitCounter;
         private static Font damageFont;
-        private static Stopwatch watch;
+        private static Stopwatch activateBossWatch;
 
         public static bool control = true;
 
@@ -37,7 +40,7 @@
         #region Methods
         public static void Initilialise(Player currPlayer)
         {
-            watch = new Stopwatch();
+            activateBossWatch = new Stopwatch();
             damageFont = new Font(Color.Red, "Fonts", "big");
             currentPlayer = currPlayer;
             ballColliding = false;
@@ -56,7 +59,7 @@
             damageFont.LoadContent();
             firstPlayer.Ship.Specialty.LoadContent();
             secondPlayer.Ship.Specialty.LoadContent();
-            watch.Start();
+            activateBossWatch.Start();
         }
 
         public static void UnloadContent()
@@ -96,7 +99,7 @@
 
             #region Ball Boss Collisions
             // 5 - const i za spawn na bossa
-            if (watch.Elapsed.TotalSeconds > 5)
+            if (activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
             {
                 // topchEto na pyrviq igrach
                 bossBallCollide = OctopusCollision.BossBallCollide(BallControls.ballFirst);
@@ -118,7 +121,7 @@
 
             #region BossVsPlayer Collisions
 
-            if (watch.Elapsed.TotalSeconds > 5)
+            if (activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
             {
                 Boss.Update();
                 bossVsShipCollide = OctopusCollision.Collide(current.Ship);
@@ -154,7 +157,7 @@
         public static void Draw(SpriteBatch spriteBatch)
         {
             //igrachite
-            if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null) // ballColliding && 
+            if (firstPlayerHitCounter < DamageFontShowingTime && firstPlayerHitCounter != null) // ballColliding && 
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -164,7 +167,7 @@
                     string.Format((secondPlayer.Ship.Damage * -1).ToString())); // moje i po elegantno :D
                 firstPlayerHitCounter++;
             }
-            if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null)
+            if (secondPlayerHitCounter < DamageFontShowingTime && secondPlayerHitCounter != null)
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -175,7 +178,7 @@
                 secondPlayerHitCounter++;
             }
 
-            if (bossHitCounter < 15 && bossHitCounter != null)
+            if (bossHitCounter < DamageFontShowingTime && bossHitCounter != null)
             {
                 if (playerFlagBossCollide == 1)
                 {
@@ -200,7 +203,8 @@
             }
 
             // kogato e udaren bossyt
-            if (firstPlayerHitCounter < 15 && firstPlayerHitCounter != null)
+            if (firstPlayerHitCounter < DamageFontShowingTime && firstPlayerHitCounter != null &&
+                activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -212,7 +216,8 @@
 
             }
 
-            if (secondPlayerHitCounter < 15 && secondPlayerHitCounter != null)
+            if (secondPlayerHitCounter < DamageFontShowingTime && secondPlayerHitCounter != null &&
+                activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
             {
                 damageFont.Draw(
                     spriteBatch,

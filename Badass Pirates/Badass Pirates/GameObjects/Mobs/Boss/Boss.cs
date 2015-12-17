@@ -32,7 +32,7 @@
 
         static Boss()
         {
-            Health = 100;
+            Health = 200;
             Damage = 40;
             speed.X = 2;
             speed.Y = 2;
