@@ -152,10 +152,25 @@
                         new Rectangle(0, 0, _screenWidth, _screenHeight),
                         Color.White);
 
-                    // Player 1 / Player 2          TODO: grozno e taka, trqbva po- elegantno
-                    spriteBatch.Draw(this.Content.Load<Texture2D>("PLAYER"),
-                        new Rectangle(600, 35, 100, 27),
-                        Color.White);
+
+                    if (!this.firstChoiceMade || !this.secondChoiceMade)
+                    {
+                        // Player 1 / Player 2          TODO: grozno e taka, trqbva po- elegantno
+                        spriteBatch.Draw(this.Content.Load<Texture2D>("PLAYER"),
+                            new Rectangle(600, 35, 100, 27),
+                            Color.White);
+
+                        // CTRL + SHIFT controls draw
+                        spriteBatch.Draw(this.Content.Load<Texture2D>("Ctrl"),
+                            new Rectangle(950, 0, 50, 50),
+                            Color.White);
+
+                        spriteBatch.Draw(this.Content.Load<Texture2D>("Shift"),
+                            new Rectangle(950, 55, 159, 60),
+                            Color.White);
+                        //
+                    }
+
 
 
                     if (!this.firstChoiceMade)
@@ -163,14 +178,24 @@
                         spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerOne"),
                             new Rectangle(700, 0, 50, 72),
                             Color.White);
+
+                        // Controls
+                        spriteBatch.Draw(this.Content.Load<Texture2D>("arrowKeys"),
+                            new Rectangle(750, 0, 160, 110),
+                            Color.White);
                     }
-                    else
+                    else if (!this.secondChoiceMade)
                     {
                         spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerTwo"),
                             new Rectangle(700, 0, 50, 72),
                             Color.White);
+
+                        // Controls
+                        spriteBatch.Draw(this.Content.Load<Texture2D>("wasd"),
+                            new Rectangle(750, 0, 169, 110),
+                            Color.White);
                     }
-                    //
+
 
                     if (this.secondChoiceMade)
                     {
