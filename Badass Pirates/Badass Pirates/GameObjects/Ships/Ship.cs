@@ -13,6 +13,7 @@
     using Badass_Pirates.Objects.Specialties;
 
     using Microsoft.Xna.Framework;
+    using Badass_Pirates.GameObjects.Players;
 
     #endregion
 
@@ -226,8 +227,16 @@
         public void Sink(Objects.VirtualPlayer player)
         {
             var sinkingSpeed = 1;
-            PlayerControls.control = false;
-            BallControls.control = false;
+            if (player.CurrentPlayer is FirstPlayer)
+            {
+                PlayerControls.control = false;
+                BallControls.control = false;
+            }
+            else
+            {
+                PlayerControls.secondControler = false;
+                BallControls.secondControler = false;
+            }
             player.CurrentPlayer.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }
 

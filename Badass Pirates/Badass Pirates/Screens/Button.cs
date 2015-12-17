@@ -42,6 +42,13 @@
 
         public bool IsClicked { get; set; }
 
+        public bool ConstFlash { get; set; }
+
+        public bool ShipTaken 
+        { 
+            get { return this.shipTaken; } 
+        }
+
         public Vector2 Position
         {
             get { return this.position; }
@@ -56,7 +63,7 @@
                 (int)this.size.Y);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            if (mouseRectangle.Intersects(this.rectangle) && !this.shipTaken)
+            if ((mouseRectangle.Intersects(this.rectangle) && !this.shipTaken) || this.ConstFlash)
             {
                 if (this.colour.A == 255)
                 {
@@ -74,7 +81,7 @@
                 {
                     this.colour.A -= 3;
                 }
-                if (mouse.LeftButton == ButtonState.Pressed)
+                if (mouse.LeftButton == ButtonState.Pressed && mouseRectangle.Intersects(this.rectangle))
                 {
                     this.IsClicked = true;
                     this.shipTaken = true;

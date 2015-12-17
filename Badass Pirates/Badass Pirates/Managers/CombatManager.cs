@@ -15,7 +15,7 @@
     public static class CombatManager
     {
         #region Fields
-        private const int BossActivationSeconds = 60;
+        private const int BossActivationSeconds = 5;
         private const int DamageFontShowingTime = 150;
 
 

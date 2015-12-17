@@ -53,10 +53,10 @@
                     value = 0;
                     sinked = true;
                 }
-                if (value > 100)
-                {
-                    value = 100;
-                }
+                //if (value > 100)      // TODO: Dafuq?! zashto?!
+                //{
+                //    value = 100;
+                //}
 
                 health = value;
             }
@@ -108,7 +108,7 @@
         {
             image = new Image("dibossBIG");
             image.Initialise();
-            position = new Vector2(500, 200);
+            position = new Vector2(550, 300); // TODO: consts ?
         }
 
         public static void LoadContent()

@@ -12,7 +12,7 @@
 
     public abstract class Player
     {
-        protected readonly Vector2 SpawnFirst = Vector2.Zero;
+        protected readonly Vector2 SpawnFirst = new Vector2(0,20);
 
         // TODO Edit the image size
         protected readonly Vector2 SpawnSecond = new Vector2(1366 - 135, 768 - 150);

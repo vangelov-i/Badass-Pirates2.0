@@ -25,8 +25,10 @@
 
         public static bool control = true;
 
+        public static bool secondControler = true;
+
         private static Stopwatch firstBallTimer = new Stopwatch();
-                
+
         private static Stopwatch secondBallTimer = new Stopwatch();
 
 
@@ -54,17 +56,20 @@
             Image shipImage,
             GameTime gameTime)
         {
-            if (control)
+            switch (type)
             {
-                switch (type)
-                {
-                    case PlayerTypes.FirstPlayer:
+                case PlayerTypes.FirstPlayer:
+                    if (control)
+                    {
                         FirstPlayerBallControls(currentPlayer, shipImage, gameTime);
-                        break;
-                    case PlayerTypes.SecondPlayer:
+                    }
+                    break;
+                case PlayerTypes.SecondPlayer:
+                    if (secondControler)
+                    {
                         SecondPlayerBallControls(currentPlayer, shipImage, gameTime);
-                        break;
-                }
+                    }
+                    break;
             }
         }
 

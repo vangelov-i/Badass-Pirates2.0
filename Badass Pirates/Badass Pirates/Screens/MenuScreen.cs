@@ -47,18 +47,18 @@
         {
             base.LoadContent();
             this._btnPlay = new Button(this.Content.Load<Texture2D>("button"));
-            this._btnPlay.setPosition(new Vector2(100, 100));
+            this._btnPlay.setPosition(new Vector2(600, 100));
 
             this.destroyer = new Button(this.Content.Load<Texture2D>("ShipsContents/destroyerLeft"));
-            this.destroyer.setPosition(new Vector2(300, 100));
+            this.destroyer.setPosition(new Vector2(100, 600));
             this.destroyer.size = new Vector2(137, 150);
 
             this.battleship = new Button(this.Content.Load<Texture2D>("ShipsContents/battleshipLeft"));
-            this.battleship.setPosition(new Vector2(300, 300));
+            this.battleship.setPosition(new Vector2(600, 600));
             this.battleship.size = new Vector2(137, 150);
 
             this.cruiser = new Button(this.Content.Load<Texture2D>("ShipsContents/cruiserLeft"));
-            this.cruiser.setPosition(new Vector2(300, 500));
+            this.cruiser.setPosition(new Vector2(1100, 600));
             this.cruiser.size = new Vector2(137, 150);
 
         }
@@ -96,6 +96,7 @@
             else if (this.destroyer.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Destroyer)
             {
                 this.secondChoiceMade = true;
+                this._btnPlay.ConstFlash = true;
                 SecondShip = ShipType.Destroyer;
             }
             //
@@ -109,6 +110,7 @@
             else if (this.battleship.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Battleship)
             {
                 this.secondChoiceMade = true;
+                this._btnPlay.ConstFlash = true;
                 SecondShip = ShipType.Battleship;
             }
             //
@@ -122,6 +124,7 @@
             else if (this.cruiser.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Cruiser)
             {
                 this.secondChoiceMade = true;
+                this._btnPlay.ConstFlash = true;
                 SecondShip = ShipType.Cruiser;
             }
             //
@@ -150,9 +153,21 @@
                         Color.White);
 
                     this._btnPlay.Draw(spriteBatch);
-                    this.battleship.Draw(spriteBatch);
-                    this.cruiser.Draw(spriteBatch);
-                    this.destroyer.Draw(spriteBatch);
+
+                    if (!this.battleship.ShipTaken && !this.secondChoiceMade)
+                    {
+                        this.battleship.Draw(spriteBatch);
+                    }
+
+                    if (!this.cruiser.ShipTaken && !this.secondChoiceMade)
+                    {
+                        this.cruiser.Draw(spriteBatch);
+                    }
+
+                    if (!this.destroyer.ShipTaken && !this.secondChoiceMade)
+                    {
+                        this.destroyer.Draw(spriteBatch);
+                    }
 
 
 

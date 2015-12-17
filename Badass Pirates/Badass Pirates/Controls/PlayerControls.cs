@@ -12,21 +12,26 @@
     {
         public static bool control = true;
 
+        public static bool secondControler = true;
+
         public static void ControlsPlayer(PlayerTypes type, Player currentPlayer, Image shipImage)
         {
-            if (control)
+            switch (type)
             {
-                switch (type)
-                {
-                    case PlayerTypes.FirstPlayer:
+                case PlayerTypes.FirstPlayer:
+                    if (control)
+                    {
                         PlayerControls.UpdateFirstPlayer(currentPlayer, shipImage);
-                        break;
-                    case PlayerTypes.SecondPlayer:
+                    }
+                    break;
+                case PlayerTypes.SecondPlayer:
+                    if (secondControler)
+                    {
                         PlayerControls.UpdateSecondPlayer(currentPlayer, shipImage);
-                        break;
-                }
+                    }
+                    break;
+            }
         }
-    }
 
         private static void UpdateFirstPlayer(Player currentPlayer, Image shipImage)
         {
@@ -76,7 +81,7 @@
                 PlayerControls.ValidateShipPosition(currentPlayer, shipImage);
             }
             #endregion
-            
+
             currentPlayer.InputManagerInstance.Update();
         }
 
