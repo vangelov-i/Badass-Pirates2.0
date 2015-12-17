@@ -230,12 +230,12 @@
             if (player.CurrentPlayer is FirstPlayer)
             {
                 PlayerControls.control = false;
-                BallControls.control = false;
+                BallControls.firstController = false;
             }
             else
             {
                 PlayerControls.secondControler = false;
-                BallControls.secondControler = false;
+                BallControls.secondController = false;
             }
             player.CurrentPlayer.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }

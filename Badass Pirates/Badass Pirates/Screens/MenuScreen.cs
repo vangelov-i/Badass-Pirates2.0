@@ -93,7 +93,8 @@
                 this.firstChoiceMade = true;
                 FirstShip = ShipType.Destroyer;
             }
-            else if (this.destroyer.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Destroyer)
+            else if (this.destroyer.IsClicked && this.firstChoiceMade && !this.secondChoiceMade
+                && FirstShip != ShipType.Destroyer)
             {
                 this.secondChoiceMade = true;
                 this._btnPlay.ConstFlash = true;
@@ -107,7 +108,8 @@
                 this.firstChoiceMade = true;
                 FirstShip = ShipType.Battleship;
             }
-            else if (this.battleship.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Battleship)
+            else if (this.battleship.IsClicked && this.firstChoiceMade && !this.secondChoiceMade 
+                && FirstShip != ShipType.Battleship)
             {
                 this.secondChoiceMade = true;
                 this._btnPlay.ConstFlash = true;
@@ -121,7 +123,8 @@
                 this.firstChoiceMade = true;
                 FirstShip = ShipType.Cruiser;
             }
-            else if (this.cruiser.IsClicked && this.firstChoiceMade && FirstShip != ShipType.Cruiser)
+            else if (this.cruiser.IsClicked && this.firstChoiceMade && !this.secondChoiceMade
+                && FirstShip != ShipType.Cruiser)
             {
                 this.secondChoiceMade = true;
                 this._btnPlay.ConstFlash = true;

@@ -23,9 +23,9 @@
 
         public static CannonBall ballSecond;
 
-        public static bool control = true;
+        public static bool firstController = true;
 
-        public static bool secondControler = true;
+        public static bool secondController = true;
 
         private static Stopwatch firstBallTimer = new Stopwatch();
 
@@ -59,13 +59,13 @@
             switch (type)
             {
                 case PlayerTypes.FirstPlayer:
-                    if (control)
+                    if (firstController)
                     {
                         FirstPlayerBallControls(currentPlayer, shipImage, gameTime);
                     }
                     break;
                 case PlayerTypes.SecondPlayer:
-                    if (secondControler)
+                    if (secondController)
                     {
                         SecondPlayerBallControls(currentPlayer, shipImage, gameTime);
                     }
