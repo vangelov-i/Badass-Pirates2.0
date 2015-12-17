@@ -47,18 +47,18 @@
         {
             base.LoadContent();
             this._btnPlay = new Button(this.Content.Load<Texture2D>("button"));
-            this._btnPlay.setPosition(new Vector2(600, 100));
+            this._btnPlay.setPosition(new Vector2(570, 270));
 
             this.destroyer = new Button(this.Content.Load<Texture2D>("ShipsContents/destroyerLeft"));
-            this.destroyer.setPosition(new Vector2(100, 600));
+            this.destroyer.setPosition(new Vector2(100, 140));
             this.destroyer.size = new Vector2(137, 150);
 
             this.battleship = new Button(this.Content.Load<Texture2D>("ShipsContents/battleshipLeft"));
-            this.battleship.setPosition(new Vector2(600, 600));
+            this.battleship.setPosition(new Vector2(600, 140));
             this.battleship.size = new Vector2(137, 150);
 
             this.cruiser = new Button(this.Content.Load<Texture2D>("ShipsContents/cruiserLeft"));
-            this.cruiser.setPosition(new Vector2(1100, 600));
+            this.cruiser.setPosition(new Vector2(1100, 140));
             this.cruiser.size = new Vector2(137, 150);
 
         }
@@ -152,7 +152,30 @@
                         new Rectangle(0, 0, _screenWidth, _screenHeight),
                         Color.White);
 
-                    this._btnPlay.Draw(spriteBatch);
+                    // Player 1 / Player 2          TODO: grozno e taka, trqbva po- elegantno
+                    spriteBatch.Draw(this.Content.Load<Texture2D>("PLAYER"),
+                        new Rectangle(600, 35, 100, 27),
+                        Color.White);
+
+
+                    if (!this.firstChoiceMade)
+                    {
+                        spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerOne"),
+                            new Rectangle(700, 0, 50, 72),
+                            Color.White);
+                    }
+                    else
+                    {
+                        spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerTwo"),
+                            new Rectangle(700, 0, 50, 72),
+                            Color.White);
+                    }
+                    //
+
+                    if (this.secondChoiceMade)
+                    {
+                        this._btnPlay.Draw(spriteBatch);
+                    }
 
                     if (!this.battleship.ShipTaken && !this.secondChoiceMade)
                     {
@@ -168,6 +191,7 @@
                     {
                         this.destroyer.Draw(spriteBatch);
                     }
+
 
 
 
