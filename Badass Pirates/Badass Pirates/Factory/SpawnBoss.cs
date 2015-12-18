@@ -1,6 +1,6 @@
 ﻿namespace Badass_Pirates.Factory
 {
-    using Badass_Pirates.GameObjects.Mobs.Boss;
+    using Badass_Pirates.Models.Mobs.Boss;
 
     public static class SpawnBoss
     {
@@ -8,9 +8,9 @@
         // TODO 
         public static void Spawn()
         {
-            Boss.Initialise();
-            Boss.LoadContent();
-            Boss.Update();
+            Boss.Instance.Initialise();
+            Boss.Instance.LoadContent();
+            Boss.Instance.Update();
         }
     }
 }

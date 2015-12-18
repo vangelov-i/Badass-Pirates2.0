@@ -1,8 +1,9 @@
 ﻿namespace Badass_Pirates.Objects.Specialties
 {
     using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Models.Players;
     using Badass_Pirates.Screens;
 
     using Microsoft.Xna.Framework;
@@ -23,10 +24,6 @@
         private bool specialtyFired;
 
         private int damage;
-
-        private Player firstPlayer;
-
-        private Player secondPlayer;
 
         private static bool collide;
 
@@ -116,30 +113,6 @@
             }
         }
 
-        public Player FirstPlayer
-        {
-            get
-            {
-                return this.firstPlayer;
-            }
-            set
-            {
-                this.firstPlayer = value;
-            }
-        }
-
-        public Player SecondPlayer
-        {
-            get
-            {
-                return this.secondPlayer;
-            }
-            set
-            {
-                this.secondPlayer = value;
-            }
-        }
-
         public static bool Collide
         {
             get
@@ -165,8 +138,6 @@
 
         public void LoadContent()
         {
-            this.firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
-            this.secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
             this.image.LoadContent();
         }
 
@@ -175,7 +146,7 @@
             this.image.UnloadContent();
         }
 
-        public abstract void Update(GameTime gameTime, GameObjects.Players.Player currentPlayer);
+        public abstract void Update(GameTime gameTime, IPlayer currentPlayer);
 
         public virtual void Draw(SpriteBatch spriteBatch,Vector2 pos)
         {
@@ -187,15 +158,16 @@
             }
         }
 
-        public virtual void ActivateSpecialty(Player currentPlayer)
+        public virtual void ActivateSpecialty(IPlayer currentPlayer)
         {
             if (currentPlayer is FirstPlayer)
             {
-                TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Initialise(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position);
+                //TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Initialise(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position);
+                FirstPlayer.Instance.Ship.Specialty.Initialise(FirstPlayer.Instance.Ship.Position);
             }
             else
             {
-                TitleScreen.SecondPlayer.CurrentPlayer.Ship.Specialty.Initialise(TitleScreen.SecondPlayer.CurrentPlayer.Ship.Position);
+                SecondPlayer.Instance.Ship.Specialty.Initialise(SecondPlayer.Instance.Ship.Position);
             }
 
             this.specialtyFired = true;

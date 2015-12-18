@@ -39,7 +39,7 @@
             this.Content.RootDirectory = "Content";
             this.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             this.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            //this.graphics.IsFullScreen = this.IsActive; // TODO: activate fullscreen
+            this.graphics.IsFullScreen = this.IsActive; // TODO: activate fullscreen
             ScreenManager.Instance.Initialise();
             base.Initialize();
         }

@@ -2,14 +2,16 @@
 {
     #region
 
-    using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.Managers;
     using Badass_Pirates.Objects;
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
     using System.Diagnostics;
-    using Player = Badass_Pirates.GameObjects.Players.Player;
+
+    using Badass_Pirates.Enums;
+
+    using Player = Badass_Pirates.Models.Players.Player;
 
     #endregion
 
@@ -107,7 +109,7 @@
                         new Vector2(
                             currentPlayer.Ship.Position.X + shipImage.Texture.Width,
                             currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)),
-                        currentPlayer.TypeOfPlayer);
+                        currentPlayer.PlayerType);
                     ballFirst.BallInitialised = true;
                 }
 
@@ -134,7 +136,7 @@
                         new Vector2(
                             currentPlayer.Ship.Position.X - shipImage.Texture.Width / 2f,
                             currentPlayer.Ship.Position.Y + (shipImage.Texture.Height / 2f)),
-                        currentPlayer.TypeOfPlayer);
+                        currentPlayer.PlayerType);
                     ballSecond.BallInitialised = true;
                 }
 

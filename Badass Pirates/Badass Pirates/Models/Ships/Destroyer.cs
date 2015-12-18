@@ -1,6 +1,5 @@
-﻿namespace Badass_Pirates.GameObjects.Ships
+﻿namespace Badass_Pirates.Models.Ships
 {
-    using Badass_Pirates.Enums;
     using Badass_Pirates.Objects.Specialties;
 
     public class Destroyer : Ship

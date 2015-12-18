@@ -4,12 +4,14 @@
 
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Models.Ships;
 
     #endregion
 
     public static class CreatePotionEffect
     {
-        public static void ExtractEffect(Ship targetShip, PotionTypes type)
+        public static void ExtractEffect(IShip targetShip, PotionTypes type)
         {
             // TODO : % stats
             switch (type)

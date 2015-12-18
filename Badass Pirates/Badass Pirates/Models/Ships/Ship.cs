@@ -1,4 +1,4 @@
-﻿namespace Badass_Pirates.GameObjects.Ships
+﻿namespace Badass_Pirates.Models.Ships
 {
     #region
 
@@ -9,18 +9,19 @@
     using Badass_Pirates.Enums;
     using Badass_Pirates.Exceptions;
     using Badass_Pirates.Interfaces;
-    using Badass_Pirates.Interfaces.Bonuses;
+    using Badass_Pirates.Models.Players;
+    using Badass_Pirates.Objects;
     using Badass_Pirates.Objects.Specialties;
 
     using Microsoft.Xna.Framework;
-    using Badass_Pirates.GameObjects.Players;
 
     #endregion
 
-    public abstract class Ship : IAttack, IMoveable, ISink, IPositionable, IFreeze, IDamage, IWind
+    public abstract class Ship : IShip
     {
         #region Fields
-        public static readonly Point FrameSize = new Point(137, 150);
+
+        private static Point frameSize;
 
         private Vector2 position;
 
@@ -28,7 +29,7 @@
 
         public const int MAX_ENERGY = 100;
 
-        protected readonly int MAX_SPEED;
+        private readonly int MAX_SPEED;
 
         private readonly int specialtyDamage;
 
@@ -37,10 +38,10 @@
         #region Points
         private int damage;
         private int health;
-        private int shields;
+
         private int energy;
         private int speed;
-
+        private bool sunk;
         #endregion
 
 
@@ -60,6 +61,7 @@
             this.BonusDamageTimeOut = new Stopwatch();
             this.WindTimeOut = new Stopwatch();
             this.specialty = specialty;
+            this.FrameSize = new Point(137, 150);
         }
 
         #region Properties
@@ -101,7 +103,7 @@
                 return this.damage;
             }
 
-            private set
+            set
             {
                 if (value < 0)
                 {
@@ -134,17 +136,7 @@
             }
         }
 
-        public int Shields
-        {
-            get
-            {
-                return this.shields;
-            }
-            set
-            {
-                this.shields = value;
-            }
-        }
+        public int Shields { get; set; }
 
         public int Energy
         {
@@ -174,7 +166,7 @@
                 return this.speed;
             }
 
-            private set
+             set
             {
                 if (value > this.MAX_SPEED)
                 {
@@ -186,11 +178,35 @@
 
         }
 
+        public Point FrameSize
+        {
+            get
+            {
+                return frameSize;
+            }
+            set
+            {
+                frameSize = value;
+            }
+        }
+
+        public bool Sunk
+        {
+            get
+            {
+                return this.sunk;
+            }
+            set
+            {
+                this.sunk = value;
+            }
+        }
+
         #endregion
 
         #region Methods
 
-        public void Attack(Ship target)
+        public void Attack(IShip target)
         {
             if (target.Shields > 0)
             {
@@ -207,7 +223,7 @@
             }
         }
 
-        public void SpecialtyAttack(Ship target)
+        public void SpecialtyAttack(IShip target)
         {
             if (target.Shields > 0)
             {
@@ -224,10 +240,10 @@
             }
         }
 
-        public void Sink(Objects.VirtualPlayer player)
+        public void Sink(IPlayer player)
         {
             var sinkingSpeed = 1;
-            if (player.CurrentPlayer is FirstPlayer)
+            if (player is FirstPlayer)
             {
                 PlayerControls.control = false;
                 BallControls.firstController = false;
@@ -237,7 +253,7 @@
                 PlayerControls.secondControler = false;
                 BallControls.secondController = false;
             }
-            player.CurrentPlayer.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
+            player.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }
 
         public void Move(CoordsDirections coordsDirection, Direction direction, int movingSpeed)
@@ -284,7 +300,8 @@
                     break;
             }
         }
-        
+
+        #region Bonuses
         public void Freeze()
         {
             if (this.FreezTimeOut.IsRunning == false)
@@ -327,7 +344,9 @@
             this.WindTimeOut.Stop();
             this.WindTimeOut.Reset();
         }
+        #endregion
 
         #endregion
+        
     }
 }

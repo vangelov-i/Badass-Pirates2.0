@@ -5,22 +5,23 @@
     using System.Linq;
     using System.Text;
 
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Models.Players;
 
     public class CreatePlayer
     {
-        public static Player Create(PlayerTypes playerType, ShipType ship, string name)
-        {
-            switch (playerType)
-            {
-                    case PlayerTypes.FirstPlayer:
-                    return new FirstPlayer(ship, name);
-                    case PlayerTypes.SecondPlayer:
-                    return new SecondPlayer(ship, name);
-                default:
-                    throw new InvalidOperationException("inccorect player type");
-            }
-        }
+        //public static Player Create(PlayerTypes playerType, ShipType ship)
+        //{
+        //    switch (playerType)
+        //    {
+        //            case PlayerTypes.FirstPlayer:
+        //            return new FirstPlayer(ship);
+        //            case PlayerTypes.SecondPlayer:
+        //            return new SecondPlayer(ship);
+        //        default:
+        //            throw new InvalidOperationException("inccorect player type");
+        //    }
+        //}
     }
 }

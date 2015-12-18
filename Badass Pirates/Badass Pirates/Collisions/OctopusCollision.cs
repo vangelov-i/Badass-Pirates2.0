@@ -7,8 +7,10 @@ namespace Badass_Pirates.Collisions
 {
     using System.Diagnostics;
 
-    using Badass_Pirates.GameObjects.Mobs.Boss;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Models.Mobs.Boss;
+    using Badass_Pirates.Models.Ships;
     using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
@@ -23,25 +25,25 @@ namespace Badass_Pirates.Collisions
         public static readonly Stopwatch collidedStopWatch = new Stopwatch();
         //
 
-        public static bool Collide(Ship shipColliding)
+        public static bool Collide(IShip shipColliding)
         {
             if (!collidedStopWatch.IsRunning)
             {
                 Rectangle shipRect = new Rectangle(
                    (int)shipColliding.Position.X + COLLISION_OFFSET,
                    (int)shipColliding.Position.Y + COLLISION_OFFSET,
-                   Ship.FrameSize.X - (COLLISION_OFFSET * 2),
-                   Ship.FrameSize.Y - (COLLISION_OFFSET * 2));
+                   shipColliding.FrameSize.X - (COLLISION_OFFSET * 2),
+                   shipColliding.FrameSize.Y - (COLLISION_OFFSET * 2));
 
                 Rectangle diBoss = new Rectangle(
-                    (int)Boss.Position.X + COLLISION_OFFSET,
-                    (int)Boss.Position.Y + COLLISION_OFFSET,
-                    Boss.frameSize.X - (COLLISION_OFFSET * 2),
-                    Boss.frameSize.Y - (COLLISION_OFFSET * 2));
+                    (int)Boss.Instance.Position.X + COLLISION_OFFSET,
+                    (int)Boss.Instance.Position.Y + COLLISION_OFFSET,
+                    Boss.Instance.FrameSize.X - (COLLISION_OFFSET * 2),
+                    Boss.Instance.FrameSize.Y - (COLLISION_OFFSET * 2));
 
                 if (shipRect.Intersects(diBoss))
                 {
-                    //Boss.Attack(shipColliding);
+                    //Boss.Instance.Attack(shipColliding);
                     OctopusCollision.collidedStopWatch.Start();
                     return true;
                 }
@@ -60,10 +62,10 @@ namespace Badass_Pirates.Collisions
         public static bool BossBallCollide(CannonBall ball)
         {
             Rectangle bossRect = new Rectangle(
-               (int)Boss.Position.X + BALL_COLLISION_OFFSET,
-               (int)Boss.Position.Y + BALL_COLLISION_OFFSET,
-               Boss.frameSize.X - (BALL_COLLISION_OFFSET * 2),
-               Boss.frameSize.Y - (BALL_COLLISION_OFFSET * 2));
+               (int)Boss.Instance.Position.X + BALL_COLLISION_OFFSET,
+               (int)Boss.Instance.Position.Y + BALL_COLLISION_OFFSET,
+               Boss.Instance.FrameSize.X - (BALL_COLLISION_OFFSET * 2),
+               Boss.Instance.FrameSize.Y - (BALL_COLLISION_OFFSET * 2));
 
             Rectangle cannonBall = new Rectangle(
                 (int)ball.Position.X + BALL_COLLISION_OFFSET,

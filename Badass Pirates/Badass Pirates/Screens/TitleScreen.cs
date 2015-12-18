@@ -2,10 +2,13 @@
 {
     #region
 
+    using Badass_Pirates.Enums;
+    using Badass_Pirates.Factory;
     using Badass_Pirates.Fonts;
-    using Badass_Pirates.GameObjects.Players;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Models.Players;
     using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
@@ -17,35 +20,33 @@
     {
         private Image background;
 
-        private bool end;
+        //private static IPlayer firstPlayer;
 
-        private static VirtualPlayer firstPlayer;
+        //private static IPlayer secondPlayer;
 
-        private static VirtualPlayer secondPlayer;
+        //public static IPlayer FirstPlayer
+        //{
+        //    get
+        //    {
+        //        return firstPlayer;
+        //    }
+        //    set
+        //    {
+        //        firstPlayer = value;
+        //    }
+        //}
 
-        public static VirtualPlayer FirstPlayer
-        {
-            get
-            {
-                return firstPlayer;
-            }
-            set
-            {
-                firstPlayer = value;
-            }
-        }
-
-        public static VirtualPlayer SecondPlayer
-        {
-            get
-            {
-                return secondPlayer;
-            }
-            set
-            {
-                secondPlayer = value;
-            }
-        }
+        //public static IPlayer SecondPlayer
+        //{
+        //    get
+        //    {
+        //        return secondPlayer;
+        //    }
+        //    set
+        //    {
+        //        secondPlayer = value;
+        //    }
+        //}
 
         public TitleScreen ()
         {
@@ -56,11 +57,8 @@
         public sealed override void Initialise()
         {
             base.Initialise();
-            FirstPlayer = new VirtualPlayer();
-            SecondPlayer = new VirtualPlayer();
-            FirstPlayer.Initialise(MenuScreen.FirstShip, PlayerTypes.FirstPlayer);
-            SecondPlayer.Initialise(MenuScreen.SecondShip, PlayerTypes.SecondPlayer);
-            this.end = false;
+            FirstPlayer.Instance.Initialise();
+            SecondPlayer.Instance.Initialise();
             this.background = new Image("Backgrounds/seaFaded");
             FontsManager.Initialise();
             Item.Initialise(3);
@@ -70,8 +68,8 @@
         public sealed override void LoadContent()
         {
             base.LoadContent();
-            FirstPlayer.LoadContent();
-            SecondPlayer.LoadContent();
+            FirstPlayer.Instance.LoadContent();
+            SecondPlayer.Instance.LoadContent();
             this.background.LoadContent();
             FontsManager.LoadContent();
             Item.LoadContent();
@@ -80,8 +78,8 @@
         public override void UnloadContent()
         {
             base.UnloadContent();
-            FirstPlayer.UnloadContent();
-            SecondPlayer.UnloadContent();
+            FirstPlayer.Instance.UnloadContent();
+            SecondPlayer.Instance.UnloadContent();
             this.background.UnloadContent();
             FontsManager.UnloadContent();
             Item.UnloadContent();
@@ -92,8 +90,8 @@
             base.Update(gameTime);
             Item.Update(gameTime);
 
-            FirstPlayer.Update(gameTime);
-            SecondPlayer.Update(gameTime);
+            FirstPlayer.Instance.Update(gameTime);
+            SecondPlayer.Instance.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -101,12 +99,12 @@
             base.Draw(spriteBatch);
             this.background.Draw(spriteBatch, Vector2.Zero);
 
-            FirstPlayer.Draw(spriteBatch);
-            SecondPlayer.Draw(spriteBatch);
+            FirstPlayer.Instance.Draw(spriteBatch);
+            SecondPlayer.Instance.Draw(spriteBatch);
 
             FontsManager.Draw(spriteBatch);
 
-            if (FirstPlayer.itemColliding == false)
+            if (FirstPlayer.Instance.ItemColliding == false)
             {
                 Item.Draw(spriteBatch);
             }

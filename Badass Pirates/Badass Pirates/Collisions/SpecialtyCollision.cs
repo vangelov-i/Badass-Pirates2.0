@@ -1,6 +1,8 @@
 ﻿namespace Badass_Pirates.Collisions
 {
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Models.Ships;
     using Badass_Pirates.Objects.Specialties;
 
     using Microsoft.Xna.Framework;
@@ -9,13 +11,13 @@
     {
         private const int OFFSET = 5;
 
-        public static bool Collide(Ship shipColliding,Specialty specialtyItem)
+        public static bool Collide(IShip shipColliding,Specialty specialtyItem)
         {
             Rectangle shipRect = new Rectangle(
                (int)shipColliding.Position.X + OFFSET,
                (int)shipColliding.Position.Y + OFFSET,
-               Ship.FrameSize.X - (OFFSET * 2),
-               Ship.FrameSize.Y - (OFFSET * 2));
+               shipColliding.FrameSize.X - (OFFSET * 2),
+               shipColliding.FrameSize.Y - (OFFSET * 2));
 
             Rectangle mineRectangle = new Rectangle(
                 (int)specialtyItem.Position.X + OFFSET,

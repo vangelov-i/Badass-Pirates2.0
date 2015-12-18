@@ -1,12 +1,13 @@
 ﻿namespace Badass_Pirates.Controls
 {
     using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Models.Players;
 
     using Microsoft.Xna.Framework.Input;
 
-    using Player = Badass_Pirates.GameObjects.Players.Player;
+    using Player = Badass_Pirates.Models.Players.Player;
 
     public static class PlayerControls
     {
@@ -14,26 +15,26 @@
 
         public static bool secondControler = true;
 
-        public static void ControlsPlayer(PlayerTypes type, Player currentPlayer, Image shipImage)
+        public static void ControlsPlayer(PlayerTypes type, Image shipImage)
         {
             switch (type)
             {
                 case PlayerTypes.FirstPlayer:
                     if (control)
                     {
-                        PlayerControls.UpdateFirstPlayer(currentPlayer, shipImage);
+                        PlayerControls.UpdateFirstPlayer(FirstPlayer.Instance, shipImage);
                     }
                     break;
                 case PlayerTypes.SecondPlayer:
                     if (secondControler)
                     {
-                        PlayerControls.UpdateSecondPlayer(currentPlayer, shipImage);
+                        PlayerControls.UpdateSecondPlayer(SecondPlayer.Instance, shipImage);
                     }
                     break;
             }
         }
 
-        private static void UpdateFirstPlayer(Player currentPlayer, Image shipImage)
+        private static void UpdateFirstPlayer(IPlayer currentPlayer, Image shipImage)
         {
             currentPlayer.InputManagerInstance.RotateStates();
 
@@ -85,7 +86,7 @@
             currentPlayer.InputManagerInstance.Update();
         }
 
-        private static void UpdateSecondPlayer(Player currentPlayer, Image shipImage)
+        private static void UpdateSecondPlayer(IPlayer currentPlayer, Image shipImage)
         {
             currentPlayer.InputManagerInstance.RotateStates();
 
@@ -137,7 +138,7 @@
             currentPlayer.InputManagerInstance.Update();
         }
 
-        private static void ValidateShipPosition(Player currentPlayer, Image shipImage)
+        private static void ValidateShipPosition(IPlayer currentPlayer, Image shipImage)
         {
             if (currentPlayer is FirstPlayer)
             {

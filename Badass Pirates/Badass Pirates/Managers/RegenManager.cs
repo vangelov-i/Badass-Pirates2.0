@@ -2,7 +2,8 @@
 {
     using System.Diagnostics;
 
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Models.Players;
 
     // TODO ЧИСТИЧЪК И СПРЕТНАТ
     public static class RegenManager
@@ -21,12 +22,12 @@
             stopWatch.Start();
         }
 
-        public static void EnergyRegenUpdate(Player firstPlayer,Player secondPlayer)
+        public static void EnergyRegenUpdate()
         {
             if ((int)RegenManager.stopWatch.Elapsed.TotalSeconds == RegenManager.elapsedTimeValidation)
             {
-                firstPlayer.Ship.Energy += regenValue;
-                secondPlayer.Ship.Energy += regenValue;
+                FirstPlayer.Instance.Ship.Energy += regenValue;
+                SecondPlayer.Instance.Ship.Energy += regenValue;
                 RegenManager.elapsedTimeValidation = (int)RegenManager.stopWatch.Elapsed.TotalSeconds + regenTimeSeconds;
             }
         }

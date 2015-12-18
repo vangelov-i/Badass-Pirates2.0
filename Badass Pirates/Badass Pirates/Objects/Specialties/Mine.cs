@@ -2,8 +2,9 @@
 {
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Models.Players;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -37,26 +38,25 @@
         }
         #endregion
         
-        public override void Update(GameTime gameTime, Player currentPlayer)
+        public override void Update(GameTime gameTime, IPlayer currentPlayer)
         {
             // ЛОГИКА ПРИ КОЛИЗИЯ НА МИНАТА
             // TODO NOT WORKING COLLISION
-            
-                if (currentPlayer != this.FirstPlayer)
+                if (currentPlayer != FirstPlayer.Instance)
                 {
-                    Collide = SpecialtyCollision.Collide(this.FirstPlayer.Ship, this);
+                    Collide = SpecialtyCollision.Collide(FirstPlayer.Instance.Ship, this);
                     if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.FirstPlayer.Ship);
+                        currentPlayer.Ship.SpecialtyAttack(FirstPlayer.Instance.Ship);
                         this.DoDraw = false;
                     }
                 }
                 else
                 {
-                    Collide = SpecialtyCollision.Collide(this.SecondPlayer.Ship, this);
+                    Collide = SpecialtyCollision.Collide(SecondPlayer.Instance.Ship, this);
                     if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.SecondPlayer.Ship);
+                        currentPlayer.Ship.SpecialtyAttack(SecondPlayer.Instance.Ship);
                         this.DoDraw = false;
                     }
                 }

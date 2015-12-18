@@ -5,6 +5,7 @@
     using System;
 
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Models.Ships;
 
     #endregion
 

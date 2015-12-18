@@ -2,10 +2,12 @@
 {
     using Badass_Pirates.Enums;
     using Badass_Pirates.GameObjects.Ships;
+    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Models.Ships;
 
     public static class CreateBonusTypeEffect
     {
-        public static void ExtractEffect(Ship targetShip, BonusType type)
+        public static void ExtractEffect(IShip targetShip, BonusType type)
         {
             // TODO : % stats
             switch (type)

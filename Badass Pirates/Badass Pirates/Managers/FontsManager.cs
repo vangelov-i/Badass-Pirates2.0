@@ -1,8 +1,9 @@
 ﻿namespace Badass_Pirates.Fonts
 {
-    using Badass_Pirates.GameObjects.Mobs.Boss;
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Enums;
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Models.Mobs.Boss;
+    using Badass_Pirates.Models.Players;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -17,9 +18,9 @@
 
         //private static Font gameOver;
 
-        private static Player firstPlayer;
+        //private static Player FirstPlayer.Instance;
 
-        private static Player secondPlayer;
+        //private static Player SecondPlayer.Instance;
 
         private static bool end;
 
@@ -30,8 +31,8 @@
             FontsManager.shieldFont = new Font(Color.Blue, "Fonts", "big");
             //FontsManager.gameOver = new Font(Color.DarkRed, "Fonts", "big");
             FontsManager.end = false;
-            firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
-            secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
+            //FirstPlayer.Instance = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer.Instance);
+            //SecondPlayer.Instance = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer.Instance);
         }
 
         public static void LoadContent()
@@ -59,16 +60,16 @@
 
             FontsManager.hpFont.Draw(
                 spriteBatch,
-                new Vector2(firstPlayer.Ship.Position.X, firstPlayer.Ship.Position.Y - 20),
-                firstPlayer.Ship.Health.ToString());
+                new Vector2(FirstPlayer.Instance.Ship.Position.X, FirstPlayer.Instance.Ship.Position.Y - 20),
+                FirstPlayer.Instance.Ship.Health.ToString());
             FontsManager.energyFont.Draw(
                 spriteBatch,
-                new Vector2(firstPlayer.Ship.Position.X + 70, firstPlayer.Ship.Position.Y - 20),
-                firstPlayer.Ship.Energy.ToString());
+                new Vector2(FirstPlayer.Instance.Ship.Position.X + 70, FirstPlayer.Instance.Ship.Position.Y - 20),
+                FirstPlayer.Instance.Ship.Energy.ToString());
             FontsManager.shieldFont.Draw(
                 spriteBatch,
-                new Vector2(firstPlayer.Ship.Position.X + 40, firstPlayer.Ship.Position.Y - 20),
-                firstPlayer.Ship.Shields.ToString());
+                new Vector2(FirstPlayer.Instance.Ship.Position.X + 40, FirstPlayer.Instance.Ship.Position.Y - 20),
+                FirstPlayer.Instance.Ship.Shields.ToString());
 
             #endregion
 
@@ -76,25 +77,25 @@
 
             FontsManager.hpFont.Draw(
                 spriteBatch,
-                new Vector2(secondPlayer.Ship.Position.X, secondPlayer.Ship.Position.Y - 20),
-                secondPlayer.Ship.Health.ToString());
+                new Vector2(SecondPlayer.Instance.Ship.Position.X, SecondPlayer.Instance.Ship.Position.Y - 20),
+                SecondPlayer.Instance.Ship.Health.ToString());
             FontsManager.energyFont.Draw(
                 spriteBatch,
-                new Vector2(secondPlayer.Ship.Position.X + 70, secondPlayer.Ship.Position.Y - 20),
-                secondPlayer.Ship.Energy.ToString());
+                new Vector2(SecondPlayer.Instance.Ship.Position.X + 70, SecondPlayer.Instance.Ship.Position.Y - 20),
+                SecondPlayer.Instance.Ship.Energy.ToString());
             FontsManager.shieldFont.Draw(
                 spriteBatch,
-                new Vector2(secondPlayer.Ship.Position.X + 40, secondPlayer.Ship.Position.Y - 20),
-                secondPlayer.Ship.Shields.ToString());
+                new Vector2(SecondPlayer.Instance.Ship.Position.X + 40, SecondPlayer.Instance.Ship.Position.Y - 20),
+                SecondPlayer.Instance.Ship.Shields.ToString());
 
             #endregion
 
-            #region Boss
+            #region Boss.Instance.
 
             FontsManager.hpFont.Draw(
                 spriteBatch,
-                new Vector2(Boss.Position.X + Boss.image.Texture.Width/2f - 25, Boss.Position.Y + 30),
-                Boss.Health.ToString());
+                new Vector2(Boss.Instance.Position.X + Boss.Instance.image.Texture.Width/2f - 25, Boss.Instance.Position.Y + 30),
+                Boss.Instance.Health.ToString());
 
             #endregion
         }

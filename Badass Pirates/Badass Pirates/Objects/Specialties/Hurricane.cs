@@ -2,7 +2,8 @@
 {
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Models.Players;
 
     using Microsoft.Xna.Framework;
 
@@ -21,7 +22,7 @@
         {
         }
 
-        public override void Update(GameTime gameTime, Player currentPlayer)
+        public override void Update(GameTime gameTime, IPlayer currentPlayer)
         {
             if (this.SpecialtyFired)
             {
@@ -29,20 +30,20 @@
                 // nqkak da se porazkachi Update() (ako ima vreme)
                 if (currentPlayer is FirstPlayer)
                 {
-                    Collide = SpecialtyCollision.Collide(this.SecondPlayer.Ship, this);
+                    Collide = SpecialtyCollision.Collide(SecondPlayer.Instance.Ship, this);
                     if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.SecondPlayer.Ship);
+                        currentPlayer.Ship.SpecialtyAttack(SecondPlayer.Instance.Ship);
                     }
 
                     this.AddToPosition(Direction.Positive, CoordsDirections.Abscissa, HURRICANE_SPEED);
                 }
                 else
                 {
-                    Collide = SpecialtyCollision.Collide(this.FirstPlayer.Ship, this);
+                    Collide = SpecialtyCollision.Collide(FirstPlayer.Instance.Ship, this);
                     if (Collide)
                     {
-                        currentPlayer.Ship.SpecialtyAttack(this.FirstPlayer.Ship);
+                        currentPlayer.Ship.SpecialtyAttack(FirstPlayer.Instance.Ship);
                     }
 
                     this.AddToPosition(Direction.Negative, CoordsDirections.Abscissa, HURRICANE_SPEED);

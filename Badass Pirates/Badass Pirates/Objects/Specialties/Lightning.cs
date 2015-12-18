@@ -2,7 +2,8 @@
 {
     using System.Diagnostics;
 
-    using Badass_Pirates.GameObjects.Players;
+    using Badass_Pirates.Interfaces;
+    using Badass_Pirates.Models.Players;
 
     using Microsoft.Xna.Framework;
 
@@ -24,7 +25,7 @@
             this.lightningTimer = new Stopwatch();
         }
 
-        public override void ActivateSpecialty(Player currentPlayer) // currentPlayer is the enemy 
+        public override void ActivateSpecialty(IPlayer currentPlayer) // currentPlayer is the enemy 
         {
             // this Position might have bugs when applied to the FirstPlayer
             this.Position = new Vector2(currentPlayer.Ship.Position.X - this.Image.Texture.Width/2f, currentPlayer.Ship.Position.Y - this.Image.Texture.Height);
@@ -32,24 +33,24 @@
             this.lightningTimer.Start();
         }
 
-        public override void Update(GameTime gameTime, Player currentPlayer)
+        public override void Update(GameTime gameTime, IPlayer currentPlayer)
         {
 
             // NEEDS LOTS OF ELEGANCE
             if (currentPlayer is FirstPlayer)
             {
-                this.Position = new Vector2(this.SecondPlayer.Ship.Position.X - this.Image.Texture.Width / 2f, this.SecondPlayer.Ship.Position.Y - this.Image.Texture.Height);
+                this.Position = new Vector2(SecondPlayer.Instance.Ship.Position.X - this.Image.Texture.Width / 2f, SecondPlayer.Instance.Ship.Position.Y - this.Image.Texture.Height);
                 if (this.lightningTimer.Elapsed.Seconds > LIGHTNING_TIME)
                 {
-                    currentPlayer.Ship.SpecialtyAttack(this.SecondPlayer.Ship);
+                    currentPlayer.Ship.SpecialtyAttack(SecondPlayer.Instance.Ship);
                 }
             }
             else
             {
-                this.Position = new Vector2(this.FirstPlayer.Ship.Position.X - this.Image.Texture.Width/2f , this.FirstPlayer.Ship.Position.Y - this.Image.Texture.Height);
+                this.Position = new Vector2(FirstPlayer.Instance.Ship.Position.X - this.Image.Texture.Width/2f , FirstPlayer.Instance.Ship.Position.Y - this.Image.Texture.Height);
                 if (this.lightningTimer.Elapsed.Seconds > LIGHTNING_TIME)
                 {
-                    currentPlayer.Ship.SpecialtyAttack(this.FirstPlayer.Ship);
+                    currentPlayer.Ship.SpecialtyAttack(FirstPlayer.Instance.Ship);
                 }
             }
 
