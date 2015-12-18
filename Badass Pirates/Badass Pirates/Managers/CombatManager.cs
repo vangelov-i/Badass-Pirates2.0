@@ -19,13 +19,10 @@
     public static class CombatManager
     {
         #region Fields
+
         private const int BossActivationSeconds = 45;
         private const int DamageFontShowingTime = 150;
-
-
-        //private static Player firstPlayer;
-        //private static Player secondPlayer;
-        private static Player currentPlayer;
+        private static IPlayer currentPlayer;
         private static int playerFlagBossCollide;
         private static bool ballColliding;
         private static bool bossBallCollide;
@@ -35,23 +32,32 @@
         private static int? bossHitCounter;
         private static Font damageFont;
         private static Stopwatch activateBossWatch;
-
-        public static bool control = true;
-
+        private static bool control;
 
         #endregion
 
-        #region Methods
-        public static void Initilialise(Player currPlayer)
+        public static bool Control
         {
+            get
+            {
+                return control;
+            }
+            set
+            {
+                control = value;
+            }
+        }
+
+        #region Methods
+        public static void Initilialise(IPlayer currPlayer)
+        {
+            control = true;
             activateBossWatch = new Stopwatch();
             damageFont = new Font(Color.Red, "Fonts", "big");
             currentPlayer = currPlayer;
             ballColliding = false;
             bossBallCollide = false;
             bossVsShipCollide = false;
-            //firstPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer);
-            //secondPlayer = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer);
             BallControls.CannonBallInitialise();
 
             // TODO Could be ENUM
@@ -60,7 +66,6 @@
 
         public static void LoadContent()
         {
-            damageFont.LoadContent();
             FirstPlayer.Instance.Ship.Specialty.LoadContent();
             SecondPlayer.Instance.Ship.Specialty.LoadContent();
             activateBossWatch.Start();
@@ -83,7 +88,7 @@
             // KOGATO TEPAT PURVIQ
             ballColliding = BallCollision.Collide(
                     FirstPlayer.Instance.Ship,
-                    BallControls.ballSecond);
+                    BallControls.BallSecond);
             if (ballColliding)
             {
                 firstPlayerHitCounter = 0;
@@ -92,7 +97,7 @@
 
             ballColliding = BallCollision.Collide(
                 SecondPlayer.Instance.Ship,
-                BallControls.ballFirst);
+                BallControls.BallFirst);
             if (ballColliding)
             {
                 secondPlayerHitCounter = 0;
@@ -106,7 +111,7 @@
             if (activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
             {
                 // topchEto na pyrviq igrach
-                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.ballFirst);
+                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.BallFirst);
                 if (bossBallCollide)
                 {
                     firstPlayerHitCounter = 0;
@@ -114,7 +119,7 @@
                 }
 
                 // topchEto na vtoriq igrach
-                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.ballSecond);
+                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.BallSecond);
                 if (bossBallCollide)
                 {
                     secondPlayerHitCounter = 0;
@@ -162,7 +167,7 @@
         {
             //igrachite
             if (firstPlayerHitCounter < DamageFontShowingTime && firstPlayerHitCounter != null
-                && BallControls.firstController) // ballColliding && 
+                && BallControls.FirstController) // ballColliding && 
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -173,7 +178,7 @@
                 firstPlayerHitCounter++;
             }
             if (secondPlayerHitCounter < DamageFontShowingTime && secondPlayerHitCounter != null
-                && BallControls.secondController)
+                && BallControls.SecondController)
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -186,7 +191,7 @@
 
             if (bossHitCounter < DamageFontShowingTime && bossHitCounter != null)
             {
-                if (playerFlagBossCollide == 1 && BallControls.firstController)
+                if (playerFlagBossCollide == 1 && BallControls.FirstController)
                 {
                     damageFont.Draw(
                             spriteBatch,
@@ -196,7 +201,7 @@
                             string.Format((Boss.Instance.Damage * -1).ToString())); // moje i po elegantno :D
                     bossHitCounter++;
                 }
-                else if(playerFlagBossCollide == 0 && BallControls.secondController)
+                else if(playerFlagBossCollide == 0 && BallControls.SecondController)
                 {
                     damageFont.Draw(
                             spriteBatch,

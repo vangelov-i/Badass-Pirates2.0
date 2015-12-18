@@ -98,15 +98,12 @@
     <Compile Include="Factory\CreateBonusTypeEffect.cs" />
     <Compile Include="Factory\CreatePotionEffect.cs" />
     <Compile Include="Factory\CreateShip.cs" />
-    <Compile Include="Factory\SpawnBoss.cs" />
     <Compile Include="Enums\BonusType.cs" />
     <Compile Include="Models\Players\FirstPlayer.cs" />
     <Compile Include="Models\Players\Player.cs" />
     <Compile Include="Enums\PlayerTypes.cs" />
     <Compile Include="Models\Players\SecondPlayer.cs" />
     <Compile Include="Managers\CombatManager.cs" />
-    <Compile Include="Interfaces\IPositionable.cs" />
-    <Compile Include="Interfaces\IXnaDependencies.cs" />
     <Compile Include="MainEngine.cs" />
     <Compile Include="Enums\PotionTypes.cs" />
     <Compile Include="Models\Mobs\Boss\Boss.cs" />

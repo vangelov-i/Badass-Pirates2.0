@@ -8,11 +8,11 @@
 
     public class Font
     {
-        private SpriteFont currentFont;
+        private readonly SpriteFont currentFont;
 
         private readonly Color color;
 
-        private ContentManager content;
+        private readonly ContentManager content;
 
         private readonly string fontName;
 
@@ -23,26 +23,10 @@
             this.color = fontColor;
             this.fontsFolderName = folderName;
             this.fontName = this.fontsFolderName + "/" + fontsName;
-
-            // these two lines were int LoadContent()
             this.content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
             this.currentFont = this.content.Load<SpriteFont>(this.fontName);
         }
-
-        //public void Initialise(string messageInput,Color fontColor,string folderName,string fontsName)
-        //{
-        //    this.message = messageInput;
-        //    this.color = fontColor;
-        //    this.fontsFolderName = folderName;
-        //    this.fontName = this.fontsFolderName + fontsName;
-        //}
-
-        public void LoadContent()
-        {
-            //this.content = new ContentManager(ScreenManager.Instance.Content.ServiceProvider, "Content");
-            //this.currentFont = this.content.Load<SpriteFont>(this.fontName); // TODO: moved this line to the constructor... to fix something in MenuScreen
-        }
-
+        
         public void UnloadContent()
         {
             this.content.Unload();

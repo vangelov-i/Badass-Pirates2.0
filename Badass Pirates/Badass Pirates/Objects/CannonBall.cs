@@ -12,11 +12,11 @@
     #endregion
 
     // TODO LOCAL CONSTs
-    public class CannonBall : IProjectile ,IPositionable
+    public class CannonBall : IProjectile
     {
         private readonly Vector2 DefaultInitPos = new Vector2(900f, 900f);
 
-        public static Point frameSize;
+        private static Point frameSize;
 
         private bool ballFired;
 
@@ -230,19 +230,6 @@
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.image.Texture, this.position);
-        }
-        
-        public void SetPosition(CoordsDirections coordsDirections,float value)
-        {
-            switch (coordsDirections)
-            {
-                case CoordsDirections.Abscissa:
-                    this.position.X = value;
-                    break;
-                case CoordsDirections.Ordinate:
-                    this.position.Y = value;
-                    break;
-            }
         }
 
         public void SetPositionRangeX(float value)

@@ -1,8 +1,7 @@
 ﻿namespace Badass_Pirates.Interfaces
 {
     using System.Diagnostics;
-
-    //TODO only player should implement thisi interface
+    
     public interface IBonuses
     {
         Stopwatch WindTimeOut { get; set; }

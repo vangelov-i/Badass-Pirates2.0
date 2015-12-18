@@ -17,20 +17,75 @@
 
     public static class BallControls
     {
-        // TODO NEED PROPERTY
+        //TODO Ball should not have methods draw,load etc.
         private const int DefaultBallTimer = 2;
 
-        public static CannonBall ballFirst;
+        private static CannonBall ballFirst;
 
-        public static CannonBall ballSecond;
+        private static CannonBall ballSecond;
 
-        public static bool firstController = true;
+        private static bool firstController;
 
-        public static bool secondController = true;
+        private static bool secondController;
 
         private static readonly Stopwatch firstBallTimer = new Stopwatch();
 
         private static readonly Stopwatch secondBallTimer = new Stopwatch();
+
+        static BallControls ()
+        {
+            firstController = true;
+
+            secondController = true;
+        }
+
+        public static bool FirstController
+        {
+            get
+            {
+                return firstController;
+            }
+            set
+            {
+                firstController = value;
+            }
+        }
+
+        public static bool SecondController
+        {
+            get
+            {
+                return secondController;
+            }
+            set
+            {
+                secondController = value;
+            }
+        }
+
+        public static CannonBall BallFirst
+        {
+            get
+            {
+                return ballFirst;
+            }
+            set
+            {
+                ballFirst = value;
+            }
+        }
+
+        public static CannonBall BallSecond
+        {
+            get
+            {
+                return ballSecond;
+            }
+            set
+            {
+                ballSecond = value;
+            }
+        }
 
         public static void CannonBallInitialise()
         {
@@ -148,27 +203,27 @@
                 ballFirst.FireFlashCounter++;
             }
 
-            if (ballFirst.BallFired)
+            if (!ballFirst.BallFired)
             {
-                ballFirst.SetPositionRangeX(
-                    (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2)
-                     - FirstPlayer.Instance.ShipImage.Texture.Width));
+                return;
+            }
+            ballFirst.SetPositionRangeX(
+                (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2)
+                 - FirstPlayer.Instance.ShipImage.Texture.Width));
 
-                if (ballFirst.Position.Y < ballFirst.BallFiredPos.Y) // ballFirst.Position.X < ballFirst.BallRangeX.X
-                {
-                    ballFirst.Draw(spriteBatch);
-                }
-                else if (firstBallTimer.Elapsed.TotalSeconds > DefaultBallTimer)
-                {
-                    ballFirst.BallInitialised = false;
-                    ballFirst.BallFired = false;
-                    firstBallTimer.Stop();
-                    firstBallTimer.Reset();
-                }
+            if (ballFirst.Position.Y < ballFirst.BallFiredPos.Y) // ballFirst.Position.X < ballFirst.BallRangeX.X
+            {
+                ballFirst.Draw(spriteBatch);
+            }
+            else if (firstBallTimer.Elapsed.TotalSeconds > DefaultBallTimer)
+            {
+                ballFirst.BallInitialised = false;
+                ballFirst.BallFired = false;
+                firstBallTimer.Stop();
+                firstBallTimer.Reset();
             }
         }
-
-        //TODO vseki korab si ima kartinka shipImage parametyra moje da se mahne
+        
         private static void SecondPlayerBallDraw(SpriteBatch spriteBatch)
         {
             if (ballSecond.BallFired && ballSecond.FireFlashCounter < 15)
