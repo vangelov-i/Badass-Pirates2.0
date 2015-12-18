@@ -18,8 +18,6 @@
 
         Image ShipImage { get; set; }
 
-        bool Sunk { get; set; }
-
         void Initialise();
 
         void LoadContent();

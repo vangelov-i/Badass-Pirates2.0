@@ -81,7 +81,7 @@
         {
             RegenManager.EnergyRegenUpdate();
             current.Ship.Specialty.Update(gameTime, current);
-            ControlsPlayer(type, current);
+            ControlsPlayer(type);
 
             #region Ball Players Collisions
 
@@ -150,24 +150,14 @@
             }
 
             #endregion
-
-
-            // Трябва да се премести в пропърти на кораба
-            if (FirstPlayer.Instance.Ship.Health <= 0)
-            {
-                FirstPlayer.Instance.Sunk = true;
-            }
-            if (SecondPlayer.Instance.Ship.Health <= 0)
-            {
-               SecondPlayer.Instance.Sunk = true;
-            }
         }
 
         public static void Draw(SpriteBatch spriteBatch)
         {
+            //TODO Tрябва да се изнесе в логиката при фонтовете или в отделен клас !
             //igrachite
             if (firstPlayerHitCounter < DamageFontShowingTime && firstPlayerHitCounter != null
-                && BallControls.FirstController) // ballColliding && 
+                && BallControls.FirstController)
             {
                 damageFont.Draw(
                     spriteBatch,
@@ -239,13 +229,13 @@
                         secondPlayerHitCounter++;
 
             }
-
+            //TODO END TODO
 
             FirstPlayer.Instance.Ship.Specialty.Draw(spriteBatch, FirstPlayer.Instance.Ship.Specialty.Position);
             SecondPlayer.Instance.Ship.Specialty.Draw(spriteBatch, SecondPlayer.Instance.Ship.Specialty.Position);
         }
 
-        private static void ControlsPlayer(PlayerTypes type, IPlayer current)
+        private static void ControlsPlayer(PlayerTypes type)
         {
             if (control)
             {

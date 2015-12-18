@@ -44,15 +44,12 @@
 
         public Image ShipImage { get; set; }
 
-        public bool Sunk { get; set; }
-
         #endregion
 
         #region Methods
 
         public virtual void Initialise()
         {
-            this.Sunk = false;
             CombatManager.Initilialise(this);
             Boss.Instance.Initialise();
         }
@@ -92,7 +89,7 @@
                 this.Ship.UnWind();
             }
 
-            if (this.Sunk)
+            if (this.Ship.Sunk)
             {
                 this.Ship.Sink(this);
             }
@@ -116,10 +113,9 @@
             #endregion
 
             this.InputManagerInstance.RotateStates();
-
+            this.ItemColliding = ItemsCollision.Collide(this.Ship);
             PlayerControls.ControlsPlayer(this.PlayerType);
             BallControls.CannonBallControls(this.PlayerType, gameTime);
-            this.ItemColliding = ItemsCollision.Collide(this.Ship);
             CombatManager.Update(gameTime, this.PlayerType, this);
 
             // ALWAYS MUST BE THE LAST LINE
@@ -129,7 +125,7 @@
         public void Draw(SpriteBatch spriteBatch)
         {
             Vector2 textureOrigin = new Vector2(this.ShipImage.Texture.Width / 2f, this.ShipImage.Texture.Height / 2f);
-            if (!this.Sunk)
+            if (!this.Ship.Sunk)
             {
                 spriteBatch.Draw(this.ShipImage.Texture, this.Ship.Position);
             }
