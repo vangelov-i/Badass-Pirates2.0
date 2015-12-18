@@ -11,6 +11,8 @@ namespace Badass_Pirates.Enums
 
         Playing,
 
-        GameOver
+        GameOver,
+
+        Controls
     }
 }

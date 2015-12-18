@@ -270,3 +270,13 @@ C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\PlayerTwo.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Shift.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\wasd.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\arrowKeys.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\seaFaded.jpg
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Ctrl.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\PLAYER.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\PlayerOne.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\PlayerTwo.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\Shift.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\wasd.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\button.png
+C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\controls.png
