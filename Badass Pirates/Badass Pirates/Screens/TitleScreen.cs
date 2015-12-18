@@ -19,35 +19,7 @@
     public class TitleScreen : GameScreen
     {
         private Image background;
-
-        //private static IPlayer firstPlayer;
-
-        //private static IPlayer secondPlayer;
-
-        //public static IPlayer FirstPlayer
-        //{
-        //    get
-        //    {
-        //        return firstPlayer;
-        //    }
-        //    set
-        //    {
-        //        firstPlayer = value;
-        //    }
-        //}
-
-        //public static IPlayer SecondPlayer
-        //{
-        //    get
-        //    {
-        //        return secondPlayer;
-        //    }
-        //    set
-        //    {
-        //        secondPlayer = value;
-        //    }
-        //}
-
+        
         public TitleScreen ()
         {
             this.Initialise();

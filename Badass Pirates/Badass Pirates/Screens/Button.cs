@@ -63,7 +63,7 @@
                 (int)this.size.Y);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            if ((mouseRectangle.Intersects(this.rectangle) && !this.shipTaken) || this.ConstFlash)
+            if (mouseRectangle.Intersects(this.rectangle))
             {
                 if (this.colour.A == 255)
                 {

@@ -82,8 +82,7 @@
                     {
                         this._currentGameState = GameState.Controls;
                     }
-                    this._btnPlay.Update(mouse);
-                    this._controls.Update(mouse);
+                    
                     break;
 
                 case GameState.Playing:
@@ -91,7 +90,7 @@
                     break;
 
                     case GameState.Controls:
-                        ScreenManager.Instance.CurrentScreen = new ConstrolsScreen();      
+                        ScreenManager.Instance.CurrentScreen = new ControlScreen();      
                     break;
 
                 case GameState.GameOver:
@@ -149,6 +148,12 @@
             this.destroyer.Update(mouse);
             this.cruiser.Update(mouse);
             this.battleship.Update(mouse);
+
+            if (this.firstChoiceMade && this.secondChoiceMade)
+            {
+                this._btnPlay.Update(mouse);
+                this._controls.Update(mouse);
+            }
 
             #endregion
 
