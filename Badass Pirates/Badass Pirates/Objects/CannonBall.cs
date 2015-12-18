@@ -12,7 +12,7 @@
     #endregion
 
     // TODO LOCAL CONSTs
-    public class CannonBall : IBall ,IPositionable
+    public class CannonBall : IProjectile ,IPositionable
     {
         private readonly Vector2 DefaultInitPos = new Vector2(900f, 900f);
 

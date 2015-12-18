@@ -4,7 +4,7 @@
 
     using Microsoft.Xna.Framework;
 
-    public interface IBall
+    public interface IProjectile
     {
         Image Image { get; set; }
 

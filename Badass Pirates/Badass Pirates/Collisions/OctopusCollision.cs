@@ -56,7 +56,7 @@ namespace Badass_Pirates.Collisions
 
         #region Balls Collisions
 
-        public static bool BossBallCollide(IBall ball)
+        public static bool BossBallCollide(IProjectile ball)
         {
             Rectangle bossRect = new Rectangle(
                (int)Boss.Instance.Position.X + BALL_COLLISION_OFFSET,

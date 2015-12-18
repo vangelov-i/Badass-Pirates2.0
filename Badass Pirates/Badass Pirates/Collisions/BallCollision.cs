@@ -8,7 +8,7 @@
     {
         private const int COLLISION_OFFSET = 5;
 
-        public static bool Collide(IShip shipColliding, IBall ball)
+        public static bool Collide(IShip shipColliding, IProjectile ball)
         {
             Rectangle shipRect = new Rectangle(
                (int)shipColliding.Position.X + COLLISION_OFFSET,
