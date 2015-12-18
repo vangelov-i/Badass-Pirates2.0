@@ -61,6 +61,7 @@
     <Compile Include="Controls\BallControls.cs" />
     <Compile Include="Enums\GameState.cs" />
     <Compile Include="Fonts\Font.cs" />
+    <Compile Include="Interfaces\IBall.cs" />
     <Compile Include="Interfaces\IBonuses.cs" />
     <Compile Include="Interfaces\IBoss.cs" />
     <Compile Include="Interfaces\ICreature.cs" />
@@ -255,6 +256,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="ClassDiagram.cd" />
+    <None Include="ClassDiagram1.cd" />
     <None Include="Content\Fonts\big.xnb" />
     <None Include="Content\Fonts\kooten.ttf" />
     <None Include="Content\Fonts\Linds.ttf">

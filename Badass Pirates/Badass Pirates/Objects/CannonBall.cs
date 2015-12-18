@@ -12,11 +12,11 @@
     #endregion
 
     // TODO LOCAL CONSTs
-    public class CannonBall : IPositionable
+    public class CannonBall : IBall ,IPositionable
     {
         private readonly Vector2 DefaultInitPos = new Vector2(900f, 900f);
 
-        public static Point frameSize = new Point(42,42);
+        public static Point frameSize;
 
         private bool ballFired;
 
@@ -28,7 +28,7 @@
 
         private Vector2 ballRangeX;
 
-        private readonly Image Ball;
+        private Image image;
 
         private Vector2 position;
 
@@ -41,8 +41,9 @@
         public CannonBall()
         {
             this.position = this.DefaultInitPos;
-            this.Ball = new Image("cannonball");
+            this.image = new Image("cannonball");
             this.Fire = new Image("firstFire");
+            frameSize = new Point(42, 42);
         }
 
         public Vector2 BallFiredPos 
@@ -110,6 +111,30 @@
             }
         }
 
+        public Point FrameSize
+        {
+            get
+            {
+                return frameSize;
+            }
+            set
+            {
+                frameSize = value;
+            }
+        }
+
+        public Image Image
+        {
+            get
+            {
+                return this.image;
+            }
+            set
+            {
+                this.image = value;
+            }
+        }
+
         public void Initialise(Vector2 pos,PlayerTypes type)
         {
             this.position = pos;
@@ -132,13 +157,13 @@
 
         public void LoadContent()
         {
-            this.Ball.LoadContent();
+            this.image.LoadContent();
             this.Fire.LoadContent();
         }
 
         public void UnloadContent()
         {
-            this.Ball.UnloadContent();
+            this.image.UnloadContent();
             this.Fire.UnloadContent();
         }
 
@@ -204,7 +229,7 @@
 
         public void Draw(SpriteBatch spriteBatch)
         {
-            spriteBatch.Draw(this.Ball.Texture, this.position);
+            spriteBatch.Draw(this.image.Texture, this.position);
         }
         
         public void SetPosition(CoordsDirections coordsDirections,float value)

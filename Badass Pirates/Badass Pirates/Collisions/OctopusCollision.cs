@@ -9,7 +9,6 @@ namespace Badass_Pirates.Collisions
     
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Models.Mobs.Boss;
-    using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
 
@@ -57,7 +56,7 @@ namespace Badass_Pirates.Collisions
 
         #region Balls Collisions
 
-        public static bool BossBallCollide(CannonBall ball)
+        public static bool BossBallCollide(IBall ball)
         {
             Rectangle bossRect = new Rectangle(
                (int)Boss.Instance.Position.X + BALL_COLLISION_OFFSET,
@@ -68,8 +67,8 @@ namespace Badass_Pirates.Collisions
             Rectangle cannonBall = new Rectangle(
                 (int)ball.Position.X + BALL_COLLISION_OFFSET,
                 (int)ball.Position.Y + BALL_COLLISION_OFFSET,
-                CannonBall.frameSize.X - (BALL_COLLISION_OFFSET * 2),
-                CannonBall.frameSize.Y - (BALL_COLLISION_OFFSET * 2));
+                ball.FrameSize.X - (BALL_COLLISION_OFFSET * 2),
+                ball.FrameSize.Y - (BALL_COLLISION_OFFSET * 2));
 
             if (bossRect.Intersects(cannonBall))
             {

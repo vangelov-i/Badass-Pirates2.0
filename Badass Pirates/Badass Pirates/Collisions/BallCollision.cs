@@ -1,9 +1,6 @@
 ﻿namespace Badass_Pirates.Collisions
 {
-    using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
-    using Badass_Pirates.Models.Ships;
-    using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
 
@@ -11,7 +8,7 @@
     {
         private const int COLLISION_OFFSET = 5;
 
-        public static bool Collide(IShip shipColliding, CannonBall ball)
+        public static bool Collide(IShip shipColliding, IBall ball)
         {
             Rectangle shipRect = new Rectangle(
                (int)shipColliding.Position.X + COLLISION_OFFSET,
@@ -22,8 +19,8 @@
             Rectangle cannonBall = new Rectangle(
                 (int)ball.Position.X + COLLISION_OFFSET,
                 (int)ball.Position.Y + COLLISION_OFFSET,
-                CannonBall.frameSize.X - (COLLISION_OFFSET * 2),
-                CannonBall.frameSize.Y - (COLLISION_OFFSET * 2));
+                ball.FrameSize.X - (COLLISION_OFFSET * 2),
+                ball.FrameSize.Y - (COLLISION_OFFSET * 2));
 
             if (shipRect.Intersects(cannonBall))
             {

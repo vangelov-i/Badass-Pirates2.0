@@ -173,8 +173,6 @@
                         //
                     }
 
-
-
                     if (!this.firstChoiceMade)
                     {
                         spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerOne"),
