@@ -4,7 +4,6 @@
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
     using Badass_Pirates.Models.Players;
-    using Badass_Pirates.Screens;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -38,10 +37,9 @@
             this.doDraw = false;
         }
 
-
         #region Properties
 
-        public bool DoDraw
+        protected bool DoDraw
         {
             get
             {
@@ -89,7 +87,7 @@
             }
         }
 
-        public bool SpecialtyFired
+        protected bool SpecialtyFired
         {
             get
             {
@@ -113,7 +111,7 @@
             }
         }
 
-        public static bool Collide
+        protected static bool Collide
         {
             get
             {
@@ -124,8 +122,7 @@
                 collide = value;
             }
         }
-
-
+        
         #endregion
 
         #region Methods

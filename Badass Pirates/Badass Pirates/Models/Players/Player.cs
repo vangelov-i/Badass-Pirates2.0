@@ -2,8 +2,6 @@
 {
     #region
 
-    using System;
-
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
     using Badass_Pirates.Enums;
@@ -12,7 +10,6 @@
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
     using Badass_Pirates.Models.Mobs.Boss;
-    using Badass_Pirates.Models.Ships;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -33,12 +30,11 @@
             this.InputManagerInstance = new InputManager();
             this.Ship = CreateShip.Create(type);
         }
-        
-        public InputManager InputManagerInstance { get; set; }
-        
-        public IShip Ship { get; set; }
 
         #region Properties
+        public InputManager InputManagerInstance { get; set; }
+
+        public IShip Ship { get; set; }
 
         public bool ItemColliding { get; set; }
 
@@ -49,7 +45,7 @@
         public Image ShipImage { get; set; }
 
         public bool Sunk { get; set; }
-        
+
         #endregion
 
         #region Methods

@@ -1,7 +1,6 @@
-﻿namespace Badass_Pirates.Fonts
+﻿namespace Badass_Pirates.Managers
 {
-    using Badass_Pirates.Enums;
-    using Badass_Pirates.Managers;
+    using Badass_Pirates.Fonts;
     using Badass_Pirates.Models.Mobs.Boss;
     using Badass_Pirates.Models.Players;
 
@@ -16,31 +15,16 @@
 
         private static Font energyFont;
 
-        //private static Font gameOver;
-
-        //private static Player FirstPlayer.Instance;
-
-        //private static Player SecondPlayer.Instance;
-
-        private static bool end;
-
         public static void Initialise()
         {
             FontsManager.energyFont = new Font(Color.Yellow, "Fonts", "big");
             FontsManager.hpFont = new Font(Color.Red, "Fonts", "big");
             FontsManager.shieldFont = new Font(Color.Blue, "Fonts", "big");
-            //FontsManager.gameOver = new Font(Color.DarkRed, "Fonts", "big");
-            FontsManager.end = false;
-            //FirstPlayer.Instance = PlayersInfo.GetCurrentPlayer(PlayerTypes.FirstPlayer.Instance);
-            //SecondPlayer.Instance = PlayersInfo.GetCurrentPlayer(PlayerTypes.SecondPlayer.Instance);
         }
 
         public static void LoadContent()
         {
-            FontsManager.energyFont.LoadContent();
-            FontsManager.hpFont.LoadContent();
-            FontsManager.shieldFont.LoadContent();
-            //FontsManager.gameOver.LoadContent();
+
         }
 
         public static void UnloadContent()

@@ -1,10 +1,7 @@
 ﻿namespace Badass_Pirates.Interfaces
 {
     using Badass_Pirates.Enums;
-    using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Managers;
-    using Badass_Pirates.Models.Players;
-    using Badass_Pirates.Models.Ships;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;

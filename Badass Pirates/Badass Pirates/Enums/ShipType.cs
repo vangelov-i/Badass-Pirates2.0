@@ -1,5 +1,5 @@
 ﻿
-namespace Badass_Pirates.GameObjects.Ships
+namespace Badass_Pirates.Enums
 {
     public enum ShipType
     {

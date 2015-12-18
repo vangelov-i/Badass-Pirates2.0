@@ -33,7 +33,7 @@
 
         private readonly int specialtyDamage;
 
-        private Specialty specialty;
+        private ISpecialty specialty;
 
         #region Points
         private int damage;
@@ -84,7 +84,7 @@
 
         public Stopwatch FreezTimeOut { get; set; }
         
-        public Specialty Specialty
+        public ISpecialty Specialty
         {
             get
             {
@@ -246,13 +246,13 @@
             var sinkingSpeed = 1;
             if (player is FirstPlayer)
             {
-                PlayerControls.control = false;
-                BallControls.firstController = false;
+                PlayerControls.Control = false;
+                BallControls.FirstController = false;
             }
             else
             {
-                PlayerControls.secondControler = false;
-                BallControls.secondController = false;
+                PlayerControls.SecondControler = false;
+                BallControls.SecondController = false;
             }
             player.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }
