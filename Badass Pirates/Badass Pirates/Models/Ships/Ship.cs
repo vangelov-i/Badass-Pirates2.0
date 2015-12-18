@@ -144,6 +144,7 @@
             {
                 return this.energy;
             }
+
             set
             {
                 if (value < 0)

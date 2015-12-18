@@ -1,12 +1,18 @@
 ﻿namespace Badass_Pirates.Interfaces
 {
-    using Badass_Pirates.GameObjects.Ships;
-    using Badass_Pirates.Objects.Specialties;
+    using Badass_Pirates.Managers;
+
+    using Microsoft.Xna.Framework;
 
     public interface ISpecialty
     {
-        Specialty Specialty { get; set; }
+        Image Image { get; }
 
-        void SpecialtyAttack(IShip target);
+        Point FrameSize { get; }
+
+        Vector2 Position { get; set; }
+        
+        int Damage { get; }
+        
     }
 }

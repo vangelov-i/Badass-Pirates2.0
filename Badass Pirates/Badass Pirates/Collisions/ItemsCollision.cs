@@ -1,10 +1,8 @@
 ﻿namespace Badass_Pirates.Collisions
 {
     using System.Diagnostics.CodeAnalysis;
-
-    using Badass_Pirates.GameObjects.Ships;
+    
     using Badass_Pirates.Interfaces;
-    using Badass_Pirates.Models.Ships;
     using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;

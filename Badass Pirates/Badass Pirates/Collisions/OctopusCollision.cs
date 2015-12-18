@@ -6,11 +6,9 @@ using System.Text;
 namespace Badass_Pirates.Collisions
 {
     using System.Diagnostics;
-
-    using Badass_Pirates.GameObjects.Ships;
+    
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Models.Mobs.Boss;
-    using Badass_Pirates.Models.Ships;
     using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;

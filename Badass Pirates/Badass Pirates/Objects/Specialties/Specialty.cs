@@ -9,7 +9,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
 
-    public abstract class Specialty 
+    public abstract class Specialty : ISpecialty
     {
         #region Fields
 
@@ -162,7 +162,6 @@
         {
             if (currentPlayer is FirstPlayer)
             {
-                //TitleScreen.FirstPlayer.CurrentPlayer.Ship.Specialty.Initialise(TitleScreen.FirstPlayer.CurrentPlayer.Ship.Position);
                 FirstPlayer.Instance.Ship.Specialty.Initialise(FirstPlayer.Instance.Ship.Position);
             }
             else

@@ -11,7 +11,7 @@
     {
         private const int OFFSET = 5;
 
-        public static bool Collide(IShip shipColliding,Specialty specialtyItem)
+        public static bool Collide(IShip shipColliding, ISpecialty specialtyItem)
         {
             Rectangle shipRect = new Rectangle(
                (int)shipColliding.Position.X + OFFSET,
