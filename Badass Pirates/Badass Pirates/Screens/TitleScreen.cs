@@ -8,17 +8,22 @@
     using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Models.Mobs.Boss;
     using Badass_Pirates.Models.Players;
     using Badass_Pirates.Objects;
-
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
 
     #endregion
 
     public class TitleScreen : GameScreen
     {
         private Image background;
+
+        private Button playAgain;
+
+        private bool gameEnded;
         
         public TitleScreen ()
         {
@@ -45,6 +50,7 @@
             this.background.LoadContent();
             FontsManager.LoadContent();
             Item.LoadContent();
+            this.playAgain = new Button(this.Content.Load<Texture2D>("button"));
         }
 
         public override void UnloadContent()
@@ -64,6 +70,23 @@
 
             FirstPlayer.Instance.Update(gameTime);
             SecondPlayer.Instance.Update(gameTime);
+
+            if ((FirstPlayer.Instance.Ship.Sunk && SecondPlayer.Instance.Ship.Sunk) ||
+                (FirstPlayer.Instance.Ship.Sunk && Boss.Instance.Sunk) ||
+                (SecondPlayer.Instance.Ship.Sunk && Boss.Instance.Sunk))
+            {
+                MouseState mouse = Mouse.GetState();
+                this.playAgain.Update(mouse);
+                this.gameEnded = true;
+
+                if (this.playAgain.IsClicked)
+                {
+                    ScreenManager.Instance.MenuScreen = new MenuScreen();
+                    ScreenManager.Instance.MenuScreen.LoadContent();
+                    //ScreenManager.Instance.CurrentScreen.LoadContent();
+                    ScreenManager.Instance.CurrentScreen = ScreenManager.Instance.MenuScreen;
+                }
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -79,6 +102,11 @@
             if (FirstPlayer.Instance.ItemColliding == false)
             {
                 Item.Draw(spriteBatch);
+            }
+
+            if (this.gameEnded)
+            {
+                this.playAgain.Draw(spriteBatch);
             }
         }
     }

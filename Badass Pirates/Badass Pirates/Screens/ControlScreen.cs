@@ -51,7 +51,7 @@
 
             if (this.back.IsClicked)
             {
-                ScreenManager.Instance.CurrentScreen = MenuScreen.Instance;
+                ScreenManager.Instance.CurrentScreen = ScreenManager.Instance.MenuScreen;
             }
             this.back.Update(mouse);
 

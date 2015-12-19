@@ -20,7 +20,7 @@
     {
         #region Fields
 
-        private const int BossActivationSeconds = 45;
+        private const int BossActivationSeconds = 5;
         private const int DamageFontShowingTime = 150;
         private static IPlayer currentPlayer;
         private static int playerFlagBossCollide;

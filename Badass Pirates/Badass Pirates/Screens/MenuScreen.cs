@@ -7,14 +7,18 @@
     using Badass_Pirates.Managers;
     using Badass_Pirates.Objects;
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Content;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
+    using System;
 
     #endregion
 
     public class MenuScreen : GameScreen
     {
         private Button cruiser;
+
+        //private ContentManager content = ScreenManager.Instance.Content;
 
         //private GameState _currentGameState = GameState.MainMenu;
 
@@ -34,7 +38,7 @@
 
         private Button battleship;
 
-        private static MenuScreen instance;
+        //private static MenuScreen instance = new MenuScreen();
 
         bool firstChoiceMade;
 
@@ -44,17 +48,21 @@
 
         public static ShipType SecondShip { get; private set; }
 
-        public static MenuScreen Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = new MenuScreen();
-                }
-                return instance;
-            }
-        }
+        //public static MenuScreen Instance
+        //{
+        //    get
+        //    {
+        //        //if (instance == null)
+        //        //{
+        //        //    instance = new MenuScreen();
+        //        //}
+        //        return instance;
+        //    }
+        //    set
+        //    {
+        //        instance = value;
+        //    }
+        //}
         //
 
 
@@ -161,11 +169,13 @@
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-
+            
             spriteBatch.Draw(
                 this.Content.Load<Texture2D>("Backgrounds/sea"),
                 new Rectangle(0, 0, _screenWidth, _screenHeight),
                 Color.White);
+
+
 
 
             if (!this.firstChoiceMade || !this.secondChoiceMade)
@@ -199,6 +209,10 @@
             if (!this.battleship.ShipTaken && !this.secondChoiceMade)
             {
                 this.battleship.Draw(spriteBatch);
+                // grozno go napraih tva... ne mi se zanimava veche :/
+                //spriteBatch.Draw(this.Content.Load<Texture2D>("statsDestroyer"),
+                //    new Rectangle(250, 300, 122, 110),
+                //    Color.White);
             }
 
             if (!this.cruiser.ShipTaken && !this.secondChoiceMade)

@@ -19,15 +19,24 @@
 
         private GameScreen currentScreen;
 
+        private MenuScreen menuScreen = new MenuScreen();
+
+
         #region Constructor
 
         private ScreenManager()
         {
             this.Dimensions = new Vector2(1366, 768);
-            this.currentScreen = MenuScreen.Instance;
+            this.currentScreen = menuScreen;
         }
 
         #endregion
+
+        public MenuScreen MenuScreen
+        {
+            get { return this.menuScreen; }
+            set { this.menuScreen = value; }
+        }
 
         public static ScreenManager Instance
         {

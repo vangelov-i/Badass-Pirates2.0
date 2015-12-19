@@ -72,7 +72,7 @@
 
             player.InputManagerInstance.RotateStates();
 
-            #region Key S
+            #region Down Direction
             
             if (player.InputManagerInstance.KeyDown(library.GetKey(type,"Down")))
             {
@@ -90,7 +90,7 @@
             
             #endregion
 
-            #region Key W
+            #region Up Direction
 
             if (player.InputManagerInstance.KeyDown(library.GetKey(type, "Up")))
             {
@@ -107,7 +107,7 @@
 
             #endregion
 
-            #region Key D
+            #region Right  Direction
             if (player.InputManagerInstance.KeyDown(library.GetKey(type, "Right")))
             {
                 player.Ship.Move(CoordsDirections.Abscissa, Direction.Positive, player.Ship.Speed);
@@ -124,7 +124,7 @@
 
             #endregion
 
-            #region Key A
+            #region Left Direction
             if (player.InputManagerInstance.KeyDown(library.GetKey(type, "Left")))
             {
                 player.Ship.Move(CoordsDirections.Abscissa, Direction.Negative, player.Ship.Speed);
