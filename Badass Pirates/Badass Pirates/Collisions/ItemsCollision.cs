@@ -7,9 +7,9 @@
 
     using Microsoft.Xna.Framework;
 
-    public class ItemsCollision
+    //TODO HAS SOME MAGIC NUMBERS
+    public static class ItemsCollision
     {
-        [SuppressMessage("StyleCop.CSharp.NamingRules", "SA1310:FieldNamesMustNotContainUnderscore", Justification = "Reviewed. Suppression is OK here.")]
         private const int COLLISION_OFFSET = 5;
         
         public static bool Collide(IShip shipColliding)

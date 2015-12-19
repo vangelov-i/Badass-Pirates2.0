@@ -4,7 +4,8 @@
 
     using Microsoft.Xna.Framework;
 
-    public class BallCollision
+    //TODO HAS SOME MAGIC NUMBERS
+    public static class BallCollision
     {
         private const int COLLISION_OFFSET = 5;
 

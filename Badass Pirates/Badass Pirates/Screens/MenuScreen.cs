@@ -16,7 +16,7 @@
     {
         private Button cruiser;
 
-        private GameState _currentGameState = GameState.MainMenu;
+        //private GameState _currentGameState = GameState.MainMenu;
 
         //Screen Adjustments
 
@@ -34,6 +34,8 @@
 
         private Button battleship;
 
+        private static MenuScreen instance;
+
         bool firstChoiceMade;
 
         bool secondChoiceMade;
@@ -41,6 +43,18 @@
         public static ShipType FirstShip { get; private set; }
 
         public static ShipType SecondShip { get; private set; }
+
+        public static MenuScreen Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new MenuScreen();
+                }
+                return instance;
+            }
+        }
         //
 
 
@@ -51,51 +65,34 @@
             this._btnPlay.setPosition(new Vector2(570, 290));
 
             this._controls = new Button(this.Content.Load<Texture2D>("controls"));
-            this._controls.setPosition(new Vector2(570, 390));
-            this._controls.size = new Vector2(120, 45);
+            this._controls.setPosition(new Vector2(50, 125));
+            this._controls.Size = new Vector2(120, 45);
 
             this.destroyer = new Button(this.Content.Load<Texture2D>("ShipsContents/destroyerLeft"));
             this.destroyer.setPosition(new Vector2(100, 300));
-            this.destroyer.size = new Vector2(137, 150);
+            this.destroyer.Size = new Vector2(137, 150);
 
             this.battleship = new Button(this.Content.Load<Texture2D>("ShipsContents/battleshipLeft"));
             this.battleship.setPosition(new Vector2(600, 300));
-            this.battleship.size = new Vector2(137, 150);
+            this.battleship.Size = new Vector2(137, 150);
 
             this.cruiser = new Button(this.Content.Load<Texture2D>("ShipsContents/cruiserLeft"));
             this.cruiser.setPosition(new Vector2(1100, 300));
-            this.cruiser.size = new Vector2(137, 150);
+            this.cruiser.Size = new Vector2(137, 150);
 
         }
 
         public override void Update(GameTime gameTime)
         {
             MouseState mouse = Mouse.GetState();
-            switch (this._currentGameState)
+
+            if (this._controls.IsClicked)
             {
-                case GameState.MainMenu:
-                    if (this._btnPlay.IsClicked && this.firstChoiceMade && this.secondChoiceMade)
-                    {
-                        this._currentGameState = GameState.Playing;
-                    }
-                    if (this._controls.IsClicked)
-                    {
-                        this._currentGameState = GameState.Controls;
-                    }
-                    
-                    break;
-
-                case GameState.Playing:
-                    ScreenManager.Instance.CurrentScreen = new TitleScreen();
-                    break;
-
-                    case GameState.Controls:
-                        ScreenManager.Instance.CurrentScreen = new ControlScreen();      
-                    break;
-
-                case GameState.GameOver:
-
-                    break;
+                ScreenManager.Instance.CurrentScreen = new ControlScreen();
+            }
+            else if (this._btnPlay.IsClicked)
+            {
+                ScreenManager.Instance.CurrentScreen = new TitleScreen();
             }
 
             #region SelectShipScreen
@@ -121,7 +118,7 @@
                 this.firstChoiceMade = true;
                 FirstShip = ShipType.Battleship;
             }
-            else if (this.battleship.IsClicked && this.firstChoiceMade && !this.secondChoiceMade 
+            else if (this.battleship.IsClicked && this.firstChoiceMade && !this.secondChoiceMade
                 && FirstShip != ShipType.Battleship)
             {
                 this.secondChoiceMade = true;
@@ -149,84 +146,73 @@
             this.cruiser.Update(mouse);
             this.battleship.Update(mouse);
 
-            if (this.firstChoiceMade && this.secondChoiceMade)
-            {
-                this._btnPlay.Update(mouse);
-                this._controls.Update(mouse);
-            }
 
             #endregion
 
+            if (this.firstChoiceMade && this.secondChoiceMade)
+            {
+                this._btnPlay.Update(mouse);
+            }
 
+            this._controls.Update(mouse);
             base.Update(gameTime);
         }
 
         public override void Draw(SpriteBatch spriteBatch)
         {
             base.Draw(spriteBatch);
-            //GraphicsDevice.Clear(Color.CornflowerBlue);
 
-            switch (this._currentGameState)
+            spriteBatch.Draw(
+                this.Content.Load<Texture2D>("Backgrounds/sea"),
+                new Rectangle(0, 0, _screenWidth, _screenHeight),
+                Color.White);
+
+
+            if (!this.firstChoiceMade || !this.secondChoiceMade)
             {
-                case GameState.MainMenu:
-                    spriteBatch.Draw(
-                        this.Content.Load<Texture2D>("Backgrounds/sea"),
-                        new Rectangle(0, 0, _screenWidth, _screenHeight),
-                        Color.White);
-
-                    if (!this.firstChoiceMade || !this.secondChoiceMade)
-                    {
-                        // Player 1 / Player 2          TODO: grozno e taka, trqbva po- elegantno
-                        spriteBatch.Draw(this.Content.Load<Texture2D>("PLAYER"),
-                            new Rectangle(600, 35, 100, 27),
-                            Color.White);
-                        //
-                    }
-
-                    if (!this.firstChoiceMade)
-                    {
-                        spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerOne"),
-                            new Rectangle(700, 0, 50, 72),
-                            Color.White);
-                    }
-                    else if (!this.secondChoiceMade)
-                    {
-                        spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerTwo"),
-                            new Rectangle(700, 0, 50, 72),
-                            Color.White);
-                    }
-
-
-                    if (this.secondChoiceMade)
-                    {
-                        this._btnPlay.Draw(spriteBatch);
-                        this._controls.Draw(spriteBatch);
-                    }
-
-                    if (!this.battleship.ShipTaken && !this.secondChoiceMade)
-                    {
-                        this.battleship.Draw(spriteBatch);
-                    }
-
-                    if (!this.cruiser.ShipTaken && !this.secondChoiceMade)
-                    {
-                        this.cruiser.Draw(spriteBatch);
-                    }
-
-                    if (!this.destroyer.ShipTaken && !this.secondChoiceMade)
-                    {
-                        this.destroyer.Draw(spriteBatch);
-                    }
-                    break;
-
-                case GameState.Playing:
-
-                    break;
-
-                case GameState.GameOver:
-
-                    break;
+                // Player 1 / Player 2          TODO: grozno e taka, trqbva po- elegantno
+                spriteBatch.Draw(this.Content.Load<Texture2D>("PLAYER"),
+                    new Rectangle(600, 35, 100, 27),
+                    Color.White);
+                //
             }
+
+            if (!this.firstChoiceMade)
+            {
+                spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerOne"),
+                    new Rectangle(700, 0, 50, 72),
+                    Color.White);
+            }
+            else if (!this.secondChoiceMade)
+            {
+                spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerTwo"),
+                    new Rectangle(700, 0, 50, 72),
+                    Color.White);
+            }
+
+
+            if (this.secondChoiceMade)
+            {
+                this._btnPlay.Draw(spriteBatch);
+            }
+
+            if (!this.battleship.ShipTaken && !this.secondChoiceMade)
+            {
+                this.battleship.Draw(spriteBatch);
+            }
+
+            if (!this.cruiser.ShipTaken && !this.secondChoiceMade)
+            {
+                this.cruiser.Draw(spriteBatch);
+            }
+
+            if (!this.destroyer.ShipTaken && !this.secondChoiceMade)
+            {
+                this.destroyer.Draw(spriteBatch);
+            }
+
+            this._controls.Draw(spriteBatch);
+
             spriteBatch.End();
         }
     }

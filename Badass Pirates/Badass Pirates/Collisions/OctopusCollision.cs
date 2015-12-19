@@ -12,6 +12,7 @@ namespace Badass_Pirates.Collisions
 
     using Microsoft.Xna.Framework;
 
+    //TODO HAS SOME MAGIC NUMBERS
     public static class OctopusCollision
     {
         private const int BALL_COLLISION_OFFSET = 5;
@@ -40,7 +41,6 @@ namespace Badass_Pirates.Collisions
 
                 if (shipRect.Intersects(diBoss))
                 {
-                    //Boss.Instance.Attack(shipColliding);
                     OctopusCollision.collidedStopWatch.Start();
                     return true;
                 }

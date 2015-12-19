@@ -1,35 +1,36 @@
 ﻿namespace Badass_Pirates.Controls
 {
     using System;
+    using System.Collections.Generic;
 
     using Badass_Pirates.Enums;
-    using Badass_Pirates.Managers;
-    using Badass_Pirates.Models.Players;
+    using Badass_Pirates.Interfaces;
 
     using Microsoft.Xna.Framework.Input;
 
+    //TODO needs some cleanup ; strings could be made of local variables
     public static class PlayerControls
     {
-        private static bool control;
+        private static bool firstControler;
 
         private static bool secondControler;
 
         static PlayerControls ()
         {
-            control = true;
+            firstControler = true;
 
             secondControler = true;
         }
 
-        public static bool Control
+        public static bool FirstControler
         {
             get
             {
-                return control;
+                return firstControler;
             }
             set
             {
-                control = value;
+                firstControler = value;
             }
         }
 
@@ -45,20 +46,20 @@
             }
         }
 
-        public static void ControlsPlayer(PlayerTypes type)
-        {
+        public static void ControlsPlayer(IKeysLibrary library, PlayerTypes type,IPlayer first, IPlayer second)
+        { 
             switch (type)
             {
                 case PlayerTypes.FirstPlayer:
-                    if (control)
+                    if (firstControler)
                     {
-                        PlayerControls.UpdateFirstPlayer();
+                        PlayerControls.UpdatePlayer(library,type, first);
                     }
                     break;
                 case PlayerTypes.SecondPlayer:
                     if (secondControler)
                     {
-                        PlayerControls.UpdateSecondPlayer();
+                        PlayerControls.UpdatePlayer(library,type, second);
                     }
                     break;
                 default:
@@ -66,145 +67,81 @@
             }
         }
 
-        private static void UpdateFirstPlayer()
+        private static void UpdatePlayer(IKeysLibrary library, PlayerTypes type, IPlayer player)
         {
-            FirstPlayer.Instance.InputManagerInstance.RotateStates();
+
+            player.InputManagerInstance.RotateStates();
 
             #region Key S
-
-            if (FirstPlayer.Instance.InputManagerInstance.KeyDown(Keys.S))
+            
+            if (player.InputManagerInstance.KeyDown(library.GetKey(type,"Down")))
             {
-                FirstPlayer.Instance.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, FirstPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionFirst();
+                player.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, player.Ship.Speed);
+                if (type == PlayerTypes.FirstPlayer)
+                {
+                    PositionValidation.FirstShipValidation();
+                }
+                else
+                {
+                    PositionValidation.SecondShipValidation();
+                }
+               
             }
-
+            
             #endregion
 
             #region Key W
 
-            if (FirstPlayer.Instance.InputManagerInstance.KeyDown(Keys.W))
+            if (player.InputManagerInstance.KeyDown(library.GetKey(type, "Up")))
             {
-                FirstPlayer.Instance.Ship.Move(CoordsDirections.Ordinate, Direction.Negative, FirstPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionFirst();
+                player.Ship.Move(CoordsDirections.Ordinate, Direction.Negative, player.Ship.Speed);
+                if (type == PlayerTypes.FirstPlayer)
+                {
+                    PositionValidation.FirstShipValidation();
+                }
+                else
+                {
+                    PositionValidation.SecondShipValidation();
+                }
             }
 
             #endregion
 
             #region Key D
-
-            if (FirstPlayer.Instance.InputManagerInstance.KeyDown(Keys.D))
+            if (player.InputManagerInstance.KeyDown(library.GetKey(type, "Right")))
             {
-                FirstPlayer.Instance.Ship.Move(CoordsDirections.Abscissa, Direction.Positive, FirstPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionFirst();
+                player.Ship.Move(CoordsDirections.Abscissa, Direction.Positive, player.Ship.Speed);
+                PositionValidation.FirstShipValidation();
+                if (type == PlayerTypes.FirstPlayer)
+                {
+                    PositionValidation.FirstShipValidation();
+                }
+                else
+                {
+                    PositionValidation.SecondShipValidation();
+                }
             }
 
             #endregion
 
             #region Key A
-
-            if (FirstPlayer.Instance.InputManagerInstance.KeyDown(Keys.A))
+            if (player.InputManagerInstance.KeyDown(library.GetKey(type, "Left")))
             {
-                FirstPlayer.Instance.Ship.Move(CoordsDirections.Abscissa, Direction.Negative, FirstPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionFirst();
+                player.Ship.Move(CoordsDirections.Abscissa, Direction.Negative, player.Ship.Speed);
+                PositionValidation.FirstShipValidation();
+                if (type == PlayerTypes.FirstPlayer)
+                {
+                    PositionValidation.FirstShipValidation();
+                }
+                else
+                {
+                    PositionValidation.SecondShipValidation();
+                }
             }
 
             #endregion
 
-            FirstPlayer.Instance.InputManagerInstance.Update();
-        }
-
-        private static void UpdateSecondPlayer()
-        {
-            SecondPlayer.Instance.InputManagerInstance.RotateStates();
-
-            #region Key Down
-
-            if (SecondPlayer.Instance.InputManagerInstance.KeyDown(Keys.Down))
-            {
-                SecondPlayer.Instance.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, SecondPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionSecond();
-            }
-
-            #endregion
-
-            #region Key Up
-
-            if (SecondPlayer.Instance.InputManagerInstance.KeyDown(Keys.Up))
-            {
-                SecondPlayer.Instance.Ship.Move(CoordsDirections.Ordinate, Direction.Negative, SecondPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionSecond();
-            }
-
-            #endregion
-
-            #region Key Right
-
-            if (SecondPlayer.Instance.InputManagerInstance.KeyDown(Keys.Right))
-            {
-                SecondPlayer.Instance.Ship.Move(CoordsDirections.Abscissa, Direction.Positive, SecondPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionSecond();
-            }
-
-            #endregion
-
-            #region Key Left
-
-            if (SecondPlayer.Instance.InputManagerInstance.KeyDown(Keys.Left))
-            {
-                SecondPlayer.Instance.Ship.Move(CoordsDirections.Abscissa, Direction.Negative, SecondPlayer.Instance.Ship.Speed);
-                PlayerControls.ValidateShipPositionSecond();
-            }
-
-            #endregion
-
-            SecondPlayer.Instance.InputManagerInstance.Update();
-        }
-
-        //TODO Move validation in a single class
-        private static void ValidateShipPositionFirst()
-        {
-            if (FirstPlayer.Instance.Ship.Position.X < 0)
-            {
-                FirstPlayer.Instance.Ship.SetPosition(CoordsDirections.Abscissa, 0);
-            }
-
-            if (FirstPlayer.Instance.Ship.Position.X > ScreenManager.Instance.Dimensions.X / 2 - FirstPlayer.Instance.ShipImage.Texture.Width * 1.5f)
-            {
-                FirstPlayer.Instance.Ship.SetPosition(CoordsDirections.Abscissa, ScreenManager.Instance.Dimensions.X / 2 - FirstPlayer.Instance.ShipImage.Texture.Width * 1.5f);
-            }
-
-            if (FirstPlayer.Instance.Ship.Position.Y < 0)
-            {
-                FirstPlayer.Instance.Ship.SetPosition(CoordsDirections.Ordinate, 0);
-            }
-
-            if (FirstPlayer.Instance.Ship.Position.Y > ScreenManager.Instance.Dimensions.Y - FirstPlayer.Instance.ShipImage.Texture.Height)
-            {
-                FirstPlayer.Instance.Ship.SetPosition(CoordsDirections.Ordinate, ScreenManager.Instance.Dimensions.Y - FirstPlayer.Instance.ShipImage.Texture.Height);
-            }
-        }
-
-        private static void ValidateShipPositionSecond()
-        {
-            if (SecondPlayer.Instance.Ship.Position.X > ScreenManager.Instance.Dimensions.X - SecondPlayer.Instance.ShipImage.Texture.Width)
-            {
-                SecondPlayer.Instance.Ship.SetPosition(CoordsDirections.Abscissa, ScreenManager.Instance.Dimensions.X - SecondPlayer.Instance.ShipImage.Texture.Width);
-            }
-
-            if (SecondPlayer.Instance.Ship.Position.X < ScreenManager.Instance.Dimensions.X / 2 + SecondPlayer.Instance.ShipImage.Texture.Width / 2f)
-            {
-                SecondPlayer.Instance.Ship.SetPosition(CoordsDirections.Abscissa, ScreenManager.Instance.Dimensions.X / 2 + SecondPlayer.Instance.ShipImage.Texture.Width / 2f);
-            }
-
-            if (SecondPlayer.Instance.Ship.Position.Y < 0)
-            {
-                SecondPlayer.Instance.Ship.SetPosition(CoordsDirections.Ordinate, 0);
-            }
-
-            if (SecondPlayer.Instance.Ship.Position.Y > ScreenManager.Instance.Dimensions.Y - SecondPlayer.Instance.ShipImage.Texture.Height)
-            {
-                SecondPlayer.Instance.Ship.SetPosition(CoordsDirections.Ordinate, ScreenManager.Instance.Dimensions.Y - SecondPlayer.Instance.ShipImage.Texture.Height);
-            }
+            player.InputManagerInstance.Update();
         }
     }
 }

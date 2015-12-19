@@ -7,7 +7,8 @@
 
     using Microsoft.Xna.Framework;
 
-    public class SpecialtyCollision
+    //TODO HAS SOME MAGIC NUMBERS
+    public static class SpecialtyCollision
     {
         private const int OFFSET = 5;
 

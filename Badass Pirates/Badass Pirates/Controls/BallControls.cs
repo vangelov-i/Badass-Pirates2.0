@@ -2,6 +2,7 @@
 {
     #region
 
+    using System;
     using System.Diagnostics;
 
     using Badass_Pirates.Enums;
@@ -121,6 +122,8 @@
                         SecondPlayerBallControls(gameTime);
                     }
                     break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
 
@@ -147,12 +150,7 @@
                 if (!ballFirst.BallInitialised)
                 {
                     ballFirst.FireFlashCounter = 0;
-                    ballFirst.Initialise(
-                        ballFirst.BallFiredPos =
-                        new Vector2(
-                            FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width,
-                            FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height / 2f)),
-                        FirstPlayer.Instance.PlayerType);
+                    ballFirst.Initialise(ballFirst.BallFiredPos = new Vector2(FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width, FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height / 2f)), FirstPlayer.Instance.PlayerType);
                     ballFirst.BallInitialised = true;
                 }
             }
@@ -173,13 +171,7 @@
                 if (!ballSecond.BallInitialised)
                 {
                     ballSecond.FireFlashCounter = 0;
-                    ballSecond.Initialise(
-                        ballSecond.BallFiredPos =
-                        new Vector2(
-                            SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width / 2f,
-                            SecondPlayer.Instance.Ship.Position.Y
-                            + (SecondPlayer.Instance.ShipImage.Texture.Height / 2f)),
-                        SecondPlayer.Instance.PlayerType);
+                    ballSecond.Initialise(ballSecond.BallFiredPos = new Vector2(SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width / 2f, SecondPlayer.Instance.Ship.Position.Y + (SecondPlayer.Instance.ShipImage.Texture.Height / 2f)), SecondPlayer.Instance.PlayerType);
                     ballSecond.BallInitialised = true;
                 }
             }
@@ -194,12 +186,7 @@
         {
             if (ballFirst.BallFired && ballFirst.FireFlashCounter < 15)
             {
-                ballFirst.Fire.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width,
-                        FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height * 0.6f)
-                        - (ballFirst.Fire.Texture.Height / 2f)));
+                ballFirst.Fire.Draw(spriteBatch, new Vector2(FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width, FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height * 0.6f) - (ballFirst.Fire.Texture.Height / 2f)));
                 ballFirst.FireFlashCounter++;
             }
 
@@ -207,11 +194,9 @@
             {
                 return;
             }
-            ballFirst.SetPositionRangeX(
-                (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2)
-                 - FirstPlayer.Instance.ShipImage.Texture.Width));
+            ballFirst.SetPositionRangeX((ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - FirstPlayer.Instance.ShipImage.Texture.Width));
 
-            if (ballFirst.Position.Y < ballFirst.BallFiredPos.Y) // ballFirst.Position.X < ballFirst.BallRangeX.X
+            if (ballFirst.Position.Y < ballFirst.BallFiredPos.Y)
             {
                 ballFirst.Draw(spriteBatch);
             }
@@ -223,24 +208,18 @@
                 firstBallTimer.Reset();
             }
         }
-        
+
         private static void SecondPlayerBallDraw(SpriteBatch spriteBatch)
         {
             if (ballSecond.BallFired && ballSecond.FireFlashCounter < 15)
             {
-                ballSecond.Fire.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width * 0.9f,
-                        SecondPlayer.Instance.Ship.Position.Y + SecondPlayer.Instance.ShipImage.Texture.Height * 0.1f));
+                ballSecond.Fire.Draw(spriteBatch, new Vector2(SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width * 0.9f, SecondPlayer.Instance.Ship.Position.Y + SecondPlayer.Instance.ShipImage.Texture.Height * 0.1f));
                 ballSecond.FireFlashCounter++;
             }
 
             if (ballSecond.BallFired)
             {
-                ballSecond.SetPositionRangeX(
-                    (ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2)
-                     - SecondPlayer.Instance.ShipImage.Texture.Width));
+                ballSecond.SetPositionRangeX((ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - SecondPlayer.Instance.ShipImage.Texture.Width));
 
                 if (ballSecond.Position.Y < ballSecond.BallFiredPos.Y)
                 {

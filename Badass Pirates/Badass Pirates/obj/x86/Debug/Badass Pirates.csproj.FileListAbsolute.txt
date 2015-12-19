@@ -282,3 +282,4 @@ C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Cont
 C:\Users\Pachemanov\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\controls.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\controls.png
 C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Content\back.png
+C:\Users\Phoenix\Desktop\Badass-Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.exe.config

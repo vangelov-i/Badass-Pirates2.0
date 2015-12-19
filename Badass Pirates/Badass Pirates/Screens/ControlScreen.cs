@@ -20,15 +20,16 @@
 
         private Texture2D background;
 
-        private GameState _currentGameState = GameState.Controls;
+        //private GameState _currentGameState = GameState.Controls;
 
         private Button back;
 
-        public ControlScreen ()
+        public ControlScreen()
         {
             this.Content = ScreenManager.Instance.Content;
             this.back = new Button(this.Content.Load<Texture2D>("back"));
-            this.back.setPosition(new Vector2(200,200));
+            this.back.setPosition(new Vector2(50, 50));
+            this.back.Size = new Vector2(75, 75);
         }
 
         public override void LoadContent()
@@ -45,9 +46,13 @@
 
         public override void Update(GameTime gameTime)
         {
-
             base.Update(gameTime);
             MouseState mouse = Mouse.GetState();
+
+            if (this.back.IsClicked)
+            {
+                ScreenManager.Instance.CurrentScreen = MenuScreen.Instance;
+            }
             this.back.Update(mouse);
 
         }
@@ -59,48 +64,56 @@
                         new Rectangle(0, 0, _screenWidth, _screenHeight),
                         Color.White);
 
-            spriteBatch.Draw(this.Content.Load<Texture2D>("back"),this.back.Position);
+            this.back.Draw(spriteBatch);
 
-            // Player 1 / Player 2 
+            // Player 1 
             spriteBatch.Draw(this.Content.Load<Texture2D>("PLAYER"),
-                           new Rectangle(600, 35, 100, 27),
+                           new Rectangle(200, 35, 100, 27),
                            Color.White);
             //
 
             spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerOne"),
-                            new Rectangle(700, 0, 50, 72),
+                            new Rectangle(300, 0, 50, 72),
                             Color.White);
 
-            spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerOne"),
-                           new Rectangle(700, 0, 50, 72),
-                           Color.White);
-
-            spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerTwo"),
-                           new Rectangle(700, 0, 50, 72),
-                           Color.White);
-
-            base.Draw(spriteBatch);
-            // CTRL + SHIFT controls draw
-            spriteBatch.Draw(this.Content.Load<Texture2D>("Ctrl"),
-                new Rectangle(950, 0, 50, 50),
+            spriteBatch.Draw(this.Content.Load<Texture2D>("wasd"),
+                new Rectangle(150, 110, 160, 110),
                 Color.White);
 
             spriteBatch.Draw(this.Content.Load<Texture2D>("Shift"),
-                new Rectangle(950, 55, 159, 60),
+                new Rectangle(350, 100, 159, 60),
                 Color.White);
-            //
 
-            // Controls First Player
+            spriteBatch.Draw(this.Content.Load<Texture2D>("Ctrl"),
+                new Rectangle(350, 165, 50, 50),
+                Color.White);
+
+
+            // Player 2 
+            spriteBatch.Draw(this.Content.Load<Texture2D>("PLAYER"),
+               new Rectangle(950, 35, 100, 27),
+               Color.White);
+
+
+            spriteBatch.Draw(this.Content.Load<Texture2D>("PlayerTwo"),
+                           new Rectangle(1050, 0, 50, 72),
+                           Color.White);
+
+
             spriteBatch.Draw(this.Content.Load<Texture2D>("arrowKeys"),
-                new Rectangle(750, 0, 160, 110),
+                new Rectangle(900, 110, 169, 110),
                 Color.White);
-            //
 
-            // Controls Second Player
-            spriteBatch.Draw(this.Content.Load<Texture2D>("wasd"),
-                new Rectangle(750, 0, 169, 110),
+
+            spriteBatch.Draw(this.Content.Load<Texture2D>("Shift"),
+                new Rectangle(1100, 100, 159, 60),
                 Color.White);
-            //
+
+            spriteBatch.Draw(this.Content.Load<Texture2D>("Ctrl"),
+                new Rectangle(1100, 165, 50, 50),
+                Color.White);
+
+            base.Draw(spriteBatch);
         }
     }
 }

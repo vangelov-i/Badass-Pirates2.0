@@ -24,7 +24,7 @@
         private ScreenManager()
         {
             this.Dimensions = new Vector2(1366, 768);
-            this.currentScreen = new MenuScreen();
+            this.currentScreen = MenuScreen.Instance;
         }
 
         #endregion

@@ -10,7 +10,7 @@
 
     #endregion
 
-    class Button
+    public class Button
     {
         readonly Texture2D texture;
 
@@ -24,7 +24,7 @@
 
         Rectangle rectangle;
 
-        public Vector2 size;
+        private Vector2 size;
 
         private readonly GraphicsDevice graphics;
 
@@ -37,16 +37,19 @@
             this.size = new Vector2(this.graphics.Viewport.Width / 8f, this.graphics.Viewport.Height / 30f);
         }
 
-        // if the first player has choosen a ship the button won't change
-        // anymore when hovering the mouse
-
         public bool IsClicked { get; set; }
 
         public bool ConstFlash { get; set; }
 
-        public bool ShipTaken 
-        { 
-            get { return this.shipTaken; } 
+        public bool ShipTaken
+        {
+            get { return this.shipTaken; }
+        }
+
+        public Vector2 Size
+        {
+            get { return this.size; }
+            set { this.size = value; }
         }
 
         public Vector2 Position

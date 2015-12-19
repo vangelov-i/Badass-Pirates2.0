@@ -114,7 +114,7 @@
 
             this.InputManagerInstance.RotateStates();
             this.ItemColliding = ItemsCollision.Collide(this.Ship);
-            PlayerControls.ControlsPlayer(this.PlayerType);
+            PlayerControls.ControlsPlayer(ControlKeys.Instance, this.PlayerType,FirstPlayer.Instance,SecondPlayer.Instance);
             BallControls.CannonBallControls(this.PlayerType, gameTime);
             CombatManager.Update(gameTime, this.PlayerType, this);
 

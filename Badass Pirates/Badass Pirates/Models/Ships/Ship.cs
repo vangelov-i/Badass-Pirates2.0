@@ -134,6 +134,11 @@
                     value = 100;
                 }
 
+                if (this.Sunk)
+                {
+                    value = 0;
+                }
+
                 this.health = value;
             }
         }
@@ -248,7 +253,7 @@
             var sinkingSpeed = 1;
             if (player is FirstPlayer)
             {
-                PlayerControls.Control = false;
+                PlayerControls.FirstControler = false;
                 BallControls.FirstController = false;
             }
             else
