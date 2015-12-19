@@ -83,8 +83,8 @@
                     {
                         return ControlKeys.Instance.SecondPlayersControlers[key];
                     }
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                //default:
+                //    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
 
             return default(Keys);

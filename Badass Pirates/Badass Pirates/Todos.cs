@@ -1,8 +1,8 @@
 ﻿//Имплементация на полиморфизъм,чрез интефейси
 //1.Иначе казано трябва методите ни да приемат ISink интерфейси,а не директно Ship или Boss.Така спестяваме излишен код.
-//	  -ISink methods
-//	  -Трябва да се имплементират Abstract classes,за да не се преповтаря код
+//      -ISink methods
+//      -Трябва да се имплементират Abstract classes,за да не се преповтаря код
 //2.Трябва да се имплементира статична структура,която съдържа всички константи,използвани в повече от един клас
-//	  -ScreenDiminesions
-//	  -firstPlayerHitCounter / CombatManager - Draw()
+//      -ScreenDiminesions
+//      -firstPlayerHitCounter / CombatManager - Draw()
 

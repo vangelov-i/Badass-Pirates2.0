@@ -13,7 +13,7 @@
 
     public class Boss : IBoss
     {
-        private static Boss instance;
+        private static Boss instance = new Boss();
 
         private Point frameSize;
 
@@ -37,7 +37,10 @@
             this.frameSize = new Point(250, 208);
         }
 
-        public static Boss Instance => instance ?? (instance = new Boss());
+        public static Boss Instance
+        {
+            get { return instance; }
+        }
 
         public int Health
         {

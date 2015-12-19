@@ -22,8 +22,8 @@
                     break;
                 case BonusType.Null:
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                //default:
+                //    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
     }

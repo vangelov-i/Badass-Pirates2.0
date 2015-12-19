@@ -62,8 +62,8 @@
                         PlayerControls.UpdatePlayer(library,type, second);
                     }
                     break;
-                default:
-                    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                //default:
+                //    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
 
