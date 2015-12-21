@@ -71,22 +71,25 @@
             FirstPlayer.Instance.Update(gameTime);
             SecondPlayer.Instance.Update(gameTime);
 
-            if ((FirstPlayer.Instance.Ship.Sunk && SecondPlayer.Instance.Ship.Sunk) ||
-                (FirstPlayer.Instance.Ship.Sunk && Boss.Instance.Sunk) ||
-                (SecondPlayer.Instance.Ship.Sunk && Boss.Instance.Sunk))
+            if ((!FirstPlayer.Instance.Ship.Sunk || !SecondPlayer.Instance.Ship.Sunk)
+                && (!FirstPlayer.Instance.Ship.Sunk || !Boss.Instance.Sunk)
+                && (!SecondPlayer.Instance.Ship.Sunk || !Boss.Instance.Sunk))
             {
-                MouseState mouse = Mouse.GetState();
-                this.playAgain.Update(mouse);
-                this.gameEnded = true;
-
-                if (this.playAgain.IsClicked)
-                {
-                    ScreenManager.Instance.MenuScreen = new MenuScreen();
-                    ScreenManager.Instance.MenuScreen.LoadContent();
-                    //ScreenManager.Instance.CurrentScreen.LoadContent();
-                    ScreenManager.Instance.CurrentScreen = ScreenManager.Instance.MenuScreen;
-                }
+                return;
             }
+
+            MouseState mouse = Mouse.GetState();
+            this.playAgain.Update(mouse);
+            this.gameEnded = true;
+
+            if (!this.playAgain.IsClicked)
+            {
+                return;
+            }
+            ScreenManager.Instance.MenuScreen = new MenuScreen();
+            ScreenManager.Instance.MenuScreen.LoadContent();
+            //ScreenManager.Instance.CurrentScreen.LoadContent();
+            ScreenManager.Instance.CurrentScreen = ScreenManager.Instance.MenuScreen;
         }
 
         public override void Draw(SpriteBatch spriteBatch)

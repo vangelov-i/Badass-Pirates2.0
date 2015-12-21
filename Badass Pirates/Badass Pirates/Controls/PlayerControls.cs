@@ -1,12 +1,7 @@
 ﻿namespace Badass_Pirates.Controls
 {
-    using System;
-    using System.Collections.Generic;
-
     using Badass_Pirates.Enums;
     using Badass_Pirates.Interfaces;
-
-    using Microsoft.Xna.Framework.Input;
 
     //TODO needs some cleanup ; strings could be made of local variables
     public static class PlayerControls

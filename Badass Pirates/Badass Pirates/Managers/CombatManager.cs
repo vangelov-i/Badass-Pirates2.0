@@ -1,150 +1,175 @@
 ﻿namespace Badass_Pirates.Managers
 {
-    using Badass_Pirates.Collisions;
-    using Badass_Pirates.Controls;
-    using Badass_Pirates.Fonts;
-    using Badass_Pirates.GameObjects.Ships;
-
-    using Microsoft.Xna.Framework;
-    using Microsoft.Xna.Framework.Graphics;
-    using Microsoft.Xna.Framework.Input;
     using System.Diagnostics;
 
+    using Badass_Pirates.Collisions;
+    using Badass_Pirates.Controls;
     using Badass_Pirates.Enums;
+    using Badass_Pirates.Fonts;
+    using Badass_Pirates.GameObjects.Ships;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Models.Mobs.Boss;
     using Badass_Pirates.Models.Players;
     using Badass_Pirates.Models.Ships;
 
-    public static class CombatManager
+    using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Graphics;
+    using Microsoft.Xna.Framework.Input;
+
+    public class CombatManager
     {
         #region Fields
 
         private const int BossActivationSeconds = 5;
+
         private const int DamageFontShowingTime = 150;
-        private static IPlayer currentPlayer;
-        private static int playerFlagBossCollide;
-        private static bool ballColliding;
-        private static bool bossBallCollide;
-        private static bool bossVsShipCollide;
-        private static int? firstPlayerHitCounter;
-        private static int? secondPlayerHitCounter;
-        private static int? bossHitCounter;
-        private static Font damageFont;
-        private static Stopwatch activateBossWatch;
-        private static bool control;
 
-        #endregion
+        private IPlayer currentPlayer;
 
-        public static bool Control
+        private int playerFlagBossCollide;
+
+        private bool ballColliding;
+
+        private bool bossBallCollide;
+
+        private bool bossVsShipCollide;
+
+        private int? firstPlayerHitCounter;
+
+        private int? secondPlayerHitCounter;
+
+        private int? bossHitCounter;
+
+        private Font damageFont;
+
+        private Stopwatch activateBossWatch;
+
+        private bool control;
+
+        private PlayerTypes typeOfPlayer;
+
+
+        private PlayerTypes TypeOfPlayer
         {
             get
             {
-                return control;
-            }
-            set
-            {
-                control = value;
+                if (this.currentPlayer is FirstPlayer)
+                {
+                    return PlayerTypes.FirstPlayer;
+                }
+
+                return PlayerTypes.SecondPlayer;
             }
         }
+
+        #endregion
 
         #region Methods
-        public static void Initilialise(IPlayer currPlayer)
-        {
-            control = true;
-            activateBossWatch = new Stopwatch();
-            damageFont = new Font(Color.Red, "Fonts", "big");
-            currentPlayer = currPlayer;
-            ballColliding = false;
-            bossBallCollide = false;
-            bossVsShipCollide = false;
-            BallControls.CannonBallInitialise();
 
+        public void Initilialise(IPlayer currPlayer)
+        {
+            this.control = true;
+            this.activateBossWatch = new Stopwatch();
+            this.damageFont = new Font(Color.Red, "Fonts", "big");
+            this.currentPlayer = currPlayer;
+            this.ballColliding = false;
+            this.bossBallCollide = false;
+            this.bossVsShipCollide = false;
             // TODO Could be ENUM
-            playerFlagBossCollide = -1;
+            this.playerFlagBossCollide = -1;
         }
 
-        public static void LoadContent()
+        public void LoadContent()
         {
-            FirstPlayer.Instance.Ship.Specialty.LoadContent();
-            SecondPlayer.Instance.Ship.Specialty.LoadContent();
-            activateBossWatch.Start();
+            this.currentPlayer.Ship.Specialty.LoadContent();
+            this.activateBossWatch.Start();
         }
 
-        public static void UnloadContent()
+        public void UnloadContent()
         {
-            damageFont.UnloadContent();
-            currentPlayer.Ship.Specialty.UnloadContent();
+            this.damageFont.UnloadContent();
+            this.currentPlayer.Ship.Specialty.UnloadContent();
         }
 
-        public static void Update(GameTime gameTime, PlayerTypes type, IPlayer current)
+        public void Update(GameTime gameTime)
         {
             RegenManager.EnergyRegenUpdate();
-            current.Ship.Specialty.Update(gameTime, current);
-            ControlsPlayer(type);
+            this.currentPlayer.Ship.Specialty.Update(gameTime, this.currentPlayer);
+            this.ControlsPlayer(this.TypeOfPlayer);
 
             #region Ball Players Collisions
 
-            // KOGATO TEPAT PURVIQ
-            ballColliding = BallCollision.Collide(
-                    FirstPlayer.Instance.Ship,
-                    BallControls.BallSecond);
-            if (ballColliding)
+            //TODO COLLISION BETWEEN FIRST'S PLAYER BALL AND SECOND'S
+            if (this.currentPlayer is FirstPlayer)
             {
-                firstPlayerHitCounter = 0;
-                SecondPlayer.Instance.Ship.Attack(FirstPlayer.Instance.Ship);
+                this.ballColliding = BallCollision.Collide(FirstPlayer.Instance.Ship, this.currentPlayer.Ball);
+                if (this.ballColliding)
+                {
+                    this.firstPlayerHitCounter = 0;
+                    SecondPlayer.Instance.Ship.Attack(FirstPlayer.Instance.Ship);
+                }
             }
-
-            ballColliding = BallCollision.Collide(
-                SecondPlayer.Instance.Ship,
-                BallControls.BallFirst);
-            if (ballColliding)
+            else
             {
-                secondPlayerHitCounter = 0;
-                FirstPlayer.Instance.Ship.Attack(SecondPlayer.Instance.Ship);
-
+                this.ballColliding = BallCollision.Collide(SecondPlayer.Instance.Ship, this.currentPlayer.Ball);
+                if (this.ballColliding)
+                {
+                    this.secondPlayerHitCounter = 0;
+                    FirstPlayer.Instance.Ship.Attack(SecondPlayer.Instance.Ship);
+                }
             }
+            
+
             #endregion
 
             #region Ball Boss Collisions
+
             // 5 - const i za spawn na bossa
-            if (activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
+            if (this.activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
             {
                 // topchEto na pyrviq igrach
-                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.BallFirst);
-                if (bossBallCollide)
+                if (this.currentPlayer is FirstPlayer)
                 {
-                    firstPlayerHitCounter = 0;
-                    Boss.Instance.Health -= FirstPlayer.Instance.Ship.Damage;  // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
+                    this.bossBallCollide = OctopusCollision.BossBallCollide(this.currentPlayer.Ball);
+                    if (this.bossBallCollide)
+                    {
+                        this.firstPlayerHitCounter = 0;
+                        Boss.Instance.Health -= FirstPlayer.Instance.Ship.Damage;
+                        // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
+                    }
                 }
-
-                // topchEto na vtoriq igrach
-                bossBallCollide = OctopusCollision.BossBallCollide(BallControls.BallSecond);
-                if (bossBallCollide)
+                else
                 {
-                    secondPlayerHitCounter = 0;
-                    Boss.Instance.Health -= SecondPlayer.Instance.Ship.Damage;  // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
+                    // topchEto na vtoriq igrach
+                    this.bossBallCollide = OctopusCollision.BossBallCollide(this.currentPlayer.Ball);
+                    if (this.bossBallCollide)
+                    {
+                        this.secondPlayerHitCounter = 0;
+                        Boss.Instance.Health -= SecondPlayer.Instance.Ship.Damage;
+                        // ne e dobre da e tuk, no Attack() priema Ship, a ne Boss
+                    }
                 }
             }
+
             #endregion
 
             #region BossVsPlayer Collisions
 
-            if (activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
+            if (this.activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
             {
                 Boss.Instance.Update();
-                bossVsShipCollide = OctopusCollision.Collide(current.Ship);
-                if (bossVsShipCollide)
+                this.bossVsShipCollide = OctopusCollision.Collide(this.currentPlayer.Ship);
+                if (this.bossVsShipCollide)
                 {
-                    bossHitCounter = 0;
-                    Boss.Instance.Attack(current.Ship);
-                    if (current is FirstPlayer)
+                    this.bossHitCounter = 0;
+                    Boss.Instance.Attack(this.currentPlayer.Ship);
+                    if (this.currentPlayer is FirstPlayer)
                     {
-                        playerFlagBossCollide = 1;
+                        this.playerFlagBossCollide = 1;
                     }
                     else
                     {
-                        playerFlagBossCollide = 0;
+                        this.playerFlagBossCollide = 0;
                     }
                 }
             }
@@ -152,149 +177,125 @@
             #endregion
         }
 
-        public static void Draw(SpriteBatch spriteBatch)
+        public void Draw(SpriteBatch spriteBatch)
         {
             //TODO Tрябва да се изнесе в логиката при фонтовете или в отделен клас !
-            //igrachite
-            if (firstPlayerHitCounter < DamageFontShowingTime && firstPlayerHitCounter != null
-                && BallControls.FirstController)
-            {
-                damageFont.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        FirstPlayer.Instance.Ship.Position.X,
-                        FirstPlayer.Instance.Ship.Position.Y - 40),
-                    string.Format((SecondPlayer.Instance.Ship.Damage * -1).ToString())); // moje i po elegantno :D
-                firstPlayerHitCounter++;
-            }
-            if (secondPlayerHitCounter < DamageFontShowingTime && secondPlayerHitCounter != null
-                && BallControls.SecondController)
-            {
-                damageFont.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        SecondPlayer.Instance.Ship.Position.X,
-                        SecondPlayer.Instance.Ship.Position.Y - 40),
-                    string.Format((FirstPlayer.Instance.Ship.Damage * -1).ToString())); // moje i po elegantno :D
-                secondPlayerHitCounter++;
-            }
+            ////igrachite
+            /// public void Draw(SpriteBatch spriteBatch, IProjectile ballFirst, IProjectile ballSecond)
+            //if (this.firstPlayerHitCounter < DamageFontShowingTime && this.firstPlayerHitCounter != null
+            //    && ballFirst.BallControler)
+            //{
+            //    this.damageFont.Draw(
+            //        spriteBatch,
+            //        new Vector2(FirstPlayer.Instance.Ship.Position.X, FirstPlayer.Instance.Ship.Position.Y - 40),
+            //        string.Format((SecondPlayer.Instance.Ship.Damage * -1).ToString())); // moje i po elegantno :D
+            //    this.firstPlayerHitCounter++;
+            //}
+            //if (this.secondPlayerHitCounter < DamageFontShowingTime && this.secondPlayerHitCounter != null
+            //    && ballSecond.BallControler)
+            //{
+            //    this.damageFont.Draw(
+            //        spriteBatch,
+            //        new Vector2(SecondPlayer.Instance.Ship.Position.X, SecondPlayer.Instance.Ship.Position.Y - 40),
+            //        string.Format((FirstPlayer.Instance.Ship.Damage * -1).ToString())); // moje i po elegantno :D
+            //    this.secondPlayerHitCounter++;
+            //}
 
-            if (bossHitCounter < DamageFontShowingTime && bossHitCounter != null)
-            {
-                if (playerFlagBossCollide == 1 && BallControls.FirstController)
-                {
-                    damageFont.Draw(
-                            spriteBatch,
-                            new Vector2(
-                            FirstPlayer.Instance.Ship.Position.X,
-                            FirstPlayer.Instance.Ship.Position.Y - 40),
-                            string.Format((Boss.Instance.Damage * -1).ToString())); // moje i po elegantno :D
-                    bossHitCounter++;
-                }
-                else if(playerFlagBossCollide == 0 && BallControls.SecondController)
-                {
-                    damageFont.Draw(
-                            spriteBatch,
-                            new Vector2(
-                            SecondPlayer.Instance.Ship.Position.X,
-                            SecondPlayer.Instance.Ship.Position.Y - 40),
-                            string.Format((Boss.Instance.Damage * -1).ToString())); // moje i po elegantno :D
-                    bossHitCounter++;
-                }
-            }
+            //if (this.bossHitCounter < DamageFontShowingTime && this.bossHitCounter != null)
+            //{
+            //    if (this.playerFlagBossCollide == 1 && ballFirst.BallControler)
+            //    {
+            //        this.damageFont.Draw(
+            //            spriteBatch,
+            //            new Vector2(FirstPlayer.Instance.Ship.Position.X, FirstPlayer.Instance.Ship.Position.Y - 40),
+            //            string.Format((Boss.Instance.Damage * -1).ToString())); // moje i po elegantno :D
+            //        this.bossHitCounter++;
+            //    }
+            //    else if (this.playerFlagBossCollide == 0 && ballSecond.BallControler)
+            //    {
+            //        this.damageFont.Draw(
+            //            spriteBatch,
+            //            new Vector2(SecondPlayer.Instance.Ship.Position.X, SecondPlayer.Instance.Ship.Position.Y - 40),
+            //            string.Format((Boss.Instance.Damage * -1).ToString())); // moje i po elegantno :D
+            //        this.bossHitCounter++;
+            //    }
+            //}
 
-            // kogato e udaren bossyt
-            if (firstPlayerHitCounter < DamageFontShowingTime && firstPlayerHitCounter != null &&
-                activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
-            {
-                damageFont.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        Boss.Instance.Position.X + Boss.Instance.image.Texture.Width / 2f - 25,
-                        Boss.Instance.Position.Y),
-                        string.Format((FirstPlayer.Instance.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
-                        firstPlayerHitCounter++;
+            //// kogato e udaren bossyt
+            //if (this.firstPlayerHitCounter < DamageFontShowingTime && this.firstPlayerHitCounter != null
+            //    && this.activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
+            //{
+            //    this.damageFont.Draw(
+            //        spriteBatch,
+            //        new Vector2(
+            //            Boss.Instance.Position.X + Boss.Instance.image.Texture.Width / 2f - 25,
+            //            Boss.Instance.Position.Y),
+            //        string.Format((FirstPlayer.Instance.Ship.Damage * -1).ToString()));
+            //    // ne e dovyrsheno, ne raboti!!! 
+            //    this.firstPlayerHitCounter++;
+            //}
 
-            }
-
-            if (secondPlayerHitCounter < DamageFontShowingTime && secondPlayerHitCounter != null &&
-                activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
-            {
-                damageFont.Draw(
-                    spriteBatch,
-                    new Vector2(
-                        Boss.Instance.Position.X + Boss.Instance.image.Texture.Width / 2f - 25,
-                        Boss.Instance.Position.Y),
-                        string.Format((SecondPlayer.Instance.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
-                        secondPlayerHitCounter++;
-
-            }
-            //TODO END TODO
+            //if (this.secondPlayerHitCounter < DamageFontShowingTime && this.secondPlayerHitCounter != null
+            //    && this.activateBossWatch.Elapsed.TotalSeconds > BossActivationSeconds)
+            //{
+            //    this.damageFont.Draw(
+            //        spriteBatch,
+            //        new Vector2(
+            //            Boss.Instance.Position.X + Boss.Instance.image.Texture.Width / 2f - 25,
+            //            Boss.Instance.Position.Y),
+            //        string.Format((SecondPlayer.Instance.Ship.Damage * -1).ToString()));
+            //    // ne e dovyrsheno, ne raboti!!! 
+            //    this.secondPlayerHitCounter++;
+            //}
+            ////TODO END TODO
 
             FirstPlayer.Instance.Ship.Specialty.Draw(spriteBatch, FirstPlayer.Instance.Ship.Specialty.Position);
             SecondPlayer.Instance.Ship.Specialty.Draw(spriteBatch, SecondPlayer.Instance.Ship.Specialty.Position);
         }
 
-        private static void ControlsPlayer(PlayerTypes type)
+        private void ControlsPlayer(PlayerTypes type)
         {
-            if (control)
+            if (this.control)
             {
+                IPlayer player = null;
+                IPlayer playerParamForBattleShip = null;
+                //TODO Fire button ! Could be changed with other variable
+                var controls = default(Keys);
+
                 switch (type)
                 {
                     case PlayerTypes.FirstPlayer:
-                        CombatManager.UpdateFirstPlayer();
+                        player = FirstPlayer.Instance;
+                        playerParamForBattleShip = SecondPlayer.Instance;
+                        controls = Keys.LeftControl;
                         break;
                     case PlayerTypes.SecondPlayer:
-                        CombatManager.UpdateSecondPlayer();
+                        player = SecondPlayer.Instance;
+                        playerParamForBattleShip = FirstPlayer.Instance;
+                        controls = Keys.RightControl;
                         break;
                 }
+
+                player.InputManagerInstance.RotateStates();
+
+                if (player.Ship.Energy >= Ship.MAX_ENERGY && player.InputManagerInstance.KeyDown(controls))
+                {
+                    if (player.Ship is Battleship)
+                    {
+                        player.Ship.Specialty.ActivateSpecialty(playerParamForBattleShip);
+                    }
+                    else
+                    {
+                        player.Ship.Specialty.ActivateSpecialty(playerParamForBattleShip);
+                    }
+
+                    player.Ship.Energy = 0;
+                }
+
+                player.InputManagerInstance.Update();
             }
         }
-
-        private static void UpdateFirstPlayer()
-        {
-            FirstPlayer.Instance.InputManagerInstance.RotateStates();
-
-            if (FirstPlayer.Instance.Ship.Energy >= Ship.MAX_ENERGY && FirstPlayer.Instance.InputManagerInstance.KeyDown(Keys.LeftShift))
-            {
-                if (FirstPlayer.Instance.Ship is Battleship)
-                {
-                    FirstPlayer.Instance.Ship.Specialty.ActivateSpecialty(SecondPlayer.Instance);
-                }
-                else
-                {
-                    FirstPlayer.Instance.Ship.Specialty.ActivateSpecialty(FirstPlayer.Instance);
-                }
-
-                FirstPlayer.Instance.Ship.Energy = 0;
-            }
-
-            FirstPlayer.Instance.InputManagerInstance.Update();
-        }
-
-        private static void UpdateSecondPlayer()
-        {
-            SecondPlayer.Instance.InputManagerInstance.RotateStates();
-
-            if (SecondPlayer.Instance.Ship.Energy >= Ship.MAX_ENERGY && SecondPlayer.Instance.InputManagerInstance.KeyDown(Keys.RightShift))
-            {
-                if (SecondPlayer.Instance.Ship is Battleship)
-                {
-                    SecondPlayer.Instance.Ship.Specialty.ActivateSpecialty(FirstPlayer.Instance);
-                }
-                else
-                {
-                    SecondPlayer.Instance.Ship.Specialty.ActivateSpecialty(SecondPlayer.Instance);
-                }
-
-                SecondPlayer.Instance.Ship.Energy = 0;
-            }
-
-            SecondPlayer.Instance.InputManagerInstance.Update();
-        }
-
 
         #endregion
-
     }
 }

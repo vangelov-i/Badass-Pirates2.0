@@ -10,6 +10,7 @@
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
     using Badass_Pirates.Models.Mobs.Boss;
+    using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -25,10 +26,15 @@
         // TODO Edit the image size
         protected readonly Vector2 SpawnSecond = new Vector2(1366 - 135, 768 - 150);
 
+        private IProjectile ball;
+
         protected Player(ShipType type)
         {
             this.InputManagerInstance = new InputManager();
             this.Ship = CreateShip.Create(type);
+            this.CombatManager = new CombatManager();
+            this.CurrentPlayerBallControls = new BallControls(this);
+            this.Ball = new CannonBall(Vector2.Zero, this.PlayerType);
         }
 
         #region Properties
@@ -36,13 +42,42 @@
 
         public IShip Ship { get; set; }
 
+        public CombatManager CombatManager { get; set; }
+
+        private BallControls CurrentPlayerBallControls { get; set; }
+
         public bool ItemColliding { get; set; }
 
-        public PlayerTypes PlayerType { get; set; }
+        public PlayerTypes PlayerType
+        {
+            get
+            {
+                if (this is FirstPlayer)
+                {
+                    return PlayerTypes.FirstPlayer;
+                }
+
+                return PlayerTypes.SecondPlayer;
+            }
+
+            
+        }
 
         public ShipType ShipType { get; set; }
 
         public Image ShipImage { get; set; }
+
+        public IProjectile Ball
+        {
+            get
+            {
+                return this.ball;
+            }
+            set
+            {
+                this.ball = value;
+            }
+        }
 
         #endregion
 
@@ -50,22 +85,24 @@
 
         public virtual void Initialise()
         {
-            CombatManager.Initilialise(this);
+            this.CombatManager.Initilialise(this);
             Boss.Instance.Initialise();
+            this.CurrentPlayerBallControls.Initialise(this.PlayerType);
+
         }
 
         public void LoadContent()
         {
             this.ShipImage.LoadContent();
-            BallControls.CannonBallLoadContent();
-            CombatManager.LoadContent();
+            this.CurrentPlayerBallControls.LoadContent();
+            this.CombatManager.LoadContent();
             Boss.Instance.LoadContent();
         }
 
         public void UnloadContent()
         {
             this.ShipImage.UnloadContent();
-            BallControls.CannonBallUnloadContent();
+            this.CurrentPlayerBallControls.UnloadContent();
             CombatManager.UnloadContent();
             Boss.Instance.UnloadContent();
         }
@@ -115,8 +152,8 @@
             this.InputManagerInstance.RotateStates();
             this.ItemColliding = ItemsCollision.Collide(this.Ship);
             PlayerControls.ControlsPlayer(ControlKeys.Instance, this.PlayerType,FirstPlayer.Instance,SecondPlayer.Instance);
-            BallControls.CannonBallControls(this.PlayerType, gameTime);
-            CombatManager.Update(gameTime, this.PlayerType, this);
+            this.CurrentPlayerBallControls.Update(gameTime);
+            this.CombatManager.Update(gameTime);
 
             // ALWAYS MUST BE THE LAST LINE
             this.InputManagerInstance.Update();
@@ -143,8 +180,8 @@
                     0f);
             }
 
-            BallControls.CannonBallDraw(this.PlayerType, spriteBatch);
-            CombatManager.Draw(spriteBatch);
+            this.CurrentPlayerBallControls.Draw(spriteBatch);
+            this.CombatManager.Draw(spriteBatch);
             Boss.Instance.Draw(spriteBatch);
         }
 

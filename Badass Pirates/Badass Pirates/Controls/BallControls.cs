@@ -3,9 +3,9 @@
     #region
 
     using System;
-    using System.Diagnostics;
 
     using Badass_Pirates.Enums;
+    using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
     using Badass_Pirates.Models.Players;
     using Badass_Pirates.Objects;
@@ -16,222 +16,119 @@
 
     #endregion
 
-    public static class BallControls
+    public class BallControls
     {
+        private readonly IPlayer player;
+
+        private PlayerTypes type;
+
         //TODO Ball should not have methods draw,load etc.
-        private const int DefaultBallTimer = 2;
-
-        private static CannonBall ballFirst;
-
-        private static CannonBall ballSecond;
-
-        private static bool firstController;
-
-        private static bool secondController;
-
-        private static readonly Stopwatch firstBallTimer = new Stopwatch();
-
-        private static readonly Stopwatch secondBallTimer = new Stopwatch();
-
-        static BallControls ()
+        public BallControls (IPlayer player)
         {
-            firstController = true;
-
-            secondController = true;
+            this.player = player;
+        }
+        
+        public void Initialise(PlayerTypes typeOfPlayer)
+        {
+            this.type = typeOfPlayer;
+            this.player.Ball = new CannonBall(this.player.Ball.BallFiredPos, this.type);
         }
 
-        public static bool FirstController
+        public void LoadContent()
         {
-            get
+            this.player.Ball.LoadContent();
+        }
+
+        public void UnloadContent()
+        {
+            this.player.Ball.UnloadContent();
+        }
+        
+        public void Update(GameTime gameTime)
+        {
+            if (this.player.Ball.BallControler)
             {
-                return firstController;
-            }
-            set
-            {
-                firstController = value;
+                this.PlayerBallControls(gameTime);
             }
         }
 
-        public static bool SecondController
+        public void Draw(SpriteBatch spriteBatch)
         {
-            get
-            {
-                return secondController;
-            }
-            set
-            {
-                secondController = value;
-            }
-        }
+            Vector2 fireStartPosition = new Vector2();
 
-        public static CannonBall BallFirst
-        {
-            get
-            {
-                return ballFirst;
-            }
-            set
-            {
-                ballFirst = value;
-            }
-        }
-
-        public static CannonBall BallSecond
-        {
-            get
-            {
-                return ballSecond;
-            }
-            set
-            {
-                ballSecond = value;
-            }
-        }
-
-        public static void CannonBallInitialise()
-        {
-            ballFirst = new CannonBall();
-            ballSecond = new CannonBall();
-        }
-
-        public static void CannonBallLoadContent()
-        {
-            ballFirst.LoadContent();
-            ballSecond.LoadContent();
-        }
-
-        public static void CannonBallUnloadContent()
-        {
-            ballFirst.UnloadContent();
-            ballSecond.UnloadContent();
-        }
-
-        public static void CannonBallControls(PlayerTypes type, GameTime gameTime)
-        {
-            switch (type)
+            switch (this.type)
             {
                 case PlayerTypes.FirstPlayer:
-                    if (firstController)
-                    {
-                        FirstPlayerBallControls(gameTime);
-                    }
+                    fireStartPosition = new Vector2(FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width, FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height * 0.6f) - (this.player.Ball.Fire.Texture.Height / 2f));
                     break;
                 case PlayerTypes.SecondPlayer:
-                    if (secondController)
-                    {
-                        SecondPlayerBallControls(gameTime);
-                    }
-                    break;
-                //default:
-                //    throw new ArgumentOutOfRangeException(nameof(type), type, null);
-            }
-        }
-
-        public static void CannonBallDraw(PlayerTypes type, SpriteBatch spriteBatch)
-        {
-            switch (type)
-            {
-                case PlayerTypes.FirstPlayer:
-                    FirstPlayerBallDraw(spriteBatch);
-                    break;
-                case PlayerTypes.SecondPlayer:
-                    SecondPlayerBallDraw(spriteBatch);
+                    fireStartPosition = new Vector2(SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width * 0.9f, SecondPlayer.Instance.Ship.Position.Y + SecondPlayer.Instance.ShipImage.Texture.Height * 0.1f);
                     break;
             }
-        }
 
-        private static void FirstPlayerBallControls(GameTime gameTime)
-        {
-            if (FirstPlayer.Instance.InputManagerInstance.KeyDown(Keys.LeftControl))
+            if (this.player.Ball.BallFired && this.player.Ball.FireFlashCounter < 15)
             {
-                ballFirst.BallFired = true;
-                firstBallTimer.Start();
-
-                if (!ballFirst.BallInitialised)
-                {
-                    ballFirst.FireFlashCounter = 0;
-                    ballFirst.Initialise(ballFirst.BallFiredPos = new Vector2(FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width, FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height / 2f)), FirstPlayer.Instance.PlayerType);
-                    ballFirst.BallInitialised = true;
-                }
+                this.player.Ball.Fire.Draw(spriteBatch, fireStartPosition);
+                this.player.Ball.FireFlashCounter++;
             }
 
-            if (ballFirst.BallFired)
-            {
-                ballFirst.UpdateFirst(gameTime);
-            }
-        }
-
-        private static void SecondPlayerBallControls(GameTime gameTime)
-        {
-            if (SecondPlayer.Instance.InputManagerInstance.KeyDown(Keys.RightControl))
-            {
-                ballSecond.BallFired = true;
-                secondBallTimer.Start();
-
-                if (!ballSecond.BallInitialised)
-                {
-                    ballSecond.FireFlashCounter = 0;
-                    ballSecond.Initialise(ballSecond.BallFiredPos = new Vector2(SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width / 2f, SecondPlayer.Instance.Ship.Position.Y + (SecondPlayer.Instance.ShipImage.Texture.Height / 2f)), SecondPlayer.Instance.PlayerType);
-                    ballSecond.BallInitialised = true;
-                }
-            }
-
-            if (ballSecond.BallFired)
-            {
-                ballSecond.UpdateSecond(gameTime);
-            }
-        }
-
-        private static void FirstPlayerBallDraw(SpriteBatch spriteBatch)
-        {
-            if (ballFirst.BallFired && ballFirst.FireFlashCounter < 15)
-            {
-                ballFirst.Fire.Draw(spriteBatch, new Vector2(FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width, FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height * 0.6f) - (ballFirst.Fire.Texture.Height / 2f)));
-                ballFirst.FireFlashCounter++;
-            }
-
-            if (!ballFirst.BallFired)
+            if (!this.player.Ball.BallFired)
             {
                 return;
             }
-            ballFirst.SetPositionRangeX((ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - FirstPlayer.Instance.ShipImage.Texture.Width));
+            this.player.Ball.SetPositionRangeX((this.player.Ball.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - FirstPlayer.Instance.ShipImage.Texture.Width));
 
-            if (ballFirst.Position.Y < ballFirst.BallFiredPos.Y)
+            if (this.player.Ball.Position.Y < this.player.Ball.BallFiredPos.Y)
             {
-                ballFirst.Draw(spriteBatch);
+                this.player.Draw(spriteBatch);
             }
-            else if (firstBallTimer.Elapsed.TotalSeconds > DefaultBallTimer)
+            else if (this.player.Ball.BallTimer.Elapsed.TotalSeconds > CannonBall.DefaultBallTimer)
             {
-                ballFirst.BallInitialised = false;
-                ballFirst.BallFired = false;
-                firstBallTimer.Stop();
-                firstBallTimer.Reset();
+                this.player.Ball.BallInitialised = false;
+                this.player.Ball.BallFired = false;
+                this.player.Ball.BallTimer.Stop();
+                this.player.Ball.BallTimer.Reset();
             }
         }
-
-        private static void SecondPlayerBallDraw(SpriteBatch spriteBatch)
+        
+        //TODO make a local variable of PlayerTypes
+        private void PlayerBallControls(GameTime gameTime)
         {
-            if (ballSecond.BallFired && ballSecond.FireFlashCounter < 15)
+            IPlayer instance;
+            Keys controls;
+
+            switch (this.type)
             {
-                ballSecond.Fire.Draw(spriteBatch, new Vector2(SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width * 0.9f, SecondPlayer.Instance.Ship.Position.Y + SecondPlayer.Instance.ShipImage.Texture.Height * 0.1f));
-                ballSecond.FireFlashCounter++;
+                case PlayerTypes.FirstPlayer:
+                    this.player.Ball.BallFiredPos = new Vector2(FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width, FirstPlayer.Instance.Ship.Position.Y + FirstPlayer.Instance.ShipImage.Texture.Height / 2f);
+                    instance = FirstPlayer.Instance;
+                    controls = Keys.LeftControl;
+                    break;
+                case PlayerTypes.SecondPlayer:
+                    this.player.Ball.BallFiredPos = new Vector2(SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width / 2f, SecondPlayer.Instance.Ship.Position.Y + (SecondPlayer.Instance.ShipImage.Texture.Height / 2f));
+                    instance = SecondPlayer.Instance;
+                    controls = Keys.RightControl;
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(this.type), this.type, null);
             }
 
-            if (ballSecond.BallFired)
+            if (instance != null && instance.InputManagerInstance.KeyDown(controls))
             {
-                ballSecond.SetPositionRangeX((ballFirst.BallFiredPos.X + (ScreenManager.Instance.Dimensions.X / 2) - SecondPlayer.Instance.ShipImage.Texture.Width));
+                this.player.Ball.BallFired = true;
+                this.player.Ball.BallTimer.Start();
 
-                if (ballSecond.Position.Y < ballSecond.BallFiredPos.Y)
+                if (!this.player.Ball.BallInitialised)
                 {
-                    ballSecond.Draw(spriteBatch);
+                    this.player.Ball.FireFlashCounter = 0;
+                    this.player.Ball.Initialise();
+                    this.player.Ball.BallInitialised = true;
                 }
-                else if (secondBallTimer.Elapsed.TotalSeconds > DefaultBallTimer)
-                {
-                    ballSecond.BallInitialised = false;
-                    ballSecond.BallFired = false;
-                    secondBallTimer.Stop();
-                    secondBallTimer.Reset();
-                }
+            }
+
+            if (this.player.Ball.BallFired)
+            {
+                this.player.Ball.Update(gameTime);
             }
         }
     }

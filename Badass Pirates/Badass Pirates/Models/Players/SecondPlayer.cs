@@ -18,7 +18,7 @@
         {
             this.Ship.Position = this.SpawnSecond;
             this.typeShip = type;
-            this.PlayerType = PlayerTypes.SecondPlayer;
+            //this.PlayerType = PlayerTypes.SecondPlayer;
         }
 
         public static IPlayer Instance

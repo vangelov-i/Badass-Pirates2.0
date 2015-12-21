@@ -14,9 +14,11 @@
 
         bool ItemColliding { get; set; }
 
-        PlayerTypes PlayerType { get; set; }
+        PlayerTypes PlayerType { get; }
 
         Image ShipImage { get; set; }
+
+        IProjectile Ball { get; set; }
 
         void Initialise();
 
@@ -31,5 +33,7 @@
         void GetPotion(PotionTypes potionType);
 
         void GetBonus(BonusType bonusType);
+
+
     }
 }

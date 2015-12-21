@@ -2,9 +2,12 @@
 {
     #region
     
+    using System.Diagnostics;
+
     using Badass_Pirates.Enums;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
+    using Badass_Pirates.Models.Players;
 
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Graphics;
@@ -17,6 +20,8 @@
         private readonly Vector2 DefaultInitPos = new Vector2(900f, 900f);
 
         private static Point frameSize;
+
+        private static bool ballControler;
 
         private bool ballFired;
 
@@ -38,12 +43,24 @@
 
         private int counter;
 
-        public CannonBall()
+        private const int defaultBallTimer = 2;
+
+        private Stopwatch ballTimer = new Stopwatch();
+
+        private PlayerTypes playerType;
+
+        public CannonBall(Vector2 pos, PlayerTypes type)
         {
-            this.position = this.DefaultInitPos;
-            this.image = new Image("cannonball");
+            this.Position = this.DefaultInitPos;
+            this.Image = new Image("cannonball");
             this.Fire = new Image("firstFire");
-            frameSize = new Point(42, 42);
+            this.FrameSize = new Point(42, 42);
+            this.BallControler = true;
+            this.position = pos;
+            this.heightMax = pos.Y - 50;
+            this.counter = 0;
+            this.flipper = false;
+            this.playerType = type;
         }
 
         public Vector2 BallFiredPos 
@@ -135,14 +152,53 @@
             }
         }
 
-        public void Initialise(Vector2 pos,PlayerTypes type)
+        public Stopwatch BallTimer
         {
-            this.position = pos;
-            this.heightMax = pos.Y - 50; 
-            this.counter = 0;
-            this.flipper = false;
+            get
+            {
+                return this.ballTimer;
+            }
+            set
+            {
+                this.ballTimer = value;
+            }
+        }
 
-            switch (type)
+        public static int DefaultBallTimer
+        {
+            get
+            {
+                return defaultBallTimer;
+            }
+        }
+
+        public  bool BallControler
+        {
+            get
+            {
+                return ballControler;
+            }
+            set
+            {
+                ballControler = value;
+            }
+        }
+
+        public Vector2 BallRangeX
+        {
+            get
+            {
+                return this.ballRangeX;
+            }
+            set
+            {
+                this.ballRangeX = value;
+            }
+        }
+
+        public void Initialise()
+        {
+            switch (this.playerType)
             {
                 case PlayerTypes.FirstPlayer:
                     this.Fire = new Image("firstFire");
@@ -166,10 +222,19 @@
             this.image.UnloadContent();
             this.Fire.UnloadContent();
         }
-
-        public void UpdateFirst(GameTime gameTime)
+        
+        public void Update(GameTime gameTime)
         {
-            this.position.X += 14;
+            switch (this.playerType)
+            {
+                case PlayerTypes.FirstPlayer:
+                    this.position.X += 14;
+                break;
+                case PlayerTypes.SecondPlayer:
+                    this.position.X -= 13;
+                break;   
+            }
+
             if (!this.flipper && this.position.Y > this.heightMax + 100)
             {
                 this.position.Y -= 5;
@@ -196,37 +261,7 @@
                 this.position.Y += 5;
             }
         }
-
-        public void UpdateSecond(GameTime gameTime)
-        {
-            this.position.X -= 13;
-            if (!this.flipper && this.position.Y > this.heightMax + 100)
-            {
-                this.position.Y -= 5;
-            }
-            else if (!this.flipper && this.position.Y > this.heightMax)
-            {
-                this.position.Y -= 2; 
-            }
-            else if (!this.flipper)
-            {
-                this.flipper = true;
-                this.position.Y += 2;
-            }
-            else if (this.counter < 8)
-            {
-                this.counter++;
-            }
-            else if (this.flipper && this.position.Y > this.heightMax + 100)
-            {
-                this.position.Y += 2; 
-            }
-            else
-            {
-                this.position.Y += 5;
-            }
-        }
-
+        
         public void Draw(SpriteBatch spriteBatch)
         {
             spriteBatch.Draw(this.image.Texture, this.position);
