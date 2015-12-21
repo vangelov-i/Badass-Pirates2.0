@@ -23,6 +23,8 @@
 
         private Vector2 textureOrigin;
 
+        private static Boss instance;
+
         private Boss()
         {
             this.Health = 200;
@@ -33,7 +35,7 @@
             this.FrameSize = new Point(250, 208);
         }
 
-        public static Boss Instance { get; } = new Boss();
+       
 
         public int Health
         {
@@ -81,6 +83,19 @@
             set
             {
                 this.speed = value;
+            }
+        }
+
+        public static Boss Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Boss();
+                }
+
+                return instance;
             }
         }
 
