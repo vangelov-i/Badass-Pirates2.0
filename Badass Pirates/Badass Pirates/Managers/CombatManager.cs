@@ -91,6 +91,7 @@
                     BallControls.BallSecond);
             if (ballColliding)
             {
+                BallControls.BallSecond.ImpacEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\impactSound.wav"));
                 BallControls.BallSecond.ImpacEffect.Play();
                 firstPlayerHitCounter = 0;
                 SecondPlayer.Instance.Ship.Attack(FirstPlayer.Instance.Ship);
@@ -101,6 +102,7 @@
                 BallControls.BallFirst);
             if (ballColliding)
             {
+                BallControls.BallFirst.ImpacEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\impactSound.wav"));
                 BallControls.BallFirst.ImpacEffect.Play();
                 secondPlayerHitCounter = 0;
                 FirstPlayer.Instance.Ship.Attack(SecondPlayer.Instance.Ship);

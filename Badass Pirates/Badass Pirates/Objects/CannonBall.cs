@@ -11,6 +11,7 @@
     using Microsoft.Xna.Framework;
     using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Graphics;
+    using System.Windows.Media;
 
     #endregion
 
@@ -41,9 +42,9 @@
 
         private int counter;
 
-        private SoundEffect cannonEffect;
+        private MediaPlayer cannonEffect;
 
-        private SoundEffect impacEffect;
+        private MediaPlayer impacEffect;
 
         public CannonBall()
         {
@@ -51,8 +52,10 @@
             this.image = new Image("cannonball");
             this.Fire = new Image("firstFire");
             frameSize = new Point(42, 42);
-            this.CannonEffect = ScreenManager.Instance.Content.Load<SoundEffect>("cannonSound.wav");
-            this.ImpacEffect = ScreenManager.Instance.Content.Load<SoundEffect>("impactSound.wav");
+            this.CannonEffect = new MediaPlayer();
+            this.CannonEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\cannonSound.wav"));
+            this.ImpacEffect = new MediaPlayer();
+            this.impacEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\impactSound.wav"));
         }
 
         public Vector2 BallFiredPos 
@@ -144,7 +147,7 @@
             }
         }
 
-        public SoundEffect CannonEffect
+        public MediaPlayer CannonEffect
         {
             get
             {
@@ -156,7 +159,7 @@
             }
         }
 
-        public SoundEffect ImpacEffect
+        public MediaPlayer ImpacEffect
         {
             get
             {
