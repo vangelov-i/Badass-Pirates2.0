@@ -69,7 +69,8 @@
         public override void LoadContent()
         {
             base.LoadContent();
-            this._btnPlay = new Button(this.Content.Load<Texture2D>("button"));
+            this._btnPlay = new Button(this.Content.Load<Texture2D>("Buttons/playNow"));
+            this._btnPlay.Size = new Vector2(200,100);
             this._btnPlay.setPosition(new Vector2(570, 290));
 
             this._controls = new Button(this.Content.Load<Texture2D>("controls"));

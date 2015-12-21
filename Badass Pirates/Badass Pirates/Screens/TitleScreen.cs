@@ -47,7 +47,8 @@
         public sealed override void LoadContent()
         {
             base.LoadContent();
-            this.playAgain = new Button(this.Content.Load<Texture2D>("button"));
+            this.playAgain = new Button(this.Content.Load<Texture2D>("Buttons/exit"));
+            this.playAgain.Size = new Vector2(100,50);
             FirstPlayer.Instance.LoadContent();
             SecondPlayer.Instance.LoadContent();
             this.background.LoadContent();

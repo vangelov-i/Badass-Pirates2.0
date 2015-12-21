@@ -182,6 +182,10 @@
     <Content Include="Content\button.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\Buttons\exit.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Buttons\playNow.png" />
     <Content Include="Content\cannonball.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

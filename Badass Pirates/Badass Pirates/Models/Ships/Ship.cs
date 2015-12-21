@@ -261,6 +261,7 @@
                 PlayerControls.SecondControler = false;
                 BallControls.SecondController = false;
             }
+
             player.Ship.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }
 

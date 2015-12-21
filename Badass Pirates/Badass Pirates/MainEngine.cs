@@ -21,6 +21,8 @@
 
         private SoundPlayer oceanSound;
 
+        //private SoundEffect oceanSoundEffect;
+
         public MainEngine()
         {
             this.graphics = new GraphicsDeviceManager(this);
@@ -57,6 +59,8 @@
             ScreenManager.Instance.GraphicsDevice = this.GraphicsDevice;
             ScreenManager.Instance.SpriteBatch = this.spriteBatch;
             ScreenManager.Instance.LoadContent(this.Content);
+            //this.oceanSoundEffect = ScreenManager.Instance.Content.Load<SoundEffect>("Ocean.wav");
+            //this.oceanSoundEffect.Play();
             this.oceanSound = new SoundPlayer("Content/Ocean.wav");
             this.oceanSound.PlayLooping();
 
