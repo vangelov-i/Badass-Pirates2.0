@@ -15,7 +15,7 @@
         {
             this.Ship.Position = this.SpawnFirst;
             this.ShipType = type;
-            //this.PlayerType = PlayerTypes.FirstPlayer;
+            this.PlayerType = PlayerTypes.FirstPlayer;
         }
 
         private static IPlayer instance;

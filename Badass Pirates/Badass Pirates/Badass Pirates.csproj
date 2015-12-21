@@ -76,7 +76,6 @@
     <Compile Include="Interfaces\IRotatetable.cs" />
     <Compile Include="Interfaces\IShip.cs" />
     <Compile Include="Interfaces\ISpecialty.cs" />
-    <Compile Include="Interfaces\IXnaDependencies.cs" />
     <Compile Include="Managers\PlayersInfo.cs" />
     <Compile Include="Managers\FontsManager.cs" />
     <Compile Include="Managers\RegenManager.cs" />
