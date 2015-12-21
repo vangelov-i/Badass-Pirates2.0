@@ -27,7 +27,7 @@
         public ControlScreen()
         {
             this.Content = ScreenManager.Instance.Content;
-            this.back = new Button(this.Content.Load<Texture2D>("back"));
+            this.back = new Button(this.Content.Load<Texture2D>("Buttons/back"));
             this.back.setPosition(new Vector2(50, 50));
             this.back.Size = new Vector2(75, 75);
         }

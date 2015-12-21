@@ -33,7 +33,7 @@
 
         private static readonly Stopwatch secondBallTimer = new Stopwatch();
 
-        static BallControls ()
+        static BallControls()
         {
             firstController = true;
 
@@ -122,8 +122,8 @@
                         SecondPlayerBallControls(gameTime);
                     }
                     break;
-                //default:
-                //    throw new ArgumentOutOfRangeException(nameof(type), type, null);
+                    //default:
+                    //    throw new ArgumentOutOfRangeException(nameof(type), type, null);
             }
         }
 
@@ -149,7 +149,6 @@
 
                 if (!ballFirst.BallInitialised)
                 {
-                    ballFirst.CannonEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\cannonSound.wav"));
                     ballFirst.CannonEffect.Play();
                     ballFirst.FireFlashCounter = 0;
                     ballFirst.Initialise(ballFirst.BallFiredPos = new Vector2(FirstPlayer.Instance.Ship.Position.X + FirstPlayer.Instance.ShipImage.Texture.Width, FirstPlayer.Instance.Ship.Position.Y + (FirstPlayer.Instance.ShipImage.Texture.Height / 2f)), FirstPlayer.Instance.PlayerType);
@@ -172,7 +171,6 @@
 
                 if (!ballSecond.BallInitialised)
                 {
-                    ballSecond.CannonEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\cannonSound.wav"));
                     ballSecond.CannonEffect.Play();
                     ballSecond.FireFlashCounter = 0;
                     ballSecond.Initialise(ballSecond.BallFiredPos = new Vector2(SecondPlayer.Instance.Ship.Position.X - SecondPlayer.Instance.ShipImage.Texture.Width / 2f, SecondPlayer.Instance.Ship.Position.Y + (SecondPlayer.Instance.ShipImage.Texture.Height / 2f)), SecondPlayer.Instance.PlayerType);

@@ -69,24 +69,25 @@
         public override void LoadContent()
         {
             base.LoadContent();
-            this._btnPlay = new Button(this.Content.Load<Texture2D>("Buttons/playNow"));
+            this._btnPlay = new Button(this.Content.Load<Texture2D>("Buttons/play"));
             this._btnPlay.Size = new Vector2(200,100);
-            this._btnPlay.setPosition(new Vector2(570, 290));
+            this._btnPlay.setPosition(new Vector2(570, 180));
+            this._btnPlay.ConstFlash = true;
 
-            this._controls = new Button(this.Content.Load<Texture2D>("controls"));
-            this._controls.setPosition(new Vector2(50, 125));
-            this._controls.Size = new Vector2(120, 45);
+            this._controls = new Button(this.Content.Load<Texture2D>("Buttons/controls"));
+            this._controls.setPosition(new Vector2(0, 150));
+            this._controls.Size = new Vector2(200, 100);
 
             this.destroyer = new Button(this.Content.Load<Texture2D>("ShipsContents/destroyerLeft"));
-            this.destroyer.setPosition(new Vector2(100, 300));
+            this.destroyer.setPosition(new Vector2(100, 400));
             this.destroyer.Size = new Vector2(137, 150);
 
             this.battleship = new Button(this.Content.Load<Texture2D>("ShipsContents/battleshipLeft"));
-            this.battleship.setPosition(new Vector2(600, 300));
+            this.battleship.setPosition(new Vector2(600, 550));
             this.battleship.Size = new Vector2(137, 150);
 
             this.cruiser = new Button(this.Content.Load<Texture2D>("ShipsContents/cruiserLeft"));
-            this.cruiser.setPosition(new Vector2(1100, 300));
+            this.cruiser.setPosition(new Vector2(1100, 400));
             this.cruiser.Size = new Vector2(137, 150);
 
         }

@@ -91,8 +91,6 @@
                     BallControls.BallSecond);
             if (ballColliding)
             {
-                BallControls.BallSecond.ImpacEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\impactSound.wav"));
-                BallControls.BallSecond.ImpacEffect.Play();
                 firstPlayerHitCounter = 0;
                 SecondPlayer.Instance.Ship.Attack(FirstPlayer.Instance.Ship);
             }
@@ -102,8 +100,6 @@
                 BallControls.BallFirst);
             if (ballColliding)
             {
-                BallControls.BallFirst.ImpacEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\impactSound.wav"));
-                BallControls.BallFirst.ImpacEffect.Play();
                 secondPlayerHitCounter = 0;
                 FirstPlayer.Instance.Ship.Attack(SecondPlayer.Instance.Ship);
 
@@ -195,7 +191,7 @@
                             string.Format((Boss.Instance.Damage * -1).ToString())); // moje i po elegantno :D
                     bossHitCounter++;
                 }
-                else if(playerFlagBossCollide == 0 && BallControls.SecondController)
+                else if (playerFlagBossCollide == 0 && BallControls.SecondController)
                 {
                     damageFont.Draw(
                             spriteBatch,
@@ -217,7 +213,7 @@
                         Boss.Instance.Position.X + Boss.Instance.image.Texture.Width / 2f - 25,
                         Boss.Instance.Position.Y),
                         string.Format((FirstPlayer.Instance.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
-                        firstPlayerHitCounter++;
+                firstPlayerHitCounter++;
 
             }
 
@@ -230,7 +226,7 @@
                         Boss.Instance.Position.X + Boss.Instance.image.Texture.Width / 2f - 25,
                         Boss.Instance.Position.Y),
                         string.Format((SecondPlayer.Instance.Ship.Damage * -1).ToString())); // ne e dovyrsheno, ne raboti!!! 
-                        secondPlayerHitCounter++;
+                secondPlayerHitCounter++;
 
             }
             //TODO END TODO

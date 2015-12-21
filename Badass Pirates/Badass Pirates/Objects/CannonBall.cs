@@ -42,9 +42,9 @@
 
         private int counter;
 
-        private MediaPlayer cannonEffect;
+        private SoundPlayer cannonEffect;
 
-        private MediaPlayer impacEffect;
+        private SoundPlayer impacEffect;
 
         public CannonBall()
         {
@@ -52,14 +52,12 @@
             this.image = new Image("cannonball");
             this.Fire = new Image("firstFire");
             frameSize = new Point(42, 42);
-            this.CannonEffect = new MediaPlayer();
-            this.CannonEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\cannonSound.wav"));
-            this.ImpacEffect = new MediaPlayer();
-            this.impacEffect.Open(new System.Uri(@"C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\impactSound.wav"));
+            this.CannonEffect = new SoundPlayer("Content/cannonSound.wav");
+            this.ImpacEffect = new SoundPlayer("Content/impactSound.wav");
         }
 
-        public Vector2 BallFiredPos 
-        { 
+        public Vector2 BallFiredPos
+        {
             get
             {
                 return this.ballFiredPos;
@@ -72,9 +70,9 @@
         }
 
         public Image Fire { get; set; }
-        
-        public bool BallFired 
-        { 
+
+        public bool BallFired
+        {
             get
             {
                 return this.ballFired;
@@ -84,10 +82,10 @@
             {
                 this.ballFired = value;
             }
-        }   
+        }
 
-        public int FireFlashCounter 
-        { 
+        public int FireFlashCounter
+        {
             get
             {
                 return this.fireFlashCounter;
@@ -99,7 +97,7 @@
             }
         }
 
-        public Vector2 Position 
+        public Vector2 Position
         {
             get
             {
@@ -147,7 +145,7 @@
             }
         }
 
-        public MediaPlayer CannonEffect
+        public SoundPlayer CannonEffect
         {
             get
             {
@@ -159,7 +157,7 @@
             }
         }
 
-        public MediaPlayer ImpacEffect
+        public SoundPlayer ImpacEffect
         {
             get
             {
@@ -171,10 +169,10 @@
             }
         }
 
-        public void Initialise(Vector2 pos,PlayerTypes type)
+        public void Initialise(Vector2 pos, PlayerTypes type)
         {
             this.position = pos;
-            this.heightMax = pos.Y - 50; 
+            this.heightMax = pos.Y - 50;
             this.counter = 0;
             this.flipper = false;
 
@@ -242,7 +240,7 @@
             }
             else if (!this.flipper && this.position.Y > this.heightMax)
             {
-                this.position.Y -= 2; 
+                this.position.Y -= 2;
             }
             else if (!this.flipper)
             {
@@ -255,7 +253,7 @@
             }
             else if (this.flipper && this.position.Y > this.heightMax + 100)
             {
-                this.position.Y += 2; 
+                this.position.Y += 2;
             }
             else
             {

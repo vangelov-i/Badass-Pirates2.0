@@ -55,6 +55,10 @@
         public Vector2 Position
         {
             get { return this.position; }
+            set
+            {
+                this.position = value;
+            }
         }
 
         public void Update(MouseState mouse)
@@ -66,7 +70,7 @@
                 (int)this.size.Y);
             Rectangle mouseRectangle = new Rectangle(mouse.X, mouse.Y, 1, 1);
 
-            if (mouseRectangle.Intersects(this.rectangle))
+            if (mouseRectangle.Intersects(this.rectangle) || this.ConstFlash)
             {
                 if (this.colour.A == 255)
                 {

@@ -48,7 +48,9 @@
         {
             base.LoadContent();
             this.playAgain = new Button(this.Content.Load<Texture2D>("Buttons/exit"));
-            this.playAgain.Size = new Vector2(100,50);
+            this.playAgain.Position = new Vector2(ScreenManager.Instance.Dimensions.X / 2 - this.playAgain.Size.X/2f,ScreenManager.Instance.Dimensions.Y / 2);
+            this.playAgain.Size = new Vector2(200,100);
+            this.playAgain.ConstFlash = true;
             FirstPlayer.Instance.LoadContent();
             SecondPlayer.Instance.LoadContent();
             this.background.LoadContent();

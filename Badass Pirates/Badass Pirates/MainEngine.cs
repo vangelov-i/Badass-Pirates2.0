@@ -16,12 +16,8 @@
     public class MainEngine : Game
     {
         private GraphicsDeviceManager graphics;
-        
+
         private SpriteBatch spriteBatch;
-
-        private SoundPlayer oceanSound;
-
-        //private SoundEffect oceanSoundEffect;
 
         public MainEngine()
         {
@@ -43,7 +39,7 @@
             this.Content.RootDirectory = "Content";
             this.graphics.PreferredBackBufferHeight = (int)ScreenManager.Instance.Dimensions.Y;
             this.graphics.PreferredBackBufferWidth = (int)ScreenManager.Instance.Dimensions.X;
-            //this.graphics.IsFullScreen = this.IsActive; // TODO: activate fullscreen
+            this.graphics.IsFullScreen = this.IsActive; // TODO: activate fullscreen
             ScreenManager.Instance.Initialise();
             base.Initialize();
         }
@@ -59,10 +55,6 @@
             ScreenManager.Instance.GraphicsDevice = this.GraphicsDevice;
             ScreenManager.Instance.SpriteBatch = this.spriteBatch;
             ScreenManager.Instance.LoadContent(this.Content);
-            //this.oceanSoundEffect = ScreenManager.Instance.Content.Load<SoundEffect>("Ocean.wav");
-            //this.oceanSoundEffect.Play();
-            this.oceanSound = new SoundPlayer("Content/Ocean.wav");
-            this.oceanSound.PlayLooping();
 
             // TODO: use this.Content to load your game content here
         }
@@ -88,7 +80,7 @@
             {
                 this.Exit();
             }
-            
+
             ScreenManager.Instance.Update(gameTime);
 
 
