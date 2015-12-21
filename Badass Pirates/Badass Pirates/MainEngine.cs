@@ -1,9 +1,12 @@
 ﻿namespace Badass_Pirates
 {
+    using System.Media;
+
     using Badass_Pirates.Managers;
     using Badass_Pirates.Objects;
 
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Graphics;
     using Microsoft.Xna.Framework.Input;
 
@@ -13,18 +16,17 @@
     public class MainEngine : Game
     {
         private GraphicsDeviceManager graphics;
-
+        
         private SpriteBatch spriteBatch;
 
-        public static float timer;
-
-        public static float timeCounter;
+        private SoundPlayer oceanSound;
 
         public MainEngine()
         {
             this.graphics = new GraphicsDeviceManager(this);
             this.Content.RootDirectory = "Content";
             this.IsMouseVisible = true;
+
         }
 
         /// <summary>
@@ -55,6 +57,9 @@
             ScreenManager.Instance.GraphicsDevice = this.GraphicsDevice;
             ScreenManager.Instance.SpriteBatch = this.spriteBatch;
             ScreenManager.Instance.LoadContent(this.Content);
+            this.oceanSound = new SoundPlayer("Content/Ocean.wav");
+            this.oceanSound.PlayLooping();
+
             // TODO: use this.Content to load your game content here
         }
 
@@ -79,16 +84,9 @@
             {
                 this.Exit();
             }
-
-            timer += (float)gameTime.ElapsedGameTime.TotalSeconds;
-            timeCounter += (int)timer;
-            if (timer >= 1.0F)
-            {
-                timer = 0F;
-            }
-
-            ScreenManager.Instance.Update(gameTime);
             
+            ScreenManager.Instance.Update(gameTime);
+
 
             base.Update(gameTime);
         }

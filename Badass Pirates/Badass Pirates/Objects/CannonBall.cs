@@ -1,12 +1,15 @@
 ﻿namespace Badass_Pirates.Objects
 {
     #region
-    
+
+    using System.Media;
+
     using Badass_Pirates.Enums;
     using Badass_Pirates.Interfaces;
     using Badass_Pirates.Managers;
 
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Graphics;
 
     #endregion
@@ -38,12 +41,18 @@
 
         private int counter;
 
+        private SoundEffect cannonEffect;
+
+        private SoundEffect impacEffect;
+
         public CannonBall()
         {
             this.position = this.DefaultInitPos;
             this.image = new Image("cannonball");
             this.Fire = new Image("firstFire");
             frameSize = new Point(42, 42);
+            this.CannonEffect = ScreenManager.Instance.Content.Load<SoundEffect>("cannonSound.wav");
+            this.ImpacEffect = ScreenManager.Instance.Content.Load<SoundEffect>("impactSound.wav");
         }
 
         public Vector2 BallFiredPos 
@@ -132,6 +141,30 @@
             set
             {
                 this.image = value;
+            }
+        }
+
+        public SoundEffect CannonEffect
+        {
+            get
+            {
+                return this.cannonEffect;
+            }
+            set
+            {
+                this.cannonEffect = value;
+            }
+        }
+
+        public SoundEffect ImpacEffect
+        {
+            get
+            {
+                return this.impacEffect;
+            }
+            set
+            {
+                this.impacEffect = value;
             }
         }
 

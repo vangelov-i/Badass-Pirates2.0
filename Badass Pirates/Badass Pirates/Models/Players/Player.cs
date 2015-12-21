@@ -2,6 +2,8 @@
 {
     #region
 
+    using System.Media;
+
     using Badass_Pirates.Collisions;
     using Badass_Pirates.Controls;
     using Badass_Pirates.Enums;
@@ -12,6 +14,7 @@
     using Badass_Pirates.Models.Mobs.Boss;
 
     using Microsoft.Xna.Framework;
+    using Microsoft.Xna.Framework.Audio;
     using Microsoft.Xna.Framework.Graphics;
 
     #endregion
@@ -24,6 +27,8 @@
 
         // TODO Edit the image size
         protected readonly Vector2 SpawnSecond = new Vector2(1366 - 135, 768 - 150);
+
+        
 
         protected Player(ShipType type)
         {

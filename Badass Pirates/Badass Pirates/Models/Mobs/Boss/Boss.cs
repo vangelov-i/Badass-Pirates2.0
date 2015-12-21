@@ -13,10 +13,6 @@
 
     public class Boss : IBoss
     {
-        private static Boss instance = new Boss();
-
-        private Point frameSize;
-
         private int health;
 
         public Image image;
@@ -34,13 +30,10 @@
             this.speed.X = 2;
             this.speed.Y = 2;
             this.Sunk = false;
-            this.frameSize = new Point(250, 208);
+            this.FrameSize = new Point(250, 208);
         }
 
-        public static Boss Instance
-        {
-            get { return instance; }
-        }
+        public static Boss Instance { get; } = new Boss();
 
         public int Health
         {
@@ -51,7 +44,7 @@
 
             set
             {
-                if (value < 0)
+                if (value <= 0)
                 {
                     value = 0;
                     this.Sunk = true;
@@ -75,17 +68,7 @@
             }
         }
 
-        public Point FrameSize
-        {
-            get
-            {
-                return this.frameSize;
-            }
-            set
-            {
-                this.frameSize = value;
-            }
-        }
+        public Point FrameSize { get; private set; }
 
         public bool Sunk { get; set; }
 
@@ -106,11 +89,12 @@
             if (target.Shields > 0)
             {
                 target.Shields -= this.Damage;
-                if (target.Shields < 0)
+                if (target.Shields >= 0)
                 {
-                    target.Health += target.Shields;
-                    target.Shields = 0;
+                    return;
                 }
+                target.Health += target.Shields;
+                target.Shields = 0;
             }
             else
             {
@@ -163,6 +147,12 @@
             }
         }
 
+        public void Sink()
+        {
+            var sinkingSpeed = 1;
+            Instance.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
+        }
+
         public void Initialise()
         {
             this.image = new Image("dibossBIG");
@@ -187,10 +177,10 @@
             {
                 this.position += this.speed;
 
-                int MaxX = (int)ScreenManager.Instance.Dimensions.X - this.image.Texture.Width;
-                int MinX = 0;
-                int MaxY = (int)ScreenManager.Instance.Dimensions.Y - this.image.Texture.Height;
-                int MinY = 0;
+                var MaxX = (int)ScreenManager.Instance.Dimensions.X - this.image.Texture.Width;
+                var MinX = 0;
+                var MaxY = (int)ScreenManager.Instance.Dimensions.Y - this.image.Texture.Height;
+                var MinY = 0;
 
                 // Check for bounce.
                 if (this.position.X > MaxX)
@@ -242,12 +232,6 @@
                     SpriteEffects.FlipVertically,
                     0f);
             }
-        }
-
-        public void Sink()
-        {
-            var sinkingSpeed = 1;
-            Instance.Move(CoordsDirections.Ordinate, Direction.Positive, sinkingSpeed);
         }
     }
 }

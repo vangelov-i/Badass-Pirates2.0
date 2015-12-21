@@ -185,6 +185,9 @@
     <Content Include="Content\cannonball.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\cannonSound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\controls.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -197,10 +200,14 @@
     <Content Include="Content\firstFire.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\impactSound.wav">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Content\Load\SplashScreen.xml">
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Content\Load\Image.xml" />
+    <Content Include="Content\Ocean.wav" />
     <Content Include="Content\PLAYER.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

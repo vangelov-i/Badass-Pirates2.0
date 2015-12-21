@@ -91,6 +91,7 @@
                     BallControls.BallSecond);
             if (ballColliding)
             {
+                BallControls.BallSecond.ImpacEffect.Play();
                 firstPlayerHitCounter = 0;
                 SecondPlayer.Instance.Ship.Attack(FirstPlayer.Instance.Ship);
             }
@@ -100,6 +101,7 @@
                 BallControls.BallFirst);
             if (ballColliding)
             {
+                BallControls.BallFirst.ImpacEffect.Play();
                 secondPlayerHitCounter = 0;
                 FirstPlayer.Instance.Ship.Attack(SecondPlayer.Instance.Ship);
 

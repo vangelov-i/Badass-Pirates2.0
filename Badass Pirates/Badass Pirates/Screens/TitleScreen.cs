@@ -2,6 +2,8 @@
 {
     #region
 
+    using System;
+
     using Badass_Pirates.Enums;
     using Badass_Pirates.Factory;
     using Badass_Pirates.Fonts;
@@ -20,8 +22,12 @@
     public class TitleScreen : GameScreen
     {
         private Image background;
-        
-        public TitleScreen ()
+
+        private Button playAgain;
+
+        private bool gameEnded;
+
+        public TitleScreen()
         {
             this.Initialise();
             this.LoadContent();
@@ -41,6 +47,7 @@
         public sealed override void LoadContent()
         {
             base.LoadContent();
+            this.playAgain = new Button(this.Content.Load<Texture2D>("button"));
             FirstPlayer.Instance.LoadContent();
             SecondPlayer.Instance.LoadContent();
             this.background.LoadContent();
@@ -65,6 +72,20 @@
 
             FirstPlayer.Instance.Update(gameTime);
             SecondPlayer.Instance.Update(gameTime);
+
+            if ((FirstPlayer.Instance.Ship.Sunk && SecondPlayer.Instance.Ship.Sunk) ||
+                (FirstPlayer.Instance.Ship.Sunk && Boss.Instance.Sunk) ||
+                (SecondPlayer.Instance.Ship.Sunk && Boss.Instance.Sunk))
+            {
+                MouseState mouse = Mouse.GetState();
+                this.playAgain.Update(mouse);
+                this.gameEnded = true;
+
+                if (this.playAgain.IsClicked)
+                {
+                    Environment.Exit(1);
+                }
+            }
         }
 
         public override void Draw(SpriteBatch spriteBatch)
@@ -80,6 +101,11 @@
             if (FirstPlayer.Instance.ItemColliding == false)
             {
                 Item.Draw(spriteBatch);
+            }
+
+            if (this.gameEnded)
+            {
+                this.playAgain.Draw(spriteBatch);
             }
         }
     }
