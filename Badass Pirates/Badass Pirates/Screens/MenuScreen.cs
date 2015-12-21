@@ -38,6 +38,8 @@
 
         private Button battleship;
 
+        private Image logo;
+
         //private static MenuScreen instance = new MenuScreen();
 
         bool firstChoiceMade;
@@ -69,9 +71,12 @@
         public override void LoadContent()
         {
             base.LoadContent();
+            this.logo = new Image("logo");
+            this.logo.LoadContent();
+
             this._btnPlay = new Button(this.Content.Load<Texture2D>("Buttons/play"));
             this._btnPlay.Size = new Vector2(200,100);
-            this._btnPlay.setPosition(new Vector2(570, 180));
+            this._btnPlay.setPosition(new Vector2(1166, 170));
             this._btnPlay.ConstFlash = true;
 
             this._controls = new Button(this.Content.Load<Texture2D>("Buttons/controls"));
@@ -177,8 +182,7 @@
                 new Rectangle(0, 0, _screenWidth, _screenHeight),
                 Color.White);
 
-
-
+            spriteBatch.Draw(this.logo.Texture,new Vector2(400,250));
 
             if (!this.firstChoiceMade || !this.secondChoiceMade)
             {
