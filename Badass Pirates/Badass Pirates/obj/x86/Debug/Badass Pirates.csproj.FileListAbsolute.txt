@@ -302,3 +302,23 @@ C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pi
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Buttons\controls.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Buttons\play.png
 C:\Users\Iliyan\Desktop\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\logo.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Badass Pirates.exe.config
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\arrowKeys.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Backgrounds\seaFaded.jpg
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\controls.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Ctrl.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\PLAYER.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\PlayerOne.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\PlayerTwo.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Shift.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\statsDestroyer.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\wasd.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\back.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\button.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Buttons\back.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Buttons\controls.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Buttons\exit.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\Buttons\play.png
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\cannonSound.wav
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\impactSound.wav
+C:\Users\Iliyan\Dropbox\[Git] Badass Pirates2.0\Badass Pirates\Badass Pirates\Content\logo.png

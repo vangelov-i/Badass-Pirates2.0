@@ -15,12 +15,12 @@ namespace Badass_Pirates.Collisions
     //TODO HAS SOME MAGIC NUMBERS
     public static class OctopusCollision
     {
-        private const int BALL_COLLISION_OFFSET = 5;
+        private const int BALL_COLLISION_OFFSET = 10;
 
         private const int COLLISION_OFFSET = 40;
 
         // GROZNO E, NE BIVA
-        public static readonly Stopwatch collidedStopWatch = new Stopwatch();
+        private static readonly Stopwatch collidedStopWatch = new Stopwatch();
         //
 
         public static bool Collide(IShip shipColliding)

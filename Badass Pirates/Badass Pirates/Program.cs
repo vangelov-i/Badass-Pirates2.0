@@ -9,7 +9,7 @@ namespace Badass_Pirates
     public static class Program
     {
         /// <summary>
-        /// The main entry point for the application.
+        /// The main entry point for Badass Pirates.
         /// </summary>
         [STAThread]
         public static void Main()
